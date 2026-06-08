@@ -60,6 +60,12 @@ class SageEngineIniFormattingBlock(
             return createSpacing(0, 0, 0, false, 0)
         }
 
+        if (left.node.elementType == SageEngineIniTokenTypes.COMMENT_SPACER &&
+            right.node.elementType == SageEngineIniTokenTypes.COMMENT_SPACER
+        ) {
+            return createSpacing(0, 0, 0, false, 0)
+        }
+
         if (left.node.elementType == SageEngineIniTokenTypes.COMMENT_START &&
             right.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD
         ) {
@@ -68,6 +74,12 @@ class SageEngineIniFormattingBlock(
 
         if (left.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD &&
             right.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD
+        ) {
+            return createSpacing(1, 1, 0, false, 0)
+        }
+
+        if (left.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD &&
+            right.node.elementType == SageEngineIniTokenTypes.COMMENT_SPACER
         ) {
             return createSpacing(1, 1, 0, false, 0)
         }

@@ -17,6 +17,7 @@
         <lang.commenter language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.SageEngineIniCommenter"/>
         <lang.formatter language="SageEngineIni"
                         implementationClass="de.darkatra.bfme2.ini.formatting.SageEngineIniFormattingModelBuilder"/>
+        <preFormatProcessor implementation="de.darkatra.bfme2.ini.formatting.SageEngineIniPreFormatProcessor"/>
     </extensions>
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
         <supportsKotlinPluginMode supportsK2="true"/>

@@ -22,6 +22,37 @@ class SageEngineIniLexerTest {
     }
 
     @Test
+    fun `should lex comments correctly`() {
+
+        assertTokens(
+            ";// some words //;",
+            SageEngineIniTokenTypes.COMMENT_START to ";",
+            SageEngineIniTokenTypes.COMMENT_SPACER to "//",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "some",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "words",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_SPACER to "//;",
+        )
+
+        assertTokens(
+            "; *** AUDIO Parameters *** ;",
+            SageEngineIniTokenTypes.COMMENT_START to ";",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "***",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "AUDIO",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "Parameters",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "***",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_SPACER to ";",
+        )
+    }
+
+    @Test
     fun `should lex property value with operators and conditions as raw value`() {
 
         assertTokens(

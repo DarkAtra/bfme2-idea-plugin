@@ -205,4 +205,53 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
             """.trimIndent(),
         )
     }
+
+    @Test
+    fun `should remove empty comments`() {
+
+        myFixture.configureByText(
+            "test.ini",
+            """
+            ;
+            Object TestObject ;
+                //${'\t'}
+                DisplayName = OBJECT:TestObject
+                --
+            End --
+            ; Valid comment
+            """.trimIndent(),
+        )
+
+        myFixture.performEditorAction("ReformatCode")
+
+        assertThat(myFixture.file.text).isEqualTo(
+            """
+            ;
+            Object TestObject
+                //
+                DisplayName = OBJECT:TestObject
+                --
+            End
+            ; Valid comment
+            """.trimIndent(),
+        )
+    }
+
+    @Test
+    fun `should format comment correctly`() {
+
+        val inputToExpectedOutput = mapOf(
+            ";*** AUDIO Parameters ***;" to "; *** AUDIO Parameters *** ;",
+            ";,;    ;//--- NEW CHARGE ABILITY ---" to ";,;;//--- NEW CHARGE ABILITY ---",
+        )
+
+        inputToExpectedOutput.forEach { input, expected ->
+
+            myFixture.configureByText("test.ini", input)
+
+            myFixture.performEditorAction("ReformatCode")
+
+            assertThat(myFixture.file.text).isEqualTo(expected)
+        }
+    }
 }

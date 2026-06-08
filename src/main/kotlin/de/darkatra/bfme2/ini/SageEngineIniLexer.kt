@@ -71,18 +71,12 @@ class SageEngineIniLexer : LexerBase() {
         }
 
         if (isInsideComment(tokenStart)) {
-            if (isCommentSpacerPrefix(tokenStart)) {
+            if (isCommentSpacerPrefix(tokenStart) || startsComment(tokenStart)) {
                 tokenEnd = tokenStart + 1
                 while (tokenEnd < endOffset && isCommentSpacer(buffer[tokenEnd])) {
                     tokenEnd++
                 }
                 tokenType = SageEngineIniTokenTypes.COMMENT_SPACER
-                return
-            }
-
-            if (currentChar == ';' || startsWith("//") || startsWith("--")) {
-                tokenEnd = tokenStart + if (currentChar == ';') 1 else 2
-                tokenType = SageEngineIniTokenTypes.COMMENT_START
                 return
             }
 
