@@ -404,7 +404,8 @@ class SageEngineIniLexer : LexerBase() {
             "MeleeBehavior",
             "AutoResolveArmor",
             "AutoResolveWeapon",
-            "FormationPreviewItemDecal"
+            "FormationPreviewItemDecal",
+            "FireWeaponNugget"
         )
         private val POSSIBLY_BLOCK_STARTS = setOf(
             "AddEmotion"

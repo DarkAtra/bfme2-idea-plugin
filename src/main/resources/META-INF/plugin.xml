@@ -18,6 +18,8 @@
         <lang.formatter language="SageEngineIni"
                         implementationClass="de.darkatra.bfme2.ini.formatting.SageEngineIniFormattingModelBuilder"/>
         <preFormatProcessor implementation="de.darkatra.bfme2.ini.formatting.SageEngineIniPreFormatProcessor"/>
+        <psi.referenceContributor language="SageEngineIni" implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeReferenceContributor"/>
+        <gotoDeclarationHandler implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeGotoDeclarationHandler"/>
     </extensions>
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
         <supportsKotlinPluginMode supportsK2="true"/>
