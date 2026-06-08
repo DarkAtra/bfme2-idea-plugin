@@ -1,0 +1,25 @@
+import org.jetbrains.intellij.platform.gradle.extensions.intellijPlatform
+
+rootProject.name = "bfme2-idea-plugin"
+
+pluginManagement {
+    plugins {
+        id("org.jetbrains.kotlin.jvm") version "2.2.20"
+        id("org.jetbrains.changelog") version "2.5.0"
+    }
+}
+
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+    id("org.jetbrains.intellij.platform.settings") version "2.16.0"
+}
+
+dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
+    repositories {
+        mavenCentral()
+        intellijPlatform {
+            defaultRepositories()
+        }
+    }
+}
