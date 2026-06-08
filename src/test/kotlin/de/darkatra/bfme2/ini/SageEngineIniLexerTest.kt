@@ -3,7 +3,7 @@ package de.darkatra.bfme2.ini
 import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
-import org.junit.Assert.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 class SageEngineIniLexerTest {
@@ -100,6 +100,6 @@ class SageEngineIniLexerTest {
             lexer.advance()
         }
 
-        assertEquals(expectedTokens.toList(), actualTokens)
+        assertThat(actualTokens).isEqualTo(expectedTokens.toList())
     }
 }

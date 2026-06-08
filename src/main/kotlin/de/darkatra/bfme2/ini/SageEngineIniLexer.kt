@@ -192,6 +192,7 @@ class SageEngineIniLexer : LexerBase() {
             val text = buffer.subSequence(tokenStart, tokenEnd).toString()
             tokenType = when {
                 BLOCK_STARTS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_START
+                POSSIBLY_BLOCK_STARTS.any { it.equals(text, true) } && isPossibleBlockStart(tokenEnd) -> SageEngineIniTokenTypes.BLOCK_START
                 BLOCK_ENDS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_END
                 isPropertyKey(tokenEnd) -> SageEngineIniTokenTypes.PROPERTY
                 else -> SageEngineIniTokenTypes.VALUE
@@ -224,6 +225,37 @@ class SageEngineIniLexer : LexerBase() {
             currentOffset++
         }
         return currentOffset < endOffset && buffer[currentOffset] == '='
+    }
+
+    private fun isPossibleBlockStart(offset: Int): Boolean {
+        var currentOffset = offset
+        while (currentOffset < endOffset && (buffer[currentOffset] == ' ' || buffer[currentOffset] == '\t')) {
+            currentOffset++
+        }
+        if (currentOffset >= endOffset || buffer[currentOffset] != '=') {
+            return false
+        }
+        currentOffset++
+        while (currentOffset < endOffset && (buffer[currentOffset] == ' ' || buffer[currentOffset] == '\t')) {
+            currentOffset++
+        }
+        val overrideText = "OVERRIDE"
+        if (currentOffset + overrideText.length > endOffset) {
+            return false
+        }
+        for (i in overrideText.indices) {
+            if (!overrideText[i].equals(buffer[currentOffset + i], true)) {
+                return false
+            }
+        }
+        currentOffset += overrideText.length
+        if (currentOffset >= endOffset || !Character.isWhitespace(buffer[currentOffset])) {
+            return false
+        }
+        while (currentOffset < endOffset && (buffer[currentOffset] == ' ' || buffer[currentOffset] == '\t')) {
+            currentOffset++
+        }
+        return currentOffset < endOffset && buffer[currentOffset] != '\n' && buffer[currentOffset] != '\r' && !startsComment(currentOffset)
     }
 
     private fun isPropertyValueStart(): Boolean {
@@ -277,7 +309,15 @@ class SageEngineIniLexer : LexerBase() {
             "BeginScript",
             "ClientBehavior",
             "Flammability",
-            "UnitSpecificSounds"
+            "UnitSpecificSounds",
+            "ThreatBreakdown",
+            "MeleeBehavior",
+            "AutoResolveArmor",
+            "AutoResolveWeapon",
+            "FormationPreviewItemDecal"
+        )
+        private val POSSIBLY_BLOCK_STARTS = setOf(
+            "AddEmotion"
         )
         private val BLOCK_ENDS = setOf(
             "End",
