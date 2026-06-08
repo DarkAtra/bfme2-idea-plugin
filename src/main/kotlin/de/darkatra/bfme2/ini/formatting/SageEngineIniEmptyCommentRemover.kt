@@ -11,6 +11,7 @@ import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 object SageEngineIniEmptyCommentRemover {
 
     fun removeEmptyCommentsAtEndOfLine(file: PsiFile, range: TextRange): TextRange {
+
         val fileText = file.text
         val commentsToDelete = mutableListOf<PsiElement>()
 
@@ -78,8 +79,8 @@ object SageEngineIniEmptyCommentRemover {
     }
 
     private fun hasOnlyWhitespaceUntilLineEnd(text: String, fromOffset: Int): Boolean {
-        var i = fromOffset
 
+        var i = fromOffset
         while (i < text.length) {
             when (val c = text[i]) {
                 '\n', '\r' -> return true

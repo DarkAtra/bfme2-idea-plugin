@@ -66,20 +66,17 @@ class SageEngineIniFormattingBlock(
             return createSpacing(0, 0, 0, false, 0)
         }
 
-        if (left.node.elementType == SageEngineIniTokenTypes.COMMENT_START &&
-            right.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD
-        ) {
-            return createSpacing(1, 1, 0, false, 0)
-        }
-
         if (left.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD &&
             right.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD
         ) {
             return createSpacing(1, 1, 0, false, 0)
         }
 
-        if (left.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD &&
-            right.node.elementType == SageEngineIniTokenTypes.COMMENT_SPACER
+        if (
+            (left.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD &&
+                right.node.elementType == SageEngineIniTokenTypes.COMMENT_SPACER)
+            || (left.node.elementType == SageEngineIniTokenTypes.COMMENT_START &&
+                right.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD)
         ) {
             return createSpacing(1, 1, 0, false, 0)
         }
