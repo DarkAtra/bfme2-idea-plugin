@@ -4,13 +4,19 @@ import com.intellij.psi.tree.TokenSet
 
 object SageEngineIniTokenSets {
 
+    val BLOCKS: TokenSet = TokenSet.create(
+        SageEngineIniTokenTypes.BLOCK_START,
+        SageEngineIniTokenTypes.BLOCK_END,
+    )
     val COMMENTS: TokenSet = TokenSet.create(
         SageEngineIniTokenTypes.COMMENT
     )
     val IDENTIFIERS: TokenSet = TokenSet.create(
         SageEngineIniTokenTypes.PROPERTY,
-        SageEngineIniTokenTypes.KEYWORD,
-        SageEngineIniTokenTypes.CONDITION
+        SageEngineIniTokenTypes.BLOCK_START,
+    )
+    val VALUES: TokenSet = TokenSet.create(
+        SageEngineIniTokenTypes.VALUE,
     )
     val STRINGS: TokenSet = TokenSet.create(
         SageEngineIniTokenTypes.STRING

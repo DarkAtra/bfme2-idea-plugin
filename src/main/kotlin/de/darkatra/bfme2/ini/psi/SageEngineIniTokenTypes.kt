@@ -5,8 +5,9 @@ import com.intellij.psi.tree.IElementType
 object SageEngineIniTokenTypes {
 
     val PROPERTY: IElementType = SageEngineIniTokenType("PROPERTY")
-    val KEYWORD: IElementType = SageEngineIniTokenType("KEYWORD")
-    val CONDITION: IElementType = SageEngineIniTokenType("CONDITION")
+    val VALUE: IElementType = SageEngineIniTokenType("VALUE")
+    val BLOCK_START: IElementType = SageEngineIniTokenType("BLOCK_START")
+    val BLOCK_END: IElementType = SageEngineIniTokenType("BLOCK_END")
     val NUMBER: IElementType = SageEngineIniTokenType("NUMBER")
     val STRING: IElementType = SageEngineIniTokenType("STRING")
     val COMMENT: IElementType = SageEngineIniTokenType("COMMENT")

@@ -79,6 +79,18 @@ class SageEngineIniLexer : LexerBase() {
             return
         }
 
+        if (isPropertyValueStart()) {
+            tokenEnd = tokenStart + 1
+            while (tokenEnd < endOffset && buffer[tokenEnd] != '\n' && buffer[tokenEnd] != '\r' && !startsComment(tokenEnd)) {
+                tokenEnd++
+            }
+            while (tokenEnd > tokenStart && (buffer[tokenEnd - 1] == ' ' || buffer[tokenEnd - 1] == '\t')) {
+                tokenEnd--
+            }
+            tokenType = SageEngineIniTokenTypes.VALUE
+            return
+        }
+
         if (currentChar == '#') {
             tokenEnd = tokenStart + 1
             while (tokenEnd < endOffset && Character.isLetter(buffer[tokenEnd])) { // TODO: macro name must match: [a-zA-Z]+
@@ -179,9 +191,10 @@ class SageEngineIniLexer : LexerBase() {
             }
             val text = buffer.subSequence(tokenStart, tokenEnd).toString()
             tokenType = when {
-                KEYWORDS.contains(text) -> SageEngineIniTokenTypes.KEYWORD
-                CONDITIONS.contains(text) -> SageEngineIniTokenTypes.CONDITION
-                else -> SageEngineIniTokenTypes.PROPERTY // TODO: parse properties correctly
+                BLOCK_STARTS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_START
+                BLOCK_ENDS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_END
+                isPropertyKey(tokenEnd) -> SageEngineIniTokenTypes.PROPERTY
+                else -> SageEngineIniTokenTypes.VALUE
             }
             return
         }
@@ -202,24 +215,73 @@ class SageEngineIniLexer : LexerBase() {
         return true
     }
 
-    companion object {
-        private val KEYWORDS = mutableSetOf(
-            "Object", "ChildObject", "End", "Draw", "Behavior", "Body", "ArmorSet", "WeaponSet",
-            "CommandSet", "CommandButton", "LocomotorSet", "ObjectCreationList", "EvaEventDieOwner",
-            "DefaultModelConditionState", "ModelConditionState", "AnimationState", "IdleAnimationState",
-            "Animation", "BeginScript", "EndScript", "ClientBehavior", "Side", "KindOf",
-            "BuildCost", "BuildTime", "DisplayName", "Description", "EditorSorting", "ThreatLevel"
-        )
+    private fun isPropertyKey(offset: Int): Boolean {
+        if (!isOnlyLetters(tokenStart, offset)) {
+            return false
+        }
+        var currentOffset = offset
+        while (currentOffset < endOffset && (buffer[currentOffset] == ' ' || buffer[currentOffset] == '\t')) {
+            currentOffset++
+        }
+        return currentOffset < endOffset && buffer[currentOffset] == '='
+    }
 
-        private val CONDITIONS = mutableSetOf(
-            "NONE", "None", "Yes", "No", "SNOW", "DAMAGED", "REALLYDAMAGED", "RUBBLE", "POST_RUBBLE",
-            "POST_COLLAPSE", "AWAITING_CONSTRUCTION", "ACTIVELY_BEING_CONSTRUCTED", "PARTIALLY_CONSTRUCTED",
-            "BUILD_PLACEMENT_CURSOR", "PHANTOM_STRUCTURE", "MOVING", "ATTACKING", "DYING", "PASSENGER",
-            "FREEFALL", "STUNNED", "STUNNED_FLAILING", "STUNNED_STANDING_UP", "BURNINGDEATH",
-            "THROWN_PROJECTILE", "FIRING_OR_PREATTACK_A", "FIRING_OR_PREATTACK_B", "EMOTION_TERROR",
-            "EMOTION_ALERT", "EMOTION_AFRAID", "EMOTION_UNCONTROLLABLY_AFRAID", "UPGRADE_ECONOMY_BONUS",
-            "USER_1", "USER_2", "USER_3", "USER_4", "USER_5", "LOOP", "ONCE", "MANUAL", "RANDOMSTART",
-            "RESTART_ANIM_WHEN_COMPLETE", "START_FRAME_FIRST", "FollowBone:Yes"
+    private fun isPropertyValueStart(): Boolean {
+        var currentOffset = tokenStart - 1
+        while (currentOffset >= startOffset && (buffer[currentOffset] == ' ' || buffer[currentOffset] == '\t')) {
+            currentOffset--
+        }
+        return currentOffset >= startOffset && buffer[currentOffset] == '='
+    }
+
+    private fun startsComment(offset: Int): Boolean {
+        return buffer[offset] == ';' || startsWith(offset, "//") || startsWith(offset, "--")
+    }
+
+    private fun startsWith(offset: Int, text: String): Boolean {
+        if (offset + text.length > endOffset) {
+            return false
+        }
+        for (i in text.indices) {
+            if (buffer[offset + i] != text[i]) {
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun isOnlyLetters(start: Int, end: Int): Boolean {
+        for (i in start until end) {
+            if (!Character.isLetter(buffer[i])) {
+                return false
+            }
+        }
+        return true
+    }
+
+    companion object {
+        private val BLOCK_STARTS = setOf(
+            "Object",
+            "ChildObject",
+            "Draw",
+            "Behavior",
+            "Body",
+            "ArmorSet",
+            "WeaponSet",
+            "LocomotorSet",
+            "DefaultModelConditionState",
+            "ModelConditionState",
+            "AnimationState",
+            "IdleAnimationState",
+            "Animation",
+            "BeginScript",
+            "ClientBehavior",
+            "Flammability",
+            "UnitSpecificSounds"
+        )
+        private val BLOCK_ENDS = setOf(
+            "End",
+            "EndScript"
         )
 
         private fun isWordStart(c: Char): Boolean {

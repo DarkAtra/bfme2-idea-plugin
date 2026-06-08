@@ -19,9 +19,9 @@ class SageEngineIniSyntaxHighlighter : SyntaxHighlighterBase() {
 
     override fun getTokenHighlights(tokenType: IElementType?): Array<TextAttributesKey> {
         return when {
-            tokenType === SageEngineIniTokenTypes.KEYWORD -> KEYWORD_KEYS
+            SageEngineIniTokenSets.BLOCKS.contains(tokenType) -> BLOCK_KEYS
             SageEngineIniTokenSets.IDENTIFIERS.contains(tokenType) -> IDENTIFIER_KEYS
-            tokenType === SageEngineIniTokenTypes.CONDITION -> CONDITION_KEYS
+            SageEngineIniTokenSets.VALUES.contains(tokenType) -> VALUE_KEYS
             SageEngineIniTokenSets.NUMBERS.contains(tokenType) -> NUMBER_KEYS
             SageEngineIniTokenSets.STRINGS.contains(tokenType) -> STRING_KEYS
             SageEngineIniTokenSets.COMMENTS.contains(tokenType) -> COMMENT_KEYS
@@ -34,17 +34,17 @@ class SageEngineIniSyntaxHighlighter : SyntaxHighlighterBase() {
 
     companion object {
 
-        private val KEYWORD: TextAttributesKey = TextAttributesKey.createTextAttributesKey(
-            "OPENSAGE_INI_KEYWORD",
+        private val BLOCK: TextAttributesKey = TextAttributesKey.createTextAttributesKey(
+            "OPENSAGE_INI_BLOCK",
             DefaultLanguageHighlighterColors.KEYWORD
         )
         private val IDENTIFIER: TextAttributesKey = TextAttributesKey.createTextAttributesKey(
             "OPENSAGE_INI_IDENTIFIER",
             DefaultLanguageHighlighterColors.INSTANCE_FIELD
         )
-        private val CONDITION: TextAttributesKey = TextAttributesKey.createTextAttributesKey(
-            "OPENSAGE_INI_CONDITION",
-            DefaultLanguageHighlighterColors.CONSTANT
+        private val VALUE: TextAttributesKey = TextAttributesKey.createTextAttributesKey(
+            "OPENSAGE_INI_VALUE",
+            HighlighterColors.NO_HIGHLIGHTING
         )
         private val NUMBER: TextAttributesKey = TextAttributesKey.createTextAttributesKey(
             "OPENSAGE_INI_NUMBER",
@@ -71,9 +71,9 @@ class SageEngineIniSyntaxHighlighter : SyntaxHighlighterBase() {
             HighlighterColors.BAD_CHARACTER
         )
 
-        private val KEYWORD_KEYS: Array<TextAttributesKey> = arrayOf(KEYWORD)
+        private val BLOCK_KEYS: Array<TextAttributesKey> = arrayOf(BLOCK)
         private val IDENTIFIER_KEYS: Array<TextAttributesKey> = arrayOf(IDENTIFIER)
-        private val CONDITION_KEYS: Array<TextAttributesKey> = arrayOf(CONDITION)
+        private val VALUE_KEYS: Array<TextAttributesKey> = arrayOf(VALUE)
         private val NUMBER_KEYS: Array<TextAttributesKey> = arrayOf(NUMBER)
         private val STRING_KEYS: Array<TextAttributesKey> = arrayOf(STRING)
         private val COMMENT_KEYS: Array<TextAttributesKey> = arrayOf(COMMENT)
