@@ -70,24 +70,33 @@ class SageEngineIniLexer : LexerBase() {
             return
         }
 
-        if (currentChar == ';' || startsWith("//") || startsWith("--")) {
+        if (isInsideComment(tokenStart)) {
+            if (isCommentSpacerPrefix(tokenStart)) {
+                tokenEnd = tokenStart + 1
+                while (tokenEnd < endOffset && isCommentSpacer(buffer[tokenEnd])) {
+                    tokenEnd++
+                }
+                tokenType = SageEngineIniTokenTypes.COMMENT_SPACER
+                return
+            }
+
+            if (currentChar == ';' || startsWith("//") || startsWith("--")) {
+                tokenEnd = tokenStart + if (currentChar == ';') 1 else 2
+                tokenType = SageEngineIniTokenTypes.COMMENT_START
+                return
+            }
+
             tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset && buffer[tokenEnd] != '\n' && buffer[tokenEnd] != '\r') {
+            while (tokenEnd < endOffset && !Character.isWhitespace(buffer[tokenEnd]) && !startsComment(tokenEnd)) {
                 tokenEnd++
             }
-            tokenType = SageEngineIniTokenTypes.COMMENT
+            tokenType = SageEngineIniTokenTypes.COMMENT_WORD
             return
         }
 
-        if (isPropertyValueStart()) {
-            tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset && buffer[tokenEnd] != '\n' && buffer[tokenEnd] != '\r' && !startsComment(tokenEnd)) {
-                tokenEnd++
-            }
-            while (tokenEnd > tokenStart && (buffer[tokenEnd - 1] == ' ' || buffer[tokenEnd - 1] == '\t')) {
-                tokenEnd--
-            }
-            tokenType = SageEngineIniTokenTypes.VALUE
+        if (currentChar == ';' || startsWith("//") || startsWith("--")) {
+            tokenEnd = tokenStart + if (currentChar == ';') 1 else 2
+            tokenType = SageEngineIniTokenTypes.COMMENT_START
             return
         }
 
@@ -173,6 +182,20 @@ class SageEngineIniLexer : LexerBase() {
             }
         }
 
+        if (isPropertyValueStart() && startsNumberWithLetterSuffix()) {
+            tokenEnd = tokenStart + 1
+            while (tokenEnd < endOffset &&
+                buffer[tokenEnd] != '\n' &&
+                buffer[tokenEnd] != '\r' &&
+                !Character.isWhitespace(buffer[tokenEnd]) &&
+                !startsComment(tokenEnd)
+            ) {
+                tokenEnd++
+            }
+            tokenType = SageEngineIniTokenTypes.VALUE
+            return
+        }
+
         if (Character.isDigit(currentChar) || (currentChar == '.' && tokenStart + 1 < endOffset && Character.isDigit(buffer[tokenStart + 1]))) {
             tokenEnd = tokenStart + 1
             while (tokenEnd < endOffset) {
@@ -181,6 +204,21 @@ class SageEngineIniLexer : LexerBase() {
                 tokenEnd++
             }
             tokenType = SageEngineIniTokenTypes.NUMBER
+            return
+        }
+
+        if (isPropertyValueStart()) {
+            tokenEnd = tokenStart + 1
+            while (tokenEnd < endOffset &&
+                buffer[tokenEnd] != '\n' &&
+                buffer[tokenEnd] != '\r' &&
+                !Character.isWhitespace(buffer[tokenEnd]) &&
+                !startsComment(tokenEnd) &&
+                !isCoordinateSeparator(tokenEnd)
+            ) {
+                tokenEnd++
+            }
+            tokenType = SageEngineIniTokenTypes.VALUE
             return
         }
 
@@ -266,8 +304,36 @@ class SageEngineIniLexer : LexerBase() {
         return currentOffset >= startOffset && buffer[currentOffset] == '='
     }
 
+    private fun isCoordinateSeparator(offset: Int): Boolean {
+        return buffer[offset] == ':' && offset + 1 < endOffset && Character.isDigit(buffer[offset + 1])
+    }
+
+    private fun startsNumberWithLetterSuffix(): Boolean {
+        if (!Character.isDigit(buffer[tokenStart]) && buffer[tokenStart] != '.') {
+            return false
+        }
+        var currentOffset = tokenStart
+        while (currentOffset < endOffset && (Character.isDigit(buffer[currentOffset]) || buffer[currentOffset] == '.')) {
+            currentOffset++
+        }
+        return currentOffset < endOffset && Character.isLetter(buffer[currentOffset])
+    }
+
     private fun startsComment(offset: Int): Boolean {
         return buffer[offset] == ';' || startsWith(offset, "//") || startsWith(offset, "--")
+    }
+
+    private fun isInsideComment(offset: Int): Boolean {
+
+        var currentOffset = offset - 1
+        while (currentOffset >= startOffset && buffer[currentOffset] != '\n' && buffer[currentOffset] != '\r') {
+            if (buffer[currentOffset] == ';' || startsWith(currentOffset, "//") || startsWith(currentOffset, "--")) {
+                return true
+            }
+            currentOffset--
+        }
+
+        return false
     }
 
     private fun startsWith(offset: Int, text: String): Boolean {
@@ -280,6 +346,36 @@ class SageEngineIniLexer : LexerBase() {
             }
         }
         return true
+    }
+
+    private fun isCommentSpacer(c: Char): Boolean {
+        return c == '/' || c == '-' || c == ',' || c == ';'
+    }
+
+    private fun isCommentSpacerPrefix(offset: Int): Boolean {
+
+        if (!isCommentSpacer(buffer[offset])) {
+            return false
+        }
+
+        var currentOffset = offset - 1
+        while (currentOffset >= startOffset && buffer[currentOffset] != '\n' && buffer[currentOffset] != '\r') {
+            if (buffer[currentOffset] == ';') {
+                return true
+            }
+            if (currentOffset > startOffset &&
+                ((buffer[currentOffset - 1] == '/' && buffer[currentOffset] == '/') ||
+                    (buffer[currentOffset - 1] == '-' && buffer[currentOffset] == '-'))
+            ) {
+                return true
+            }
+            if (!isCommentSpacer(buffer[currentOffset])) {
+                return false
+            }
+            currentOffset--
+        }
+
+        return false
     }
 
     private fun isOnlyLetters(start: Int, end: Int): Boolean {

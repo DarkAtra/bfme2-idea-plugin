@@ -50,7 +50,38 @@ class SageEngineIniFormattingBlock(
         val right = child2 as? SageEngineIniFormattingBlock
             ?: return null
 
+        if (right.node.elementType == SageEngineIniTokenTypes.COMMENT_START && !hasLineBreakBetween(left.node, right.node)) {
+            return createSpacing(1, 1, 0, false, 0)
+        }
+
+        if (left.node.elementType == SageEngineIniTokenTypes.COMMENT_START &&
+            right.node.elementType == SageEngineIniTokenTypes.COMMENT_SPACER
+        ) {
+            return createSpacing(0, 0, 0, false, 0)
+        }
+
+        if (left.node.elementType == SageEngineIniTokenTypes.COMMENT_START &&
+            right.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD
+        ) {
+            return createSpacing(1, 1, 0, false, 0)
+        }
+
+        if (left.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD &&
+            right.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD
+        ) {
+            return createSpacing(1, 1, 0, false, 0)
+        }
+
+        if (left.node.elementType == SageEngineIniTokenTypes.COMMENT_SPACER &&
+            right.node.elementType == SageEngineIniTokenTypes.COMMENT_WORD
+        ) {
+            return createSpacing(1, 1, 0, false, 0)
+        }
+
         if (right.node.elementType != SageEngineIniTokenTypes.EQUALS && left.node.elementType != SageEngineIniTokenTypes.EQUALS) {
+            if (isValuePart(left.node) && isValuePart(right.node) && !hasLineBreakBetween(left.node, right.node)) {
+                return createSpacing(1, 1, 0, false, 0)
+            }
             return null
         }
 
@@ -123,6 +154,28 @@ class SageEngineIniFormattingBlock(
 
     private fun containsBlankLine(text: String): Boolean {
         return text.count { it == '\n' } >= 2
+    }
+
+    private fun hasLineBreakBetween(left: ASTNode, right: ASTNode): Boolean {
+        val text = left.psi.containingFile.text
+        return text.substring(left.textRange.endOffset, right.textRange.startOffset).any { it == '\n' || it == '\r' }
+    }
+
+    private fun hasWhitespaceBetween(left: ASTNode, right: ASTNode): Boolean {
+        val text = left.psi.containingFile.text
+        return text.substring(left.textRange.endOffset, right.textRange.startOffset).any { Character.isWhitespace(it) }
+    }
+
+    private fun hasTabBetween(left: ASTNode, right: ASTNode): Boolean {
+        val text = left.psi.containingFile.text
+        return text.substring(left.textRange.endOffset, right.textRange.startOffset).any { it == '\t' }
+    }
+
+    private fun isValuePart(node: ASTNode): Boolean {
+        return node.elementType == SageEngineIniTokenTypes.VALUE ||
+            node.elementType == SageEngineIniTokenTypes.NUMBER ||
+            node.elementType == SageEngineIniTokenTypes.STRING ||
+            node.elementType == SageEngineIniTokenTypes.BLOCK_START
     }
 
     private fun isAtLineStart(element: PsiElement): Boolean {

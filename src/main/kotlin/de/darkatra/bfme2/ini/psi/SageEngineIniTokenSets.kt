@@ -9,7 +9,9 @@ object SageEngineIniTokenSets {
         SageEngineIniTokenTypes.BLOCK_END,
     )
     val COMMENTS: TokenSet = TokenSet.create(
-        SageEngineIniTokenTypes.COMMENT
+        SageEngineIniTokenTypes.COMMENT_START,
+        SageEngineIniTokenTypes.COMMENT_SPACER,
+        SageEngineIniTokenTypes.COMMENT_WORD,
     )
     val IDENTIFIERS: TokenSet = TokenSet.create(
         SageEngineIniTokenTypes.PROPERTY,

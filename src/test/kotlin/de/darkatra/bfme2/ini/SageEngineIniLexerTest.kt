@@ -9,7 +9,7 @@ import org.junit.Test
 class SageEngineIniLexerTest {
 
     @Test
-    fun `lexes simple property`() {
+    fun `should lex simple property`() {
 
         assertTokens(
             "SelectPortrait = KUMilPortrait",
@@ -22,20 +22,27 @@ class SageEngineIniLexerTest {
     }
 
     @Test
-    fun `lexes property value with operators and conditions as raw value`() {
+    fun `should lex property value with operators and conditions as raw value`() {
 
         assertTokens(
-            "Query\t\t= 1 NONE +HERO ALLIES",
+            "Query\t\t= 1 NONE\t +HERO ALLIES",
             SageEngineIniTokenTypes.PROPERTY to "Query",
             TokenType.WHITE_SPACE to "\t\t",
             SageEngineIniTokenTypes.EQUALS to "=",
             TokenType.WHITE_SPACE to " ",
-            SageEngineIniTokenTypes.VALUE to "1 NONE +HERO ALLIES",
+            SageEngineIniTokenTypes.NUMBER to "1",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "NONE",
+            TokenType.WHITE_SPACE to "\t ",
+            SageEngineIniTokenTypes.OPERATOR to "+",
+            SageEngineIniTokenTypes.VALUE to "HERO",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "ALLIES",
         )
     }
 
     @Test
-    fun `lexes property value with colons as raw value`() {
+    fun `should lex property value with colons as raw value`() {
 
         assertTokens(
             "GeometryOffset = X:50 Y:0 Z:0",
@@ -43,12 +50,22 @@ class SageEngineIniLexerTest {
             TokenType.WHITE_SPACE to " ",
             SageEngineIniTokenTypes.EQUALS to "=",
             TokenType.WHITE_SPACE to " ",
-            SageEngineIniTokenTypes.VALUE to "X:50 Y:0 Z:0",
+            SageEngineIniTokenTypes.VALUE to "X",
+            SageEngineIniTokenTypes.COLON to ":",
+            SageEngineIniTokenTypes.NUMBER to "50",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "Y",
+            SageEngineIniTokenTypes.COLON to ":",
+            SageEngineIniTokenTypes.NUMBER to "0",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "Z",
+            SageEngineIniTokenTypes.COLON to ":",
+            SageEngineIniTokenTypes.NUMBER to "0",
         )
     }
 
     @Test
-    fun `lexes known keywords as properties when followed by equals`() {
+    fun `should lex known keywords as properties when followed by equals`() {
 
         assertTokens(
             "BuildCost = ANGMAR_MILL_BUILDCOST",
@@ -61,7 +78,7 @@ class SageEngineIniLexerTest {
     }
 
     @Test
-    fun `stops property value at inline comment`() {
+    fun `should stop property value at inline comment`() {
 
         assertTokens(
             "StaticModelLODMode = yes ; Will append M or L",
@@ -71,12 +88,22 @@ class SageEngineIniLexerTest {
             TokenType.WHITE_SPACE to " ",
             SageEngineIniTokenTypes.VALUE to "yes",
             TokenType.WHITE_SPACE to " ",
-            SageEngineIniTokenTypes.COMMENT to "; Will append M or L",
+            SageEngineIniTokenTypes.COMMENT_START to ";",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "Will",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "append",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "M",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "or",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "L",
         )
     }
 
     @Test
-    fun `strips trailing whitespace from property value before line end`() {
+    fun `should strip trailing whitespace from property value before line end`() {
 
         assertTokens(
             "DisplayName = CONTROLBAR:ConstructMenPorter  ",
