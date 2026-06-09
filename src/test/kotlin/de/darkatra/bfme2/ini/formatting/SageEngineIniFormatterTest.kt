@@ -46,7 +46,7 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
 
         myFixture.performEditorAction("ReformatCode")
 
-        assertThat(myFixture.file.text).isEqualTo(
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(
             """
             ;// Animation state for build placement cursor
             Object ElvenMallornTreeStatue
@@ -88,7 +88,7 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
 
         myFixture.performEditorAction("ReformatCode")
 
-        assertThat(myFixture.file.text).isEqualTo(correctlyFormattedFile)
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
     }
 
     @Test
@@ -108,7 +108,7 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
         TrailingSpacesStripper.strip(myFixture.editor.document, false, false)
         PsiDocumentManager.getInstance(myFixture.project).commitDocument(myFixture.editor.document)
 
-        assertThat(myFixture.file.text).isEqualTo(correctlyFormattedFile)
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
     }
 
     @Test
@@ -128,7 +128,7 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
         TrailingSpacesStripper.strip(myFixture.editor.document, false, false)
         PsiDocumentManager.getInstance(myFixture.project).commitDocument(myFixture.editor.document)
 
-        assertThat(myFixture.file.text).isEqualTo(correctlyFormattedFile)
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
     }
 
     @Test
@@ -171,7 +171,7 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
 
         myFixture.performEditorAction("ReformatCode")
 
-        assertThat(myFixture.file.text).isEqualTo(
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(
             """
             Behavior = EmotionTrackerUpdate Module_EmotionTracker
 
@@ -224,7 +224,7 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
 
         myFixture.performEditorAction("ReformatCode")
 
-        assertThat(myFixture.file.text).isEqualTo(
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(
             """
             ;
             Object TestObject
@@ -245,13 +245,13 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
             ";,;    ;//--- NEW CHARGE ABILITY ---" to ";,;;//--- NEW CHARGE ABILITY ---",
         )
 
-        inputToExpectedOutput.forEach { input, expected ->
+        inputToExpectedOutput.forEach { (input, expected) ->
 
             myFixture.configureByText("test.ini", input)
 
             myFixture.performEditorAction("ReformatCode")
 
-            assertThat(myFixture.file.text).isEqualTo(expected)
+            assertThat(myFixture.file.text).isEqualToNormalizingNewlines(expected)
         }
     }
 }

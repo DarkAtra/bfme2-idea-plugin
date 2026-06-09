@@ -224,8 +224,8 @@ class SageEngineIniLexer : LexerBase() {
             val text = buffer.subSequence(tokenStart, tokenEnd).toString()
             tokenType = when {
                 BLOCK_STARTS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_START
-                POSSIBLY_BLOCK_STARTS.any { it.equals(text, true) } && isPossibleBlockStart(tokenEnd) -> SageEngineIniTokenTypes.BLOCK_START
                 BLOCK_ENDS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_END
+                isPossibleBlockStart() -> SageEngineIniTokenTypes.BLOCK_START
                 isPropertyKey(tokenEnd) -> SageEngineIniTokenTypes.PROPERTY
                 else -> SageEngineIniTokenTypes.VALUE
             }
@@ -259,35 +259,24 @@ class SageEngineIniLexer : LexerBase() {
         return currentOffset < endOffset && buffer[currentOffset] == '='
     }
 
-    private fun isPossibleBlockStart(offset: Int): Boolean {
-        var currentOffset = offset
-        while (currentOffset < endOffset && (buffer[currentOffset] == ' ' || buffer[currentOffset] == '\t')) {
-            currentOffset++
-        }
-        if (currentOffset >= endOffset || buffer[currentOffset] != '=') {
-            return false
-        }
-        currentOffset++
-        while (currentOffset < endOffset && (buffer[currentOffset] == ' ' || buffer[currentOffset] == '\t')) {
-            currentOffset++
-        }
-        val overrideText = "OVERRIDE"
-        if (currentOffset + overrideText.length > endOffset) {
-            return false
-        }
-        for (i in overrideText.indices) {
-            if (!overrideText[i].equals(buffer[currentOffset + i], true)) {
-                return false
+    private fun isPossibleBlockStart(): Boolean {
+
+        val words = textUntilLineEndIgnoringComments().split(Regex("\\s+"))
+
+        return POSSIBLY_BLOCK_STARTS.any { it.matches(words) }
+    }
+
+    private fun textUntilLineEndIgnoringComments(): String {
+
+        var lineEndOffset = tokenStart
+        while (lineEndOffset < endOffset && buffer[lineEndOffset] != '\n' && buffer[lineEndOffset] != '\r') {
+            if (startsComment(lineEndOffset)) {
+                break
             }
+            lineEndOffset++
         }
-        currentOffset += overrideText.length
-        if (currentOffset >= endOffset || !Character.isWhitespace(buffer[currentOffset])) {
-            return false
-        }
-        while (currentOffset < endOffset && (buffer[currentOffset] == ' ' || buffer[currentOffset] == '\t')) {
-            currentOffset++
-        }
-        return currentOffset < endOffset && buffer[currentOffset] != '\n' && buffer[currentOffset] != '\r' && !startsComment(currentOffset)
+
+        return buffer.substring(tokenStart, lineEndOffset).trim()
     }
 
     private fun isPropertyValueStart(): Boolean {
@@ -406,10 +395,58 @@ class SageEngineIniLexer : LexerBase() {
             "AutoResolveWeapon",
             "FormationPreviewItemDecal",
             "FireWeaponNugget",
-            "TransitionState"
+            "TransitionState",
+            "PredefinedEvaEvent",
+            "SideSound",
+            "NewEvaEvent",
+            "ParticleSystem",
+            "ViewShake",
+            "CameraShakerVolume",
+            "DynamicDecal",
+            "TerrainScorch",
+            "BuffNugget",
+            "TintDrawable",
+            "FXParticleSystem",
+            "System",
+            "Update",
+            "Physics",
+            "EmissionVelocity",
+            "EmissionVolume",
+            "Alpha",
+            "Wind",
+            "HouseColor",
+            "InGameUI",
+            "RadiusCursorTemplate",
+            "LivingWorldMapInfo",
+            "EyeTower",
+            "LivingWorldArmyIcon",
+            "LivingWorldAnimObject",
+            "LivingWorldSound",
+            "LivingWorldObject",
+            "LivingWorldBuilding",
+            "BuildingNugget",
+            "ArmyToSpawn",
+            "PlayerTemplate",
+            "AudioEvent",
+            "Multisound",
+            "Stance",
+            "ProjectileNugget",
+            "DamageNugget",
+            "MetaImpactNugget",
+            "WeaponOCLNugget",
+            "AttributeModifierNugget",
+            "StealMoneyNugget",
+            "ClientUpdate",
         )
-        private val POSSIBLY_BLOCK_STARTS = setOf(
-            "AddEmotion"
+        private val POSSIBLY_BLOCK_STARTS: Set<SageEngineIniPossibleBlockMatcher> = setOf(
+            SageEngineIniPossibleBlockMatcher { words -> words.take(3) == listOf("AddEmotion", "=", "OVERRIDE") },
+            SageEngineIniPossibleBlockMatcher { words -> words == listOf("Color", "=", "DefaultColor") },
+            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Locomotor" },
+            SageEngineIniPossibleBlockMatcher { words -> words.size == 1 && words.first() == "AutoResolveBody" },
+            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "FXList" },
+            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "StanceTemplate" },
+            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Weapon" },
+            SageEngineIniPossibleBlockMatcher { words -> words.size == 1 && words.first() == "Sound" },
         )
         private val BLOCK_ENDS = setOf(
             "End",
