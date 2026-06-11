@@ -254,4 +254,24 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
             assertThat(myFixture.file.text).isEqualToNormalizingNewlines(expected)
         }
     }
+
+    @Test
+    fun `should format script blocks correctly`() {
+
+        val incorrectlyFormattedFile = javaClass.getResourceAsStream("/formatting/dirty/scriptblock.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+        val correctlyFormattedFile = javaClass.getResourceAsStream("/formatting/formatted/scriptblock.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+
+        myFixture.configureByText("test.ini", incorrectlyFormattedFile)
+
+        myFixture.performEditorAction("ReformatCode")
+
+        // strip trailing whitespace - this is usually done when saving the file
+        @Suppress("UnstableApiUsage")
+        TrailingSpacesStripper.strip(myFixture.editor.document, false, false)
+        PsiDocumentManager.getInstance(myFixture.project).commitDocument(myFixture.editor.document)
+
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
+    }
 }

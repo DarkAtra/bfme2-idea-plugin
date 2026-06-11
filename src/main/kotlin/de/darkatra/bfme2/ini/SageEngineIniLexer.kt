@@ -61,6 +61,30 @@ class SageEngineIniLexer : LexerBase() {
 
         val currentChar = buffer[tokenStart]
 
+        if (isInsideScriptBlock(tokenStart)) {
+            if (startsWord(tokenStart, "EndScript")) {
+                tokenEnd = tokenStart + "EndScript".length
+                tokenType = SageEngineIniTokenTypes.BLOCK_END
+                return
+            }
+
+            if (Character.isWhitespace(currentChar)) {
+                tokenEnd = tokenStart + 1
+                while (tokenEnd < endOffset && Character.isWhitespace(buffer[tokenEnd]) && !startsWord(tokenEnd, "EndScript")) {
+                    tokenEnd++
+                }
+                tokenType = TokenType.WHITE_SPACE
+                return
+            }
+
+            tokenEnd = tokenStart + 1
+            while (tokenEnd < endOffset && !Character.isWhitespace(buffer[tokenEnd]) && !startsWord(tokenEnd, "EndScript")) {
+                tokenEnd++
+            }
+            tokenType = SageEngineIniTokenTypes.SCRIPT_BODY
+            return
+        }
+
         if (Character.isWhitespace(currentChar)) {
             tokenEnd = tokenStart + 1
             while (tokenEnd < endOffset && Character.isWhitespace(buffer[tokenEnd])) {
@@ -368,6 +392,48 @@ class SageEngineIniLexer : LexerBase() {
             }
         }
         return true
+    }
+
+    private fun isInsideScriptBlock(offset: Int): Boolean {
+        var currentOffset = startOffset
+        var depth = 0
+
+        while (currentOffset < offset) {
+            val currentChar = buffer[currentOffset]
+            if (isWordStart(currentChar)) {
+                val wordStart = currentOffset
+                currentOffset++
+                while (currentOffset < offset && isWordPart(buffer[currentOffset])) {
+                    currentOffset++
+                }
+
+                val text = buffer.subSequence(wordStart, currentOffset).toString()
+                if (text.equals("BeginScript", true)) {
+                    depth++
+                } else if (text.equals("EndScript", true) && depth > 0) {
+                    depth--
+                }
+            } else {
+                currentOffset++
+            }
+        }
+
+        return depth > 0
+    }
+
+    private fun startsWord(offset: Int, text: String): Boolean {
+        if (offset > startOffset && isWordPart(buffer[offset - 1])) {
+            return false
+        }
+        if (offset + text.length > endOffset) {
+            return false
+        }
+        for (i in text.indices) {
+            if (!buffer[offset + i].equals(text[i], true)) {
+                return false
+            }
+        }
+        return offset + text.length >= endOffset || !isWordPart(buffer[offset + text.length])
     }
 
     companion object {

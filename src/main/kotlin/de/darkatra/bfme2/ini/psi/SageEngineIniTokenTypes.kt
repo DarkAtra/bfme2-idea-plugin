@@ -7,6 +7,7 @@ object SageEngineIniTokenTypes {
     val PROPERTY: IElementType = SageEngineIniTokenType("PROPERTY")
     val VALUE: IElementType = SageEngineIniTokenType("VALUE")
     val BLOCK_START: IElementType = SageEngineIniTokenType("BLOCK_START")
+    val SCRIPT_BODY: IElementType = SageEngineIniTokenType("SCRIPT_BODY")
     val BLOCK_END: IElementType = SageEngineIniTokenType("BLOCK_END")
     val NUMBER: IElementType = SageEngineIniTokenType("NUMBER")
     val STRING: IElementType = SageEngineIniTokenType("STRING")

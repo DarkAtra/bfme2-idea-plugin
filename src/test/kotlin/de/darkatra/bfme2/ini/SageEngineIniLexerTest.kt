@@ -147,6 +147,60 @@ class SageEngineIniLexerTest {
         )
     }
 
+    @Test
+    fun `should only close script blocks with EndScript`() {
+
+        assertTokens(
+            """
+            BeginScript
+                PrevState = CurDrawablePrevAnimationState()
+                if PrevState == "STATE_1"
+                then
+                    CurDrawableAllowToContinue()
+                elseif PrevState == "STATE_2"
+                then
+                    CurDrawableSetTransitionAnimState("TRANS_1_2")
+                end
+            EndScript
+            """.trimIndent(),
+            SageEngineIniTokenTypes.BLOCK_START to "BeginScript",
+            TokenType.WHITE_SPACE to "\n    ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "PrevState",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "CurDrawablePrevAnimationState()",
+            TokenType.WHITE_SPACE to "\n    ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "if",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "PrevState",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "==",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "\"STATE_1\"",
+            TokenType.WHITE_SPACE to "\n    ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "then",
+            TokenType.WHITE_SPACE to "\n        ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "CurDrawableAllowToContinue()",
+            TokenType.WHITE_SPACE to "\n    ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "elseif",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "PrevState",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "==",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "\"STATE_2\"",
+            TokenType.WHITE_SPACE to "\n    ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "then",
+            TokenType.WHITE_SPACE to "\n        ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "CurDrawableSetTransitionAnimState(\"TRANS_1_2\")",
+            TokenType.WHITE_SPACE to "\n    ",
+            SageEngineIniTokenTypes.SCRIPT_BODY to "end",
+            TokenType.WHITE_SPACE to "\n",
+            SageEngineIniTokenTypes.BLOCK_END to "EndScript",
+        )
+    }
+
     private fun assertTokens(text: String, vararg expectedTokens: Pair<IElementType, String>) {
 
         val lexer = SageEngineIniLexer()

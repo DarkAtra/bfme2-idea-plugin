@@ -116,6 +116,7 @@ class SageEngineIniFormattingBlock(
         var child = node.firstChildNode
         var previousSignificantChild: ASTNode? = null
         var blockDepth = 0
+        var scriptBodyBaseIndent: Int? = null
 
         while (child != null) {
 
@@ -128,6 +129,12 @@ class SageEngineIniFormattingBlock(
             if (child.elementType != TokenType.WHITE_SPACE) {
                 val childIndent = when {
                     child.elementType == SageEngineIniTokenTypes.BLOCK_END && isAtLineStart(child.psi) -> (blockDepth - 1).coerceAtLeast(0)
+                    child.elementType == SageEngineIniTokenTypes.SCRIPT_BODY -> {
+                        val scriptBodyIndent = getLineIndent(child) / codeStyleSettings.indentOptions.INDENT_SIZE
+                        val baseIndent = scriptBodyBaseIndent ?: scriptBodyIndent.also { scriptBodyBaseIndent = it }
+                        blockDepth + (scriptBodyIndent - baseIndent).coerceAtLeast(0)
+                    }
+
                     else -> blockDepth
                 }
 
@@ -153,6 +160,9 @@ class SageEngineIniFormattingBlock(
             }
             if (child.elementType == SageEngineIniTokenTypes.BLOCK_END && isAtLineStart(child.psi)) {
                 blockDepth = (blockDepth - 1).coerceAtLeast(0)
+                if (child.text.equals("EndScript", true)) {
+                    scriptBodyBaseIndent = null
+                }
             }
 
             child = child.treeNext
@@ -168,6 +178,25 @@ class SageEngineIniFormattingBlock(
     private fun hasLineBreakBetween(left: ASTNode, right: ASTNode): Boolean {
         val text = left.psi.containingFile.text
         return text.substring(left.textRange.endOffset, right.textRange.startOffset).any { it == '\n' || it == '\r' }
+    }
+
+    private fun getLineIndent(node: ASTNode): Int {
+        val text = node.psi.containingFile.text
+        var offset = node.textRange.startOffset - 1
+        var lineIndent = 0
+        while (offset >= 0) {
+            val char = text[offset]
+            if (char == '\n' || char == '\r') {
+                return lineIndent
+            }
+            if (char == '\t') {
+                lineIndent += codeStyleSettings.indentOptions.INDENT_SIZE
+            } else if (char == ' ') {
+                lineIndent++
+            }
+            offset--
+        }
+        return lineIndent
     }
 
     private fun hasWhitespaceBetween(left: ASTNode, right: ASTNode): Boolean {

@@ -5,6 +5,7 @@
 * **Role:** You are a Senior Developer collaborating with a human engineer.
 * **Workflow:** Adhere strictly to the **Plan-Execute-Verify** loop. Read the codebase, formulate an actionable plan, make edits one by one, and run automated
   tests for every change.
+* Keep your actions concise and focused. Don't overthink or overcomplicate your work.
 
 ## 2. Code Quality & Formatting
 
