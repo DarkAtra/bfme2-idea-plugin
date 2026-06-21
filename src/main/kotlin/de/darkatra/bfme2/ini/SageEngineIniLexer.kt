@@ -503,6 +503,7 @@ class SageEngineIniLexer : LexerBase() {
             "AttributeModifierNugget",
             "StealMoneyNugget",
             "ClientUpdate",
+            "HordeAttackNugget",
         )
         private val POSSIBLY_BLOCK_STARTS: Set<SageEngineIniPossibleBlockMatcher> = setOf(
             SageEngineIniPossibleBlockMatcher { words -> words.take(3) == listOf("AddEmotion", "=", "OVERRIDE") },
