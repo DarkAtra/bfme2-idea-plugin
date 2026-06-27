@@ -2,7 +2,7 @@
 
 IntelliJ Platform language support for Sage Engine `.ini` files used by games such as The Lord of the Rings: The Battle for Middle-earth II.
 
-<iframe width="245px" height="48px" src="https://plugins.jetbrains.com/embeddable/install/32514"></iframe>
+Get it from the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/32514-sage-engine-ini).
 
 ## Features
 
