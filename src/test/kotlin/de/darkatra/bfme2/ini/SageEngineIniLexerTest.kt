@@ -22,6 +22,47 @@ class SageEngineIniLexerTest {
     }
 
     @Test
+    fun `should stop lexing properties at line end`() {
+
+        assertTokens(
+            """
+            Behavior = HordeContain ModuleTag_HordeContain
+                FrontAngle              = 270
+                ObjectStatusOfContained =
+                InitialPayload          = WildBabyDrake 3
+            End
+            """.trimIndent(),
+            SageEngineIniTokenTypes.BLOCK_START to "Behavior",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "HordeContain",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "ModuleTag_HordeContain",
+            TokenType.WHITE_SPACE to "\n    ",
+            SageEngineIniTokenTypes.PROPERTY to "FrontAngle",
+            TokenType.WHITE_SPACE to "              ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.NUMBER to "270",
+            TokenType.WHITE_SPACE to "\n    ",
+            SageEngineIniTokenTypes.PROPERTY to "ObjectStatusOfContained",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to "\n    ",
+            SageEngineIniTokenTypes.PROPERTY to "InitialPayload",
+            TokenType.WHITE_SPACE to "          ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "WildBabyDrake",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.NUMBER to "3",
+            TokenType.WHITE_SPACE to "\n",
+            SageEngineIniTokenTypes.BLOCK_END to "End",
+        )
+    }
+
+    @Test
     fun `should lex comments correctly`() {
 
         assertTokens(
@@ -53,7 +94,7 @@ class SageEngineIniLexerTest {
     }
 
     @Test
-    fun `should lex property value with operators and conditions as raw value`() {
+    fun `should lex property value with operators correctly`() {
 
         assertTokens(
             "Query\t\t= 1 NONE\t +HERO ALLIES",
@@ -73,7 +114,7 @@ class SageEngineIniLexerTest {
     }
 
     @Test
-    fun `should lex property value with colons as raw value`() {
+    fun `should lex property value with colons correctly`() {
 
         assertTokens(
             "GeometryOffset = X:50 Y:0 Z:0",

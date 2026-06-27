@@ -94,6 +94,10 @@ class SageEngineIniFormattingBlock(
             return null
         }
 
+        if (hasLineBreakBetween(left.node, right.node)) {
+            return createSpacing(0, Int.MAX_VALUE, 1, true, 1)
+        }
+
         return createSpacing(1, 1, 0, false, 0)
     }
 
