@@ -2,4 +2,12 @@
 
 # Bfme2-idea-plugin Changelog
 
-## [Unreleased]
+## `0.1.0`
+
+### Added
+
+- Initial IntelliJ Platform plugin support for Sage Engine `.ini` files used by games such as The Lord of the Rings: The Battle for Middle-earth II.
+- File type registration and lightweight PSI structure for Sage Engine INI blocks, property assignments, macro statements, comments, and script blocks.
+- Syntax highlighting for blocks, properties, values, numbers, strings, comments, macros, operators, and script bodies.
+- Formatter support for nested blocks, aligned property assignments, comments, and script sections.
+- Include-file navigation and path completion for `#include "path/to/file.inc"` macros.
