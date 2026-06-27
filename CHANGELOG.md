@@ -2,6 +2,12 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.1.1`
+
+### Added
+
+- Dependency on `com.intellij.modules.platform` was added
+
 ## `0.1.0`
 
 ### Added
