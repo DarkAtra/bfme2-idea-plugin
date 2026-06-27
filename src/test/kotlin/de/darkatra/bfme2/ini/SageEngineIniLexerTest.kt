@@ -91,6 +91,18 @@ class SageEngineIniLexerTest {
             TokenType.WHITE_SPACE to " ",
             SageEngineIniTokenTypes.COMMENT_SPACER to ";",
         )
+
+        assertTokens(
+            ";,, decorative header //;",
+            SageEngineIniTokenTypes.COMMENT_START to ";",
+            SageEngineIniTokenTypes.COMMENT_SPACER to ",,",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "decorative",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "header",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_SPACER to "//;",
+        )
     }
 
     @Test
@@ -137,6 +149,25 @@ class SageEngineIniLexerTest {
     }
 
     @Test
+    fun `should lex coordinate separators and numeric suffixes`() {
+
+        assertTokens(
+            "Offset = X:-0.5 Y:+10.0 Z:25h",
+            SageEngineIniTokenTypes.PROPERTY to "Offset",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "X:-0.5",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "Y:+10.0",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "Z",
+            SageEngineIniTokenTypes.COLON to ":",
+            SageEngineIniTokenTypes.VALUE to "25h",
+        )
+    }
+
+    @Test
     fun `should lex known keywords as properties when followed by equals`() {
 
         assertTokens(
@@ -157,6 +188,48 @@ class SageEngineIniLexerTest {
             SageEngineIniTokenTypes.MACRO to "#include",
             TokenType.WHITE_SPACE to " ",
             SageEngineIniTokenTypes.STRING to "\"data\\ini\\object.ini\"",
+        )
+
+        assertTokens(
+            "#define DEFAULT_SPEED 50",
+            SageEngineIniTokenTypes.MACRO to "#define",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "DEFAULT_SPEED",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.NUMBER to "50",
+        )
+    }
+
+    @Test
+    fun `should preserve quoted strings in property values`() {
+
+        assertTokens(
+            "DisplayName = \"OBJECT:ElvenMallornTree\"",
+            SageEngineIniTokenTypes.PROPERTY to "DisplayName",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.STRING to "\"OBJECT:ElvenMallornTree\"",
+        )
+    }
+
+    @Test
+    fun `should lex ambiguous block and property names by equals sign`() {
+
+        assertTokens(
+            "Object = ElvenMallornTree",
+            SageEngineIniTokenTypes.BLOCK_START to "Object",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "ElvenMallornTree",
+        )
+
+        assertTokens(
+            "Object ElvenMallornTree",
+            SageEngineIniTokenTypes.BLOCK_START to "Object",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "ElvenMallornTree",
         )
     }
 

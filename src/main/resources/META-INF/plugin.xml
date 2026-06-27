@@ -1,9 +1,8 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>de.darkatra.bfme2.bfme2-idea-plugin</id>
     <name>Sage Engine INI</name>
     <vendor url="https://darkatra.dev">DarkAtra</vendor>
-    <description>Language support for Sage Engine Ini files.</description>
+    <description>Language support for Sage Engine INI files, including highlighting, formatting, PSI structure and navigation.</description>
 
     <depends>org.jetbrains.kotlin</depends>
 
@@ -19,6 +18,7 @@
                         implementationClass="de.darkatra.bfme2.ini.formatting.SageEngineIniFormattingModelBuilder"/>
         <preFormatProcessor implementation="de.darkatra.bfme2.ini.formatting.SageEngineIniPreFormatProcessor"/>
         <psi.referenceContributor language="SageEngineIni" implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeReferenceContributor"/>
+        <completion.contributor language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeCompletionContributor"/>
         <gotoDeclarationHandler implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeGotoDeclarationHandler"/>
     </extensions>
     <extensions defaultExtensionNs="org.jetbrains.kotlin">

@@ -67,52 +67,17 @@ class SageEngineIniLexer : LexerBase() {
         val currentChar = buffer[tokenStart]
 
         if (isScriptState(tokenState)) {
-            if (startsWord(tokenStart, "EndScript")) {
-                finishToken(tokenStart + "EndScript".length, SageEngineIniTokenTypes.BLOCK_END)
-                return
-            }
-
-            if (isWhitespace(currentChar)) {
-                tokenEnd = tokenStart + 1
-                while (tokenEnd < endOffset && isWhitespace(buffer[tokenEnd]) && !startsWord(tokenEnd, "EndScript")) {
-                    tokenEnd++
-                }
-                finishToken(tokenEnd, TokenType.WHITE_SPACE)
-                return
-            }
-
-            tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset && !isWhitespace(buffer[tokenEnd]) && !startsWord(tokenEnd, "EndScript")) {
-                tokenEnd++
-            }
-            finishToken(tokenEnd, SageEngineIniTokenTypes.SCRIPT_BODY)
+            locateScriptToken(currentChar)
             return
         }
 
         if (isWhitespace(currentChar)) {
-            tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset && isWhitespace(buffer[tokenEnd])) {
-                tokenEnd++
-            }
-            finishToken(tokenEnd, TokenType.WHITE_SPACE)
+            finishToken(scanWhile(tokenStart + 1, ::isWhitespace), TokenType.WHITE_SPACE)
             return
         }
 
         if (isCommentState(tokenState)) {
-            if ((tokenState == STATE_COMMENT_SPACER && isCommentSpacer(currentChar)) || startsComment(tokenStart)) {
-                tokenEnd = tokenStart + 1
-                while (tokenEnd < endOffset && isCommentSpacer(buffer[tokenEnd])) {
-                    tokenEnd++
-                }
-                finishToken(tokenEnd, SageEngineIniTokenTypes.COMMENT_SPACER)
-                return
-            }
-
-            tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset && !isWhitespace(buffer[tokenEnd]) && !startsComment(tokenEnd)) {
-                tokenEnd++
-            }
-            finishToken(tokenEnd, SageEngineIniTokenTypes.COMMENT_WORD)
+            locateCommentToken(currentChar)
             return
         }
 
@@ -122,28 +87,12 @@ class SageEngineIniLexer : LexerBase() {
         }
 
         if (currentChar == '#') {
-            tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset && isMacroNamePart(buffer[tokenEnd])) {
-                tokenEnd++
-            }
-            finishToken(tokenEnd, SageEngineIniTokenTypes.MACRO)
+            finishToken(scanWhile(tokenStart + 1, ::isMacroNamePart), SageEngineIniTokenTypes.MACRO)
             return
         }
 
         if (currentChar == '"') {
-            tokenEnd = tokenStart + 1
-            var escaped = false
-            while (tokenEnd < endOffset && buffer[tokenEnd] != '\n' && buffer[tokenEnd] != '\r') {
-                val ch = buffer[tokenEnd++]
-                if (ch == '"' && !escaped) {
-                    break
-                }
-                escaped = ch == '\\' && !escaped
-                if (ch != '\\') {
-                    escaped = false
-                }
-            }
-            finishToken(tokenEnd, SageEngineIniTokenTypes.STRING)
+            finishToken(scanStringEnd(), SageEngineIniTokenTypes.STRING)
             return
         }
 
@@ -195,40 +144,17 @@ class SageEngineIniLexer : LexerBase() {
         }
 
         if (tokenState == STATE_PROPERTY_VALUE && startsNumberWithLetterSuffix()) {
-            tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset &&
-                !isLineBreak(buffer[tokenEnd]) &&
-                !isWhitespace(buffer[tokenEnd]) &&
-                !startsComment(tokenEnd)
-            ) {
-                tokenEnd++
-            }
-            finishToken(tokenEnd, SageEngineIniTokenTypes.VALUE)
+            finishToken(scanPropertyValueEnd(stopAtCoordinateSeparator = false), SageEngineIniTokenTypes.VALUE)
             return
         }
 
         if (Character.isDigit(currentChar) || (currentChar == '.' && tokenStart + 1 < endOffset && Character.isDigit(buffer[tokenStart + 1]))) {
-            tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset) {
-                val ch = buffer[tokenEnd]
-                if (!Character.isDigit(ch) && ch != '.') break
-                tokenEnd++
-            }
-            finishToken(tokenEnd, SageEngineIniTokenTypes.NUMBER)
+            finishToken(scanNumberEnd(), SageEngineIniTokenTypes.NUMBER)
             return
         }
 
         if (tokenState == STATE_PROPERTY_VALUE) {
-            tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset &&
-                !isLineBreak(buffer[tokenEnd]) &&
-                !isWhitespace(buffer[tokenEnd]) &&
-                !startsComment(tokenEnd) &&
-                !isCoordinateSeparator(tokenEnd)
-            ) {
-                tokenEnd++
-            }
-            finishToken(tokenEnd, SageEngineIniTokenTypes.VALUE)
+            finishToken(scanPropertyValueEnd(stopAtCoordinateSeparator = true), SageEngineIniTokenTypes.VALUE)
             return
         }
 
@@ -252,6 +178,94 @@ class SageEngineIniLexer : LexerBase() {
         finishToken(tokenStart + 1, TokenType.BAD_CHARACTER)
     }
 
+    private fun locateScriptToken(currentChar: Char) {
+        if (startsWord(tokenStart, END_SCRIPT)) {
+            finishToken(tokenStart + END_SCRIPT.length, SageEngineIniTokenTypes.BLOCK_END)
+            return
+        }
+
+        if (isWhitespace(currentChar)) {
+            finishToken(scanScriptTokenEnd { isWhitespace(it) }, TokenType.WHITE_SPACE)
+            return
+        }
+
+        finishToken(scanScriptTokenEnd { !isWhitespace(it) }, SageEngineIniTokenTypes.SCRIPT_BODY)
+    }
+
+    private fun locateCommentToken(currentChar: Char) {
+        if ((tokenState == STATE_COMMENT_SPACER && isCommentSpacer(currentChar)) || startsComment(tokenStart)) {
+            finishToken(scanWhile(tokenStart + 1, ::isCommentSpacer), SageEngineIniTokenTypes.COMMENT_SPACER)
+            return
+        }
+
+        finishToken(scanCommentWordEnd(), SageEngineIniTokenTypes.COMMENT_WORD)
+    }
+
+    private fun scanScriptTokenEnd(predicate: (Char) -> Boolean): Int {
+        var currentOffset = tokenStart + 1
+        while (currentOffset < endOffset && predicate(buffer[currentOffset]) && !startsWord(currentOffset, END_SCRIPT)) {
+            currentOffset++
+        }
+        return currentOffset
+    }
+
+    private fun scanCommentWordEnd(): Int {
+        var currentOffset = tokenStart + 1
+        while (currentOffset < endOffset && !isWhitespace(buffer[currentOffset]) && !startsComment(currentOffset)) {
+            currentOffset++
+        }
+        return currentOffset
+    }
+
+    private fun scanStringEnd(): Int {
+        var currentOffset = tokenStart + 1
+        var escaped = false
+        while (currentOffset < endOffset && buffer[currentOffset] != '\n' && buffer[currentOffset] != '\r') {
+            val ch = buffer[currentOffset++]
+            if (ch == '"' && !escaped) {
+                break
+            }
+            escaped = ch == '\\' && !escaped
+            if (ch != '\\') {
+                escaped = false
+            }
+        }
+        return currentOffset
+    }
+
+    private fun scanNumberEnd(): Int {
+        var currentOffset = tokenStart + 1
+        while (currentOffset < endOffset) {
+            val ch = buffer[currentOffset]
+            if (!Character.isDigit(ch) && ch != '.') {
+                break
+            }
+            currentOffset++
+        }
+        return currentOffset
+    }
+
+    private fun scanPropertyValueEnd(stopAtCoordinateSeparator: Boolean): Int {
+        var currentOffset = tokenStart + 1
+        while (currentOffset < endOffset &&
+            !isLineBreak(buffer[currentOffset]) &&
+            !isWhitespace(buffer[currentOffset]) &&
+            !startsComment(currentOffset) &&
+            (!stopAtCoordinateSeparator || !isCoordinateSeparator(currentOffset))
+        ) {
+            currentOffset++
+        }
+        return currentOffset
+    }
+
+    private fun scanWhile(offset: Int, predicate: (Char) -> Boolean): Int {
+        var currentOffset = offset
+        while (currentOffset < endOffset && predicate(buffer[currentOffset])) {
+            currentOffset++
+        }
+        return currentOffset
+    }
+
     private fun finishToken(end: Int, type: IElementType) {
         tokenEnd = end
         tokenType = type
@@ -261,8 +275,8 @@ class SageEngineIniLexer : LexerBase() {
     private fun nextState(type: IElementType): Int {
         if (isScriptState(tokenState)) {
             return when {
-                type === SageEngineIniTokenTypes.BLOCK_END && tokenTextEquals("EndScript") -> decreaseScriptState(tokenState)
-                type === SageEngineIniTokenTypes.SCRIPT_BODY && tokenTextEquals("BeginScript") -> tokenState + 1
+                type === SageEngineIniTokenTypes.BLOCK_END && tokenTextEquals(END_SCRIPT) -> decreaseScriptState(tokenState)
+                type === SageEngineIniTokenTypes.SCRIPT_BODY && tokenTextEquals(BEGIN_SCRIPT) -> tokenState + 1
                 else -> tokenState
             }
         }
@@ -287,7 +301,7 @@ class SageEngineIniLexer : LexerBase() {
             return STATE_PROPERTY_VALUE
         }
 
-        if (type === SageEngineIniTokenTypes.BLOCK_START && tokenTextEquals("BeginScript")) {
+        if (type === SageEngineIniTokenTypes.BLOCK_START && tokenTextEquals(BEGIN_SCRIPT)) {
             return STATE_SCRIPT_BASE + 1
         }
 
@@ -457,6 +471,8 @@ class SageEngineIniLexer : LexerBase() {
         private const val STATE_PROPERTY_VALUE = 2
         private const val STATE_COMMENT_SPACER = 3
         private const val STATE_SCRIPT_BASE = 100
+        private const val BEGIN_SCRIPT = "BeginScript"
+        private const val END_SCRIPT = "EndScript"
 
         private fun isCommentState(state: Int): Boolean {
             return state == STATE_COMMENT || state == STATE_COMMENT_SPACER

@@ -12,6 +12,7 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.TokenType
 import com.intellij.psi.codeStyle.CodeStyleSettings
+import de.darkatra.bfme2.ini.psi.SageEngineIniElementTypes
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
 class SageEngineIniFormattingBlock(
@@ -120,13 +121,12 @@ class SageEngineIniFormattingBlock(
 
         val blocks = mutableListOf<Block>()
         val alignments = mutableMapOf<Int, Alignment>()
-        var child = node.firstChildNode
+        val children = flattenedFormattingChildren(node)
         var previousSignificantChild: ASTNode? = null
         var blockDepth = 0
         var scriptBodyBaseIndent: Int? = null
 
-        while (child != null) {
-
+        for (child in children) {
             // reset indentation when encountering a blank line - this ensures that only adjacent properties have aligned values
             if (child.elementType == TokenType.WHITE_SPACE && containsBlankLine(child.text)) {
                 alignments.clear()
@@ -171,11 +171,31 @@ class SageEngineIniFormattingBlock(
                     scriptBodyBaseIndent = null
                 }
             }
-
-            child = child.treeNext
         }
 
         return blocks
+    }
+
+    private fun flattenedFormattingChildren(parent: ASTNode): List<ASTNode> {
+        val children = mutableListOf<ASTNode>()
+        var child = parent.firstChildNode
+        while (child != null) {
+            if (isStructuredElement(child)) {
+                children += flattenedFormattingChildren(child)
+            } else {
+                children += child
+            }
+            child = child.treeNext
+        }
+        return children
+    }
+
+    private fun isStructuredElement(node: ASTNode): Boolean {
+        return node.elementType == SageEngineIniElementTypes.BLOCK ||
+            node.elementType == SageEngineIniElementTypes.PROPERTY_ASSIGNMENT ||
+            node.elementType == SageEngineIniElementTypes.MACRO_STATEMENT ||
+            node.elementType == SageEngineIniElementTypes.COMMENT ||
+            node.elementType == SageEngineIniElementTypes.SCRIPT_BLOCK
     }
 
     private fun containsBlankLine(text: String): Boolean {

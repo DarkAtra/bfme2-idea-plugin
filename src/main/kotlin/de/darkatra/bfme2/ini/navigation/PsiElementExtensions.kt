@@ -1,6 +1,8 @@
 package de.darkatra.bfme2.ini.navigation
 
+import com.intellij.openapi.roots.ProjectFileIndex
 import com.intellij.openapi.vfs.VfsUtilCore
+import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
@@ -13,13 +15,39 @@ internal fun PsiElement.resolveIncludeFile(): PsiFile? {
 
     val currentFile = containingFile?.virtualFile ?: return null
     val parent = currentFile.parent ?: return null
-    val includePath = text.trim('"').replace('\\', '/')
+    val includePath = normalizedIncludePath()
+        ?: return null
 
     val targetFile = VfsUtilCore.findRelativeFile(includePath, parent)
         ?.takeIf { !it.isDirectory }
+        ?.takeIf { it.isInProjectDirectory(this) }
         ?: return null
 
     return PsiManager.getInstance(project).findFile(targetFile)
+}
+
+internal fun PsiElement.resolveIncludeDirectory(): VirtualFile? {
+    val parent = containingFile?.virtualFile?.parent ?: return null
+    val includePath = normalizedIncludePath()
+        ?: return parent
+    val includeDirectoryPath = includePath.substringBeforeLast('/', missingDelimiterValue = "")
+
+    if (includeDirectoryPath.isBlank()) {
+        return parent
+    }
+
+    return VfsUtilCore.findRelativeFile(includeDirectoryPath, parent)
+        ?.takeIf { it.isDirectory }
+        ?.takeIf { it.isInProjectDirectory(this) }
+}
+
+private fun VirtualFile.isInProjectDirectory(element: PsiElement): Boolean {
+    return ProjectFileIndex.getInstance(element.project).isInContent(this)
+}
+
+internal fun PsiElement.normalizedIncludePath(): String? {
+    val includePath = text.trim('"').replace('\\', '/').trim()
+    return includePath.takeIf { it.isNotBlank() }
 }
 
 internal fun PsiElement.isPartOfIncludeMacro(): Boolean {
