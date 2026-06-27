@@ -4,6 +4,7 @@
     <vendor url="https://darkatra.dev">DarkAtra</vendor>
     <description>Language support for Sage Engine INI files, including highlighting, formatting, PSI structure and navigation.</description>
 
+    <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.kotlin</depends>
 
     <extensions defaultExtensionNs="com.intellij">
