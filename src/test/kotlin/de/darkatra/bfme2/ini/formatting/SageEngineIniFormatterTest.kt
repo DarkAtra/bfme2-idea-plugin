@@ -274,4 +274,52 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
 
         assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
     }
+
+    @Test
+    fun `should format large synthetic file consistently`() {
+
+        val input = buildString {
+            repeat(250) { index ->
+                appendLine("Object TestObject$index")
+                appendLine("DisplayName=OBJECT:TestObject$index")
+                appendLine("    Side      = Men")
+                appendLine("        EditorSorting=UNIT")
+                appendLine("    ;*** AUDIO Parameters ***;")
+                appendLine("    Behavior   = EmotionTrackerUpdate Module_EmotionTracker$index")
+                appendLine("        TauntAndPointDistance    = INFANTRY_TAUNT_POINT_RADIUS; 350")
+                appendLine("        AddEmotion = OVERRIDE Taunt_Base")
+                appendLine("                AttributeModifier = GondorFighterTaunt")
+                appendLine("        End")
+                appendLine("    End")
+                appendLine("End")
+                appendLine()
+            }
+        }.trimEnd()
+
+        val expected = buildString {
+            repeat(250) { index ->
+                appendLine("Object TestObject$index")
+                appendLine("    DisplayName   = OBJECT:TestObject$index")
+                appendLine("    Side          = Men")
+                appendLine("    EditorSorting = UNIT")
+                appendLine("    ; *** AUDIO Parameters *** ;")
+                appendLine("    Behavior = EmotionTrackerUpdate Module_EmotionTracker$index")
+                appendLine("        TauntAndPointDistance = INFANTRY_TAUNT_POINT_RADIUS ; 350")
+                appendLine("        AddEmotion = OVERRIDE Taunt_Base")
+                appendLine("            AttributeModifier = GondorFighterTaunt")
+                appendLine("        End")
+                appendLine("    End")
+                appendLine("End")
+                if (index != 249) {
+                    appendLine()
+                }
+            }
+        }.trimEnd()
+
+        myFixture.configureByText("test.ini", input)
+
+        myFixture.performEditorAction("ReformatCode")
+
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(expected)
+    }
 }

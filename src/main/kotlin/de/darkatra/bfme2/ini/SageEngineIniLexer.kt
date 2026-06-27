@@ -13,17 +13,20 @@ class SageEngineIniLexer : LexerBase() {
     private var tokenStart = 0
     private var tokenEnd = 0
     private var tokenType: IElementType? = null
+    private var state = STATE_DEFAULT
+    private var tokenState = STATE_DEFAULT
 
     override fun start(buffer: CharSequence, startOffset: Int, endOffset: Int, initialState: Int) {
         this.buffer = buffer
         this.startOffset = startOffset
         this.endOffset = endOffset
         this.tokenStart = startOffset
+        this.state = initialState
         locateToken()
     }
 
     override fun getState(): Int {
-        return 0
+        return tokenState
     }
 
     override fun getTokenType(): IElementType? {
@@ -53,6 +56,8 @@ class SageEngineIniLexer : LexerBase() {
 
     private fun locateToken() {
 
+        tokenState = state
+
         if (tokenStart >= endOffset) {
             tokenType = null
             tokenEnd = tokenStart
@@ -61,69 +66,67 @@ class SageEngineIniLexer : LexerBase() {
 
         val currentChar = buffer[tokenStart]
 
-        if (isInsideScriptBlock(tokenStart)) {
+        if (isScriptState(tokenState)) {
             if (startsWord(tokenStart, "EndScript")) {
-                tokenEnd = tokenStart + "EndScript".length
-                tokenType = SageEngineIniTokenTypes.BLOCK_END
+                finishToken(tokenStart + "EndScript".length, SageEngineIniTokenTypes.BLOCK_END)
                 return
             }
 
-            if (Character.isWhitespace(currentChar)) {
+            if (isWhitespace(currentChar)) {
                 tokenEnd = tokenStart + 1
-                while (tokenEnd < endOffset && Character.isWhitespace(buffer[tokenEnd]) && !startsWord(tokenEnd, "EndScript")) {
+                while (tokenEnd < endOffset && isWhitespace(buffer[tokenEnd]) && !startsWord(tokenEnd, "EndScript")) {
                     tokenEnd++
                 }
-                tokenType = TokenType.WHITE_SPACE
+                finishToken(tokenEnd, TokenType.WHITE_SPACE)
                 return
             }
 
             tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset && !Character.isWhitespace(buffer[tokenEnd]) && !startsWord(tokenEnd, "EndScript")) {
+            while (tokenEnd < endOffset && !isWhitespace(buffer[tokenEnd]) && !startsWord(tokenEnd, "EndScript")) {
                 tokenEnd++
             }
-            tokenType = SageEngineIniTokenTypes.SCRIPT_BODY
+            finishToken(tokenEnd, SageEngineIniTokenTypes.SCRIPT_BODY)
             return
         }
 
-        if (Character.isWhitespace(currentChar)) {
+        if (isWhitespace(currentChar)) {
             tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset && Character.isWhitespace(buffer[tokenEnd])) {
+            while (tokenEnd < endOffset && isWhitespace(buffer[tokenEnd])) {
                 tokenEnd++
             }
-            tokenType = TokenType.WHITE_SPACE
+            finishToken(tokenEnd, TokenType.WHITE_SPACE)
             return
         }
 
-        if (isInsideComment(tokenStart)) {
-            if (isCommentSpacerPrefix(tokenStart) || startsComment(tokenStart)) {
+        if (isCommentState(tokenState)) {
+            if ((tokenState == STATE_COMMENT_SPACER && isCommentSpacer(currentChar)) || startsComment(tokenStart)) {
                 tokenEnd = tokenStart + 1
                 while (tokenEnd < endOffset && isCommentSpacer(buffer[tokenEnd])) {
                     tokenEnd++
                 }
-                tokenType = SageEngineIniTokenTypes.COMMENT_SPACER
+                finishToken(tokenEnd, SageEngineIniTokenTypes.COMMENT_SPACER)
                 return
             }
 
             tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset && !Character.isWhitespace(buffer[tokenEnd]) && !startsComment(tokenEnd)) {
+            while (tokenEnd < endOffset && !isWhitespace(buffer[tokenEnd]) && !startsComment(tokenEnd)) {
                 tokenEnd++
             }
-            tokenType = SageEngineIniTokenTypes.COMMENT_WORD
+            finishToken(tokenEnd, SageEngineIniTokenTypes.COMMENT_WORD)
             return
         }
 
         if (currentChar == ';' || startsWith("//") || startsWith("--")) {
-            tokenEnd = tokenStart + if (currentChar == ';') 1 else 2
-            tokenType = SageEngineIniTokenTypes.COMMENT_START
+            finishToken(tokenStart + if (currentChar == ';') 1 else 2, SageEngineIniTokenTypes.COMMENT_START)
             return
         }
 
         if (currentChar == '#') {
             tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset && Character.isLetter(buffer[tokenEnd])) { // TODO: macro name must match: [a-zA-Z]+
+            while (tokenEnd < endOffset && isMacroNamePart(buffer[tokenEnd])) {
                 tokenEnd++
             }
-            tokenType = SageEngineIniTokenTypes.MACRO
+            finishToken(tokenEnd, SageEngineIniTokenTypes.MACRO)
             return
         }
 
@@ -140,77 +143,67 @@ class SageEngineIniLexer : LexerBase() {
                     escaped = false
                 }
             }
-            tokenType = SageEngineIniTokenTypes.STRING
+            finishToken(tokenEnd, SageEngineIniTokenTypes.STRING)
             return
         }
 
         when (currentChar) {
             '=' -> {
-                tokenEnd = tokenStart + 1
-                tokenType = SageEngineIniTokenTypes.EQUALS
+                finishToken(tokenStart + 1, SageEngineIniTokenTypes.EQUALS)
                 return
             }
 
             ':' -> {
-                tokenEnd = tokenStart + 1
-                tokenType = SageEngineIniTokenTypes.COLON
+                finishToken(tokenStart + 1, SageEngineIniTokenTypes.COLON)
                 return
             }
 
             ',' -> {
-                tokenEnd = tokenStart + 1
-                tokenType = SageEngineIniTokenTypes.COMMA
+                finishToken(tokenStart + 1, SageEngineIniTokenTypes.COMMA)
                 return
             }
 
             '%' -> {
-                tokenEnd = tokenStart + 1
-                tokenType = SageEngineIniTokenTypes.PERCENT
+                finishToken(tokenStart + 1, SageEngineIniTokenTypes.PERCENT)
                 return
             }
 
             '(' -> {
-                tokenEnd = tokenStart + 1
-                tokenType = SageEngineIniTokenTypes.LPAREN
+                finishToken(tokenStart + 1, SageEngineIniTokenTypes.LPAREN)
                 return
             }
 
             ')' -> {
-                tokenEnd = tokenStart + 1
-                tokenType = SageEngineIniTokenTypes.RPAREN
+                finishToken(tokenStart + 1, SageEngineIniTokenTypes.RPAREN)
                 return
             }
 
             '{' -> {
-                tokenEnd = tokenStart + 1
-                tokenType = SageEngineIniTokenTypes.LBRACE
+                finishToken(tokenStart + 1, SageEngineIniTokenTypes.LBRACE)
                 return
             }
 
             '}' -> {
-                tokenEnd = tokenStart + 1
-                tokenType = SageEngineIniTokenTypes.RBRACE
+                finishToken(tokenStart + 1, SageEngineIniTokenTypes.RBRACE)
                 return
             }
 
             '+', '-', '*', '/', '<', '>', '!' -> {
-                tokenEnd = tokenStart + 1
-                tokenType = SageEngineIniTokenTypes.OPERATOR
+                finishToken(tokenStart + 1, SageEngineIniTokenTypes.OPERATOR)
                 return
             }
         }
 
-        if (isPropertyValueStart() && startsNumberWithLetterSuffix()) {
+        if (tokenState == STATE_PROPERTY_VALUE && startsNumberWithLetterSuffix()) {
             tokenEnd = tokenStart + 1
             while (tokenEnd < endOffset &&
-                buffer[tokenEnd] != '\n' &&
-                buffer[tokenEnd] != '\r' &&
-                !Character.isWhitespace(buffer[tokenEnd]) &&
+                !isLineBreak(buffer[tokenEnd]) &&
+                !isWhitespace(buffer[tokenEnd]) &&
                 !startsComment(tokenEnd)
             ) {
                 tokenEnd++
             }
-            tokenType = SageEngineIniTokenTypes.VALUE
+            finishToken(tokenEnd, SageEngineIniTokenTypes.VALUE)
             return
         }
 
@@ -221,22 +214,21 @@ class SageEngineIniLexer : LexerBase() {
                 if (!Character.isDigit(ch) && ch != '.') break
                 tokenEnd++
             }
-            tokenType = SageEngineIniTokenTypes.NUMBER
+            finishToken(tokenEnd, SageEngineIniTokenTypes.NUMBER)
             return
         }
 
-        if (isPropertyValueStart()) {
+        if (tokenState == STATE_PROPERTY_VALUE) {
             tokenEnd = tokenStart + 1
             while (tokenEnd < endOffset &&
-                buffer[tokenEnd] != '\n' &&
-                buffer[tokenEnd] != '\r' &&
-                !Character.isWhitespace(buffer[tokenEnd]) &&
+                !isLineBreak(buffer[tokenEnd]) &&
+                !isWhitespace(buffer[tokenEnd]) &&
                 !startsComment(tokenEnd) &&
                 !isCoordinateSeparator(tokenEnd)
             ) {
                 tokenEnd++
             }
-            tokenType = SageEngineIniTokenTypes.VALUE
+            finishToken(tokenEnd, SageEngineIniTokenTypes.VALUE)
             return
         }
 
@@ -246,18 +238,77 @@ class SageEngineIniLexer : LexerBase() {
                 tokenEnd++
             }
             val text = buffer.subSequence(tokenStart, tokenEnd).toString()
-            tokenType = when {
+            finishToken(
+                tokenEnd, when {
                 BLOCK_STARTS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_START
                 BLOCK_ENDS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_END
                 isPossibleBlockStart() -> SageEngineIniTokenTypes.BLOCK_START
                 isPropertyKey(tokenEnd) -> SageEngineIniTokenTypes.PROPERTY
                 else -> SageEngineIniTokenTypes.VALUE
-            }
+            })
             return
         }
 
-        tokenEnd = tokenStart + 1
-        tokenType = TokenType.BAD_CHARACTER
+        finishToken(tokenStart + 1, TokenType.BAD_CHARACTER)
+    }
+
+    private fun finishToken(end: Int, type: IElementType) {
+        tokenEnd = end
+        tokenType = type
+        state = nextState(type)
+    }
+
+    private fun nextState(type: IElementType): Int {
+        if (isScriptState(tokenState)) {
+            return when {
+                type === SageEngineIniTokenTypes.BLOCK_END && tokenTextEquals("EndScript") -> decreaseScriptState(tokenState)
+                type === SageEngineIniTokenTypes.SCRIPT_BODY && tokenTextEquals("BeginScript") -> tokenState + 1
+                else -> tokenState
+            }
+        }
+
+        if (tokenContainsLineBreak()) {
+            return STATE_DEFAULT
+        }
+
+        if (type === SageEngineIniTokenTypes.COMMENT_START) {
+            return STATE_COMMENT_SPACER
+        }
+
+        if (isCommentState(tokenState)) {
+            return if (type === SageEngineIniTokenTypes.COMMENT_SPACER) STATE_COMMENT_SPACER else STATE_COMMENT
+        }
+
+        if (type === SageEngineIniTokenTypes.EQUALS) {
+            return STATE_PROPERTY_VALUE
+        }
+
+        if (tokenState == STATE_PROPERTY_VALUE) {
+            return STATE_PROPERTY_VALUE
+        }
+
+        if (type === SageEngineIniTokenTypes.BLOCK_START && tokenTextEquals("BeginScript")) {
+            return STATE_SCRIPT_BASE + 1
+        }
+
+        return STATE_DEFAULT
+    }
+
+    private fun decreaseScriptState(state: Int): Int {
+        return if (state > STATE_SCRIPT_BASE + 1) state - 1 else STATE_DEFAULT
+    }
+
+    private fun tokenTextEquals(text: String): Boolean {
+        return tokenEnd - tokenStart == text.length && startsWord(tokenStart, text)
+    }
+
+    private fun tokenContainsLineBreak(): Boolean {
+        for (i in tokenStart until tokenEnd) {
+            if (isLineBreak(buffer[i])) {
+                return true
+            }
+        }
+        return false
     }
 
     private fun startsWith(text: String): Boolean {
@@ -293,7 +344,7 @@ class SageEngineIniLexer : LexerBase() {
     private fun textUntilLineEndIgnoringComments(): String {
 
         var lineEndOffset = tokenStart
-        while (lineEndOffset < endOffset && buffer[lineEndOffset] != '\n' && buffer[lineEndOffset] != '\r') {
+        while (lineEndOffset < endOffset && !isLineBreak(buffer[lineEndOffset])) {
             if (startsComment(lineEndOffset)) {
                 break
             }
@@ -301,14 +352,6 @@ class SageEngineIniLexer : LexerBase() {
         }
 
         return buffer.substring(tokenStart, lineEndOffset).trim()
-    }
-
-    private fun isPropertyValueStart(): Boolean {
-        var currentOffset = tokenStart - 1
-        while (currentOffset >= startOffset && (buffer[currentOffset] == ' ' || buffer[currentOffset] == '\t')) {
-            currentOffset--
-        }
-        return currentOffset >= startOffset && buffer[currentOffset] == '='
     }
 
     private fun isCoordinateSeparator(offset: Int): Boolean {
@@ -330,19 +373,6 @@ class SageEngineIniLexer : LexerBase() {
         return buffer[offset] == ';' || startsWith(offset, "//") || startsWith(offset, "--")
     }
 
-    private fun isInsideComment(offset: Int): Boolean {
-
-        var currentOffset = offset - 1
-        while (currentOffset >= startOffset && buffer[currentOffset] != '\n' && buffer[currentOffset] != '\r') {
-            if (buffer[currentOffset] == ';' || startsWith(currentOffset, "//") || startsWith(currentOffset, "--")) {
-                return true
-            }
-            currentOffset--
-        }
-
-        return false
-    }
-
     private fun startsWith(offset: Int, text: String): Boolean {
         if (offset + text.length > endOffset) {
             return false
@@ -359,6 +389,18 @@ class SageEngineIniLexer : LexerBase() {
         return c == '/' || c == '-' || c == ',' || c == ';'
     }
 
+    private fun isWhitespace(c: Char): Boolean {
+        return Character.isWhitespace(c)
+    }
+
+    private fun isLineBreak(c: Char): Boolean {
+        return c == '\n' || c == '\r'
+    }
+
+    private fun isMacroNamePart(c: Char): Boolean {
+        return c in 'A'..'Z' || c in 'a'..'z'
+    }
+
     private fun isCommentSpacerPrefix(offset: Int): Boolean {
 
         if (!isCommentSpacer(buffer[offset])) {
@@ -366,7 +408,7 @@ class SageEngineIniLexer : LexerBase() {
         }
 
         var currentOffset = offset - 1
-        while (currentOffset >= startOffset && buffer[currentOffset] != '\n' && buffer[currentOffset] != '\r') {
+        while (currentOffset >= startOffset && !isLineBreak(buffer[currentOffset])) {
             if (buffer[currentOffset] == ';') {
                 return true
             }
@@ -394,33 +436,6 @@ class SageEngineIniLexer : LexerBase() {
         return true
     }
 
-    private fun isInsideScriptBlock(offset: Int): Boolean {
-        var currentOffset = startOffset
-        var depth = 0
-
-        while (currentOffset < offset) {
-            val currentChar = buffer[currentOffset]
-            if (isWordStart(currentChar)) {
-                val wordStart = currentOffset
-                currentOffset++
-                while (currentOffset < offset && isWordPart(buffer[currentOffset])) {
-                    currentOffset++
-                }
-
-                val text = buffer.subSequence(wordStart, currentOffset).toString()
-                if (text.equals("BeginScript", true)) {
-                    depth++
-                } else if (text.equals("EndScript", true) && depth > 0) {
-                    depth--
-                }
-            } else {
-                currentOffset++
-            }
-        }
-
-        return depth > 0
-    }
-
     private fun startsWord(offset: Int, text: String): Boolean {
         if (offset > startOffset && isWordPart(buffer[offset - 1])) {
             return false
@@ -437,6 +452,20 @@ class SageEngineIniLexer : LexerBase() {
     }
 
     companion object {
+        private const val STATE_DEFAULT = 0
+        private const val STATE_COMMENT = 1
+        private const val STATE_PROPERTY_VALUE = 2
+        private const val STATE_COMMENT_SPACER = 3
+        private const val STATE_SCRIPT_BASE = 100
+
+        private fun isCommentState(state: Int): Boolean {
+            return state == STATE_COMMENT || state == STATE_COMMENT_SPACER
+        }
+
+        private fun isScriptState(state: Int): Boolean {
+            return state >= STATE_SCRIPT_BASE
+        }
+
         private val BLOCK_STARTS = setOf(
             "Object",
             "ChildObject",

@@ -21,14 +21,17 @@ class SageEngineIniFormattingBlock(
     private val alignment: Alignment?,
 ) : Block {
 
-    private val children: List<Block> by lazy { buildSubBlocks() }
+    private var children: List<Block>? = null
 
     override fun getTextRange(): TextRange {
         return node.textRange
     }
 
     override fun getSubBlocks(): List<Block> {
-        return children
+        if (isLeaf) {
+            return emptyList()
+        }
+        return children ?: buildSubBlocks().also { children = it }
     }
 
     override fun getWrap(): Wrap? {
@@ -176,41 +179,52 @@ class SageEngineIniFormattingBlock(
     }
 
     private fun containsBlankLine(text: String): Boolean {
-        return text.count { it == '\n' } >= 2
+        var lineBreaks = 0
+        for (char in text) {
+            if (char == '\n' && ++lineBreaks == 2) {
+                return true
+            }
+        }
+        return false
     }
 
     private fun hasLineBreakBetween(left: ASTNode, right: ASTNode): Boolean {
         val text = left.psi.containingFile.text
-        return text.substring(left.textRange.endOffset, right.textRange.startOffset).any { it == '\n' || it == '\r' }
+        var offset = left.textRange.endOffset
+        val endOffset = right.textRange.startOffset
+        while (offset < endOffset) {
+            val char = text[offset]
+            if (char == '\n' || char == '\r') {
+                return true
+            }
+            offset++
+        }
+        return false
     }
 
     private fun getLineIndent(node: ASTNode): Int {
         val text = node.psi.containingFile.text
-        var offset = node.textRange.startOffset - 1
-        var lineIndent = 0
+        val startOffset = node.textRange.startOffset
+        var offset = startOffset - 1
         while (offset >= 0) {
             val char = text[offset]
             if (char == '\n' || char == '\r') {
-                return lineIndent
+                break
             }
+            offset--
+        }
+        offset++
+        var lineIndent = 0
+        while (offset < startOffset) {
+            val char = text[offset]
             if (char == '\t') {
                 lineIndent += codeStyleSettings.indentOptions.INDENT_SIZE
             } else if (char == ' ') {
                 lineIndent++
             }
-            offset--
+            offset++
         }
         return lineIndent
-    }
-
-    private fun hasWhitespaceBetween(left: ASTNode, right: ASTNode): Boolean {
-        val text = left.psi.containingFile.text
-        return text.substring(left.textRange.endOffset, right.textRange.startOffset).any { Character.isWhitespace(it) }
-    }
-
-    private fun hasTabBetween(left: ASTNode, right: ASTNode): Boolean {
-        val text = left.psi.containingFile.text
-        return text.substring(left.textRange.endOffset, right.textRange.startOffset).any { it == '\t' }
     }
 
     private fun isValuePart(node: ASTNode): Boolean {

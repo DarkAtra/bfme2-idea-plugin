@@ -4,8 +4,6 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiRecursiveElementWalkingVisitor
-import com.intellij.psi.TokenType
-import com.intellij.psi.util.PsiTreeUtil
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
 object SageEngineIniEmptyCommentRemover {
@@ -17,13 +15,18 @@ object SageEngineIniEmptyCommentRemover {
 
         file.accept(object : PsiRecursiveElementWalkingVisitor() {
             override fun visitElement(e: PsiElement) {
+                val elementRange = e.textRange
+                if (e !== file && !elementRange.intersects(range) && !elementRange.contains(range)) {
+                    return
+                }
+
                 val node = e.node
 
                 if (
                     node?.elementType == SageEngineIniTokenTypes.COMMENT_START &&
-                    e.textRange.intersects(range) &&
-                    lineBeforeCommentContainsNonWhitespaceNode(e) &&
-                    hasOnlyWhitespaceUntilLineEnd(fileText, e.textRange.endOffset)
+                    elementRange.intersects(range) &&
+                    lineBeforeCommentContainsNonWhitespaceNode(fileText, elementRange.startOffset) &&
+                    hasOnlyWhitespaceUntilLineEnd(fileText, elementRange.endOffset)
                 ) {
                     commentsToDelete += e
                     return
@@ -58,21 +61,17 @@ object SageEngineIniEmptyCommentRemover {
         )
     }
 
-    private fun lineBeforeCommentContainsNonWhitespaceNode(commentStart: PsiElement): Boolean {
-        var previous = PsiTreeUtil.prevLeaf(commentStart)
-
-        while (previous != null) {
-            val text = previous.text
-
-            if (text.any { it == '\n' || it == '\r' }) {
+    private fun lineBeforeCommentContainsNonWhitespaceNode(text: String, commentStartOffset: Int): Boolean {
+        var offset = commentStartOffset - 1
+        while (offset >= 0) {
+            val char = text[offset]
+            if (char == '\n' || char == '\r') {
                 return false
             }
-
-            if (previous.node?.elementType != TokenType.WHITE_SPACE) {
+            if (!char.isWhitespace()) {
                 return true
             }
-
-            previous = PsiTreeUtil.prevLeaf(previous)
+            offset--
         }
 
         return false

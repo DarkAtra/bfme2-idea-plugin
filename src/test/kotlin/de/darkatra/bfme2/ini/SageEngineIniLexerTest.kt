@@ -150,6 +150,17 @@ class SageEngineIniLexerTest {
     }
 
     @Test
+    fun `should lex macro directives`() {
+
+        assertTokens(
+            "#include \"data\\ini\\object.ini\"",
+            SageEngineIniTokenTypes.MACRO to "#include",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.STRING to "\"data\\ini\\object.ini\"",
+        )
+    }
+
+    @Test
     fun `should stop property value at inline comment`() {
 
         assertTokens(
@@ -242,6 +253,29 @@ class SageEngineIniLexerTest {
         )
     }
 
+    @Test
+    fun `should resume lexing from captured states`() {
+
+        assertCanRestartAtEveryToken(
+            """
+            ;,, comment words //;
+            DoubleSlash = value // comment
+            DashDash = value -- comment
+            Number = 10h
+            GeometryOffset = X:50 Y:0 Z:0
+            Next = value
+            BeginScript
+                PrevState = CurDrawablePrevAnimationState()
+                BeginScript
+                    nested
+                EndScript
+                CurDrawableAllowToContinue()
+            EndScript
+            After = EndScript
+            """.trimIndent()
+        )
+    }
+
     private fun assertTokens(text: String, vararg expectedTokens: Pair<IElementType, String>) {
 
         val lexer = SageEngineIniLexer()
@@ -255,4 +289,37 @@ class SageEngineIniLexerTest {
 
         assertThat(actualTokens).isEqualTo(expectedTokens.toList())
     }
+
+    private fun assertCanRestartAtEveryToken(text: String) {
+
+        val fullTokens = lex(text)
+
+        fullTokens.forEachIndexed { index, token ->
+            val restartedTokens = lex(text, token.start, token.state)
+
+            assertThat(restartedTokens.map { it.type to text.substring(it.start, it.end) })
+                .isEqualTo(fullTokens.drop(index).map { it.type to text.substring(it.start, it.end) })
+        }
+    }
+
+    private fun lex(text: String, startOffset: Int = 0, initialState: Int = 0): List<LexerToken> {
+
+        val lexer = SageEngineIniLexer()
+        lexer.start(text, startOffset, text.length, initialState)
+
+        val tokens = mutableListOf<LexerToken>()
+        while (lexer.tokenType != null) {
+            tokens += LexerToken(lexer.tokenType!!, lexer.tokenStart, lexer.tokenEnd, lexer.state)
+            lexer.advance()
+        }
+
+        return tokens
+    }
+
+    private data class LexerToken(
+        val type: IElementType,
+        val start: Int,
+        val end: Int,
+        val state: Int,
+    )
 }
