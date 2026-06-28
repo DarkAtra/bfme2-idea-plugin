@@ -166,12 +166,12 @@ class SageEngineIniLexer : LexerBase() {
             val text = buffer.subSequence(tokenStart, tokenEnd).toString()
             finishToken(
                 tokenEnd, when {
-                BLOCK_STARTS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_START
-                BLOCK_ENDS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_END
-                isPossibleBlockStart() -> SageEngineIniTokenTypes.BLOCK_START
-                isPropertyKey(tokenEnd) -> SageEngineIniTokenTypes.PROPERTY
-                else -> SageEngineIniTokenTypes.VALUE
-            })
+                    BLOCK_STARTS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_START
+                    BLOCK_ENDS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_END
+                    isPossibleBlockStart() -> SageEngineIniTokenTypes.BLOCK_START
+                    isPropertyKey(tokenEnd) -> SageEngineIniTokenTypes.PROPERTY
+                    else -> SageEngineIniTokenTypes.VALUE
+                })
             return
         }
 
@@ -549,6 +549,12 @@ class SageEngineIniLexer : LexerBase() {
             "StealMoneyNugget",
             "ClientUpdate",
             "HordeAttackNugget",
+            "MappedImage",
+            "ModifierList",
+            "CommandButton",
+            "ExperienceLevel",
+            "EvaEvent",
+            "ObjectCreationList"
         )
         private val POSSIBLY_BLOCK_STARTS: Set<SageEngineIniPossibleBlockMatcher> = setOf(
             SageEngineIniPossibleBlockMatcher { words -> words.take(3) == listOf("AddEmotion", "=", "OVERRIDE") },
@@ -559,6 +565,8 @@ class SageEngineIniLexer : LexerBase() {
             SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "StanceTemplate" },
             SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Weapon" },
             SageEngineIniPossibleBlockMatcher { words -> words.size == 1 && words.first() == "Sound" },
+            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Armor" },
+            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "CommandSet" },
         )
         private val BLOCK_ENDS = setOf(
             "End",
