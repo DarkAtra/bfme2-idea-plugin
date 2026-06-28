@@ -15,6 +15,8 @@
         <lang.syntaxHighlighterFactory language="SageEngineIni"
                                        implementationClass="de.darkatra.bfme2.ini.highlighting.SageEngineIniSyntaxHighlighterFactory"/>
         <lang.commenter language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.SageEngineIniCommenter"/>
+        <lang.foldingBuilder language="SageEngineIni"
+                             implementationClass="de.darkatra.bfme2.ini.folding.SageEngineIniFoldingBuilder"/>
         <lang.formatter language="SageEngineIni"
                         implementationClass="de.darkatra.bfme2.ini.formatting.SageEngineIniFormattingModelBuilder"/>
         <preFormatProcessor implementation="de.darkatra.bfme2.ini.formatting.SageEngineIniPreFormatProcessor"/>

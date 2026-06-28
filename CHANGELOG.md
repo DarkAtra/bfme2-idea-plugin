@@ -2,6 +2,12 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.1.3`
+
+### Added
+
+- Support for folding blocks
+
 ## `0.1.2`
 
 ### Added

@@ -235,7 +235,7 @@ class SageEngineIniLexerTest {
 
         assertTokens(
             "Object = ElvenMallornTree",
-            SageEngineIniTokenTypes.BLOCK_START to "Object",
+            SageEngineIniTokenTypes.PROPERTY to "Object",
             TokenType.WHITE_SPACE to " ",
             SageEngineIniTokenTypes.EQUALS to "=",
             TokenType.WHITE_SPACE to " ",

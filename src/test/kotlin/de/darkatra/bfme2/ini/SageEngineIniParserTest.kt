@@ -1,9 +1,11 @@
 package de.darkatra.bfme2.ini
 
+import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiComment
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixture4TestCase
+import de.darkatra.bfme2.ini.folding.SageEngineIniFoldingBuilder
 import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
 import de.darkatra.bfme2.ini.psi.SageEngineIniMacroStatement
 import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
@@ -31,7 +33,7 @@ class SageEngineIniParserTest : LightPlatformCodeInsightFixture4TestCase() {
             .contains(";", "Mallorn", "tree")
         assertThat(myFixture.file.descendantsOfType(SageEngineIniMacroStatement::class.java)).hasSize(1)
         assertThat(myFixture.file.descendantsOfType(SageEngineIniBlock::class.java)).extracting<String> { it.text.trim() }
-            .contains("Object ElvenMallornTree")
+            .contains("Object ElvenMallornTree\n    DisplayName = OBJECT:ElvenMallornTree\nEnd")
         assertThat(myFixture.file.descendantsOfType(SageEngineIniPropertyAssignment::class.java)).extracting<String> { it.text.trim() }
             .contains("DisplayName = OBJECT:ElvenMallornTree")
     }
@@ -61,6 +63,44 @@ class SageEngineIniParserTest : LightPlatformCodeInsightFixture4TestCase() {
         assertThat(scriptBlocks.single().text.trim()).endsWith("EndScript")
         assertThat(myFixture.file.descendantsOfType(SageEngineIniPropertyAssignment::class.java)).extracting<String> { it.text.trim() }
             .contains("After = EndScript")
+    }
+
+    @Test
+    fun `should create folding regions for blocks`() {
+
+        myFixture.configureByText(
+            "elvenmallorntree.ini",
+            """
+            Object ElvenMallornTree
+                DisplayName = OBJECT:ElvenMallornTree
+            End
+            """.trimIndent()
+        )
+
+        val document = PsiDocumentManager.getInstance(project).getDocument(myFixture.file)!!
+        val descriptors = SageEngineIniFoldingBuilder().buildFoldRegions(myFixture.file, document, false)
+
+        assertThat(descriptors).extracting<String> { it.element.text.trim() }
+            .contains("Object ElvenMallornTree\n    DisplayName = OBJECT:ElvenMallornTree\nEnd")
+    }
+
+    @Test
+    fun `should create folding regions for script blocks`() {
+
+        myFixture.configureByText(
+            "script.ini",
+            """
+            BeginScript
+                CurDrawableAllowToContinue()
+            EndScript
+            """.trimIndent()
+        )
+
+        val document = PsiDocumentManager.getInstance(project).getDocument(myFixture.file)!!
+        val descriptors = SageEngineIniFoldingBuilder().buildFoldRegions(myFixture.file, document, false)
+
+        assertThat(descriptors).extracting<String> { it.element.text.trim() }
+            .contains("BeginScript\n    CurDrawableAllowToContinue()\nEndScript")
     }
 
     private fun <T : PsiElement> PsiElement.descendantsOfType(type: Class<T>): Collection<T> {

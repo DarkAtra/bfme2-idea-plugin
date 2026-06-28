@@ -36,7 +36,15 @@ class SageEngineIniParser : PsiParser {
             return
         }
 
-        parseUntilStatementBoundary(builder, SageEngineIniElementTypes.BLOCK)
+        val marker = builder.mark()
+        parseUntilStatementBoundary(builder)
+        while (!builder.eof() && builder.tokenType != SageEngineIniTokenTypes.BLOCK_END) {
+            parseStatement(builder)
+        }
+        if (builder.tokenType == SageEngineIniTokenTypes.BLOCK_END) {
+            builder.advanceLexer()
+        }
+        marker.done(SageEngineIniElementTypes.BLOCK)
     }
 
     private fun parseScriptBlock(builder: PsiBuilder) {
@@ -62,10 +70,14 @@ class SageEngineIniParser : PsiParser {
 
     private fun parseUntilStatementBoundary(builder: PsiBuilder, elementType: IElementType) {
         val marker = builder.mark()
+        parseUntilStatementBoundary(builder)
+        marker.done(elementType)
+    }
+
+    private fun parseUntilStatementBoundary(builder: PsiBuilder) {
         do {
             builder.advanceLexer()
         } while (!builder.eof() && !isStatementBoundary(builder))
-        marker.done(elementType)
     }
 
     private fun isStatementBoundary(builder: PsiBuilder): Boolean {
