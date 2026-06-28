@@ -274,4 +274,84 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
 
         assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
     }
+
+    @Test
+    fun `should format fxlist correctly`() {
+
+        val incorrectlyFormattedFile = javaClass.getResourceAsStream("/formatting/dirty/fxlist.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+        val correctlyFormattedFile = javaClass.getResourceAsStream("/formatting/formatted/fxlist.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+
+        myFixture.configureByText("test.ini", incorrectlyFormattedFile)
+
+        myFixture.performEditorAction("ReformatCode")
+
+        // strip trailing whitespace - this is usually done when saving the file
+        @Suppress("UnstableApiUsage")
+        TrailingSpacesStripper.strip(myFixture.editor.document, false, false)
+        PsiDocumentManager.getInstance(myFixture.project).commitDocument(myFixture.editor.document)
+
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
+    }
+
+    @Test
+    fun `should format fxparticlesystem correctly`() {
+
+        val incorrectlyFormattedFile = javaClass.getResourceAsStream("/formatting/dirty/fxparticlesystem.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+        val correctlyFormattedFile = javaClass.getResourceAsStream("/formatting/formatted/fxparticlesystem.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+
+        myFixture.configureByText("test.ini", incorrectlyFormattedFile)
+
+        myFixture.performEditorAction("ReformatCode")
+
+        // strip trailing whitespace - this is usually done when saving the file
+        @Suppress("UnstableApiUsage")
+        TrailingSpacesStripper.strip(myFixture.editor.document, false, false)
+        PsiDocumentManager.getInstance(myFixture.project).commitDocument(myFixture.editor.document)
+
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
+    }
+
+    @Test
+    fun `should format experiencelevels correctly`() {
+
+        val incorrectlyFormattedFile = javaClass.getResourceAsStream("/formatting/dirty/experiencelevels.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+        val correctlyFormattedFile = javaClass.getResourceAsStream("/formatting/formatted/experiencelevels.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+
+        myFixture.configureByText("test.ini", incorrectlyFormattedFile)
+
+        myFixture.performEditorAction("ReformatCode")
+
+        // strip trailing whitespace - this is usually done when saving the file
+        @Suppress("UnstableApiUsage")
+        TrailingSpacesStripper.strip(myFixture.editor.document, false, false)
+        PsiDocumentManager.getInstance(myFixture.project).commitDocument(myFixture.editor.document)
+
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
+    }
+
+    @Test
+    fun `should format attributemodifier correctly`() {
+
+        val incorrectlyFormattedFile = javaClass.getResourceAsStream("/formatting/dirty/attributemodifier.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+        val correctlyFormattedFile = javaClass.getResourceAsStream("/formatting/formatted/attributemodifier.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+
+        myFixture.configureByText("test.ini", incorrectlyFormattedFile)
+
+        myFixture.performEditorAction("ReformatCode")
+
+        // strip trailing whitespace - this is usually done when saving the file
+        @Suppress("UnstableApiUsage")
+        TrailingSpacesStripper.strip(myFixture.editor.document, false, false)
+        PsiDocumentManager.getInstance(myFixture.project).commitDocument(myFixture.editor.document)
+
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
+    }
 }

@@ -22,6 +22,23 @@ class SageEngineIniLexerTest {
     }
 
     @Test
+    fun `should lex property with numbers`() {
+
+        assertTokens(
+            "Alpha1 = 1 1 0",
+            SageEngineIniTokenTypes.PROPERTY to "Alpha1",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.NUMBER to "1",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.NUMBER to "1",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.NUMBER to "0",
+        )
+    }
+
+    @Test
     fun `should stop lexing properties at line end`() {
 
         assertTokens(
