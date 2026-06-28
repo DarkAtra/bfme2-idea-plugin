@@ -338,7 +338,7 @@ class SageEngineIniLexer : LexerBase() {
     }
 
     private fun isPropertyKey(offset: Int): Boolean {
-        if (!isOnlyLetters(tokenStart, offset)) {
+        if (!isOnlyLettersOrDigits(tokenStart, offset)) {
             return false
         }
         var currentOffset = offset
@@ -441,9 +441,9 @@ class SageEngineIniLexer : LexerBase() {
         return false
     }
 
-    private fun isOnlyLetters(start: Int, end: Int): Boolean {
+    private fun isOnlyLettersOrDigits(start: Int, end: Int): Boolean {
         for (i in start until end) {
-            if (!Character.isLetter(buffer[i])) {
+            if (!Character.isLetterOrDigit(buffer[i])) {
                 return false
             }
         }
@@ -554,7 +554,8 @@ class SageEngineIniLexer : LexerBase() {
             "CommandButton",
             "ExperienceLevel",
             "EvaEvent",
-            "ObjectCreationList"
+            "ObjectCreationList",
+            "SelectionDecal"
         )
         private val POSSIBLY_BLOCK_STARTS: Set<SageEngineIniPossibleBlockMatcher> = setOf(
             SageEngineIniPossibleBlockMatcher { words -> words.take(3) == listOf("AddEmotion", "=", "OVERRIDE") },
