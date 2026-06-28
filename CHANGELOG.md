@@ -2,6 +2,17 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.1.2`
+
+### Added
+
+- Registered `.inc` files as Sage Engine INI files
+- Support for additional block starts used by Sage Engine INI files
+
+### Fixed
+
+- Property keys ending with numbers are now lexed as properties
+
 ## `0.1.1`
 
 ### Added
