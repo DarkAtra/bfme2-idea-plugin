@@ -9,7 +9,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="Sage Engine Ini" implementationClass="de.darkatra.bfme2.ini.SageEngineIniFileType"
-                  fieldName="INSTANCE" language="SageEngineIni" extensions="ini"/>
+                  fieldName="INSTANCE" language="SageEngineIni" extensions="ini;inc"/>
         <lang.parserDefinition language="SageEngineIni"
                                implementationClass="de.darkatra.bfme2.ini.SageEngineIniParserDefinition"/>
         <lang.syntaxHighlighterFactory language="SageEngineIni"
