@@ -559,8 +559,8 @@ class SageEngineIniLexer : LexerBase() {
         )
         private val POSSIBLY_BLOCK_STARTS: Set<SageEngineIniPossibleBlockMatcher> = setOf(
             SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Object" },
-            SageEngineIniPossibleBlockMatcher { words -> words.take(3) == listOf("AddEmotion", "=", "OVERRIDE") },
-            SageEngineIniPossibleBlockMatcher { words -> words == listOf("Color", "=", "DefaultColor") },
+            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Upgrade" },
+            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "SpecialPower" },
             SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Locomotor" },
             SageEngineIniPossibleBlockMatcher { words -> words.size == 1 && words.first() == "AutoResolveBody" },
             SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "FXList" },
@@ -569,6 +569,8 @@ class SageEngineIniLexer : LexerBase() {
             SageEngineIniPossibleBlockMatcher { words -> words.size == 1 && words.first() == "Sound" },
             SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Armor" },
             SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "CommandSet" },
+            SageEngineIniPossibleBlockMatcher { words -> words.take(3) == listOf("AddEmotion", "=", "OVERRIDE") },
+            SageEngineIniPossibleBlockMatcher { words -> words == listOf("Color", "=", "DefaultColor") },
         )
         private val BLOCK_ENDS = setOf(
             "End",
