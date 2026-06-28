@@ -60,6 +60,7 @@ When contributing, treat AI output as a starting point rather than a final autho
 
 ## Useful Links
 
+- [Blog Post](https://darkatra.dev/2026/06/27/jetbrains-idea-plugin-for-sage-ini-files.html)
 - [IntelliJ Platform SDK Documentation](https://plugins.jetbrains.com/docs/intellij/)
 - [IntelliJ Platform Gradle Plugin](https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html)
 - [Plugin Configuration File](https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html)
