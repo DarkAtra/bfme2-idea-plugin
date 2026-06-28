@@ -555,7 +555,8 @@ class SageEngineIniLexer : LexerBase() {
             "EvaEvent",
             "ObjectCreationList",
             "SelectionDecal",
-            "CreateObject"
+            "CreateObject",
+            "ReplaceModule"
         )
         private val POSSIBLY_BLOCK_STARTS: Set<SageEngineIniPossibleBlockMatcher> = setOf(
             SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Object" },
