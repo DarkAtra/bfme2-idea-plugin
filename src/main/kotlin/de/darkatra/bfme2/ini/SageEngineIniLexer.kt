@@ -483,7 +483,6 @@ class SageEngineIniLexer : LexerBase() {
         }
 
         private val BLOCK_STARTS = setOf(
-            "Object",
             "ChildObject",
             "Draw",
             "Behavior",
@@ -555,9 +554,11 @@ class SageEngineIniLexer : LexerBase() {
             "ExperienceLevel",
             "EvaEvent",
             "ObjectCreationList",
-            "SelectionDecal"
+            "SelectionDecal",
+            "CreateObject"
         )
         private val POSSIBLY_BLOCK_STARTS: Set<SageEngineIniPossibleBlockMatcher> = setOf(
+            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Object" },
             SageEngineIniPossibleBlockMatcher { words -> words.take(3) == listOf("AddEmotion", "=", "OVERRIDE") },
             SageEngineIniPossibleBlockMatcher { words -> words == listOf("Color", "=", "DefaultColor") },
             SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Locomotor" },

@@ -354,4 +354,44 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
 
         assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
     }
+
+    @Test
+    fun `should format commandbutton correctly`() {
+
+        val incorrectlyFormattedFile = javaClass.getResourceAsStream("/formatting/dirty/commandbutton.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+        val correctlyFormattedFile = javaClass.getResourceAsStream("/formatting/formatted/commandbutton.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+
+        myFixture.configureByText("test.ini", incorrectlyFormattedFile)
+
+        myFixture.performEditorAction("ReformatCode")
+
+        // strip trailing whitespace - this is usually done when saving the file
+        @Suppress("UnstableApiUsage")
+        TrailingSpacesStripper.strip(myFixture.editor.document, false, false)
+        PsiDocumentManager.getInstance(myFixture.project).commitDocument(myFixture.editor.document)
+
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
+    }
+
+    @Test
+    fun `should format objectcreationlist correctly`() {
+
+        val incorrectlyFormattedFile = javaClass.getResourceAsStream("/formatting/dirty/objectcreationlist.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+        val correctlyFormattedFile = javaClass.getResourceAsStream("/formatting/formatted/objectcreationlist.ini")!!
+            .bufferedReader(StandardCharsets.UTF_8).readText()
+
+        myFixture.configureByText("test.ini", incorrectlyFormattedFile)
+
+        myFixture.performEditorAction("ReformatCode")
+
+        // strip trailing whitespace - this is usually done when saving the file
+        @Suppress("UnstableApiUsage")
+        TrailingSpacesStripper.strip(myFixture.editor.document, false, false)
+        PsiDocumentManager.getInstance(myFixture.project).commitDocument(myFixture.editor.document)
+
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(correctlyFormattedFile)
+    }
 }
