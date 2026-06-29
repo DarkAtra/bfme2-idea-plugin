@@ -2,6 +2,12 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.1.4`
+
+### Added
+
+- Target IDEA `2026.1.3`
+
 ## `0.1.3`
 
 ### Added
