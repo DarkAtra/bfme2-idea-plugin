@@ -32,7 +32,7 @@ class SageEngineIniIncludeCompletionContributor : CompletionContributor() {
                         return
                     }
 
-                    addIncludePathCompletions(element, result)
+                    addIncludePathCompletions(element, result.withPrefixMatcher(""))
                 }
             }
         )

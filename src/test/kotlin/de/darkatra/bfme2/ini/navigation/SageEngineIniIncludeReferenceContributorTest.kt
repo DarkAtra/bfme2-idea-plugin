@@ -165,6 +165,20 @@ class SageEngineIniIncludeReferenceContributorTest : LightPlatformCodeInsightFix
     }
 
     @Test
+    fun `should complete include paths for directory in parent include path`() {
+
+        myFixture.addFileToProject("data/StandardBuildingEvaEvents.inc", "")
+        myFixture.addFileToProject("includes/Shared.inc", "")
+        myFixture.addFileToProject("data/elvenmallorntree.ini", "#include \"../includes/<caret>\"")
+
+        myFixture.configureByFile("data/elvenmallorntree.ini")
+
+        val lookups = myFixture.completeBasic().map { it.lookupString }
+
+        assertThat(lookups).contains("Shared.inc")
+    }
+
+    @Test
     fun `should not complete include paths outside project dir`() {
 
         WriteCommandAction.runWriteCommandAction(project) {
