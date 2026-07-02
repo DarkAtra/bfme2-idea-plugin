@@ -106,6 +106,20 @@ class SageEngineIniFormattingBlock(
     }
 
     override fun getChildAttributes(newChildIndex: Int): ChildAttributes {
+        val previousChild = subBlocks.take(newChildIndex).lastOrNull() as? SageEngineIniFormattingBlock
+
+        if (previousChild?.node?.elementType != null && previousChild.node.elementType != TokenType.WHITE_SPACE) {
+            val previousChildIndent = when {
+                previousChild.node.elementType == SageEngineIniTokenTypes.BLOCK_START && isAtLineStart(previousChild.node.psi) -> {
+                    Indent.getSpaceIndent(getLineIndent(previousChild.node) + codeStyleSettings.indentOptions.INDENT_SIZE)
+                }
+
+                else -> previousChild.indent
+            }
+
+            return ChildAttributes(previousChildIndent, null)
+        }
+
         return ChildAttributes(Indent.getNormalIndent(), null)
     }
 

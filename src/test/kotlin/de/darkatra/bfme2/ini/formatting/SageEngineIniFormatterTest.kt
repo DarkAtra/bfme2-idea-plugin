@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.formatting
 
+import com.intellij.openapi.editor.LogicalPosition
 import com.intellij.openapi.editor.impl.TrailingSpacesStripper
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixture4TestCase
@@ -8,6 +9,65 @@ import org.junit.Test
 import java.nio.charset.StandardCharsets
 
 class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
+
+    @Test
+    fun `should place cursor at start of next line when pressing enter after one indented block end`() {
+
+        myFixture.configureByText(
+            "test.ini",
+            """
+            ModifierList AragornBladeMaster
+                Category = WEAPON
+            End<caret>
+            """.trimIndent(),
+        )
+
+        myFixture.performEditorAction("EditorEnter")
+
+        assertThat(myFixture.editor.caretModel.logicalPosition).isEqualTo(LogicalPosition(3, 0))
+    }
+
+    @Test
+    fun `should place cursor at start of the previous end block when pressing enter after two indented block end`() {
+
+        myFixture.configureByText(
+            "test.ini",
+            """
+            FXList FX_AragornDieToRespawn
+                ParticleSystem
+                    Name           = GandalfSwordHitSpark
+                    Offset         = X:12.0 Y:0.0 Z:8.0
+                    OrientToObject = Yes
+                End<caret>
+            End
+            """.trimIndent(),
+        )
+
+        myFixture.performEditorAction("EditorEnter")
+
+        assertThat(myFixture.editor.caretModel.logicalPosition).isEqualTo(LogicalPosition(6, 4))
+    }
+
+    @Test
+    fun `should place cursor at indentation level of the current end block when pressing enter after a property in a block`() {
+
+        myFixture.configureByText(
+            "test.ini",
+            """
+            FXList FX_AragornDieToRespawn
+                ParticleSystem
+                    Name           = GandalfSwordHitSpark<caret>
+                    Offset         = X:12.0 Y:0.0 Z:8.0
+                    OrientToObject = Yes
+                End
+            End
+            """.trimIndent(),
+        )
+
+        myFixture.performEditorAction("EditorEnter")
+
+        assertThat(myFixture.editor.caretModel.logicalPosition).isEqualTo(LogicalPosition(3, 8))
+    }
 
     @Test
     fun `should align properties and indent blocks`() {
