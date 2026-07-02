@@ -2,6 +2,13 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.1.5`
+
+### Fixed
+
+- Pressing `Enter` now keeps the cursor at the indentation level of the current Sage Engine INI block
+- `#include` completion now suggests files correctly
+
 ## `0.1.4`
 
 ### Added
