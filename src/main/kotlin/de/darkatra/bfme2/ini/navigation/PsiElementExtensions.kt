@@ -9,6 +9,7 @@ import com.intellij.psi.PsiManager
 import com.intellij.psi.TokenType
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.elementType
+import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
 internal fun PsiElement.resolveIncludeFile(): PsiFile? {
@@ -53,6 +54,10 @@ internal fun PsiElement.normalizedIncludePath(): String? {
 internal fun PsiElement.isPartOfIncludeMacro(): Boolean {
     val macro = previousSignificantSibling() ?: return false
     return macro.node?.elementType == SageEngineIniTokenTypes.MACRO && macro.text.equals("#include", ignoreCase = true)
+}
+
+fun PsiElement.propertyAssignmentName(): String? {
+    return PsiTreeUtil.getParentOfType(this, SageEngineIniPropertyAssignment::class.java)?.propertyName
 }
 
 private fun PsiElement.previousSignificantSibling(): PsiElement? {

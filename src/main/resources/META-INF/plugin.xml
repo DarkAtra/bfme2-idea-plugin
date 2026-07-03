@@ -20,9 +20,19 @@
         <lang.formatter language="SageEngineIni"
                         implementationClass="de.darkatra.bfme2.ini.formatting.SageEngineIniFormattingModelBuilder"/>
         <preFormatProcessor implementation="de.darkatra.bfme2.ini.formatting.SageEngineIniPreFormatProcessor"/>
+        <fileBasedIndex implementation="de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationIndex"/>
+        <fileBasedIndex implementation="de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationUseSiteIndex"/>
         <psi.referenceContributor language="SageEngineIni" implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeReferenceContributor"/>
+        <psi.referenceContributor language="SageEngineIni" implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationReferenceContributor"/>
         <completion.contributor language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeCompletionContributor"/>
+        <completion.contributor language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationCompletionContributor"/>
+        <annotator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniDeclarationAnnotator"/>
+        <targetElementEvaluator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationTargetElementEvaluator"/>
+        <lang.findUsagesProvider language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationFindUsagesProvider"/>
+        <referencesSearch implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationReferencesSearch"/>
+        <useScopeEnlarger implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationUseScopeEnlarger"/>
         <gotoDeclarationHandler implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeGotoDeclarationHandler"/>
+        <gotoDeclarationHandler implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationGotoDeclarationHandler"/>
     </extensions>
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
         <supportsKotlinPluginMode supportsK2="true"/>
