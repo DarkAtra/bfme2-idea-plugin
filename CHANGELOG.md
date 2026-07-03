@@ -2,6 +2,13 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.2.0`
+
+### Added
+
+- Some declarations are now indexed to support navigating to use-sites or from use-sites to the declaration. This also enables very basic autocomplete for
+  use-sites
+
 ## `0.1.5`
 
 ### Fixed
