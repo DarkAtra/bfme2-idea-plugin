@@ -13,6 +13,10 @@ class SageEngineIniDeclarationUseScopeEnlarger : UseScopeEnlarger() {
     override fun getAdditionalUseScope(element: PsiElement): SearchScope? {
         val declaration = element.declarationBlock() ?: return null
 
+        if (declaration != element && declaration.nameIdentifier != element) {
+            return null
+        }
+
         if (!SageEngineIniDeclarationSchema.isDeclarationKind(declaration.declarationKind)) {
             return null
         }

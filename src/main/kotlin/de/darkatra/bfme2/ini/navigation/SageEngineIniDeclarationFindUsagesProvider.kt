@@ -1,15 +1,24 @@
 package de.darkatra.bfme2.ini.navigation
 
+import com.intellij.lang.cacheBuilder.DefaultWordsScanner
 import com.intellij.lang.cacheBuilder.WordsScanner
 import com.intellij.lang.findUsages.FindUsagesProvider
 import com.intellij.psi.PsiElement
+import com.intellij.psi.tree.TokenSet
 import com.intellij.psi.util.PsiTreeUtil
+import de.darkatra.bfme2.ini.SageEngineIniLexer
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationSchema
 import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
+import de.darkatra.bfme2.ini.psi.SageEngineIniTokenSets
 
 class SageEngineIniDeclarationFindUsagesProvider : FindUsagesProvider {
 
-    override fun getWordsScanner(): WordsScanner? = null
+    override fun getWordsScanner(): WordsScanner = DefaultWordsScanner(
+        SageEngineIniLexer(),
+        SageEngineIniTokenSets.IDENTIFIERS,
+        SageEngineIniTokenSets.COMMENTS,
+        TokenSet.EMPTY
+    )
 
     override fun canFindUsagesFor(psiElement: PsiElement): Boolean {
         val declaration = psiElement.declarationBlock() ?: return false

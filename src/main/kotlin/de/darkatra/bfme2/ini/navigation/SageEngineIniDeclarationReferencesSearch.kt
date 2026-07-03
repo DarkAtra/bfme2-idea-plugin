@@ -16,9 +16,14 @@ class SageEngineIniDeclarationReferencesSearch : QueryExecutor<PsiReference, Ref
 
     override fun execute(queryParameters: ReferencesSearch.SearchParameters, consumer: Processor<in PsiReference>): Boolean {
         val searchRequest = ReadAction.computeBlocking<SearchRequest?, RuntimeException> {
-            val declaration = queryParameters.elementToSearch.declarationBlock() ?: return@computeBlocking null
+            val searchElement = queryParameters.elementToSearch
+            val declaration = searchElement.declarationBlock() ?: return@computeBlocking null
             val declarationKind = declaration.declarationKind ?: return@computeBlocking null
             val declarationName = declaration.name ?: return@computeBlocking null
+
+            if (declaration != searchElement && declaration.nameIdentifier != searchElement) {
+                return@computeBlocking null
+            }
 
             if (!SageEngineIniDeclarationSchema.isDeclarationKind(declarationKind)) {
                 return@computeBlocking null

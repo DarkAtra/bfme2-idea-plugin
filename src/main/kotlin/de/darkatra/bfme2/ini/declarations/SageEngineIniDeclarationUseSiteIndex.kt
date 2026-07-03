@@ -1,6 +1,5 @@
 package de.darkatra.bfme2.ini.declarations
 
-import com.intellij.openapi.util.text.StringUtil
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.util.indexing.DataIndexer
 import com.intellij.util.indexing.DefaultFileTypeSpecificInputFilter
@@ -19,7 +18,7 @@ class SageEngineIniDeclarationUseSiteIndex : ScalarIndexExtension<String>() {
     override fun getIndexer(): DataIndexer<String, Void, FileContent> = DataIndexer { inputData ->
         buildMap {
             inputData.contentAsText.lineSequence()
-                .map { StringUtil.split(it.trim(), " ") }
+                .map { it.trim().split(WHITESPACE) }
                 .filter { it.size >= 3 && it[1] == "=" }
                 .forEach { parts ->
                     SageEngineIniDeclarationSchema.expectedKindsForProperty(parts[0]).forEach { kind ->
@@ -31,7 +30,7 @@ class SageEngineIniDeclarationUseSiteIndex : ScalarIndexExtension<String>() {
 
     override fun getKeyDescriptor(): KeyDescriptor<String> = EnumeratorStringDescriptor.INSTANCE
 
-    override fun getVersion(): Int = 1
+    override fun getVersion(): Int = 2
 
     override fun getInputFilter(): FileBasedIndex.InputFilter = object : DefaultFileTypeSpecificInputFilter(SageEngineIniFileType) {
 
@@ -43,6 +42,8 @@ class SageEngineIniDeclarationUseSiteIndex : ScalarIndexExtension<String>() {
     override fun dependsOnFileContent(): Boolean = true
 
     companion object {
+
+        private val WHITESPACE = Regex("\\s+")
 
         val NAME: ID<String, Void> = ID.create("sage.engine.ini.declaration.use.sites")
 

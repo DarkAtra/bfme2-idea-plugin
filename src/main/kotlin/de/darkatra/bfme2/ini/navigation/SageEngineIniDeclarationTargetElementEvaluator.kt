@@ -20,7 +20,13 @@ class SageEngineIniDeclarationTargetElementEvaluator : TargetElementEvaluatorEx2
     }
 
     override fun adjustTargetElement(editor: Editor, offset: Int, flags: Int, targetElement: PsiElement): PsiElement? {
-        return targetElement.declarationNameIdentifier() ?: targetElement
+        val declaration = targetElement.declarationBlock() ?: return targetElement
+
+        return if (declaration == targetElement || declaration.nameIdentifier == targetElement) {
+            declaration.declarationNameIdentifier() ?: targetElement
+        } else {
+            targetElement
+        }
     }
 
     override fun getTargetCandidates(reference: PsiReference): Collection<PsiElement>? {
@@ -28,12 +34,16 @@ class SageEngineIniDeclarationTargetElementEvaluator : TargetElementEvaluatorEx2
     }
 
     private fun PsiElement.declarationNameIdentifier(): PsiElement? {
-        val declaration = when (this) {
-            is SageEngineIniBlock -> this
-            else -> PsiTreeUtil.getParentOfType(this, SageEngineIniBlock::class.java, false)
-        } ?: return null
+        val declaration = declarationBlock() ?: return null
 
         return declaration.nameIdentifier
             ?.takeIf { SageEngineIniDeclarationSchema.isDeclarationKind(declaration.declarationKind) }
+    }
+
+    private fun PsiElement.declarationBlock(): SageEngineIniBlock? {
+        return when (this) {
+            is SageEngineIniBlock -> this
+            else -> PsiTreeUtil.getParentOfType(this, SageEngineIniBlock::class.java, false)
+        }
     }
 }
