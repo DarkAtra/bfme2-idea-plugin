@@ -415,32 +415,6 @@ class SageEngineIniLexer : LexerBase() {
         return c in 'A'..'Z' || c in 'a'..'z'
     }
 
-    private fun isCommentSpacerPrefix(offset: Int): Boolean {
-
-        if (!isCommentSpacer(buffer[offset])) {
-            return false
-        }
-
-        var currentOffset = offset - 1
-        while (currentOffset >= startOffset && !isLineBreak(buffer[currentOffset])) {
-            if (buffer[currentOffset] == ';') {
-                return true
-            }
-            if (currentOffset > startOffset &&
-                ((buffer[currentOffset - 1] == '/' && buffer[currentOffset] == '/') ||
-                    (buffer[currentOffset - 1] == '-' && buffer[currentOffset] == '-'))
-            ) {
-                return true
-            }
-            if (!isCommentSpacer(buffer[currentOffset])) {
-                return false
-            }
-            currentOffset--
-        }
-
-        return false
-    }
-
     private fun isOnlyLettersOrDigits(start: Int, end: Int): Boolean {
         for (i in start until end) {
             if (!Character.isLetterOrDigit(buffer[i])) {

@@ -2,23 +2,24 @@
     <id>de.darkatra.bfme2.bfme2-idea-plugin</id>
     <name>Sage Engine INI</name>
     <vendor url="https://darkatra.dev">DarkAtra</vendor>
-    <description>Language support for Sage Engine INI files, including highlighting, formatting, PSI structure and navigation.</description>
+    <description>Provides language support for Sage Engine INI files, including highlighting, formatting, PSI structure and navigation.</description>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.kotlin</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <fileType name="Sage Engine Ini" implementationClass="de.darkatra.bfme2.ini.SageEngineIniFileType"
-                  fieldName="INSTANCE" language="SageEngineIni" extensions="ini;inc"/>
-        <lang.parserDefinition language="SageEngineIni"
-                               implementationClass="de.darkatra.bfme2.ini.SageEngineIniParserDefinition"/>
-        <lang.syntaxHighlighterFactory language="SageEngineIni"
-                                       implementationClass="de.darkatra.bfme2.ini.highlighting.SageEngineIniSyntaxHighlighterFactory"/>
+        <fileType
+            name="Sage Engine Ini"
+            implementationClass="de.darkatra.bfme2.ini.SageEngineIniFileType"
+            fieldName="INSTANCE"
+            language="SageEngineIni"
+            extensions="ini;inc"
+        />
+        <lang.parserDefinition language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.SageEngineIniParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.highlighting.SageEngineIniSyntaxHighlighterFactory"/>
         <lang.commenter language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.SageEngineIniCommenter"/>
-        <lang.foldingBuilder language="SageEngineIni"
-                             implementationClass="de.darkatra.bfme2.ini.folding.SageEngineIniFoldingBuilder"/>
-        <lang.formatter language="SageEngineIni"
-                        implementationClass="de.darkatra.bfme2.ini.formatting.SageEngineIniFormattingModelBuilder"/>
+        <lang.foldingBuilder language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.folding.SageEngineIniFoldingBuilder"/>
+        <lang.formatter language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.formatting.SageEngineIniFormattingModelBuilder"/>
         <preFormatProcessor implementation="de.darkatra.bfme2.ini.formatting.SageEngineIniPreFormatProcessor"/>
         <fileBasedIndex implementation="de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationIndex"/>
         <fileBasedIndex implementation="de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationUseSiteIndex"/>
@@ -35,6 +36,7 @@
         <gotoDeclarationHandler implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeGotoDeclarationHandler"/>
         <gotoDeclarationHandler implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationGotoDeclarationHandler"/>
     </extensions>
+
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
         <supportsKotlinPluginMode supportsK2="true"/>
     </extensions>
