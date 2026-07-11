@@ -140,6 +140,83 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
     }
 
     @Test
+    fun `should find use-sites that are not the first value on a multi-value line`() {
+
+        myFixture.addFileToProject(
+            "data/experiencelevels.ini",
+            "TargetNames = ARAGORN LEGOLAS"
+        )
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object Lego<caret>las
+            End
+            """.trimIndent()
+        )
+
+        val sourceElement = TargetElementUtil.findTargetElement(
+            myFixture.editor,
+            TargetElementUtil.ELEMENT_NAME_ACCEPTED or TargetElementUtil.REFERENCED_ELEMENT_ACCEPTED
+        )!!
+        val usages = myFixture.findUsages(sourceElement)
+
+        assertThat(sourceElement.text).isEqualTo("Legolas")
+        assertThat(usages).extracting<String> { it.element!!.text }.containsExactly("LEGOLAS")
+        assertThat(usages).extracting<String> { it.element!!.containingFile.virtualFile.path }.containsExactly("/src/data/experiencelevels.ini")
+    }
+
+    @Test
+    fun `should navigate to declaration when use-site casing differs from the declaration`() {
+
+        myFixture.addFileToProject(
+            "data/object.ini",
+            """
+            Object ElvenMallornTree
+            End
+            """.trimIndent()
+        )
+        myFixture.configureByText(
+            "commandbutton.ini",
+            "ObjectNames = elven<caret>mallorntree"
+        )
+
+        val sourceElement = myFixture.file.findElementAt(myFixture.caretOffset)
+        val targets = SageEngineIniDeclarationGotoDeclarationHandler().getGotoDeclarationTargets(
+            sourceElement,
+            myFixture.caretOffset,
+            myFixture.editor
+        )
+
+        assertThat(targets).extracting<String> { it.text }.containsExactly("ElvenMallornTree")
+    }
+
+    @Test
+    fun `should find use-sites when the use-site casing differs from the declaration`() {
+
+        myFixture.addFileToProject(
+            "data/test.ini",
+            "ObjectNames = ELVENMALLORNTREE"
+        )
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object Elven<caret>MallornTree
+            End
+            """.trimIndent()
+        )
+
+        val sourceElement = TargetElementUtil.findTargetElement(
+            myFixture.editor,
+            TargetElementUtil.ELEMENT_NAME_ACCEPTED or TargetElementUtil.REFERENCED_ELEMENT_ACCEPTED
+        )!!
+        val usages = myFixture.findUsages(sourceElement)
+
+        assertThat(sourceElement.text).isEqualTo("ElvenMallornTree")
+        assertThat(usages).extracting<String> { it.element!!.text }.containsExactly("ELVENMALLORNTREE")
+        assertThat(usages).extracting<String> { it.element!!.containingFile.virtualFile.path }.containsExactly("/src/data/test.ini")
+    }
+
+    @Test
     fun `should complete declarations for expected property kind`() {
 
         myFixture.addFileToProject("data/object.ini", "Object ElvenMallornTree\nEnd")
@@ -165,7 +242,7 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
     }
 
     @Test
-    fun `should keep declaration and use-site indexes separate`() {
+    fun `should keep declarations and use-sites distinct within the unified index`() {
 
         myFixture.addFileToProject("data/declaration.ini", "SpecialPower DeclarationOnly\nEnd")
         myFixture.addFileToProject("data/usage.ini", "SpecialPower = UseSiteOnly")

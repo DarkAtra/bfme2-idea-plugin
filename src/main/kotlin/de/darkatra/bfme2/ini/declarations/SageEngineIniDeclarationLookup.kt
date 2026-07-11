@@ -25,10 +25,15 @@ object SageEngineIniDeclarationLookup {
 
     fun allDeclarationNames(project: Project, expectedKinds: Set<String>): List<String> {
         return ReadAction.computeBlocking<List<String>, RuntimeException> {
-            FileBasedIndex.getInstance().getAllKeys(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, project)
+            val fileBasedIndex = FileBasedIndex.getInstance()
+            val scope = GlobalSearchScope.projectScope(project)
+
+            fileBasedIndex.getAllKeys(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, project)
                 .asSequence()
                 .filter { SageEngineIniDeclarationIndexKey.kind(it) in expectedKinds }
-                .map { SageEngineIniDeclarationIndexKey.declarationName(it) }
+                .flatMap { key -> fileBasedIndex.getValues(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, key, scope) }
+                .filter { it.mask and SageEngineIniDeclarationIndexKey.DECLARATION != 0 }
+                .map { it.displayName }
                 .distinct()
                 .sortedWith(String.CASE_INSENSITIVE_ORDER)
                 .toList()
@@ -36,31 +41,40 @@ object SageEngineIniDeclarationLookup {
     }
 
     fun findUseSites(project: Project, kind: String, name: String): List<PsiElement> {
-        return ReadAction.computeBlocking<List<PsiElement>, RuntimeException> {
-            val result = mutableListOf<PsiElement>()
-            val key = SageEngineIniDeclarationUseSiteIndex.key(kind, name)
-            val scope = GlobalSearchScope.projectScope(project)
-
-            FileBasedIndex.getInstance().getFilesWithKey(SageEngineIniDeclarationUseSiteIndex.NAME, setOf(key), { virtualFile ->
-                PsiManager.getInstance(project).findFile(virtualFile)?.let { file ->
-                    result += file.findDeclarationUseSites(kind, name)
-                }
-                true
-            }, scope)
-
-            result
+        return withIndexedFiles(project, kind, name, SageEngineIniDeclarationIndexKey.USE_SITE) { file ->
+            file.findDeclarationUseSites(kind, name)
         }
     }
 
     private fun findDeclarations(project: Project, kind: String, name: String): List<SageEngineIniBlock> {
-        return ReadAction.computeBlocking<List<SageEngineIniBlock>, RuntimeException> {
-            val result = mutableListOf<SageEngineIniBlock>()
-            val key = SageEngineIniDeclarationIndexKey.create(kind, name)
-            val scope = GlobalSearchScope.projectScope(project)
+        return withIndexedFiles(project, kind, name, SageEngineIniDeclarationIndexKey.DECLARATION) { file ->
+            file.findDeclarationBlocks(kind, name)
+        }
+    }
 
-            FileBasedIndex.getInstance().getFilesWithKey(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, setOf(key), { virtualFile ->
-                PsiManager.getInstance(project).findFile(virtualFile)?.let { file ->
-                    result += file.findDeclarationBlocks(kind, name)
+    private fun <T : PsiElement> withIndexedFiles(
+        project: Project,
+        kind: String,
+        name: String,
+        occurrence: Int,
+        collect: (PsiFile) -> Collection<T>
+    ): List<T> {
+        return ReadAction.computeBlocking<List<T>, RuntimeException> {
+            val result = mutableListOf<T>()
+            val scope = GlobalSearchScope.projectScope(project)
+            val fileBasedIndex = FileBasedIndex.getInstance()
+
+            // The key is lowercased, so a single case-insensitive lookup resolves to exactly one index key.
+            val key = SageEngineIniDeclarationIndexKey.create(kind, name)
+
+            fileBasedIndex.getFilesWithKey(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, setOf(key), { virtualFile ->
+                val hasOccurrence = fileBasedIndex.getFileData(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, virtualFile, project)[key]
+                    ?.let { it.mask and occurrence != 0 }
+                    ?: false
+                if (hasOccurrence) {
+                    PsiManager.getInstance(project).findFile(virtualFile)?.let { file ->
+                        result += collect(file)
+                    }
                 }
                 true
             }, scope)
@@ -72,7 +86,7 @@ object SageEngineIniDeclarationLookup {
     private fun PsiFile.findDeclarationBlocks(kind: String, name: String): Collection<SageEngineIniBlock> {
         return PsiTreeUtil.findChildrenOfType(this, SageEngineIniBlock::class.java)
             .asSequence()
-            .filter { it.declarationKind == kind && it.name == name }
+            .filter { it.declarationKind == kind && it.name.equals(name, ignoreCase = true) }
             .toList()
     }
 
@@ -80,7 +94,7 @@ object SageEngineIniDeclarationLookup {
         return PsiTreeUtil.findChildrenOfType(this, PsiElement::class.java)
             .asSequence()
             .filter { it.elementType == SageEngineIniTokenTypes.VALUE }
-            .filter { it.text == name }
+            .filter { it.text.equals(name, ignoreCase = true) }
             .filter { kind in SageEngineIniDeclarationSchema.expectedKindsForProperty(it.propertyAssignmentName()) }
             .toList()
     }

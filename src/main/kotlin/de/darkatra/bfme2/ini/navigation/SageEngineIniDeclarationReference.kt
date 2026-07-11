@@ -21,7 +21,7 @@ class SageEngineIniDeclarationReference(
 
     override fun isReferenceTo(element: PsiElement): Boolean {
         val declaration = element.declarationBlock() ?: return false
-        return declaration.name == myElement.text && declaration.declarationKind in expectedKinds
+        return declaration.name.equals(myElement.text, ignoreCase = true) && declaration.declarationKind in expectedKinds
     }
 
     override fun getVariants(): Array<Any> {

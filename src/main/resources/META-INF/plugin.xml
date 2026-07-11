@@ -22,7 +22,6 @@
         <lang.formatter language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.formatting.SageEngineIniFormattingModelBuilder"/>
         <preFormatProcessor implementation="de.darkatra.bfme2.ini.formatting.SageEngineIniPreFormatProcessor"/>
         <fileBasedIndex implementation="de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationIndex"/>
-        <fileBasedIndex implementation="de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationUseSiteIndex"/>
         <psi.referenceContributor language="SageEngineIni" implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeReferenceContributor"/>
         <psi.referenceContributor language="SageEngineIni" implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationReferenceContributor"/>
         <completion.contributor language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeCompletionContributor"/>
