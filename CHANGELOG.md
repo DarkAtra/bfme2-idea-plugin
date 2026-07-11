@@ -2,6 +2,12 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.2.2`
+
+### Fixed
+
+- File icon size is now correct
+
 ## `0.2.1`
 
 ### Fixed
