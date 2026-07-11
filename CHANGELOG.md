@@ -2,6 +2,13 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.2.1`
+
+### Fixed
+
+- "Find Usages" now finds every use-site of a declaration
+- "Goto Declaration" and "Find Usages" now match declaration reference names case-insensitively
+
 ## `0.2.0`
 
 ### Added
