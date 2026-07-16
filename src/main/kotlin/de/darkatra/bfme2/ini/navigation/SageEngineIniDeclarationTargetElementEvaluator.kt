@@ -22,10 +22,11 @@ class SageEngineIniDeclarationTargetElementEvaluator : TargetElementEvaluatorEx2
     override fun adjustTargetElement(editor: Editor, offset: Int, flags: Int, targetElement: PsiElement): PsiElement? {
         val declaration = targetElement.declarationBlock() ?: return targetElement
 
-        return if (declaration == targetElement || declaration.nameIdentifier == targetElement) {
-            declaration.declarationNameIdentifier() ?: targetElement
-        } else {
-            targetElement
+        return when {
+            declaration == targetElement || declaration.nameIdentifier == targetElement ->
+                declaration.declarationNameIdentifier()
+            targetElement.references.isNotEmpty() -> targetElement
+            else -> null
         }
     }
 

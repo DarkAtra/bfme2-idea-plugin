@@ -17,7 +17,10 @@ class SageEngineIniDeclarationAnnotator : Annotator {
             return
         }
 
-        val expectedKinds = SageEngineIniDeclarationSchema.expectedKindsForProperty(element.propertyAssignmentName())
+        val expectedKinds = SageEngineIniDeclarationSchema.expectedKindsForPropertyValue(
+            element.propertyAssignmentName(),
+            element.text
+        )
         if (expectedKinds.isEmpty()) {
             return
         }

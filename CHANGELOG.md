@@ -2,6 +2,12 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.2.3`
+
+### Fixed
+
+- Improve indexing of declarations and their usages
+
 ## `0.2.2`
 
 ### Fixed

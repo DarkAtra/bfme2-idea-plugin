@@ -95,7 +95,12 @@ object SageEngineIniDeclarationLookup {
             .asSequence()
             .filter { it.elementType == SageEngineIniTokenTypes.VALUE }
             .filter { it.text.equals(name, ignoreCase = true) }
-            .filter { kind in SageEngineIniDeclarationSchema.expectedKindsForProperty(it.propertyAssignmentName()) }
+            .filter {
+                kind in SageEngineIniDeclarationSchema.expectedKindsForPropertyValue(
+                    it.propertyAssignmentName(),
+                    it.text
+                )
+            }
             .toList()
     }
 }

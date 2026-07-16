@@ -15,7 +15,10 @@ class SageEngineIniDeclarationGotoDeclarationHandler : GotoDeclarationHandler {
             return null
         }
 
-        val expectedKinds = SageEngineIniDeclarationSchema.expectedKindsForProperty(sourceElement.propertyAssignmentName())
+        val expectedKinds = SageEngineIniDeclarationSchema.expectedKindsForPropertyValue(
+            sourceElement.propertyAssignmentName(),
+            sourceElement.text
+        )
         if (expectedKinds.isEmpty()) {
             return null
         }

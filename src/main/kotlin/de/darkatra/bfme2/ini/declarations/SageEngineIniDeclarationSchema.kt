@@ -2,59 +2,43 @@ package de.darkatra.bfme2.ini.declarations
 
 object SageEngineIniDeclarationSchema {
 
-    val declarationKinds = setOf(
-        "Armor",
-        "AudioEvent",
-        "CommandButton",
-        "CommandSet",
-        "ExperienceLevel",
-        "FXList",
-        "FXParticleSystem",
-        "Locomotor",
-        "ModifierList",
-        "NewEvaEvent",
-        "Object",
-        "ObjectCreationList",
-        "RadiusCursorTemplate",
-        "Science",
-        "SpecialPower",
-        "Upgrade",
-        "Weapon",
-    )
+    private val weaponSlotValues = setOf("PRIMARY", "SECONDARY", "TERTIARY")
 
-    private val propertyReferenceRules = mapOf(
+    private val declarationProperties = mapOf(
         "Armor" to setOf("Armor"),
-        "AttributeModifiers" to setOf("ModifierList"),
-        "AttributeModifier" to setOf("ModifierList"),
-        "BonusName" to setOf("ModifierList"),
+        "AudioEvent" to emptySet(),
         "CommandButton" to setOf("CommandButton"),
         "CommandSet" to setOf("CommandSet"),
-        "ConflictsWith" to setOf("Upgrade"),
-        "EvaEventOwner" to setOf("NewEvaEvent"),
-        "EvaEventDieOwner" to setOf("NewEvaEvent"),
-        "FireFX" to setOf("FXList"),
-        "ForbiddenUpgradeNames" to setOf("Upgrade"),
-        "FX" to setOf("FXList"),
-        "InitialSpawnFX" to setOf("FXList"),
-        "LevelUpOCL" to setOf("ObjectCreationList"),
+        "ExperienceLevel" to emptySet(),
+        "FXList" to setOf("BurningDeathFX", "EnteringStateFX", "FireFX", "FX", "InitialSpawnFX", "TriggerFX"),
+        "FXParticleSystem" to setOf("ParticleSysBone"),
         "Locomotor" to setOf("Locomotor"),
-        "ModifierList" to setOf("ModifierList"),
-        "Object" to setOf("Object"),
-        "ObjectNames" to setOf("Object"),
-        "OCL" to setOf("ObjectCreationList"),
-        "ParticleSysBone" to setOf("FXParticleSystem"),
-        "RequiredScience" to setOf("Science"),
-        "RequiredUpgradeNames" to setOf("Upgrade"),
-        "RadiusCursorType" to setOf("RadiusCursorTemplate"),
-        "Science" to setOf("Science"),
-        "SpecialAbility" to setOf("SpecialPower"),
-        "SpecialPower" to setOf("SpecialPower"),
-        "SpecialPowerTemplate" to setOf("SpecialPower"),
-        "TargetNames" to setOf("Object"),
-        "TriggeredBy" to setOf("Upgrade", "Science"),
-        "Upgrade" to setOf("Upgrade"),
+        "ModifierList" to setOf("AttributeModifiers", "AttributeModifier", "BonusName", "ModifierList"),
+        "NewEvaEvent" to setOf("EvaEventOwner", "EvaEventDieOwner"),
+        "Object" to setOf("Object", "ObjectNames", "TargetNames"),
+        "ObjectCreationList" to setOf("LevelUpOCL", "OCL"),
+        "RadiusCursorTemplate" to setOf("RadiusCursorType"),
+        "Science" to setOf("RequiredScience", "Science", "TriggeredBy"),
+        "SpecialPower" to setOf("SpecialAbility", "SpecialPower", "SpecialPowerTemplate"),
+        "Upgrade" to setOf(
+            "ConflictsWith",
+            "ForbiddenUpgradeNames",
+            "RequiredUpgradeNames",
+            "TriggeredBy",
+            "Upgrade",
+        ),
         "Weapon" to setOf("Weapon"),
     )
+
+    val declarationKinds = declarationProperties.keys
+
+    private val propertyReferenceRules = buildMap<String, Set<String>> {
+        declarationProperties.forEach { (declarationKind, properties) ->
+            properties.forEach { property ->
+                put(property, get(property).orEmpty() + declarationKind)
+            }
+        }
+    }
 
     fun isDeclarationKind(kind: String?): Boolean {
         return kind in declarationKinds
@@ -62,5 +46,13 @@ object SageEngineIniDeclarationSchema {
 
     fun expectedKindsForProperty(propertyName: String?): Set<String> {
         return propertyReferenceRules[propertyName].orEmpty()
+    }
+
+    fun expectedKindsForPropertyValue(propertyName: String?, propertyValue: String?): Set<String> {
+        if (propertyName == "Weapon" && weaponSlotValues.any { it.equals(propertyValue, ignoreCase = true) }) {
+            return emptySet()
+        }
+
+        return expectedKindsForProperty(propertyName)
     }
 }

@@ -18,7 +18,10 @@ class SageEngineIniDeclarationReferenceContributor : PsiReferenceContributor() {
             object : PsiReferenceProvider() {
 
                 override fun getReferencesByElement(element: PsiElement, context: ProcessingContext): Array<PsiReference> {
-                    val expectedKinds = SageEngineIniDeclarationSchema.expectedKindsForProperty(element.propertyAssignmentName())
+                    val expectedKinds = SageEngineIniDeclarationSchema.expectedKindsForPropertyValue(
+                        element.propertyAssignmentName(),
+                        element.text
+                    )
                     if (expectedKinds.isEmpty()) {
                         return PsiReference.EMPTY_ARRAY
                     }

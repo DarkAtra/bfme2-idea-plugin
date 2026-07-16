@@ -1,6 +1,7 @@
 package de.darkatra.bfme2.ini.navigation
 
 import com.intellij.codeInsight.TargetElementUtil
+import com.intellij.codeInsight.navigation.actions.GotoDeclarationAction
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ReadAction
@@ -43,6 +44,139 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
                 block
             )
         ).isSameAs(block.nameIdentifier)
+    }
+
+    @Test
+    fun `should not treat first property value as block name`() {
+
+        listOf(
+            """
+            WeaponSet
+                Conditions = WEAPONSET_TOGGLE_<caret>1
+                Weapon = PRIMARY ElvenEliteArcherSword
+            End
+            """,
+            """
+            ArmorSet
+                Conditions = No<caret>ne
+                Armor = ToughHeroArmor
+            End
+            """
+        ).forEach { content ->
+            myFixture.configureByText("test.ini", content.trimIndent())
+
+            val block = PsiTreeUtil.findChildOfType(myFixture.file, SageEngineIniBlock::class.java)!!
+            val target = TargetElementUtil.findTargetElement(
+                myFixture.editor,
+                TargetElementUtil.ELEMENT_NAME_ACCEPTED or TargetElementUtil.REFERENCED_ELEMENT_ACCEPTED
+            )
+
+            assertThat(block.nameIdentifier).isNull()
+            assertThat(target).isNull()
+        }
+    }
+
+    @Test
+    fun `should not expose non-declaration block keywords as navigation targets`() {
+
+        listOf("<caret>ParticleSystem", "<caret>Sound").forEach { nestedBlock ->
+            myFixture.configureByText(
+                "fxlist.ini",
+                """
+                FXList FX_GaladrielTerribleFuryFearBlast
+                    $nestedBlock
+                        Name = GaladrielFearBlast
+                    End
+                End
+                """.trimIndent()
+            )
+
+            val target = TargetElementUtil.findTargetElement(
+                myFixture.editor,
+                TargetElementUtil.ELEMENT_NAME_ACCEPTED or TargetElementUtil.REFERENCED_ELEMENT_ACCEPTED
+            )
+            val blockKeyword = PsiTreeUtil.findChildrenOfType(myFixture.file, SageEngineIniBlock::class.java)
+                .single { it.declarationKind in setOf("ParticleSystem", "Sound") }
+                .firstChild
+            val adjustedTarget = SageEngineIniDeclarationTargetElementEvaluator().adjustTargetElement(
+                myFixture.editor,
+                blockKeyword.textOffset,
+                TargetElementUtil.ELEMENT_NAME_ACCEPTED,
+                blockKeyword
+            )
+            val ctrlMouseData = GotoDeclarationAction().getCtrlMouseData(
+                myFixture.editor,
+                myFixture.file,
+                myFixture.caretOffset
+            )
+
+            assertThat(target).isNull()
+            assertThat(adjustedTarget).isNull()
+            assertThat(ctrlMouseData).isNull()
+        }
+    }
+
+    @Test
+    fun `should not expose non-declaration block names as navigation targets`() {
+
+        myFixture.configureByText(
+            "animation.ini",
+            """
+            Animation = <caret>Moving
+                AnimationName = MuDrmTroll_TRNL
+                AnimationMode = LOOP
+                AnimationBlendTime = 10
+            End
+            """.trimIndent()
+        )
+
+        val ctrlMouseData = GotoDeclarationAction().getCtrlMouseData(
+            myFixture.editor,
+            myFixture.file,
+            myFixture.caretOffset
+        )
+
+        assertThat(ctrlMouseData).isNull()
+    }
+
+    @Test
+    fun `should only reference the entity value in qualified weapon assignments`() {
+
+        myFixture.addFileToProject("data/weapon.ini", "Weapon ElvenEliteArcherSword\nEnd")
+        myFixture.configureByText(
+            "object.ini",
+            """
+            WeaponSet
+                Weapon = PRI<caret>MARY ElvenEliteArcherSword
+            End
+            """.trimIndent()
+        )
+
+        val values = PsiTreeUtil.findChildrenOfType(myFixture.file, LeafPsiElement::class.java)
+        val qualifier = values.single { it.text == "PRIMARY" }
+        val weapon = values.single { it.text == "ElvenEliteArcherSword" }
+        val handler = SageEngineIniDeclarationGotoDeclarationHandler()
+
+        assertThat(handler.getGotoDeclarationTargets(qualifier, qualifier.textOffset, myFixture.editor)).isNull()
+        assertThat(handler.getGotoDeclarationTargets(weapon, weapon.textOffset, myFixture.editor))
+            .extracting<String> { it.text }
+            .containsExactly("ElvenEliteArcherSword")
+    }
+
+    @Test
+    fun `should reference an unqualified weapon assignment`() {
+
+        myFixture.addFileToProject("data/weapon.ini", "Weapon AutoResolve_GoblinWarriorWeapon\nEnd")
+        myFixture.configureByText("object.ini", "Weapon = AutoResolve_Goblin<caret>WarriorWeapon")
+
+        val weapon = myFixture.file.findElementAt(myFixture.caretOffset)
+        val targets = SageEngineIniDeclarationGotoDeclarationHandler().getGotoDeclarationTargets(
+            weapon,
+            myFixture.caretOffset,
+            myFixture.editor
+        )
+
+        assertThat(targets).extracting<String> { it.text }.containsExactly("AutoResolve_GoblinWarriorWeapon")
     }
 
     @Test

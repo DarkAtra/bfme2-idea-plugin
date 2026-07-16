@@ -3,13 +3,12 @@ package de.darkatra.bfme2.ini.psi
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.elementType
 
 open class SageEngineIniPsiElement(node: ASTNode) : ASTWrapperPsiElement(node)
 
-class SageEngineIniBlock(node: ASTNode) : SageEngineIniPsiElement(node), PsiNameIdentifierOwner {
+class SageEngineIniBlock(node: ASTNode) : SageEngineIniPsiElement(node) {
 
     val declarationKind: String?
         get() = PsiTreeUtil.firstChild(this)
@@ -20,14 +19,8 @@ class SageEngineIniBlock(node: ASTNode) : SageEngineIniPsiElement(node), PsiName
         return nameIdentifier?.text
     }
 
-    override fun setName(name: String): PsiElement {
-        return this
-    }
-
-    override fun getNameIdentifier(): PsiElement? {
-        return PsiTreeUtil.findChildrenOfType(this, PsiElement::class.java)
-            .firstOrNull { it.elementType == SageEngineIniTokenTypes.VALUE }
-    }
+    val nameIdentifier: PsiElement?
+        get() = node.findChildByType(SageEngineIniTokenTypes.VALUE)?.psi
 
     override fun getTextOffset(): Int {
         return nameIdentifier?.textOffset ?: super.getTextOffset()
