@@ -2,6 +2,12 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.2.4`
+
+### Fixed
+
+- Improve indexing for FXList, ModifierList, Object, Upgrade and Weapon
+
 ## `0.2.3`
 
 ### Fixed
