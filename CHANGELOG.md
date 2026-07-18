@@ -7,6 +7,7 @@
 ### Fixed
 
 - Add indexing for MappedImage declarations
+- Improve indexing of AudioEvent declarations
 
 ## `0.2.4`
 

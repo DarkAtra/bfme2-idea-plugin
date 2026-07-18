@@ -6,7 +6,7 @@ object SageEngineIniDeclarationSchema {
 
     private val declarationProperties = mapOf(
         "Armor" to setOf("Armor"),
-        "AudioEvent" to emptySet(),
+        "AudioEvent" to setOf("InitiateAtLocationSound"),
         "CommandButton" to setOf("CommandButton"),
         "CommandSet" to setOf("CommandSet", "WeaponToggleCommandSet"),
         "ExperienceLevel" to emptySet(),
