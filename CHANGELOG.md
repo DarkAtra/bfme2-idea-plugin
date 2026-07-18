@@ -8,6 +8,7 @@
 
 - Add indexing for MappedImage declarations
 - Improve indexing of AudioEvent declarations
+- Improve indexing of CommandButton declarations
 
 ## `0.2.4`
 

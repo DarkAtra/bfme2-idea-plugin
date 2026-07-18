@@ -34,8 +34,18 @@ object SageEngineIniDeclarationSchema {
             "VoiceSelect",
             "VoiceSelectBattle",
         ),
-        "CommandButton" to setOf("CommandButton"),
-        "CommandSet" to setOf("CommandSet", "WeaponToggleCommandSet"),
+        "CommandButton" to setOf(
+            "CommandButton",
+            "CommandButtonName",
+            "CommandTrigger",
+            "CreateAHeroUIPrerequisiteButtonName",
+            "GetUpgradeCommandButtonName",
+            "RemoveUpgradeCommandButtonName",
+            "ToggleButtonName",
+            "UnitCommand",
+            "WeaponToggleCommandSet"
+        ),
+        "CommandSet" to setOf("CommandSet"),
         "ExperienceLevel" to emptySet(),
         "FXList" to setOf(
             "AntiFX",
@@ -78,6 +88,7 @@ object SageEngineIniDeclarationSchema {
         "SpecialPower" to setOf("SpecialAbility", "SpecialPower", "SpecialPowerTemplate"),
         "Upgrade" to setOf(
             "ConflictsWith",
+            "CreateAHeroUIAllowableUpgrades",
             "ExcludedUpgrades",
             "ForbiddenUpgradeNames",
             "GrantUpgrade",
