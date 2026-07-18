@@ -2,6 +2,12 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.2.5`
+
+### Fixed
+
+- Add indexing for MappedImage declarations
+
 ## `0.2.4`
 
 ### Fixed

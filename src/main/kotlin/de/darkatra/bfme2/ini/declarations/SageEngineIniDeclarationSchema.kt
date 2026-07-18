@@ -41,6 +41,7 @@ object SageEngineIniDeclarationSchema {
         ),
         "FXParticleSystem" to setOf("ParticleSysBone"),
         "Locomotor" to setOf("Locomotor"),
+        "MappedImage" to setOf("ButtonImage"),
         "ModifierList" to setOf("AttributeModifiers", "AttributeModifier", "BonusName", "ModifierList", "TriggerAttributeModifier"),
         "NewEvaEvent" to setOf("EvaEventOwner", "EvaEventDieOwner"),
         "Object" to setOf("Object", "ObjectNames", "ProjectileTemplateName", "TargetNames"),
