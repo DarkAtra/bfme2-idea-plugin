@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.formatting
 
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.LogicalPosition
 import com.intellij.openapi.editor.impl.TrailingSpacesStripper
 import com.intellij.psi.PsiDocumentManager
@@ -9,6 +10,34 @@ import org.junit.Test
 import java.nio.charset.StandardCharsets
 
 class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
+
+    @Test
+    fun `should inspect document layout from a pooled thread`() {
+
+        myFixture.configureByText(
+            "test.ini",
+            """
+            Object TestObject
+                Draw = W3DModelDraw ModuleTag_01
+            End
+            """.trimIndent(),
+        )
+        val objectElement = myFixture.file.findElementAt(myFixture.file.text.indexOf("Object"))!!
+        val drawElement = myFixture.file.findElementAt(myFixture.file.text.indexOf("Draw"))!!
+
+        val (hasLineBreak, lineIndent, isAtLineStart) = ApplicationManager.getApplication()
+            .executeOnPooledThread<Triple<Boolean, Int, Boolean>> {
+                Triple(
+                    SageEngineDocumentUtil.hasLineBreakBetween(objectElement, drawElement),
+                    SageEngineDocumentUtil.getLineIndent(drawElement, 4),
+                    SageEngineDocumentUtil.isAtLineStart(drawElement),
+                )
+            }.get()
+
+        assertThat(hasLineBreak).isTrue()
+        assertThat(lineIndent).isEqualTo(4)
+        assertThat(isAtLineStart).isTrue()
+    }
 
     @Test
     fun `should place cursor at start of next line when pressing enter after one indented block end`() {
