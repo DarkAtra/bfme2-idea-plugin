@@ -56,7 +56,7 @@ When contributing, treat AI output as a starting point rather than a final autho
 - Prefer small, reviewable changes with clear intent
 - Add or update tests for behavior that AI-generated code touches
 - Run `./gradlew check` before submitting changes
-- Update `AGENT.md` when you learn useful workflow lessons or discover AI limitations
+- Update `AGENTS.md` when you learn useful workflow lessons or discover AI limitations
 
 ## Useful Links
 
