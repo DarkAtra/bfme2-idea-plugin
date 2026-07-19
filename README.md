@@ -2,7 +2,17 @@
 
 IntelliJ Platform language support for Sage Engine `.ini` files used by games such as The Lord of the Rings: The Battle for Middle-earth II.
 
-Get it from the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/32514-sage-engine-ini).
+## Installation
+
+To install an alpha channel plugin in IntelliJ IDEA, you need to add JetBrains' official alpha repository to your IDE's custom plugin repositories list.
+
+* Open Settings and select Plugins
+* Click the gear icon (⚙️) and choose Manage Plugin Repositories
+* Click the Add (+) icon and enter the repository URL: `https://plugins.jetbrains.com/plugins/alpha/list`
+* Click OK, go to the Marketplace tab, and search for `Sage Engine INI`
+
+Alternatively, download it directly from the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/32514-sage-engine-ini/versions) and install it via
+`Install plugin from disk` under `Settings > Plugins`.
 
 ## Features
 
