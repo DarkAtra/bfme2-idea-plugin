@@ -325,18 +325,6 @@ class SageEngineIniLexer : LexerBase() {
         return false
     }
 
-    private fun startsWith(text: String): Boolean {
-        if (tokenStart + text.length > endOffset) {
-            return false
-        }
-        for (i in text.indices) {
-            if (buffer[tokenStart + i] != text[i]) {
-                return false
-            }
-        }
-        return true
-    }
-
     private fun isPropertyKey(offset: Int): Boolean {
         if (!isOnlyLettersOrDigits(tokenStart, offset)) {
             return false
@@ -386,6 +374,8 @@ class SageEngineIniLexer : LexerBase() {
     private fun startsComment(offset: Int): Boolean {
         return buffer[offset] == ';' || startsWith(offset, "//") || startsWith(offset, "--")
     }
+
+    private fun startsWith(text: String): Boolean = startsWith(tokenStart, text)
 
     private fun startsWith(offset: Int, text: String): Boolean {
         if (offset + text.length > endOffset) {

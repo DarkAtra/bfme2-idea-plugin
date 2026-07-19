@@ -9,7 +9,6 @@ import com.intellij.formatting.Spacing.createSpacing
 import com.intellij.formatting.Wrap
 import com.intellij.lang.ASTNode
 import com.intellij.openapi.util.TextRange
-import com.intellij.psi.PsiElement
 import com.intellij.psi.TokenType
 import com.intellij.psi.codeStyle.CodeStyleSettings
 import de.darkatra.bfme2.ini.psi.SageEngineIniElementTypes
@@ -54,7 +53,7 @@ class SageEngineIniFormattingBlock(
         val right = child2 as? SageEngineIniFormattingBlock
             ?: return null
 
-        if (right.node.elementType == SageEngineIniTokenTypes.COMMENT_START && !hasLineBreakBetween(left.node, right.node)) {
+        if (right.node.elementType == SageEngineIniTokenTypes.COMMENT_START && !SageEngineDocumentUtil.hasLineBreakBetween(left.node.psi, right.node.psi)) {
             return createSpacing(1, 1, 0, false, 0)
         }
 
@@ -92,13 +91,13 @@ class SageEngineIniFormattingBlock(
         }
 
         if (right.node.elementType != SageEngineIniTokenTypes.EQUALS && left.node.elementType != SageEngineIniTokenTypes.EQUALS) {
-            if (isValuePart(left.node) && isValuePart(right.node) && !hasLineBreakBetween(left.node, right.node)) {
+            if (isValuePart(left.node) && isValuePart(right.node) && !SageEngineDocumentUtil.hasLineBreakBetween(left.node.psi, right.node.psi)) {
                 return createSpacing(1, 1, 0, false, 0)
             }
             return null
         }
 
-        if (hasLineBreakBetween(left.node, right.node)) {
+        if (SageEngineDocumentUtil.hasLineBreakBetween(left.node.psi, right.node.psi)) {
             return createSpacing(0, Int.MAX_VALUE, 1, true, 1)
         }
 
@@ -110,8 +109,13 @@ class SageEngineIniFormattingBlock(
 
         if (previousChild?.node?.elementType != null && previousChild.node.elementType != TokenType.WHITE_SPACE) {
             val previousChildIndent = when {
-                previousChild.node.elementType == SageEngineIniTokenTypes.BLOCK_START && isAtLineStart(previousChild.node.psi) -> {
-                    Indent.getSpaceIndent(getLineIndent(previousChild.node) + codeStyleSettings.indentOptions.INDENT_SIZE)
+                previousChild.node.elementType == SageEngineIniTokenTypes.BLOCK_START && SageEngineDocumentUtil.isAtLineStart(previousChild.node.psi) -> {
+                    Indent.getSpaceIndent(
+                        SageEngineDocumentUtil.getLineIndent(
+                            previousChild.node.psi,
+                            codeStyleSettings.indentOptions.INDENT_SIZE
+                        ) + codeStyleSettings.indentOptions.INDENT_SIZE
+                    )
                 }
 
                 else -> previousChild.indent
@@ -142,16 +146,19 @@ class SageEngineIniFormattingBlock(
 
         for (child in children) {
             // reset indentation when encountering a blank line - this ensures that only adjacent properties have aligned values
-            if (child.elementType == TokenType.WHITE_SPACE && containsBlankLine(child.text)) {
+            if (child.elementType == TokenType.WHITE_SPACE && SageEngineDocumentUtil.containsBlankLine(child.text)) {
                 alignments.clear()
             }
 
             // align property values
             if (child.elementType != TokenType.WHITE_SPACE) {
-                val childIndent = when {
-                    child.elementType == SageEngineIniTokenTypes.BLOCK_END && isAtLineStart(child.psi) -> (blockDepth - 1).coerceAtLeast(0)
-                    child.elementType == SageEngineIniTokenTypes.SCRIPT_BODY -> {
-                        val scriptBodyIndent = getLineIndent(child) / codeStyleSettings.indentOptions.INDENT_SIZE
+                val childIndent = when (child.elementType) {
+                    SageEngineIniTokenTypes.BLOCK_END if SageEngineDocumentUtil.isAtLineStart(child.psi) -> (blockDepth - 1).coerceAtLeast(0)
+                    SageEngineIniTokenTypes.SCRIPT_BODY -> {
+                        val scriptBodyIndent = SageEngineDocumentUtil.getLineIndent(
+                            child.psi,
+                            codeStyleSettings.indentOptions.INDENT_SIZE
+                        ) / codeStyleSettings.indentOptions.INDENT_SIZE
                         val baseIndent = scriptBodyBaseIndent ?: scriptBodyIndent.also { scriptBodyBaseIndent = it }
                         blockDepth + (scriptBodyIndent - baseIndent).coerceAtLeast(0)
                     }
@@ -176,10 +183,10 @@ class SageEngineIniFormattingBlock(
             }
 
             // keep track of block indentation level
-            if (child.elementType == SageEngineIniTokenTypes.BLOCK_START && isAtLineStart(child.psi)) {
+            if (child.elementType == SageEngineIniTokenTypes.BLOCK_START && SageEngineDocumentUtil.isAtLineStart(child.psi)) {
                 blockDepth++
             }
-            if (child.elementType == SageEngineIniTokenTypes.BLOCK_END && isAtLineStart(child.psi)) {
+            if (child.elementType == SageEngineIniTokenTypes.BLOCK_END && SageEngineDocumentUtil.isAtLineStart(child.psi)) {
                 blockDepth = (blockDepth - 1).coerceAtLeast(0)
                 if (child.text.equals("EndScript", true)) {
                     scriptBodyBaseIndent = null
@@ -212,75 +219,10 @@ class SageEngineIniFormattingBlock(
             node.elementType == SageEngineIniElementTypes.SCRIPT_BLOCK
     }
 
-    private fun containsBlankLine(text: String): Boolean {
-        var lineBreaks = 0
-        for (char in text) {
-            if (char == '\n' && ++lineBreaks == 2) {
-                return true
-            }
-        }
-        return false
-    }
-
-    private fun hasLineBreakBetween(left: ASTNode, right: ASTNode): Boolean {
-        val text = left.psi.containingFile.text
-        var offset = left.textRange.endOffset
-        val endOffset = right.textRange.startOffset
-        while (offset < endOffset) {
-            val char = text[offset]
-            if (char == '\n' || char == '\r') {
-                return true
-            }
-            offset++
-        }
-        return false
-    }
-
-    private fun getLineIndent(node: ASTNode): Int {
-        val text = node.psi.containingFile.text
-        val startOffset = node.textRange.startOffset
-        var offset = startOffset - 1
-        while (offset >= 0) {
-            val char = text[offset]
-            if (char == '\n' || char == '\r') {
-                break
-            }
-            offset--
-        }
-        offset++
-        var lineIndent = 0
-        while (offset < startOffset) {
-            val char = text[offset]
-            if (char == '\t') {
-                lineIndent += codeStyleSettings.indentOptions.INDENT_SIZE
-            } else if (char == ' ') {
-                lineIndent++
-            }
-            offset++
-        }
-        return lineIndent
-    }
-
     private fun isValuePart(node: ASTNode): Boolean {
         return node.elementType == SageEngineIniTokenTypes.VALUE ||
             node.elementType == SageEngineIniTokenTypes.NUMBER ||
             node.elementType == SageEngineIniTokenTypes.STRING ||
             node.elementType == SageEngineIniTokenTypes.BLOCK_START
-    }
-
-    private fun isAtLineStart(element: PsiElement): Boolean {
-        val text = element.containingFile.text
-        var offset = element.textRange.startOffset - 1
-        while (offset >= 0) {
-            val char = text[offset]
-            if (char == '\n' || char == '\r') {
-                return true
-            }
-            if (!Character.isWhitespace(char)) {
-                return false
-            }
-            offset--
-        }
-        return true
     }
 }
