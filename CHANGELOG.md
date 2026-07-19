@@ -2,6 +2,10 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.2.6`
+
+- Improve indexing of CommandSet, MappedImage, ObjectCreationList and Science
+
 ## `0.2.5`
 
 ### Fixed

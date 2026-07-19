@@ -45,8 +45,14 @@ object SageEngineIniDeclarationSchema {
             "UnitCommand",
             "WeaponToggleCommandSet"
         ),
-        "CommandSet" to setOf("CommandSet"),
-        "ExperienceLevel" to emptySet(),
+        "CommandSet" to setOf(
+            "CommandSet",
+            "CommandSetTemplate",
+            "ModelConditionCommandSet",
+            "PurchaseScienceCommandSet",
+            "PurchaseScienceCommandSetMP",
+            "WeaponToggleCommandSet"
+        ),
         "FXList" to setOf(
             "AntiFX",
             "AttributeModifierFX",
@@ -78,13 +84,23 @@ object SageEngineIniDeclarationSchema {
         ),
         "FXParticleSystem" to setOf("ParticleSysBone"),
         "Locomotor" to setOf("Locomotor"),
-        "MappedImage" to setOf("ButtonImage"),
+        "MappedImage" to setOf("ButtonImage", "ButtonImageName", "ConstructButtonImage", "SelectPortrait"),
         "ModifierList" to setOf("AttributeModifiers", "AttributeModifier", "BonusName", "ModifierList", "TriggerAttributeModifier"),
-        "NewEvaEvent" to setOf("EvaEventOwner", "EvaEventDieOwner"),
-        "Object" to setOf("Object", "ObjectNames", "ProjectileTemplateName", "TargetNames"),
-        "ObjectCreationList" to setOf("LevelUpOCL", "OCL"),
+        "NewEvaEvent" to setOf("EvaEventOwner", "EvaEventDieOwner", "EvaEventToPlayOnSuccess", ""),
+        "Object" to setOf("AlternateFormation", "InitialPayload", "Object", "ObjectNames", "ProjectileTemplateName", "TargetNames", "ThingTemplateNames"),
+        "ObjectCreationList" to setOf(
+            "CreationList",
+            "DamageCreationList",
+            "ElvenWoodOCL",
+            "HealOCL",
+            "LevelUpOCL",
+            "OCL",
+            "TaintOCL",
+            "UpgradeObject",
+            "WeaponOCLName"
+        ),
         "RadiusCursorTemplate" to setOf("RadiusCursorType"),
-        "Science" to setOf("RequiredScience", "Science", "TriggeredBy"),
+        "Science" to setOf("IntrinsicSciences", "IntrinsicSciencesMP", "PrerequisiteSciences", "RequiredScience", "RequiredSciences", "Science", "TriggeredBy"),
         "SpecialPower" to setOf("SpecialAbility", "SpecialPower", "SpecialPowerTemplate"),
         "Upgrade" to setOf(
             "ConflictsWith",
