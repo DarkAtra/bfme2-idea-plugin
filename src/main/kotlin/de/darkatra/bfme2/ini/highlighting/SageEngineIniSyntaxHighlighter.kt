@@ -34,11 +34,11 @@ class SageEngineIniSyntaxHighlighter : SyntaxHighlighterBase() {
 
     companion object {
 
-        private val BLOCK: TextAttributesKey = TextAttributesKey.createTextAttributesKey(
+        val BLOCK: TextAttributesKey = TextAttributesKey.createTextAttributesKey(
             "OPENSAGE_INI_BLOCK",
             DefaultLanguageHighlighterColors.KEYWORD
         )
-        private val IDENTIFIER: TextAttributesKey = TextAttributesKey.createTextAttributesKey(
+        val IDENTIFIER: TextAttributesKey = TextAttributesKey.createTextAttributesKey(
             "OPENSAGE_INI_IDENTIFIER",
             DefaultLanguageHighlighterColors.INSTANCE_FIELD
         )

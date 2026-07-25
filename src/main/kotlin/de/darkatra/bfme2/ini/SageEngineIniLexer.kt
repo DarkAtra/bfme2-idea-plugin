@@ -3,6 +3,7 @@ package de.darkatra.bfme2.ini
 import com.intellij.lexer.LexerBase
 import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
+import de.darkatra.bfme2.ini.model.syntax.SageEngineIniSyntax
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
 class SageEngineIniLexer : LexerBase() {
@@ -143,6 +144,11 @@ class SageEngineIniLexer : LexerBase() {
             }
         }
 
+        if (tokenState == STATE_DEFAULT) {
+            locateStatementHeadToken()
+            return
+        }
+
         if (tokenState == STATE_PROPERTY_VALUE && startsNumberWithLetterSuffix()) {
             finishToken(scanPropertyValueEnd(stopAtCoordinateSeparator = false), SageEngineIniTokenTypes.VALUE)
             return
@@ -159,23 +165,54 @@ class SageEngineIniLexer : LexerBase() {
         }
 
         if (isWordStart(currentChar)) {
-            tokenEnd = tokenStart + 1
-            while (tokenEnd < endOffset && isWordPart(buffer[tokenEnd])) {
-                tokenEnd++
-            }
-            val text = buffer.subSequence(tokenStart, tokenEnd).toString()
-            finishToken(
-                tokenEnd, when {
-                    BLOCK_STARTS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_START
-                    BLOCK_ENDS.any { it.equals(text, true) } -> SageEngineIniTokenTypes.BLOCK_END
-                    isPossibleBlockStart() -> SageEngineIniTokenTypes.BLOCK_START
-                    isPropertyKey(tokenEnd) -> SageEngineIniTokenTypes.PROPERTY
-                    else -> SageEngineIniTokenTypes.VALUE
-                })
+            finishToken(scanWhile(tokenStart + 1, ::isWordPart), SageEngineIniTokenTypes.VALUE)
             return
         }
 
         finishToken(tokenStart + 1, TokenType.BAD_CHARACTER)
+    }
+
+    // mirrors the line grammar of the engine (and pySAGE): the first token of a line decides whether the line opens a block,
+    // closes one or is a property - contextual rules that depend on the parent block are applied by the parser
+    private fun locateStatementHeadToken() {
+
+        val headEnd = scanStatementHeadEnd()
+        val head = buffer.substring(tokenStart, headEnd)
+
+        if (BLOCK_ENDS.any { it.equals(head, true) }) {
+            finishToken(headEnd, SageEngineIniTokenTypes.BLOCK_END)
+            return
+        }
+
+        if (head.equals(BEGIN_SCRIPT, true)) {
+            finishToken(headEnd, SageEngineIniTokenTypes.BLOCK_START)
+            return
+        }
+
+        val rest = textUntilLineEndIgnoringComments(headEnd)
+        val valueHead = rest.replace('=', ' ').trim().split(WHITESPACE).first().takeIf { it.isNotEmpty() }
+
+        finishToken(
+            headEnd, when {
+                SageEngineIniSyntax.isBlockOpener(head, valueHead) -> SageEngineIniTokenTypes.BLOCK_START
+                rest.contains('=') -> SageEngineIniTokenTypes.PROPERTY
+                SageEngineIniSyntax.isBareValueKey(head) -> SageEngineIniTokenTypes.PROPERTY
+                !isIdentifierStart(head.first()) -> SageEngineIniTokenTypes.PROPERTY
+                else -> SageEngineIniTokenTypes.BLOCK_START
+            }
+        )
+    }
+
+    private fun scanStatementHeadEnd(): Int {
+        var currentOffset = tokenStart + 1
+        while (currentOffset < endOffset &&
+            !isWhitespace(buffer[currentOffset]) &&
+            buffer[currentOffset] != '=' &&
+            !startsComment(currentOffset)
+        ) {
+            currentOffset++
+        }
+        return currentOffset
     }
 
     private fun locateScriptToken(currentChar: Char) {
@@ -305,7 +342,16 @@ class SageEngineIniLexer : LexerBase() {
             return STATE_SCRIPT_BASE + 1
         }
 
-        return STATE_DEFAULT
+        // a statement may follow `End` on the same line
+        if (type === SageEngineIniTokenTypes.BLOCK_END) {
+            return STATE_DEFAULT
+        }
+
+        if (type === TokenType.WHITE_SPACE) {
+            return tokenState
+        }
+
+        return STATE_LINE_REST
     }
 
     private fun decreaseScriptState(state: Int): Int {
@@ -325,27 +371,9 @@ class SageEngineIniLexer : LexerBase() {
         return false
     }
 
-    private fun isPropertyKey(offset: Int): Boolean {
-        if (!isOnlyLettersOrDigits(tokenStart, offset)) {
-            return false
-        }
-        var currentOffset = offset
-        while (currentOffset < endOffset && (buffer[currentOffset] == ' ' || buffer[currentOffset] == '\t')) {
-            currentOffset++
-        }
-        return currentOffset < endOffset && buffer[currentOffset] == '='
-    }
+    private fun textUntilLineEndIgnoringComments(offset: Int): String {
 
-    private fun isPossibleBlockStart(): Boolean {
-
-        val words = textUntilLineEndIgnoringComments().split(Regex("\\s+"))
-
-        return POSSIBLY_BLOCK_STARTS.any { it.matches(words) }
-    }
-
-    private fun textUntilLineEndIgnoringComments(): String {
-
-        var lineEndOffset = tokenStart
+        var lineEndOffset = offset
         while (lineEndOffset < endOffset && !isLineBreak(buffer[lineEndOffset])) {
             if (startsComment(lineEndOffset)) {
                 break
@@ -353,7 +381,7 @@ class SageEngineIniLexer : LexerBase() {
             lineEndOffset++
         }
 
-        return buffer.substring(tokenStart, lineEndOffset).trim()
+        return buffer.substring(offset, lineEndOffset).trim()
     }
 
     private fun isCoordinateSeparator(offset: Int): Boolean {
@@ -405,15 +433,6 @@ class SageEngineIniLexer : LexerBase() {
         return c in 'A'..'Z' || c in 'a'..'z'
     }
 
-    private fun isOnlyLettersOrDigits(start: Int, end: Int): Boolean {
-        for (i in start until end) {
-            if (!Character.isLetterOrDigit(buffer[i])) {
-                return false
-            }
-        }
-        return true
-    }
-
     private fun startsWord(offset: Int, text: String): Boolean {
         if (offset > startOffset && isWordPart(buffer[offset - 1])) {
             return false
@@ -434,9 +453,11 @@ class SageEngineIniLexer : LexerBase() {
         private const val STATE_COMMENT = 1
         private const val STATE_PROPERTY_VALUE = 2
         private const val STATE_COMMENT_SPACER = 3
+        private const val STATE_LINE_REST = 4
         private const val STATE_SCRIPT_BASE = 100
         private const val BEGIN_SCRIPT = "BeginScript"
         private const val END_SCRIPT = "EndScript"
+        private val WHITESPACE = Regex("\\s+")
 
         private fun isCommentState(state: Int): Boolean {
             return state == STATE_COMMENT || state == STATE_COMMENT_SPACER
@@ -446,101 +467,14 @@ class SageEngineIniLexer : LexerBase() {
             return state >= STATE_SCRIPT_BASE
         }
 
-        private val BLOCK_STARTS = setOf(
-            "ChildObject",
-            "Draw",
-            "Behavior",
-            "Body",
-            "ArmorSet",
-            "WeaponSet",
-            "LocomotorSet",
-            "DefaultModelConditionState",
-            "ModelConditionState",
-            "AnimationState",
-            "IdleAnimationState",
-            "Animation",
-            "BeginScript",
-            "ClientBehavior",
-            "Flammability",
-            "UnitSpecificSounds",
-            "ThreatBreakdown",
-            "MeleeBehavior",
-            "AutoResolveArmor",
-            "AutoResolveWeapon",
-            "FormationPreviewItemDecal",
-            "FireWeaponNugget",
-            "TransitionState",
-            "PredefinedEvaEvent",
-            "SideSound",
-            "NewEvaEvent",
-            "ParticleSystem",
-            "ViewShake",
-            "CameraShakerVolume",
-            "DynamicDecal",
-            "TerrainScorch",
-            "BuffNugget",
-            "TintDrawable",
-            "FXParticleSystem",
-            "System",
-            "Update",
-            "Physics",
-            "EmissionVelocity",
-            "EmissionVolume",
-            "Alpha",
-            "Wind",
-            "HouseColor",
-            "InGameUI",
-            "RadiusCursorTemplate",
-            "LivingWorldMapInfo",
-            "EyeTower",
-            "LivingWorldArmyIcon",
-            "LivingWorldAnimObject",
-            "LivingWorldSound",
-            "LivingWorldObject",
-            "LivingWorldBuilding",
-            "BuildingNugget",
-            "ArmyToSpawn",
-            "PlayerTemplate",
-            "AudioEvent",
-            "Multisound",
-            "Stance",
-            "ProjectileNugget",
-            "DamageNugget",
-            "MetaImpactNugget",
-            "WeaponOCLNugget",
-            "AttributeModifierNugget",
-            "StealMoneyNugget",
-            "ClientUpdate",
-            "HordeAttackNugget",
-            "MappedImage",
-            "ModifierList",
-            "CommandButton",
-            "ExperienceLevel",
-            "EvaEvent",
-            "ObjectCreationList",
-            "SelectionDecal",
-            "CreateObject",
-            "ReplaceModule"
-        )
-        private val POSSIBLY_BLOCK_STARTS: Set<SageEngineIniPossibleBlockMatcher> = setOf(
-            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Object" },
-            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Upgrade" },
-            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "SpecialPower" },
-            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Locomotor" },
-            SageEngineIniPossibleBlockMatcher { words -> words.size == 1 && words.first() == "AutoResolveBody" },
-            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "FXList" },
-            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "StanceTemplate" },
-            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Weapon" },
-            SageEngineIniPossibleBlockMatcher { words -> words.size == 1 && words.first() == "Sound" },
-            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "Armor" },
-            SageEngineIniPossibleBlockMatcher { words -> words.size == 2 && words.first() == "CommandSet" },
-            SageEngineIniPossibleBlockMatcher { words -> words.take(3) == listOf("AddEmotion", "=", "OVERRIDE") },
-            SageEngineIniPossibleBlockMatcher { words -> words == listOf("Color", "=", "DefaultColor") },
-        )
         private val BLOCK_ENDS = setOf(
             "End",
             "EndScript"
         )
+
+        private fun isIdentifierStart(c: Char): Boolean {
+            return Character.isLetter(c) || c == '_'
+        }
 
         private fun isWordStart(c: Char): Boolean {
             return Character.isLetter(c) || c == '_' || c == '$'

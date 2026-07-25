@@ -180,6 +180,35 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
     }
 
     @Test
+    fun `should only reference declarations if the property of the enclosing block is a reference`() {
+
+        myFixture.addFileToProject("data/mappedimage.ini", "MappedImage SunRays\nEnd")
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object ElvenMallornTree
+                Draw = W3DStreakDraw ModuleTag_Draw
+                    Texture = SunRays
+                End
+                Behavior = PartTheHeavensUpdate ModuleTag_PartTheHeavens
+                    Texture = SunRays
+                End
+            End
+            """.trimIndent()
+        )
+
+        val (textureFile, mappedImage) = PsiTreeUtil.findChildrenOfType(myFixture.file, LeafPsiElement::class.java)
+            .filter { it.text == "SunRays" }
+        val handler = SageEngineIniDeclarationGotoDeclarationHandler()
+
+        assertThat(handler.getGotoDeclarationTargets(textureFile, textureFile.textOffset, myFixture.editor)).isNull()
+        assertThat(handler.getGotoDeclarationTargets(mappedImage, mappedImage.textOffset, myFixture.editor))
+            .extracting<String> { it.text }
+            .containsExactly("SunRays")
+        assertThat(SageEngineIniDeclarationLookup.findUseSites(project, "MappedImage", "SunRays")).containsExactly(mappedImage)
+    }
+
+    @Test
     fun `should navigate to declaration from property value`() {
 
         myFixture.addFileToProject(

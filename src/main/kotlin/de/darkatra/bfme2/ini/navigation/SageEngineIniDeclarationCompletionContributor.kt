@@ -10,7 +10,7 @@ import com.intellij.patterns.PlatformPatterns.psiElement
 import com.intellij.psi.util.elementType
 import com.intellij.util.ProcessingContext
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationLookup
-import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationSchema
+import de.darkatra.bfme2.ini.declarations.SageEngineIniModelResolver
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
 class SageEngineIniDeclarationCompletionContributor : CompletionContributor() {
@@ -30,7 +30,7 @@ class SageEngineIniDeclarationCompletionContributor : CompletionContributor() {
                         ?: parameters.position.takeIf { it.elementType == SageEngineIniTokenTypes.VALUE }
                         ?: return
 
-                    val expectedKinds = SageEngineIniDeclarationSchema.expectedKindsForProperty(element.propertyAssignmentName())
+                    val expectedKinds = SageEngineIniModelResolver.expectedDeclarationKinds(element)
                     if (expectedKinds.isEmpty()) {
                         return
                     }

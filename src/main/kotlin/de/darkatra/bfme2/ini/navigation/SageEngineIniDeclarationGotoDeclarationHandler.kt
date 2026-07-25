@@ -5,7 +5,7 @@ import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationLookup
-import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationSchema
+import de.darkatra.bfme2.ini.declarations.SageEngineIniModelResolver
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
 class SageEngineIniDeclarationGotoDeclarationHandler : GotoDeclarationHandler {
@@ -15,10 +15,7 @@ class SageEngineIniDeclarationGotoDeclarationHandler : GotoDeclarationHandler {
             return null
         }
 
-        val expectedKinds = SageEngineIniDeclarationSchema.expectedKindsForPropertyValue(
-            sourceElement.propertyAssignmentName(),
-            sourceElement.text
-        )
+        val expectedKinds = SageEngineIniModelResolver.expectedDeclarationKinds(sourceElement)
         if (expectedKinds.isEmpty()) {
             return null
         }

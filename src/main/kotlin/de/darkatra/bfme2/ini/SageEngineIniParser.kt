@@ -3,7 +3,9 @@ package de.darkatra.bfme2.ini
 import com.intellij.lang.ASTNode
 import com.intellij.lang.PsiBuilder
 import com.intellij.lang.PsiParser
+import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
+import de.darkatra.bfme2.ini.model.syntax.SageEngineIniSyntax
 import de.darkatra.bfme2.ini.psi.SageEngineIniElementTypes
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
@@ -13,20 +15,40 @@ class SageEngineIniParser : PsiParser {
 
         val file = builder.mark()
         while (!builder.eof()) {
-            parseStatement(builder)
+            parseStatement(builder, null)
         }
         file.done(root)
 
         return builder.treeBuilt
     }
 
-    private fun parseStatement(builder: PsiBuilder) {
+    private fun parseStatement(builder: PsiBuilder, parentKind: String?) {
+        remapContextualToken(builder, parentKind)
         when (builder.tokenType) {
             SageEngineIniTokenTypes.BLOCK_START -> parseBlock(builder)
             SageEngineIniTokenTypes.PROPERTY -> parseUntilStatementBoundary(builder, SageEngineIniElementTypes.PROPERTY_ASSIGNMENT)
             SageEngineIniTokenTypes.MACRO -> parseUntilStatementBoundary(builder, SageEngineIniElementTypes.MACRO_STATEMENT)
             SageEngineIniTokenTypes.COMMENT_START -> parseUntilStatementBoundary(builder, SageEngineIniElementTypes.COMMENT)
+            SageEngineIniTokenTypes.BLOCK_END -> {
+                builder.error("'${builder.tokenText}' without an open block")
+                builder.advanceLexer()
+            }
+
             else -> builder.advanceLexer()
+        }
+    }
+
+    // the lexer has no knowledge about the enclosing block, so rules that depend on it are applied here
+    private fun remapContextualToken(builder: PsiBuilder, parentKind: String?) {
+        val tokenText = builder.tokenText ?: return
+        when (builder.tokenType) {
+            SageEngineIniTokenTypes.PROPERTY if SageEngineIniSyntax.isContextualBlockOpener(parentKind, tokenText) -> {
+                builder.remapCurrentToken(SageEngineIniTokenTypes.BLOCK_START)
+            }
+
+            SageEngineIniTokenTypes.BLOCK_START if SageEngineIniSyntax.isContextualBareValueKey(parentKind, tokenText) -> {
+                builder.remapCurrentToken(SageEngineIniTokenTypes.PROPERTY)
+            }
         }
     }
 
@@ -36,13 +58,16 @@ class SageEngineIniParser : PsiParser {
             return
         }
 
+        val blockKind = builder.tokenText
         val marker = builder.mark()
         parseUntilStatementBoundary(builder)
         while (!builder.eof() && builder.tokenType != SageEngineIniTokenTypes.BLOCK_END) {
-            parseStatement(builder)
+            parseStatement(builder, blockKind)
         }
         if (builder.tokenType == SageEngineIniTokenTypes.BLOCK_END) {
             builder.advanceLexer()
+        } else {
+            builder.error("Missing 'End' for block '$blockKind'")
         }
         marker.done(SageEngineIniElementTypes.BLOCK)
     }
@@ -64,6 +89,9 @@ class SageEngineIniParser : PsiParser {
                     break
                 }
             }
+        }
+        if (nesting > 0) {
+            builder.error("Missing 'EndScript'")
         }
         marker.done(SageEngineIniElementTypes.SCRIPT_BLOCK)
     }
@@ -87,6 +115,6 @@ class SageEngineIniParser : PsiParser {
             tokenType == SageEngineIniTokenTypes.PROPERTY ||
             tokenType == SageEngineIniTokenTypes.MACRO ||
             tokenType == SageEngineIniTokenTypes.COMMENT_START ||
-            tokenType == com.intellij.psi.TokenType.WHITE_SPACE && builder.tokenText?.any { it == '\n' || it == '\r' } == true
+            tokenType == TokenType.WHITE_SPACE && builder.tokenText?.any { it == '\n' || it == '\r' } == true
     }
 }

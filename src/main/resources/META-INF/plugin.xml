@@ -22,11 +22,60 @@
         <lang.formatter language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.formatting.SageEngineIniFormattingModelBuilder"/>
         <preFormatProcessor implementation="de.darkatra.bfme2.ini.formatting.SageEngineIniPreFormatProcessor"/>
         <fileBasedIndex implementation="de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationIndex"/>
+        <fileBasedIndex implementation="de.darkatra.bfme2.ini.declarations.SageEngineIniMacroIndex"/>
         <psi.referenceContributor language="SageEngineIni" implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeReferenceContributor"/>
         <psi.referenceContributor language="SageEngineIni" implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationReferenceContributor"/>
         <completion.contributor language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeCompletionContributor"/>
         <completion.contributor language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationCompletionContributor"/>
+        <completion.contributor language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniModelCompletionContributor"/>
+        <completion.contributor language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniMacroCompletionContributor"/>
+        <annotator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.highlighting.SageEngineIniContextualHighlightingAnnotator"/>
         <!-- <annotator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniDeclarationAnnotator"/> -->
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniUnknownBlock"
+            displayName="Unknown block or module"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniUnknownBlockInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniUnknownProperty"
+            displayName="Unknown property"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniUnknownPropertyInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniInvalidValue"
+            displayName="Invalid property value"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniInvalidValueInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniRepeatedProperty"
+            displayName="Repeated property"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniRepeatedPropertyInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniSpuriousBlockLabel"
+            displayName="Ignored &apos;=&apos; in block header"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniSpuriousBlockLabelInspection"
+        />
         <targetElementEvaluator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationTargetElementEvaluator"/>
         <lang.findUsagesProvider language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationFindUsagesProvider"/>
         <highlightUsagesHandlerFactory implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationHighlightUsagesHandlerFactory"/>
@@ -34,6 +83,7 @@
         <useScopeEnlarger implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationUseScopeEnlarger"/>
         <gotoDeclarationHandler implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniIncludeGotoDeclarationHandler"/>
         <gotoDeclarationHandler implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationGotoDeclarationHandler"/>
+        <gotoDeclarationHandler implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniMacroGotoDeclarationHandler"/>
     </extensions>
 
     <extensions defaultExtensionNs="org.jetbrains.kotlin">

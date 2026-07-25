@@ -7,7 +7,7 @@ import com.intellij.psi.PsiReferenceContributor
 import com.intellij.psi.PsiReferenceProvider
 import com.intellij.psi.PsiReferenceRegistrar
 import com.intellij.util.ProcessingContext
-import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationSchema
+import de.darkatra.bfme2.ini.declarations.SageEngineIniModelResolver
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
 class SageEngineIniDeclarationReferenceContributor : PsiReferenceContributor() {
@@ -18,10 +18,7 @@ class SageEngineIniDeclarationReferenceContributor : PsiReferenceContributor() {
             object : PsiReferenceProvider() {
 
                 override fun getReferencesByElement(element: PsiElement, context: ProcessingContext): Array<PsiReference> {
-                    val expectedKinds = SageEngineIniDeclarationSchema.expectedKindsForPropertyValue(
-                        element.propertyAssignmentName(),
-                        element.text
-                    )
+                    val expectedKinds = SageEngineIniModelResolver.expectedDeclarationKinds(element)
                     if (expectedKinds.isEmpty()) {
                         return PsiReference.EMPTY_ARRAY
                     }

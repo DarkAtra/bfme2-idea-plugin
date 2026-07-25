@@ -251,6 +251,159 @@ class SageEngineIniLexerTest {
     }
 
     @Test
+    fun `should lex bare lines as block starts unless they are bare value keys`() {
+
+        assertTokens(
+            "ArmorSet",
+            SageEngineIniTokenTypes.BLOCK_START to "ArmorSet",
+        )
+
+        assertTokens(
+            "Prerequisites ; requires a castle",
+            SageEngineIniTokenTypes.BLOCK_START to "Prerequisites",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_START to ";",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "requires",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "a",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "castle",
+        )
+
+        assertTokens(
+            "ChildObject ElvenMallornTreeLarge ElvenMallornTree",
+            SageEngineIniTokenTypes.BLOCK_START to "ChildObject",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "ElvenMallornTreeLarge",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "ElvenMallornTree",
+        )
+
+        assertTokens(
+            "RemoveModule ModuleTag_Death",
+            SageEngineIniTokenTypes.PROPERTY to "RemoveModule",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "ModuleTag_Death",
+        )
+
+        assertTokens(
+            "ClearNuggets",
+            SageEngineIniTokenTypes.PROPERTY to "ClearNuggets",
+        )
+    }
+
+    @Test
+    fun `should lex block opening keywords followed by equals as block starts`() {
+
+        assertTokens(
+            "ModelConditionState = DAMAGED",
+            SageEngineIniTokenTypes.BLOCK_START to "ModelConditionState",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "DAMAGED",
+        )
+    }
+
+    @Test
+    fun `should lex properties with curve values as block starts`() {
+
+        assertTokens(
+            "Radius = FCurve",
+            SageEngineIniTokenTypes.BLOCK_START to "Radius",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "FCurve",
+        )
+    }
+
+    @Test
+    fun `should lex conditional value openers by their marker value`() {
+
+        assertTokens(
+            "AddEmotion = OVERRIDE Taunt_Base",
+            SageEngineIniTokenTypes.BLOCK_START to "AddEmotion",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "OVERRIDE",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "Taunt_Base",
+        )
+
+        assertTokens(
+            "AddEmotion = Terror_Base",
+            SageEngineIniTokenTypes.PROPERTY to "AddEmotion",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "Terror_Base",
+        )
+    }
+
+    @Test
+    fun `should lex property names that are not plain words`() {
+
+        assertTokens(
+            "1 = Command_ConstructElvenWarrior",
+            SageEngineIniTokenTypes.PROPERTY to "1",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "Command_ConstructElvenWarrior",
+        )
+
+        assertTokens(
+            "Allow_Upgrade = Yes",
+            SageEngineIniTokenTypes.PROPERTY to "Allow_Upgrade",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "Yes",
+        )
+
+        assertTokens(
+            "HoleHealthRegen%PerSecond = 10%",
+            SageEngineIniTokenTypes.PROPERTY to "HoleHealthRegen%PerSecond",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.NUMBER to "10",
+            SageEngineIniTokenTypes.PERCENT to "%",
+        )
+    }
+
+    @Test
+    fun `should lex statements following End on the same line`() {
+
+        assertTokens(
+            "End StateName = Sword",
+            SageEngineIniTokenTypes.BLOCK_END to "End",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.PROPERTY to "StateName",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.EQUALS to "=",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "Sword",
+        )
+    }
+
+    @Test
+    fun `should not lex macro arguments as block starts`() {
+
+        assertTokens(
+            "#define ELVEN_TREE_HEALTH 500",
+            SageEngineIniTokenTypes.MACRO to "#define",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "ELVEN_TREE_HEALTH",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.NUMBER to "500",
+        )
+    }
+
+    @Test
     fun `should stop property value at inline comment`() {
 
         assertTokens(
@@ -354,6 +507,14 @@ class SageEngineIniLexerTest {
             Number = 10h
             GeometryOffset = X:50 Y:0 Z:0
             Next = value
+            #define ELVEN_TREE_HEALTH 500
+            Object ElvenMallornTree
+                ArmorSet
+                    Conditions = None
+                End StateName = Sword
+                RemoveModule ModuleTag_Death
+                1 = Command_ConstructElvenWarrior
+            End
             BeginScript
                 PrevState = CurDrawablePrevAnimationState()
                 BeginScript

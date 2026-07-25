@@ -1,0 +1,40 @@
+package de.darkatra.bfme2.ini.model.value
+
+import de.darkatra.bfme2.ini.model.common.SageIniEnum
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.EnumValue
+
+enum class ModifierType(override val token: String) : SageIniEnum {
+    ARMOR("ARMOR"),
+    DAMAGE_ADD("DAMAGE_ADD"),
+    RESIST_FEAR("RESIST_FEAR"),
+    RESIST_TERROR("RESIST_TERROR"),
+    RANGE("RANGE"),
+    RESIST_KNOCKBACK("RESIST_KNOCKBACK"),
+    HEALTH("HEALTH"),
+    VISION("VISION"),
+    AUTO_HEAL("AUTO_HEAL"),
+    SHROUD_CLEARING("SHROUD_CLEARING"),
+    SEPARATOR("SEPARATOR"),
+    DAMAGE_MULT("DAMAGE_MULT"),
+    EXPERIENCE("EXPERIENCE"),
+    SPEED("SPEED"),
+    CRUSH_DECELERATE("CRUSH_DECELERATE"),
+    SPELL_DAMAGE("SPELL_DAMAGE"),
+    RECHARGE_TIME("RECHARGE_TIME"),
+    PRODUCTION("PRODUCTION"),
+    HEALTH_MULT("HEALTH_MULT"),
+    RATE_OF_FIRE("RATE_OF_FIRE"),
+    MINIMUM_CRUSH_VELOCITY("MINIMUM_CRUSH_VELOCITY"),
+    DAMAGE_STRUCTURE_BOUNTY_ADD("DAMAGE_STRUCTURE_BOUNTY_ADD"),
+    COMMAND_POINT_BONUS("COMMAND_POINT_BONUS"),
+    CRUSHABLE_LEVEL("CRUSHABLE_LEVEL"),
+    INVULNERABLE("INVULNERABLE"),
+    BOUNTY_PERCENTAGE("BOUNTY_PERCENTAGE"),
+    CRUSHED_DECELERATE("CRUSHED_DECELERATE"),
+    CRUSHER_LEVEL("CRUSHER_LEVEL");
+
+    companion object {
+
+        val type: EnumValue<ModifierType> = EnumValue("ModifierType", entries)
+    }
+}

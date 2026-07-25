@@ -6,8 +6,7 @@ import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationLookup
-import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationSchema
-import de.darkatra.bfme2.ini.navigation.propertyAssignmentName
+import de.darkatra.bfme2.ini.declarations.SageEngineIniModelResolver
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
 class SageEngineIniDeclarationAnnotator : Annotator {
@@ -17,10 +16,7 @@ class SageEngineIniDeclarationAnnotator : Annotator {
             return
         }
 
-        val expectedKinds = SageEngineIniDeclarationSchema.expectedKindsForPropertyValue(
-            element.propertyAssignmentName(),
-            element.text
-        )
+        val expectedKinds = SageEngineIniModelResolver.expectedDeclarationKinds(element)
         if (expectedKinds.isEmpty()) {
             return
         }

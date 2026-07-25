@@ -203,7 +203,7 @@ class SageEngineIniFormattingBlock(
         while (child != null) {
             if (isStructuredElement(child)) {
                 children += flattenedFormattingChildren(child)
-            } else {
+            } else if (child.textLength > 0) {
                 children += child
             }
             child = child.treeNext

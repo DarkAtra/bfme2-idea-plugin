@@ -9,7 +9,6 @@ import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.elementType
 import com.intellij.util.indexing.FileBasedIndex
-import de.darkatra.bfme2.ini.navigation.propertyAssignmentName
 import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
@@ -96,10 +95,7 @@ object SageEngineIniDeclarationLookup {
             .filter { it.elementType == SageEngineIniTokenTypes.VALUE }
             .filter { it.text.equals(name, ignoreCase = true) }
             .filter {
-                kind in SageEngineIniDeclarationSchema.expectedKindsForPropertyValue(
-                    it.propertyAssignmentName(),
-                    it.text
-                )
+                kind in SageEngineIniModelResolver.expectedDeclarationKinds(it)
             }
             .toList()
     }
