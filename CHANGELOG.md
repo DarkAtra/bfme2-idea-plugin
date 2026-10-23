@@ -2,6 +2,21 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.3.0`
+
+### Added
+
+- Models for all known Sage Engine INI blocks, modules and their properties
+- Completion for block, module and property names based on the INI models
+- Contextual syntax highlighting based on the INI models
+- Inspections and quick fixes for unknown blocks or modules, unknown properties, invalid property values, repeated properties and ignored `=` in block
+  headers
+- Indexing, completion and "Goto Declaration" for macros
+
+### Fixed
+
+- Threading issue when accessing documents
+
 ## `0.2.6`
 
 - Improve indexing of CommandSet, MappedImage, ObjectCreationList and Science
