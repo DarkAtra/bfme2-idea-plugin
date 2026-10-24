@@ -1,11 +1,11 @@
 package de.darkatra.bfme2.ini.navigation
 
 import com.intellij.psi.PsiElement
-import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.SearchScope
 import com.intellij.psi.search.UseScopeEnlarger
 import com.intellij.psi.util.PsiTreeUtil
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationSchema
+import de.darkatra.bfme2.ini.declarations.SageEngineIniSources
 import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
 
 class SageEngineIniDeclarationUseScopeEnlarger : UseScopeEnlarger() {
@@ -21,7 +21,7 @@ class SageEngineIniDeclarationUseScopeEnlarger : UseScopeEnlarger() {
             return null
         }
 
-        return GlobalSearchScope.projectScope(element.project)
+        return SageEngineIniSources.scope(element.project)
     }
 
     private fun PsiElement.declarationBlock(): SageEngineIniBlock? {

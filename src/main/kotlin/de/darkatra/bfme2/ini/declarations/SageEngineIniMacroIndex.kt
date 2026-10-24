@@ -4,7 +4,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
-import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.elementType
 import com.intellij.util.indexing.DataIndexer
@@ -60,17 +59,19 @@ object SageEngineIniMacros {
 
     fun isDefined(project: Project, name: String): Boolean {
         return FileBasedIndex.getInstance()
-            .getContainingFiles(SAGE_ENGINE_INI_MACRO_INDEX_ID, name.lowercase(), GlobalSearchScope.projectScope(project))
+            .getContainingFiles(SAGE_ENGINE_INI_MACRO_INDEX_ID, name.lowercase(), SageEngineIniSources.scope(project))
             .isNotEmpty()
     }
 
     /**
-     * The name tokens of the `#define` statements of the macro [name].
+     * The name tokens of the `#define` statements of the macro [name]. Only the best ranked source is considered, see
+     * [SageEngineIniSources.keepBestRanked].
      */
     fun findDefinitions(project: Project, name: String): List<PsiElement> {
         val psiManager = PsiManager.getInstance(project)
-        return FileBasedIndex.getInstance()
-            .getContainingFiles(SAGE_ENGINE_INI_MACRO_INDEX_ID, name.lowercase(), GlobalSearchScope.projectScope(project))
+        val files = FileBasedIndex.getInstance()
+            .getContainingFiles(SAGE_ENGINE_INI_MACRO_INDEX_ID, name.lowercase(), SageEngineIniSources.scope(project))
+        return SageEngineIniSources.keepBestRanked(project, files) { it }
             .mapNotNull { psiManager.findFile(it) }
             .flatMap { file -> PsiTreeUtil.findChildrenOfType(file, SageEngineIniMacroStatement::class.java) }
             .mapNotNull { definedName(it) }
@@ -79,7 +80,7 @@ object SageEngineIniMacros {
 
     fun allNames(project: Project): List<String> {
         val fileBasedIndex = FileBasedIndex.getInstance()
-        val scope = GlobalSearchScope.projectScope(project)
+        val scope = SageEngineIniSources.scope(project)
         return fileBasedIndex.getAllKeys(SAGE_ENGINE_INI_MACRO_INDEX_ID, project)
             .flatMap { fileBasedIndex.getValues(SAGE_ENGINE_INI_MACRO_INDEX_ID, it, scope) }
             .distinct()

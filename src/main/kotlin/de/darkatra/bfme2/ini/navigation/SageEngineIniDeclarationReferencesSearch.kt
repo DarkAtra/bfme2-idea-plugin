@@ -29,6 +29,11 @@ class SageEngineIniDeclarationReferencesSearch : QueryExecutor<PsiReference, Ref
                 return@computeBlocking null
             }
 
+            // Usages resolve to the declaration that wins, so an overridden declaration has none.
+            if (SageEngineIniDeclarationLookup.isShadowed(declaration.project, declaration)) {
+                return@computeBlocking null
+            }
+
             SearchRequest(declaration.project, declarationKind, declarationName)
         } ?: return true
 

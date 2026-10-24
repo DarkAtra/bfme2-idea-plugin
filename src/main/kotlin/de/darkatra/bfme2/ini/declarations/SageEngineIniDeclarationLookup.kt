@@ -5,7 +5,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
-import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.elementType
 import com.intellij.util.indexing.FileBasedIndex
@@ -25,7 +24,7 @@ object SageEngineIniDeclarationLookup {
     fun allDeclarationNames(project: Project, expectedKinds: Set<String>): List<String> {
         return ReadAction.computeBlocking<List<String>, RuntimeException> {
             val fileBasedIndex = FileBasedIndex.getInstance()
-            val scope = GlobalSearchScope.projectScope(project)
+            val scope = SageEngineIniSources.scope(project)
 
             fileBasedIndex.getAllKeys(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, project)
                 .asSequence()
@@ -45,10 +44,30 @@ object SageEngineIniDeclarationLookup {
         }
     }
 
+    /**
+     * Whether a declaration of the same kind and name exists in a source with a higher priority, i.e. whether [declaration] is
+     * overridden (e.g. a base game declaration that the mod redeclares).
+     */
+    fun isShadowed(project: Project, declaration: SageEngineIniBlock): Boolean {
+        val kind = declaration.declarationKind ?: return false
+        val name = declaration.name ?: return false
+        val ownFile = declaration.containingFile?.virtualFile ?: return false
+        val ownRank = SageEngineIniSources.rank(project, ownFile)
+
+        return findDeclarations(project, kind, name).any { winner ->
+            winner.containingFile?.virtualFile?.let { SageEngineIniSources.rank(project, it) < ownRank } ?: false
+        }
+    }
+
+    /**
+     * Only the declarations of the best ranked source are returned: the project wins over the additional directories, earlier
+     * additional directories win over later ones.
+     */
     private fun findDeclarations(project: Project, kind: String, name: String): List<SageEngineIniBlock> {
-        return withIndexedFiles(project, kind, name, SageEngineIniDeclarationIndexKey.DECLARATION) { file ->
+        val declarations = withIndexedFiles(project, kind, name, SageEngineIniDeclarationIndexKey.DECLARATION) { file ->
             file.findDeclarationBlocks(kind, name)
         }
+        return SageEngineIniSources.keepBestRanked(project, declarations) { it.containingFile?.virtualFile }
     }
 
     private fun <T : PsiElement> withIndexedFiles(
@@ -60,7 +79,7 @@ object SageEngineIniDeclarationLookup {
     ): List<T> {
         return ReadAction.computeBlocking<List<T>, RuntimeException> {
             val result = mutableListOf<T>()
-            val scope = GlobalSearchScope.projectScope(project)
+            val scope = SageEngineIniSources.scope(project)
             val fileBasedIndex = FileBasedIndex.getInstance()
 
             // The key is lowercased, so a single case-insensitive lookup resolves to exactly one index key.

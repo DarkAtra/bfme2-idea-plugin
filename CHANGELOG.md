@@ -2,6 +2,12 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.4.0`
+
+### Added
+
+- Allow specifying directories that contain files from the base game or any other files that should be indexed for linting and autocompletion
+
 ## `0.3.0`
 
 ### Added

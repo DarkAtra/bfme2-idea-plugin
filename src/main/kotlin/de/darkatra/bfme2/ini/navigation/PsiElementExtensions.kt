@@ -9,6 +9,7 @@ import com.intellij.psi.PsiManager
 import com.intellij.psi.TokenType
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.elementType
+import de.darkatra.bfme2.ini.declarations.SageEngineIniSources
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
 internal fun PsiElement.resolveIncludeFile(): PsiFile? {
@@ -42,7 +43,7 @@ internal fun PsiElement.resolveIncludeDirectory(): VirtualFile? {
 }
 
 private fun VirtualFile.isInProjectDirectory(element: PsiElement): Boolean {
-    return ProjectFileIndex.getInstance(element.project).isInContent(this)
+    return ProjectFileIndex.getInstance(element.project).isInContent(this) || SageEngineIniSources.isInAdditionalDirectory(element.project, this)
 }
 
 internal fun PsiElement.normalizedIncludePath(): String? {
