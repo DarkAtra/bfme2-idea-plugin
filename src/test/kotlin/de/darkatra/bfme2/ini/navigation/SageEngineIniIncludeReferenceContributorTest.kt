@@ -179,6 +179,19 @@ class SageEngineIniIncludeReferenceContributorTest : LightPlatformCodeInsightFix
     }
 
     @Test
+    fun `should replace the already typed file name when completing include paths`() {
+
+        myFixture.addFileToProject("data/includes/Shared.inc", "")
+        myFixture.addFileToProject("data/includes/Other.inc", "")
+        myFixture.addFileToProject("data/elvenmallorntree.ini", "#include \"includes\\Sh<caret>\"")
+
+        myFixture.configureByFile("data/elvenmallorntree.ini")
+        myFixture.completeBasic()
+
+        myFixture.checkResult("#include \"includes\\Shared.inc\"")
+    }
+
+    @Test
     fun `should not complete include paths outside project dir`() {
 
         WriteCommandAction.runWriteCommandAction(project) {

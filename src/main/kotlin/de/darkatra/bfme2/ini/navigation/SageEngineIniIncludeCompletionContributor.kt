@@ -32,10 +32,19 @@ class SageEngineIniIncludeCompletionContributor : CompletionContributor() {
                         return
                     }
 
-                    addIncludePathCompletions(element, result.withPrefixMatcher(""))
+                    addIncludePathCompletions(element, result.withPrefixMatcher(typedFileName(parameters)))
                 }
             }
         )
+    }
+
+    private fun typedFileName(parameters: CompletionParameters): String {
+        val position = parameters.position
+        val caretOffsetInString = (parameters.offset - position.textRange.startOffset).coerceIn(0, position.textLength)
+        return position.text.substring(0, caretOffsetInString)
+            .removePrefix("\"")
+            .substringAfterLast('/')
+            .substringAfterLast('\\')
     }
 
     private fun addIncludePathCompletions(element: PsiElement, result: CompletionResultSet) {
