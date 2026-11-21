@@ -13,7 +13,6 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
-import de.darkatra.bfme2.ini.psi.SageEngineIniComment
 import de.darkatra.bfme2.ini.psi.SageEngineIniElementTypes
 import de.darkatra.bfme2.ini.psi.SageEngineIniMacroStatement
 import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
@@ -49,7 +48,6 @@ class SageEngineIniParserDefinition : ParserDefinition {
             SageEngineIniElementTypes.BLOCK -> SageEngineIniBlock(node)
             SageEngineIniElementTypes.PROPERTY_ASSIGNMENT -> SageEngineIniPropertyAssignment(node)
             SageEngineIniElementTypes.MACRO_STATEMENT -> SageEngineIniMacroStatement(node)
-            SageEngineIniElementTypes.COMMENT -> SageEngineIniComment(node)
             SageEngineIniElementTypes.SCRIPT_BLOCK -> SageEngineIniScriptBlock(node)
             else -> ASTWrapperPsiElement(node)
         }

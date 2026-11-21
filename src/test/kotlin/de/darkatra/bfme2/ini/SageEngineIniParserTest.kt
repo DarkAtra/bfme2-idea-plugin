@@ -209,6 +209,26 @@ class SageEngineIniParserTest : LightPlatformCodeInsightFixture4TestCase() {
     }
 
     @Test
+    fun `should end statements at the end of the line`() {
+
+        myFixture.configureByText(
+            "elvenmallorntree.ini",
+            """
+            Object ElvenMallornTree
+                DisplayName = OBJECT:ElvenMallornTree ; the tree
+                "OBJECT:Stray"
+                BuildCost = 100
+            End
+            """.trimIndent()
+        )
+
+        assertThat(myFixture.file.descendantsOfType(SageEngineIniPropertyAssignment::class.java)).extracting<String> { it.text }
+            .containsExactly("DisplayName = OBJECT:ElvenMallornTree", "BuildCost = 100")
+        assertThat(PsiTreeUtil.findChildrenOfType(myFixture.file, PsiErrorElement::class.java)).extracting<String> { it.errorDescription }
+            .containsExactly("Unexpected '\"OBJECT:Stray\"'")
+    }
+
+    @Test
     fun `should parse real world files without errors`() {
 
         listOf(

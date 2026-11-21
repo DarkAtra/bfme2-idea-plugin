@@ -7,6 +7,7 @@ import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
 import de.darkatra.bfme2.ini.model.syntax.SageEngineIniSyntax
 import de.darkatra.bfme2.ini.psi.SageEngineIniElementTypes
+import de.darkatra.bfme2.ini.psi.SageEngineIniTokenSets
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
 class SageEngineIniParser : PsiParser {
@@ -28,13 +29,17 @@ class SageEngineIniParser : PsiParser {
             SageEngineIniTokenTypes.BLOCK_START -> parseBlock(builder)
             SageEngineIniTokenTypes.PROPERTY -> parseUntilStatementBoundary(builder, SageEngineIniElementTypes.PROPERTY_ASSIGNMENT)
             SageEngineIniTokenTypes.MACRO -> parseUntilStatementBoundary(builder, SageEngineIniElementTypes.MACRO_STATEMENT)
-            SageEngineIniTokenTypes.COMMENT_START -> parseUntilStatementBoundary(builder, SageEngineIniElementTypes.COMMENT)
             SageEngineIniTokenTypes.BLOCK_END -> {
                 builder.error("'${builder.tokenText}' without an open block")
                 builder.advanceLexer()
             }
 
-            else -> builder.advanceLexer()
+            else -> {
+                val marker = builder.mark()
+                val tokenText = builder.tokenText
+                parseUntilStatementBoundary(builder)
+                marker.error("Unexpected '$tokenText'")
+            }
         }
     }
 
@@ -117,7 +122,23 @@ class SageEngineIniParser : PsiParser {
             tokenType == SageEngineIniTokenTypes.BLOCK_END ||
             tokenType == SageEngineIniTokenTypes.PROPERTY ||
             tokenType == SageEngineIniTokenTypes.MACRO ||
-            tokenType == SageEngineIniTokenTypes.COMMENT_START ||
-            tokenType == TokenType.WHITE_SPACE && builder.tokenText?.any { it == '\n' || it == '\r' } == true
+            startsLine(builder)
+    }
+
+    // the builder skips whitespace and comments, so line breaks are only visible in the raw tokens before the current one
+    private fun startsLine(builder: PsiBuilder): Boolean {
+        var step = -1
+        while (true) {
+            val tokenType = builder.rawLookup(step) ?: return true
+            if (tokenType == TokenType.WHITE_SPACE) {
+                val whitespace = builder.originalText.subSequence(builder.rawTokenTypeStart(step), builder.rawTokenTypeStart(step + 1))
+                if (whitespace.any { it == '\n' || it == '\r' }) {
+                    return true
+                }
+            } else if (!SageEngineIniTokenSets.COMMENTS.contains(tokenType)) {
+                return false
+            }
+            step--
+        }
     }
 }

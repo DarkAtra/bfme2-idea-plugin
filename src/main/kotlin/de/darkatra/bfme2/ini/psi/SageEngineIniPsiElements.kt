@@ -37,6 +37,4 @@ class SageEngineIniPropertyAssignment(node: ASTNode) : SageEngineIniPsiElement(n
 
 class SageEngineIniMacroStatement(node: ASTNode) : SageEngineIniPsiElement(node)
 
-class SageEngineIniComment(node: ASTNode) : SageEngineIniPsiElement(node)
-
 class SageEngineIniScriptBlock(node: ASTNode) : SageEngineIniPsiElement(node)
