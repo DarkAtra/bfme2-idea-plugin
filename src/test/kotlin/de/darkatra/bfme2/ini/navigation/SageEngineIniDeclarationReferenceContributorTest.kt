@@ -313,6 +313,68 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
     }
 
     @Test
+    fun `should find use-sites written without equals sign`() {
+
+        myFixture.addFileToProject(
+            "data/stances.ini",
+            """
+            StanceTemplate FighterHorde
+                Stance Aggressive
+                    AttributeModifier   FighterHordeStanceAggressive
+                End
+            End
+            """.trimIndent()
+        )
+        myFixture.configureByText(
+            "attributemodifier.ini",
+            """
+            ModifierList FighterHordeStance<caret>Aggressive
+            End
+            """.trimIndent()
+        )
+
+        val sourceElement = TargetElementUtil.findTargetElement(
+            myFixture.editor,
+            TargetElementUtil.ELEMENT_NAME_ACCEPTED or TargetElementUtil.REFERENCED_ELEMENT_ACCEPTED
+        )!!
+        val usages = myFixture.findUsages(sourceElement)
+
+        assertThat(usages).extracting<String> { it.element!!.text }.containsExactly("FighterHordeStanceAggressive")
+        assertThat(usages).extracting<String> { it.element!!.containingFile.name }.containsExactly("stances.ini")
+    }
+
+    @Test
+    fun `should find image use-sites written without equals sign`() {
+
+        myFixture.addFileToProject(
+            "data/controlbarscheme.ini",
+            """
+            ControlBarScheme Mordor
+                ImagePart
+                    Position X:0 Y:520
+                    ImageName SMCommandBar
+                End
+            End
+            """.trimIndent()
+        )
+        myFixture.configureByText(
+            "mappedimage.ini",
+            """
+            MappedImage SMCommand<caret>Bar
+            End
+            """.trimIndent()
+        )
+
+        val sourceElement = TargetElementUtil.findTargetElement(
+            myFixture.editor,
+            TargetElementUtil.ELEMENT_NAME_ACCEPTED or TargetElementUtil.REFERENCED_ELEMENT_ACCEPTED
+        )!!
+        val usages = myFixture.findUsages(sourceElement)
+
+        assertThat(usages).extracting<String> { it.element!!.containingFile.name }.containsExactly("controlbarscheme.ini")
+    }
+
+    @Test
     fun `should navigate to object creation list use-sites from declaration`() {
 
         myFixture.addFileToProject(

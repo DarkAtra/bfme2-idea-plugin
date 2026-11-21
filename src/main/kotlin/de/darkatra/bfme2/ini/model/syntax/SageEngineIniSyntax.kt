@@ -119,6 +119,10 @@ object SageEngineIniSyntax {
         return parent != null && contextualBareValueKeyLookup[resolveParent(parent)]?.contains(key) == true
     }
 
+    fun isBareValueKeyInAnyBlock(key: String): Boolean {
+        return key in bareValueKeyLookup || contextualBareValueKeyLookup.values.any { key in it }
+    }
+
     fun requiresEquals(parent: String?, key: String): Boolean {
         return parent != null && resolveParent(parent) in equalsRequiringBlockLookup && !forbidsEquals(parent, key)
     }

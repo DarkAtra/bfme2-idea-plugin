@@ -13,6 +13,7 @@ import com.intellij.util.io.EnumeratorStringDescriptor
 import com.intellij.util.io.IOUtil
 import com.intellij.util.io.KeyDescriptor
 import de.darkatra.bfme2.ini.SageEngineIniFileType
+import de.darkatra.bfme2.ini.model.syntax.SageEngineIniSyntax
 import java.io.DataInput
 import java.io.DataOutput
 
@@ -47,9 +48,10 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
 
                 val equalsIndex = line.indexOf('=')
                 if (equalsIndex >= 0) {
-                    indexUseSites(line, equalsIndex)
+                    indexUseSites(line.substring(0, equalsIndex).trim(), line.substring(equalsIndex + 1))
                 } else {
                     indexDeclaration(line)
+                    indexBareUseSites(line)
                 }
             }
         }
@@ -63,14 +65,22 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
         mergeOccurrence(SageEngineIniDeclarationIndexKey.create(tokens[0], tokens[1]), SageEngineIniDeclarationIndexKey.DECLARATION, tokens[1])
     }
 
-    private fun MutableMap<String, DeclarationOccurrence>.indexUseSites(line: String, equalsIndex: Int) {
-        val propertyName = line.substring(0, equalsIndex).trim()
+    // e.g. `AttributeModifier FighterHordeStanceAggressive` inside a `Stance`, whether the block allows the bare form is checked on the PSI
+    private fun MutableMap<String, DeclarationOccurrence>.indexBareUseSites(line: String) {
+        val propertyName = line.split(WHITESPACE).first()
+        if (!SageEngineIniSyntax.isBareValueKeyInAnyBlock(propertyName)) {
+            return
+        }
+        indexUseSites(propertyName, line.substring(propertyName.length))
+    }
+
+    private fun MutableMap<String, DeclarationOccurrence>.indexUseSites(propertyName: String, values: String) {
         val expectedKinds = SageEngineIniDeclarationSchema.expectedKindsForProperty(propertyName)
         if (expectedKinds.isEmpty()) {
             return
         }
 
-        line.substring(equalsIndex + 1).split(WHITESPACE)
+        values.split(WHITESPACE)
             .map { it.trim() }
             .filter { it.isNotEmpty() }
             .forEach { value ->
@@ -96,7 +106,7 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
 
     override fun getValueExternalizer(): DataExternalizer<DeclarationOccurrence> = OccurrenceExternalizer
 
-    override fun getVersion(): Int = 8
+    override fun getVersion(): Int = 9
 
     override fun getInputFilter(): FileBasedIndex.InputFilter = object : DefaultFileTypeSpecificInputFilter(SageEngineIniFileType) {
 
