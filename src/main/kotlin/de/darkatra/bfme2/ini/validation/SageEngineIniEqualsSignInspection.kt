@@ -27,7 +27,8 @@ class SageEngineIniEqualsSignInspection : LocalInspectionTool() {
                 val parentKind = (element.parent as? SageEngineIniBlock)?.declarationKind ?: return
                 val equals = element.node.findChildByType(SageEngineIniTokenTypes.EQUALS)?.psi
 
-                if (equals == null && SageEngineIniSyntax.requiresEquals(parentKind, propertyName)) {
+                // lines without any value are reported by SageEngineIniMissingValueInspection
+                if (equals == null && element.valueWords().isNotEmpty() && SageEngineIniSyntax.requiresEquals(parentKind, propertyName)) {
                     holder.registerProblem(
                         element.firstChild,
                         "'$propertyName' requires '=' in '$parentKind'",

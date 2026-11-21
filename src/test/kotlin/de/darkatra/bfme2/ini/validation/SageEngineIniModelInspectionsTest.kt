@@ -99,6 +99,56 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should report properties without value`() {
+
+        myFixture.enableInspections(SageEngineIniMissingValueInspection(), SageEngineIniEqualsSignInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object AngmarHallOfTwilight
+                <warning descr="'GeometryName' has no value">GeometryName</warning>			;= Geom_Orig
+                <warning descr="'SelectPortrait' has no value">SelectPortrait</warning> =
+                DisplayName = OBJECT:AngmarHallOfTwilight
+                KindOf =
+            End
+            Weapon ElvenBow
+                ClearNuggets
+            End
+            Credits
+                Blank
+                Text = "CREDITS:DevelopmentTitle1"
+            End
+            UnknownBlock Foo
+                Blank
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
+    fun `should report empty value lists`() {
+
+        myFixture.enableInspections(SageEngineIniEmptyValueListInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object AngmarHallOfTwilight
+                <weak_warning descr="'KindOf' has an empty value list, which has no effect">KindOf =</weak_warning>
+                KindOf = STRUCTURE
+                SelectPortrait =
+            End
+            Credits
+                Blank
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, true)
+    }
+
+    @Test
     fun `should not report top level blocks of included files`() {
 
         myFixture.enableInspections(SageEngineIniUnknownBlockInspection())

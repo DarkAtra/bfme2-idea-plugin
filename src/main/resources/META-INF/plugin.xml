@@ -92,6 +92,24 @@
             level="WARNING"
             implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniEqualsSignInspection"
         />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniMissingValue"
+            displayName="Property without value"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniMissingValueInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniEmptyValueList"
+            displayName="Property with empty value list"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WEAK WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniEmptyValueListInspection"
+        />
         <targetElementEvaluator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationTargetElementEvaluator"/>
         <lang.findUsagesProvider language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationFindUsagesProvider"/>
         <highlightUsagesHandlerFactory implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationHighlightUsagesHandlerFactory"/>

@@ -78,6 +78,9 @@ object SageEngineIniSyntax {
     val equalsRequiringBlocks: Set<String> = setOf("Object")
     val equalsForbiddenKeys: Map<String, Set<String>> = mapOf("Object" to setOf("RemoveModule"))
 
+    // directives that are written as a bare key without any value
+    val valuelessKeys: Map<String, Set<String>> = mapOf("Credits" to setOf("Blank"))
+
     // `ChildObject` and `ObjectReskin` share the body of an `Object`, so they also share its contextual rules
     private val parentAliases: Map<String, String> = caseInsensitiveMapOf(
         listOf(
@@ -94,6 +97,7 @@ object SageEngineIniSyntax {
     private val contextualBareValueKeyLookup = caseInsensitiveMapOf(contextualBareValueKeys.mapValues { caseInsensitiveSetOf(it.value) }.toList())
     private val equalsRequiringBlockLookup = caseInsensitiveSetOf(equalsRequiringBlocks)
     private val equalsForbiddenKeyLookup = caseInsensitiveMapOf(equalsForbiddenKeys.mapValues { caseInsensitiveSetOf(it.value) }.toList())
+    private val valuelessKeyLookup = caseInsensitiveMapOf(valuelessKeys.mapValues { caseInsensitiveSetOf(it.value) }.toList())
 
     /**
      * Whether a line starting with [key] opens a block regardless of its parent. [valueHead] is the first token after the key with `=` ignored.
@@ -129,6 +133,10 @@ object SageEngineIniSyntax {
 
     fun forbidsEquals(parent: String?, key: String): Boolean {
         return parent != null && equalsForbiddenKeyLookup[resolveParent(parent)]?.contains(key) == true
+    }
+
+    fun isValuelessKey(parent: String?, key: String): Boolean {
+        return parent != null && valuelessKeyLookup[resolveParent(parent)]?.contains(key) == true
     }
 
     private fun resolveParent(parent: String): String {

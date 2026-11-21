@@ -9,6 +9,7 @@ import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiWhiteSpace
 import com.intellij.util.text.EditDistance
+import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
 
 /**
  * Finds known names that are likely meant by a misspelled [name], closest first. Matching ignores case like the engine does.
@@ -56,14 +57,17 @@ class SageEngineIniReplaceTextQuickFix(private val replacement: String) : LocalQ
 }
 
 /**
- * Removes the line of a property assignment that is overridden by a later assignment of the same property.
+ * Removes the line of a property assignment, e.g. one that is overridden by a later assignment of the same property.
  */
-class SageEngineIniRemoveAssignmentQuickFix : LocalQuickFix {
+class SageEngineIniRemoveAssignmentQuickFix(
+    private val familyName: String = "Remove overridden assignment"
+) : LocalQuickFix {
 
-    override fun getFamilyName(): String = "Remove overridden assignment"
+    override fun getFamilyName(): String = familyName
 
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
-        val assignment = descriptor.psiElement?.parent ?: return
+        val problemElement = descriptor.psiElement ?: return
+        val assignment = problemElement as? SageEngineIniPropertyAssignment ?: problemElement.parent ?: return
         assignment.editDocument(project) { document ->
             val range = assignment.textRange
             val line = document.getLineNumber(range.startOffset)

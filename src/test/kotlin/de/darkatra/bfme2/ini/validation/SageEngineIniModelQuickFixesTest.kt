@@ -105,6 +105,31 @@ class SageEngineIniModelQuickFixesTest : LightPlatformCodeInsightFixture4TestCas
     }
 
     @Test
+    fun `should remove properties with empty value lists`() {
+
+        myFixture.enableInspections(SageEngineIniEmptyValueListInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object AngmarHallOfTwilight
+                Kind<caret>Of =
+                DisplayName = OBJECT:AngmarHallOfTwilight
+            End
+            """.trimIndent()
+        )
+
+        myFixture.launchAction(myFixture.findSingleIntention("Remove property"))
+
+        myFixture.checkResult(
+            """
+            Object AngmarHallOfTwilight
+                DisplayName = OBJECT:AngmarHallOfTwilight
+            End
+            """.trimIndent()
+        )
+    }
+
+    @Test
     fun `should suggest known blocks for unknown blocks`() {
 
         myFixture.enableInspections(SageEngineIniUnknownBlockInspection())
