@@ -83,6 +83,15 @@
             level="WARNING"
             implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniSpuriousBlockLabelInspection"
         />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniEqualsSign"
+            displayName="Missing or forbidden &apos;=&apos; in property"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniEqualsSignInspection"
+        />
         <targetElementEvaluator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationTargetElementEvaluator"/>
         <lang.findUsagesProvider language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationFindUsagesProvider"/>
         <highlightUsagesHandlerFactory implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationHighlightUsagesHandlerFactory"/>

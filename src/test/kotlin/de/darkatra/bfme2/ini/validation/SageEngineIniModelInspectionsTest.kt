@@ -66,6 +66,39 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should report missing and forbidden equals signs of object properties`() {
+
+        myFixture.enableInspections(SageEngineIniEqualsSignInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object IsengardUrukCrossbow
+                <warning descr="'CommandSet' requires '=' in 'Object'">CommandSet</warning> IsengardUrukCrossbowCommandSet
+                <warning descr="'GeometryContactPoint' requires '=' in 'Object'">GeometryContactPoint</warning> X:0 Y:0 Z:112 Swoop
+                <warning descr="'Scale' requires '=' in 'Object'">Scale</warning> 1.15
+                DisplayName = OBJECT:IsengardArcher
+                RemoveModule ModuleTag_Death
+                RemoveModule <warning descr="'RemoveModule' must be written without '='">=</warning> ModuleTag_Death
+            End
+            ChildObject CaveTroll_Huge CaveTroll
+                <warning descr="'Scale' requires '=' in 'ChildObject'">Scale</warning> 1.75
+                RemoveModule ModuleTag_ConstructionDeath
+            End
+            StanceTemplate FighterHorde
+                Stance Aggressive
+                    AttributeModifier FighterHordeStanceAggressive
+                End
+            End
+            ControlBarScheme Mordor
+                Side Mordor
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should not report top level blocks of included files`() {
 
         myFixture.enableInspections(SageEngineIniUnknownBlockInspection())

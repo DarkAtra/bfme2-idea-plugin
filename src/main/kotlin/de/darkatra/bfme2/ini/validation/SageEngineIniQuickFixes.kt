@@ -81,7 +81,7 @@ class SageEngineIniRemoveAssignmentQuickFix : LocalQuickFix {
 }
 
 /**
- * Removes the `=` of a block header that the engine ignores, e.g. `ThreatBreakdown = Tag`.
+ * Removes an `=` that doesn't belong there, e.g. in the block header `ThreatBreakdown = Tag` or in `RemoveModule = ModuleTag_Death`.
  */
 class SageEngineIniRemoveEqualsQuickFix : LocalQuickFix {
 
@@ -91,6 +91,19 @@ class SageEngineIniRemoveEqualsQuickFix : LocalQuickFix {
         val equals = descriptor.psiElement ?: return
         val end = (equals.nextSibling as? PsiWhiteSpace)?.textRange?.endOffset ?: equals.textRange.endOffset
         equals.editDocument(project) { it.deleteString(equals.textRange.startOffset, end) }
+    }
+}
+
+/**
+ * Inserts the `=` after a property name, e.g. for `CommandSet Foo` inside an `Object`.
+ */
+class SageEngineIniInsertEqualsQuickFix : LocalQuickFix {
+
+    override fun getFamilyName(): String = "Insert '='"
+
+    override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
+        val propertyName = descriptor.psiElement ?: return
+        propertyName.editDocument(project) { it.insertString(propertyName.textRange.endOffset, " =") }
     }
 }
 

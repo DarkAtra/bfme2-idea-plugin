@@ -57,6 +57,54 @@ class SageEngineIniModelQuickFixesTest : LightPlatformCodeInsightFixture4TestCas
     }
 
     @Test
+    fun `should insert missing equals signs`() {
+
+        myFixture.enableInspections(SageEngineIniEqualsSignInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object IsengardUrukCrossbow
+                Command<caret>Set IsengardUrukCrossbowCommandSet
+            End
+            """.trimIndent()
+        )
+
+        myFixture.launchAction(myFixture.findSingleIntention("Insert '='"))
+
+        myFixture.checkResult(
+            """
+            Object IsengardUrukCrossbow
+                CommandSet = IsengardUrukCrossbowCommandSet
+            End
+            """.trimIndent()
+        )
+    }
+
+    @Test
+    fun `should remove forbidden equals signs`() {
+
+        myFixture.enableInspections(SageEngineIniEqualsSignInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            ChildObject CaveTroll_Huge CaveTroll
+                RemoveModule <caret>= ModuleTag_Death
+            End
+            """.trimIndent()
+        )
+
+        myFixture.launchAction(myFixture.findSingleIntention("Remove '='"))
+
+        myFixture.checkResult(
+            """
+            ChildObject CaveTroll_Huge CaveTroll
+                RemoveModule ModuleTag_Death
+            End
+            """.trimIndent()
+        )
+    }
+
+    @Test
     fun `should suggest known blocks for unknown blocks`() {
 
         myFixture.enableInspections(SageEngineIniUnknownBlockInspection())

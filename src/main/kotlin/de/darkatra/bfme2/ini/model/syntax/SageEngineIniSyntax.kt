@@ -74,6 +74,10 @@ object SageEngineIniSyntax {
     )
     val contextualBareValueKeys: Map<String, Set<String>> = mapOf("Object" to setOf("CommandSet"))
 
+    // properties of these blocks are always written with `=`, bare lines of them are only parsed as properties to avoid opening a block
+    val equalsRequiringBlocks: Set<String> = setOf("Object")
+    val equalsForbiddenKeys: Map<String, Set<String>> = mapOf("Object" to setOf("RemoveModule"))
+
     // `ChildObject` and `ObjectReskin` share the body of an `Object`, so they also share its contextual rules
     private val parentAliases: Map<String, String> = caseInsensitiveMapOf(
         listOf(
@@ -88,6 +92,8 @@ object SageEngineIniSyntax {
     private val bareValueKeyLookup = caseInsensitiveSetOf(bareValueKeys)
     private val contextualBlockOpenerLookup = caseInsensitiveMapOf(contextualBlockOpeners.mapValues { caseInsensitiveSetOf(it.value) }.toList())
     private val contextualBareValueKeyLookup = caseInsensitiveMapOf(contextualBareValueKeys.mapValues { caseInsensitiveSetOf(it.value) }.toList())
+    private val equalsRequiringBlockLookup = caseInsensitiveSetOf(equalsRequiringBlocks)
+    private val equalsForbiddenKeyLookup = caseInsensitiveMapOf(equalsForbiddenKeys.mapValues { caseInsensitiveSetOf(it.value) }.toList())
 
     /**
      * Whether a line starting with [key] opens a block regardless of its parent. [valueHead] is the first token after the key with `=` ignored.
@@ -111,6 +117,14 @@ object SageEngineIniSyntax {
 
     fun isContextualBareValueKey(parent: String?, key: String): Boolean {
         return parent != null && contextualBareValueKeyLookup[resolveParent(parent)]?.contains(key) == true
+    }
+
+    fun requiresEquals(parent: String?, key: String): Boolean {
+        return parent != null && resolveParent(parent) in equalsRequiringBlockLookup && !forbidsEquals(parent, key)
+    }
+
+    fun forbidsEquals(parent: String?, key: String): Boolean {
+        return parent != null && equalsForbiddenKeyLookup[resolveParent(parent)]?.contains(key) == true
     }
 
     private fun resolveParent(parent: String): String {
