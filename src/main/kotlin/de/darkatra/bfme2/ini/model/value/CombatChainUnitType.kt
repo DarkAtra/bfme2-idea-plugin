@@ -16,7 +16,8 @@ enum class CombatChainUnitType(override val token: String) : SageIniEnum {
     BATTLE_TOWER("BATTLE_TOWER"),
     SHIP_BATTLESHIP("SHIP_BATTLESHIP"),
     SHIP_BOMBARD("SHIP_BOMBARD"),
-    SHIP_SUICIDE("SHIP_SUICIDE");
+    SHIP_SUICIDE("SHIP_SUICIDE"),
+    SUPPORT("SUPPORT");
 
     companion object {
 

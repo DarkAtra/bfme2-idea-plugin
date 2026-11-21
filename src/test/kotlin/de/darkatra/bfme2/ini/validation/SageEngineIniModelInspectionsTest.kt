@@ -508,6 +508,27 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should accept enum values that the base game uses`() {
+
+        myFixture.enableInspections(SageEngineIniInvalidValueInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object AngmarNecromancer
+                WeaponSet
+                    Conditions = WEAPONSET_TOGGLE_3
+                End
+            End
+            CombatChainDefinition SupportCombatChain
+                Unit = SUPPORT
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should not report top level blocks of included files`() {
 
         myFixture.enableInspections(SageEngineIniUnknownBlockInspection())
