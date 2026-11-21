@@ -79,28 +79,19 @@ class SageEngineIniParser : PsiParser {
 
     private fun parseScriptBlock(builder: PsiBuilder) {
         val marker = builder.mark()
-        var nesting = 0
+        builder.advanceLexer()
         while (!builder.eof()) {
-            val tokenType = builder.tokenType
-            val tokenText = builder.tokenText
+            if (builder.tokenType == SageEngineIniTokenTypes.BLOCK_END && builder.tokenText.equals("EndScript", ignoreCase = true)) {
+                builder.advanceLexer()
+                marker.done(SageEngineIniElementTypes.SCRIPT_BLOCK)
+                return
+            }
+            if (builder.tokenType == SageEngineIniTokenTypes.SCRIPT_BODY && builder.tokenText.equals("BeginScript", ignoreCase = true)) {
+                builder.error("Missing 'EndScript' before 'BeginScript'")
+            }
             builder.advanceLexer()
-
-            // the lexer emits nested `BeginScript`s as script body tokens
-            if ((tokenType == SageEngineIniTokenTypes.BLOCK_START || tokenType == SageEngineIniTokenTypes.SCRIPT_BODY) &&
-                tokenText.equals("BeginScript", ignoreCase = true)
-            ) {
-                nesting++
-            }
-            if (tokenType == SageEngineIniTokenTypes.BLOCK_END && tokenText.equals("EndScript", ignoreCase = true)) {
-                nesting--
-                if (nesting <= 0) {
-                    break
-                }
-            }
         }
-        if (nesting > 0) {
-            builder.error("Missing 'EndScript'")
-        }
+        builder.error("Missing 'EndScript'")
         marker.done(SageEngineIniElementTypes.SCRIPT_BLOCK)
     }
 

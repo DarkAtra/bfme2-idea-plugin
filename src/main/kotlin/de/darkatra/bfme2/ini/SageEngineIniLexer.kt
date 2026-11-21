@@ -306,8 +306,7 @@ class SageEngineIniLexer : LexerBase() {
     private fun nextState(type: IElementType): Int {
         if (isScriptState(tokenState)) {
             return when {
-                type === SageEngineIniTokenTypes.BLOCK_END && tokenTextEquals(END_SCRIPT) -> decreaseScriptState(tokenState)
-                type === SageEngineIniTokenTypes.SCRIPT_BODY && tokenTextEquals(BEGIN_SCRIPT) -> tokenState + 1
+                type === SageEngineIniTokenTypes.BLOCK_END && tokenTextEquals(END_SCRIPT) -> STATE_DEFAULT
                 else -> tokenState
             }
         }
@@ -333,7 +332,7 @@ class SageEngineIniLexer : LexerBase() {
         }
 
         if (type === SageEngineIniTokenTypes.BLOCK_START && tokenTextEquals(BEGIN_SCRIPT)) {
-            return STATE_SCRIPT_BASE + 1
+            return STATE_SCRIPT
         }
 
         // a statement may follow `End` on the same line
@@ -346,10 +345,6 @@ class SageEngineIniLexer : LexerBase() {
         }
 
         return STATE_LINE_REST
-    }
-
-    private fun decreaseScriptState(state: Int): Int {
-        return if (state > STATE_SCRIPT_BASE + 1) state - 1 else STATE_DEFAULT
     }
 
     private fun tokenTextEquals(text: String): Boolean {
@@ -448,7 +443,7 @@ class SageEngineIniLexer : LexerBase() {
         private const val STATE_PROPERTY_VALUE = 2
         private const val STATE_COMMENT_SPACER = 3
         private const val STATE_LINE_REST = 4
-        private const val STATE_SCRIPT_BASE = 100
+        private const val STATE_SCRIPT = 5
         private const val BEGIN_SCRIPT = "BeginScript"
         private const val END_SCRIPT = "EndScript"
         private val WHITESPACE = Regex("\\s+")
@@ -458,7 +453,7 @@ class SageEngineIniLexer : LexerBase() {
         }
 
         private fun isScriptState(state: Int): Boolean {
-            return state >= STATE_SCRIPT_BASE
+            return state == STATE_SCRIPT
         }
 
         private val BLOCK_ENDS = setOf(

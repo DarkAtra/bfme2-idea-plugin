@@ -49,9 +49,7 @@ class SageEngineIniParserTest : LightPlatformCodeInsightFixture4TestCase() {
             BeginScript
                 if Flag
                 then
-                    BeginScript
-                        nested
-                    EndScript
+                    CurDrawableAllowToContinue()
                 end
             EndScript
             After = EndScript
@@ -66,6 +64,49 @@ class SageEngineIniParserTest : LightPlatformCodeInsightFixture4TestCase() {
         assertThat(myFixture.file.descendantsOfType(SageEngineIniPropertyAssignment::class.java)).extracting<String> { it.text.trim() }
             .contains("After = EndScript")
         assertThat(PsiTreeUtil.findChildrenOfType(myFixture.file, PsiErrorElement::class.java)).isEmpty()
+    }
+
+    @Test
+    fun `should end a script block at the first EndScript`() {
+
+        myFixture.configureByText(
+            "script.ini",
+            """
+            BeginScript
+                CurDrawableAllowToContinue()
+            BeginScript
+                CurDrawableSetTransitionAnimState("TRANS_1_2")
+            EndScript
+            After = EndScript
+            """.trimIndent()
+        )
+
+        val scriptBlocks = myFixture.file.descendantsOfType(SageEngineIniScriptBlock::class.java)
+
+        assertThat(scriptBlocks).hasSize(1)
+        assertThat(scriptBlocks.single().text.trim()).endsWith("CurDrawableSetTransitionAnimState(\"TRANS_1_2\")\nEndScript")
+        assertThat(myFixture.file.descendantsOfType(SageEngineIniPropertyAssignment::class.java)).extracting<String> { it.text.trim() }
+            .contains("After = EndScript")
+        assertThat(PsiTreeUtil.findChildrenOfType(myFixture.file, PsiErrorElement::class.java)).extracting<String> { it.errorDescription }
+            .containsExactly("Missing 'EndScript' before 'BeginScript'")
+    }
+
+    @Test
+    fun `should report an EndScript without an open script block`() {
+
+        myFixture.configureByText(
+            "script.ini",
+            """
+            BeginScript
+                CurDrawableAllowToContinue()
+            EndScript
+            EndScript
+            """.trimIndent()
+        )
+
+        assertThat(myFixture.file.descendantsOfType(SageEngineIniScriptBlock::class.java)).hasSize(1)
+        assertThat(PsiTreeUtil.findChildrenOfType(myFixture.file, PsiErrorElement::class.java)).extracting<String> { it.errorDescription }
+            .containsExactly("'EndScript' without an open block")
     }
 
     @Test

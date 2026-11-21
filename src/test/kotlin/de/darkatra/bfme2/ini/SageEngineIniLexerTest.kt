@@ -553,7 +553,6 @@ class SageEngineIniLexerTest {
                     nested
                 EndScript
                 CurDrawableAllowToContinue()
-            EndScript
             After = EndScript
             """.trimIndent()
         )
