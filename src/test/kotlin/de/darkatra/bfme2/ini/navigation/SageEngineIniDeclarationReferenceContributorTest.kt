@@ -375,6 +375,49 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
     }
 
     @Test
+    fun `should navigate from eva event forward references to their declaration`() {
+
+        myFixture.addFileToProject(
+            "data/evaevents.ini",
+            """
+            NewEvaEvent DiscoveredRing
+            End
+            """.trimIndent()
+        )
+        myFixture.configureByText("eva.ini", "EvaEventForwardReference Discovered<caret>Ring")
+
+        val sourceElement = myFixture.file.findElementAt(myFixture.caretOffset)
+        val targets = SageEngineIniDeclarationGotoDeclarationHandler().getGotoDeclarationTargets(
+            sourceElement,
+            myFixture.caretOffset,
+            myFixture.editor
+        )
+
+        assertThat(targets).extracting<String> { it.text }.containsExactly("DiscoveredRing")
+    }
+
+    @Test
+    fun `should find eva event forward references as use-sites`() {
+
+        myFixture.addFileToProject("data/eva.ini", "EvaEventForwardReference DiscoveredRing")
+        myFixture.configureByText(
+            "evaevents.ini",
+            """
+            NewEvaEvent Discovered<caret>Ring
+            End
+            """.trimIndent()
+        )
+
+        val sourceElement = TargetElementUtil.findTargetElement(
+            myFixture.editor,
+            TargetElementUtil.ELEMENT_NAME_ACCEPTED or TargetElementUtil.REFERENCED_ELEMENT_ACCEPTED
+        )!!
+        val usages = myFixture.findUsages(sourceElement)
+
+        assertThat(usages).extracting<String> { (it.element!!.parent.firstChild as LeafPsiElement).text }.containsExactly("EvaEventForwardReference")
+    }
+
+    @Test
     fun `should navigate to object creation list use-sites from declaration`() {
 
         myFixture.addFileToProject(

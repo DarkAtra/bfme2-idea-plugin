@@ -3,6 +3,8 @@ package de.darkatra.bfme2.ini.declarations
 import de.darkatra.bfme2.ini.model.SageIniModel
 import de.darkatra.bfme2.ini.model.common.SageIniProperty
 import de.darkatra.bfme2.ini.model.common.SageIniValueType
+import de.darkatra.bfme2.ini.model.`object`.NewEvaEvent
+import de.darkatra.bfme2.ini.model.`object`.PredefinedEvaEvent
 
 /**
  * Declaration kinds and the properties that reference them, derived from the descriptors of the [SageIniModel].
@@ -19,7 +21,13 @@ object SageEngineIniDeclarationSchema {
 
     val declarationKinds: Set<String> = SageIniModel.declarations.map { it.name }.toSet()
 
+    // statements outside of blocks aren't part of the model, e.g. `EvaEventForwardReference DiscoveredRing`
+    private val topLevelStatementReferenceRules: Map<String, Set<String>> = mapOf(
+        "evaeventforwardreference" to setOf(NewEvaEvent.name, PredefinedEvaEvent.name),
+    )
+
     private val propertyReferenceRules: Map<String, Set<String>> = buildMap<String, Set<String>> {
+        putAll(topLevelStatementReferenceRules)
         declaredProperties.forEach { property ->
             val kinds = referencedKinds(property)
             if (kinds.isNotEmpty()) {
