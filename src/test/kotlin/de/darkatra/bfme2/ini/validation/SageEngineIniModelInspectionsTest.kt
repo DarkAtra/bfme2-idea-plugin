@@ -149,6 +149,37 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should report properties outside of blocks`() {
+
+        myFixture.enableInspections(SageEngineIniPropertyOutsideBlockInspection())
+        myFixture.configureByText(
+            "credits.ini",
+            """
+            ;Credits
+                <warning descr="'ScrollRate' is outside of a block">ScrollRate</warning> = 1
+                <warning descr="'Blank' is outside of a block">Blank</warning>
+            BenchProfile = P4 2189 6.108187 15.113676 9.402223
+            ReallyLowMHz = 1200
+            EvaEventForwardReference DiscoveredRing
+            Object ElvenMallornTree
+                DisplayName = OBJECT:ElvenMallornTree
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
+    fun `should not report properties at the top level of included files`() {
+
+        myFixture.enableInspections(SageEngineIniPropertyOutsideBlockInspection())
+        myFixture.configureByText("productionbuilding.inc", "BuildCost = 100")
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should not report top level blocks of included files`() {
 
         myFixture.enableInspections(SageEngineIniUnknownBlockInspection())

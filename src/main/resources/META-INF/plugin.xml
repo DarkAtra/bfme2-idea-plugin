@@ -110,6 +110,15 @@
             level="WEAK WARNING"
             implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniEmptyValueListInspection"
         />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniPropertyOutsideBlock"
+            displayName="Property outside of a block"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniPropertyOutsideBlockInspection"
+        />
         <targetElementEvaluator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationTargetElementEvaluator"/>
         <lang.findUsagesProvider language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationFindUsagesProvider"/>
         <highlightUsagesHandlerFactory implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationHighlightUsagesHandlerFactory"/>
