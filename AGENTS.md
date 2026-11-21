@@ -24,8 +24,3 @@
 * **Phase-Based Progress:** If a feature is large, break it down into phases. Work on one subset of tasks, mark them as completed, and ask for a human review
   before proceeding.
 * **Conciseness:** Keep your task execution outputs focused. State exactly what you are changing and why.
-
-## 5. Self-Improvement & Learning Loops
-
-* **Feedback Retention:** When I correct your work or suggest a new pattern, integrate that fix into your memory under `.junie` so future sessions inherit the
-  knowledge.
