@@ -10,18 +10,19 @@ import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
 
 class SageEngineIniDeclarationReference(
     element: PsiElement,
-    private val expectedKinds: Set<String>
-) : PsiReferenceBase<PsiElement>(element, TextRange(0, element.textLength)) {
+    private val expectedKinds: Set<String>,
+    range: TextRange = TextRange(0, element.textLength),
+) : PsiReferenceBase<PsiElement>(element, range) {
 
     override fun resolve(): PsiElement? {
-        return SageEngineIniDeclarationLookup.findDeclarations(element.project, element.text, expectedKinds)
+        return SageEngineIniDeclarationLookup.findDeclarations(element.project, value, expectedKinds)
             .firstOrNull()
             ?.nameIdentifier
     }
 
     override fun isReferenceTo(element: PsiElement): Boolean {
         val declaration = element.declarationBlock() ?: return false
-        return declaration.name.equals(myElement.text, ignoreCase = true)
+        return declaration.name.equals(value, ignoreCase = true)
             && declaration.declarationKind in expectedKinds
             && !SageEngineIniDeclarationLookup.isShadowed(element.project, declaration)
     }

@@ -14,7 +14,7 @@ import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
 import de.darkatra.bfme2.ini.model.`object`.Weapon
-import de.darkatra.bfme2.ini.model.value.ModelCondition
+import de.darkatra.bfme2.ini.model.value.ModelConditionFlag
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.SpecialPowerUnpackConditions
@@ -69,7 +69,7 @@ data class WeaponFireSpecialAbilityUpdate(
     @SageIniName("RejectedConditions") override val rejectedConditions: SpecialPowerUnpackConditions? = null,
     @SageIniName("RequiredConditions") override val requiredConditions: SpecialPowerUnpackConditions? = null,
     @SageIniName("KillAttributeModifierOnRejected") override val killAttributeModifierOnRejected: Boolean = false,
-    @SageIniName("TriggerModelCondition") override val triggerModelCondition: ModelCondition? = null,
+    @SageIniName("TriggerModelCondition") override val triggerModelCondition: ModelConditionFlag? = null,
     @SageIniName("TriggerModelConditionDuration") override val triggerModelConditionDuration: Double = 0.0,
     @SageIniName("FreezeAfterTriggerDuration") override val freezeAfterTriggerDuration: Int = 0,
     @SageIniName("ChainedButton") override val chainedButton: SageReference<CommandButton>? = null,
@@ -77,11 +77,9 @@ data class WeaponFireSpecialAbilityUpdate(
     @SageIniName("StopUnitBeforeActivating") override val stopUnitBeforeActivating: Boolean = false,
     @SageIniName("WhichSpecialWeapon") val whichSpecialWeapon: Int = 0,
     @SageIniName("SkipContinue") val skipContinue: Boolean = false,
-    @SageIniName("MustFinishAbility") val mustFinishAbility: Boolean = false,
     @SageIniName("SpecialWeapon") val specialWeapon: SageReference<Weapon>? = null,
     @SageIniName("BusyForDuration") val busyForDuration: Int = 0,
     @SageIniName("PlayWeaponPreFireFX") val playWeaponPreFireFX: Boolean = false,
-    @SageIniName("ApproachUntilMembersInRange") val approachUntilMembersInRange: Boolean = false,
     @SageIniName("NeedLivingTargets") val needLivingTargets: Boolean = false,
 ) : SpecialAbilityUpdate() {
 
@@ -91,11 +89,9 @@ data class WeaponFireSpecialAbilityUpdate(
         properties = {
             property("WhichSpecialWeapon", IntValue) { it.whichSpecialWeapon }
             property("SkipContinue", BooleanValue) { it.skipContinue }
-            property("MustFinishAbility", BooleanValue) { it.mustFinishAbility }
             property("SpecialWeapon", ReferenceValue<Weapon> { listOf(Weapon) }) { it.specialWeapon }
             property("BusyForDuration", IntValue) { it.busyForDuration }
             property("PlayWeaponPreFireFX", BooleanValue) { it.playWeaponPreFireFX }
-            property("ApproachUntilMembersInRange", BooleanValue) { it.approachUntilMembersInRange }
             property("NeedLivingTargets", BooleanValue) { it.needLivingTargets }
         },
     )

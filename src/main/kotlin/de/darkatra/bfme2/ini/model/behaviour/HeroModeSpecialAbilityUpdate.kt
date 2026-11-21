@@ -12,7 +12,7 @@ import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
-import de.darkatra.bfme2.ini.model.value.ModelCondition
+import de.darkatra.bfme2.ini.model.value.ModelConditionFlag
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.SpecialPowerUnpackConditions
@@ -67,7 +67,7 @@ data class HeroModeSpecialAbilityUpdate(
     @SageIniName("RejectedConditions") override val rejectedConditions: SpecialPowerUnpackConditions? = null,
     @SageIniName("RequiredConditions") override val requiredConditions: SpecialPowerUnpackConditions? = null,
     @SageIniName("KillAttributeModifierOnRejected") override val killAttributeModifierOnRejected: Boolean = false,
-    @SageIniName("TriggerModelCondition") override val triggerModelCondition: ModelCondition? = null,
+    @SageIniName("TriggerModelCondition") override val triggerModelCondition: ModelConditionFlag? = null,
     @SageIniName("TriggerModelConditionDuration") override val triggerModelConditionDuration: Double = 0.0,
     @SageIniName("FreezeAfterTriggerDuration") override val freezeAfterTriggerDuration: Int = 0,
     @SageIniName("ChainedButton") override val chainedButton: SageReference<CommandButton>? = null,

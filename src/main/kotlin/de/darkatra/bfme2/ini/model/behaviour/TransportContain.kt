@@ -78,6 +78,7 @@ open class TransportContain(
     @SageIniName("FadePassengerOnExit") open val fadePassengerOnExit: Boolean = false,
     @SageIniName("ExitFadeTime") open val exitFadeTime: Int = 0,
     @SageIniName("ConditionForEntry") open val conditionForEntry: ContainCondition? = null,
+    @SageIniName("ShouldThrowOutPassengers") open val shouldThrowOutPassengers: Boolean = false,
 ) : OpenContain() {
 
     companion object : SageIniBlockDescriptor<TransportContain>(
@@ -127,6 +128,7 @@ open class TransportContain(
             property("FadePassengerOnExit", BooleanValue) { it.fadePassengerOnExit }
             property("ExitFadeTime", IntValue) { it.exitFadeTime }
             property("ConditionForEntry", ContainCondition.type) { it.conditionForEntry }
+            property("ShouldThrowOutPassengers", BooleanValue) { it.shouldThrowOutPassengers }
         },
     )
 }

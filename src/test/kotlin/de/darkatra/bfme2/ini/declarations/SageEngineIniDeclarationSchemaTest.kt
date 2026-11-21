@@ -91,7 +91,7 @@ class SageEngineIniDeclarationSchemaTest {
             "GameData.AutoSmokeParticleLargeSystem" to setOf("FXParticleSystem"),
             "GameData.AutoAflameParticleSystem" to setOf("FXParticleSystem"),
             "System.SlaveSystem" to setOf("FXParticleSystem"),
-            "System.PerParticleAttachedSystem" to setOf("FXParticleSystem"),
+            "System.PerParticleAttachedSystem" to setOf("FXParticleSystem", "ParticleSystem"),
             "LivingWorldMapInfo.AnimCloudPartSys" to setOf("FXParticleSystem"),
             "LivingWorldMapInfo.EmbersPartSys" to setOf("FXParticleSystem"),
             "W3DHordeModelDraw.WadingParticleSys" to setOf("FXParticleSystem"),
@@ -112,10 +112,10 @@ class SageEngineIniDeclarationSchemaTest {
             "SpawnArmy.PalantirMovie" to setOf("Video"),
             "SpecialPower.PalantirMovie" to setOf("Video"),
             "FXParticleSystem.SlaveSystem" to setOf("FXParticleSystem"),
-            "FXParticleSystem.PerParticleAttachedSystem" to setOf("FXParticleSystem"),
+            "FXParticleSystem.PerParticleAttachedSystem" to setOf("FXParticleSystem", "ParticleSystem"),
         ).forEach { (blockAndProperty, expectedKinds) ->
             val (blockName, propertyName) = blockAndProperty.split('.')
-            val property = SageIniModel.blocks.first { it.name == blockName }.property(propertyName)!!
+            val property = SageIniModel.blocks.firstNotNullOf { block -> block.property(propertyName)?.takeIf { block.name == blockName } }
 
             assertThat(SageEngineIniDeclarationSchema.referencedKinds(property)).describedAs(blockAndProperty).isEqualTo(expectedKinds)
         }
@@ -185,10 +185,16 @@ class SageEngineIniDeclarationSchemaTest {
             "_SoundSet.VoiceSelectBattle" to setOf("AudioEvent", "Multisound"),
         ).forEach { (blockAndProperty, expectedKinds) ->
             val (blockName, propertyName) = blockAndProperty.split('.')
-            val property = SageIniModel.blocks.first { it.name == blockName }.property(propertyName)!!
+            val property = SageIniModel.blocks.firstNotNullOf { block -> block.property(propertyName)?.takeIf { block.name == blockName } }
 
             assertThat(SageEngineIniDeclarationSchema.referencedKinds(property)).describedAs(blockAndProperty).isEqualTo(expectedKinds)
         }
+    }
+
+    @Test
+    fun `should treat top level particle system definitions as declarations`() {
+
+        assertThat(SageEngineIniDeclarationSchema.isDeclarationKind("ParticleSystem")).isTrue()
     }
 
     @Test
@@ -207,7 +213,6 @@ class SageEngineIniDeclarationSchemaTest {
     @Test
     fun `should not treat non-declaration blocks as declaration kinds`() {
 
-        assertThat(SageEngineIniDeclarationSchema.isDeclarationKind("ParticleSystem")).isFalse()
         assertThat(SageEngineIniDeclarationSchema.isDeclarationKind("Sound")).isFalse()
         assertThat(SageEngineIniDeclarationSchema.isDeclarationKind("ArmorSet")).isFalse()
         assertThat(SageEngineIniDeclarationSchema.isDeclarationKind("Animation")).isFalse()

@@ -4,7 +4,6 @@ import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
@@ -15,7 +14,7 @@ import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
-import de.darkatra.bfme2.ini.model.value.ModelCondition
+import de.darkatra.bfme2.ini.model.value.ModelConditionFlag
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.SpecialPowerUnpackConditions
@@ -70,14 +69,13 @@ data class SummonReplacementSpecialAbilityUpdate(
     @SageIniName("RejectedConditions") override val rejectedConditions: SpecialPowerUnpackConditions? = null,
     @SageIniName("RequiredConditions") override val requiredConditions: SpecialPowerUnpackConditions? = null,
     @SageIniName("KillAttributeModifierOnRejected") override val killAttributeModifierOnRejected: Boolean = false,
-    @SageIniName("TriggerModelCondition") override val triggerModelCondition: ModelCondition? = null,
+    @SageIniName("TriggerModelCondition") override val triggerModelCondition: ModelConditionFlag? = null,
     @SageIniName("TriggerModelConditionDuration") override val triggerModelConditionDuration: Double = 0.0,
     @SageIniName("FreezeAfterTriggerDuration") override val freezeAfterTriggerDuration: Int = 0,
     @SageIniName("ChainedButton") override val chainedButton: SageReference<CommandButton>? = null,
     @SageIniName("SkillPointsForTriggering") override val skillPointsForTriggering: Int = 0,
     @SageIniName("StopUnitBeforeActivating") override val stopUnitBeforeActivating: Boolean = false,
     @SageIniName("MountedTemplate") val mountedTemplate: SageReference<Object>? = null,
-    @SageIniName("MustFinishAbility") val mustFinishAbility: Boolean = false,
     @SageIniName("OpacityTarget") val opacityTarget: Double = 0.0,
 ) : SpecialAbilityUpdate() {
 
@@ -86,7 +84,6 @@ data class SummonReplacementSpecialAbilityUpdate(
         parent = SpecialAbilityUpdate,
         properties = {
             property("MountedTemplate", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.mountedTemplate }
-            property("MustFinishAbility", BooleanValue) { it.mustFinishAbility }
             property("OpacityTarget", FloatValue) { it.opacityTarget }
         },
     )

@@ -11,7 +11,7 @@ import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
-import de.darkatra.bfme2.ini.model.value.ModelCondition
+import de.darkatra.bfme2.ini.model.value.ModelConditionFlag
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.SpecialPowerUnpackConditions
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -76,7 +76,7 @@ data class GloriousChargeUpdate(
     @SageIniName("SuppressForHordes") override val suppressForHordes: Boolean = false,
     @SageIniName("ApproachUntilMembersInRange") override val approachUntilMembersInRange: Boolean = false,
     @SageIniName("IgnoreFacingCheck") override val ignoreFacingCheck: Boolean = false,
-    @SageIniName("TriggerModelCondition") override val triggerModelCondition: ModelCondition? = null,
+    @SageIniName("TriggerModelCondition") override val triggerModelCondition: ModelConditionFlag? = null,
     @SageIniName("TriggerModelConditionDuration") override val triggerModelConditionDuration: Double = 0.0,
     @SageIniName("BonusRadius") val bonusRadius: Double = 0.0,
     @SageIniName("SpeechDuration") val speechDuration: Int = 0,

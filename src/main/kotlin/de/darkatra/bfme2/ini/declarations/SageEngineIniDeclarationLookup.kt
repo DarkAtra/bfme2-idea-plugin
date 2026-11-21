@@ -111,11 +111,22 @@ object SageEngineIniDeclarationLookup {
     private fun PsiFile.findDeclarationUseSites(kind: String, name: String): Collection<PsiElement> {
         return PsiTreeUtil.findChildrenOfType(this, PsiElement::class.java)
             .asSequence()
-            .filter { it.elementType == SageEngineIniTokenTypes.VALUE }
-            .filter { it.text.equals(name, ignoreCase = true) }
-            .filter {
-                kind in SageEngineIniModelResolver.expectedDeclarationKinds(it)
-            }
+            .filter { it.isValueUseSite(kind, name) || it.isPrefixedNameUseSite(kind, name) }
             .toList()
+    }
+
+    private fun PsiElement.isValueUseSite(kind: String, name: String): Boolean {
+        return elementType == SageEngineIniTokenTypes.VALUE &&
+            text.equals(name, ignoreCase = true) &&
+            kind in SageEngineIniModelResolver.expectedDeclarationKinds(this)
+    }
+
+    // e.g. `VoiceAttackUnitWildAzog` is a use-site of the object `WildAzog`
+    private fun PsiElement.isPrefixedNameUseSite(kind: String, name: String): Boolean {
+        if (elementType != SageEngineIniTokenTypes.PROPERTY || !text.endsWith(name, ignoreCase = true)) {
+            return false
+        }
+        val (prefixLength, kinds) = SageEngineIniModelResolver.prefixedNameReference(this) ?: return false
+        return kind in kinds && text.substring(prefixLength).equals(name, ignoreCase = true)
     }
 }

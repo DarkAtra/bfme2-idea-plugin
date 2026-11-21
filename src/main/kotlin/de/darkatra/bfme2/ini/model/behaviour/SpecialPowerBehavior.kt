@@ -18,7 +18,7 @@ import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
-import de.darkatra.bfme2.ini.model.value.ModelCondition
+import de.darkatra.bfme2.ini.model.value.ModelConditionFlag
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.SpecialPowerUnpackConditions
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -83,7 +83,7 @@ open class SpecialPowerBehavior(
     @SageIniName("SuppressForHordes") open val suppressForHordes: Boolean = false,
     @SageIniName("ApproachUntilMembersInRange") open val approachUntilMembersInRange: Boolean = false,
     @SageIniName("IgnoreFacingCheck") open val ignoreFacingCheck: Boolean = false,
-    @SageIniName("TriggerModelCondition") open val triggerModelCondition: ModelCondition? = null,
+    @SageIniName("TriggerModelCondition") open val triggerModelCondition: ModelConditionFlag? = null,
     @SageIniName("TriggerModelConditionDuration") open val triggerModelConditionDuration: Double = 0.0,
 ) : SageBehavior {
 
@@ -148,7 +148,7 @@ open class SpecialPowerBehavior(
             property("SuppressForHordes", BooleanValue) { it.suppressForHordes }
             property("ApproachUntilMembersInRange", BooleanValue) { it.approachUntilMembersInRange }
             property("IgnoreFacingCheck", BooleanValue) { it.ignoreFacingCheck }
-            property("TriggerModelCondition", ModelCondition.type) { it.triggerModelCondition }
+            property("TriggerModelCondition", ModelConditionFlag.type) { it.triggerModelCondition }
             property("TriggerModelConditionDuration", FloatValue) { it.triggerModelConditionDuration }
         },
     )

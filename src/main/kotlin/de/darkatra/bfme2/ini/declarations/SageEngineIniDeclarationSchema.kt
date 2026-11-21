@@ -1,6 +1,7 @@
 package de.darkatra.bfme2.ini.declarations
 
 import de.darkatra.bfme2.ini.model.SageIniModel
+import de.darkatra.bfme2.ini.model.common.SageIniPrefixedProperties
 import de.darkatra.bfme2.ini.model.common.SageIniProperty
 import de.darkatra.bfme2.ini.model.common.SageIniValueType
 import de.darkatra.bfme2.ini.model.`object`.NewEvaEvent
@@ -20,6 +21,8 @@ object SageEngineIniDeclarationSchema {
         .toSet()
 
     val declarationKinds: Set<String> = SageIniModel.declarations.map { it.name }.toSet()
+
+    private val prefixedProperties: List<SageIniPrefixedProperties<*, *>> = SageIniModel.blocks.flatMap { it.prefixedProperties }.distinct()
 
     // statements outside of blocks aren't part of the model, e.g. `EvaEventForwardReference DiscoveredRing`
     private val topLevelStatementReferenceRules: Map<String, Set<String>> = mapOf(
@@ -54,7 +57,18 @@ object SageEngineIniDeclarationSchema {
         if (propertyName?.toIntOrNull() != null) {
             return numberedSlotKinds
         }
-        return propertyReferenceRules[propertyName].orEmpty()
+        return propertyReferenceRules[propertyName]
+            ?: prefixedProperties.firstOrNull { propertyName != null && it.matches(propertyName) }?.let { referencedKinds(it.type) }
+            ?: emptySet()
+    }
+
+    /**
+     * The length of the prefix and the declaration kinds the rest of a prefixed property name references, e.g. `WildAzog` in
+     * `VoiceAttackUnitWildAzog`.
+     */
+    fun prefixedNameReference(propertyName: String): Pair<Int, Set<String>>? {
+        val prefixed = prefixedProperties.firstOrNull { it.matches(propertyName) } ?: return null
+        return prefixed.prefix.length to referencedKinds(prefixed.suffix)
     }
 
     fun expectedKindsForPropertyValue(propertyName: String?, propertyValue: String?): Set<String> {
@@ -93,7 +107,7 @@ object SageEngineIniDeclarationSchema {
         return referencedKinds(property.type)
     }
 
-    private fun referencedKinds(type: SageIniValueType<*>): Set<String> {
+    fun referencedKinds(type: SageIniValueType<*>): Set<String> {
         return when (type) {
             is SageIniValueType.ReferenceValue<*> -> type.targets.map { it.name }.toSet()
             is SageIniValueType.ListValue<*> -> referencedKinds(type.element)

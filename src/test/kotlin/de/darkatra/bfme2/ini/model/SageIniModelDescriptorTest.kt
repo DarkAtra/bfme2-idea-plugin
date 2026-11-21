@@ -22,6 +22,7 @@ import de.darkatra.bfme2.ini.model.`object`.CommandSet
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectSection1
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.`object`.ThreatBreakdown
 import de.darkatra.bfme2.ini.model.`object`.WeaponSet
 import de.darkatra.bfme2.ini.model.particle.ParticleSystem
@@ -178,6 +179,8 @@ class SageIniModelDescriptorTest {
 
         assertThat(SageIniModel.block("W3DModelDraw")).isSameAs(W3DModelDraw)
         assertThat(SageIniModel.block("w3dmodeldraw")).isNull()
+        assertThat(SageIniModel.block("ParticleSystem")).isSameAs(ParticleSystemDefinition)
+        assertThat(SageIniModel.block("Sound")).isSameAs(de.darkatra.bfme2.ini.model.fx.Sound)
         assertThat(SageIniModel.block("_DefeatCondition")).isNull()
         assertThat(SageIniModel.declarations).contains(Object, Armor).doesNotContain(ArmorSet)
     }

@@ -29,7 +29,7 @@ data class Animation(
     @SageIniName("FadeEndFrame") val fadeEndFrame: Double = 0.0,
     @SageIniName("FadingIn") val fadingIn: Boolean = false,
     @SageIniName("AnimationDelay") val animationDelay: Int = 0,
-    @SageIniName("Image") val image: SageReference<MappedImage>? = null,
+    @SageIniName("Image") val image: List<SageReference<MappedImage>> = emptyList(),
     @SageIniName("NumberImages") val numberImages: Int = 0,
     @SageIniName("RandomizeStartFrame") val randomizeStartFrame: Boolean = false,
 ) : SageNestedAttribute {
@@ -52,7 +52,7 @@ data class Animation(
             property("FadeEndFrame", FloatValue) { it.fadeEndFrame }
             property("FadingIn", BooleanValue) { it.fadingIn }
             property("AnimationDelay", IntValue) { it.animationDelay }
-            property("Image", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.image }
+            property("Image", ListValue(ReferenceValue<MappedImage> { listOf(MappedImage) })) { it.image }
             property("NumberImages", IntValue) { it.numberImages }
             property("RandomizeStartFrame", BooleanValue) { it.randomizeStartFrame }
         },

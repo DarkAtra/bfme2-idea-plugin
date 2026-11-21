@@ -75,6 +75,12 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
     }
 
     private fun MutableMap<String, DeclarationOccurrence>.indexUseSites(propertyName: String, values: String) {
+        SageEngineIniDeclarationSchema.prefixedNameReference(propertyName)?.let { (prefixLength, kinds) ->
+            kinds.forEach { kind ->
+                mergeOccurrence(SageEngineIniDeclarationIndexKey.create(kind, propertyName.substring(prefixLength)), SageEngineIniDeclarationIndexKey.USE_SITE, "")
+            }
+        }
+
         val expectedKinds = SageEngineIniDeclarationSchema.expectedKindsForProperty(propertyName)
         if (expectedKinds.isEmpty()) {
             return
@@ -106,7 +112,7 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
 
     override fun getValueExternalizer(): DataExternalizer<DeclarationOccurrence> = OccurrenceExternalizer
 
-    override fun getVersion(): Int = 14
+    override fun getVersion(): Int = 19
 
     override fun getInputFilter(): FileBasedIndex.InputFilter = object : DefaultFileTypeSpecificInputFilter(SageEngineIniFileType) {
 

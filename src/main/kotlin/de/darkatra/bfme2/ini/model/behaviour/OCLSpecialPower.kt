@@ -5,7 +5,6 @@ import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.ChildObject
@@ -21,7 +20,6 @@ import de.darkatra.bfme2.ini.model.value.ModifierCategories
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
-import de.darkatra.bfme2.ini.model.value.WeatherFlag
 
 data class OCLSpecialPower(
     override val header: SageBlockHeader = SageBlockHeader(),
@@ -57,9 +55,6 @@ data class OCLSpecialPower(
     @SageIniName("ReferenceObject") val referenceObject: SageReference<Object>? = null,
     @SageIniName("UpgradeName") val upgradeName: SageReference<Upgrade>? = null,
     @SageIniName("NearestSecondaryObjectFilter") val nearestSecondaryObjectFilter: SageFilter? = null,
-    @SageIniName("ReEnableAntiCategory") val reEnableAntiCategory: Boolean = false,
-    @SageIniName("WeatherDuration") val weatherDuration: Int = 0,
-    @SageIniName("ChangeWeather") val changeWeather: WeatherFlag? = null,
 ) : SpecialPowerModuleBehavior() {
 
     companion object : SageIniBlockDescriptor<OCLSpecialPower>(
@@ -74,9 +69,6 @@ data class OCLSpecialPower(
             property("ReferenceObject", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.referenceObject }
             property("UpgradeName", ReferenceValue<Upgrade> { listOf(Upgrade) }) { it.upgradeName }
             property("NearestSecondaryObjectFilter", SageFilter.type) { it.nearestSecondaryObjectFilter }
-            property("ReEnableAntiCategory", BooleanValue) { it.reEnableAntiCategory }
-            property("WeatherDuration", IntValue) { it.weatherDuration }
-            property("ChangeWeather", WeatherFlag.type) { it.changeWeather }
         },
     )
 }

@@ -11,7 +11,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.livingworld.SideInfo
-import de.darkatra.bfme2.ini.model.value.Opaque
+import de.darkatra.bfme2.ini.model.livingworld.SkirmishBuildList
 import de.darkatra.bfme2.ini.model.value.SageReference
 
 data class AIData(
@@ -83,7 +83,7 @@ data class AIData(
     @SageIniName("BuildPhaseN_PerSecondPriorityModifier") val buildPhaseNPerSecondPriorityModifier: Double = 0.0,
     @SageIniName("AltCameraPitchOverride") val altCameraPitchOverride: Double = 0.0,
     @SageIniName("AltCameraZoomOverride") val altCameraZoomOverride: Double = 0.0,
-    @SageIniName("AttackPriority") val attackPriority: Opaque? = null,
+    @SageIniName("AttackPriority") val attackPriority: List<AttackPriority> = emptyList(),
     @SageIniName("DistanceRequiresGroup") val distanceRequiresGroup: Double = 0.0,
     @SageIniName("MaxRetaliationDistance") val maxRetaliationDistance: Double = 0.0,
     @SageIniName("MeleeAcquireLimitDist") val meleeAcquireLimitDist: Double = 0.0,
@@ -93,7 +93,7 @@ data class AIData(
     @SageIniName("MinVehiclesForGroup") val minVehiclesForGroup: Int = 0,
     @SageIniName("RetaliationFriendsRadius") val retaliationFriendsRadius: Double = 0.0,
     @SageIniName("SkirmishBaseDefenseExtraDistance") val skirmishBaseDefenseExtraDistance: Double = 0.0,
-    @SageIniName("SkirmishBuildList") val skirmishBuildList: Opaque? = null,
+    @SageIniName("SkirmishBuildList") val skirmishBuildList: List<SkirmishBuildList> = emptyList(),
     @SageIniName("SideInfo") val sideInfo: List<SideInfo> = emptyList(),
 ) : SageIniObject {
 
@@ -168,7 +168,7 @@ data class AIData(
             property("BuildPhaseN_PerSecondPriorityModifier", FloatValue) { it.buildPhaseNPerSecondPriorityModifier }
             property("AltCameraPitchOverride", FloatValue) { it.altCameraPitchOverride }
             property("AltCameraZoomOverride", FloatValue) { it.altCameraZoomOverride }
-            property("AttackPriority", Opaque.type) { it.attackPriority }
+            property("AttackPriority", ListValue(BlockValue<AttackPriority> { listOf(AttackPriority) })) { it.attackPriority }
             property("DistanceRequiresGroup", FloatValue) { it.distanceRequiresGroup }
             property("MaxRetaliationDistance", FloatValue) { it.maxRetaliationDistance }
             property("MeleeAcquireLimitDist", FloatValue) { it.meleeAcquireLimitDist }
@@ -178,7 +178,7 @@ data class AIData(
             property("MinVehiclesForGroup", IntValue) { it.minVehiclesForGroup }
             property("RetaliationFriendsRadius", FloatValue) { it.retaliationFriendsRadius }
             property("SkirmishBaseDefenseExtraDistance", FloatValue) { it.skirmishBaseDefenseExtraDistance }
-            property("SkirmishBuildList", Opaque.type) { it.skirmishBuildList }
+            property("SkirmishBuildList", ListValue(BlockValue<SkirmishBuildList> { listOf(SkirmishBuildList) })) { it.skirmishBuildList }
             property("SideInfo", ListValue(BlockValue<SideInfo> { listOf(SideInfo) })) { it.sideInfo }
         },
     )

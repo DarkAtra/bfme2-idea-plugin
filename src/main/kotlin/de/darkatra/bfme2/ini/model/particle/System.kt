@@ -9,7 +9,9 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageNestedAttribute
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.ParticleSystemType
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -37,7 +39,7 @@ data class System(
     @SageIniName("IsParticleUpTowardsEmitter") val isParticleUpTowardsEmitter: Boolean = false,
     @SageIniName("UseMaximumHeight") val useMaximumHeight: Boolean = false,
     @SageIniName("ShroudEmitter") val shroudEmitter: Boolean = false,
-    @SageIniName("PerParticleAttachedSystem") val perParticleAttachedSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("PerParticleAttachedSystem") val perParticleAttachedSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("SlaveSystem") val slaveSystem: SageReference<FXParticleSystem>? = null,
     @SageIniName("SlavePosOffset") val slavePosOffset: Coords? = null,
 ) : SageNestedAttribute {
@@ -65,7 +67,7 @@ data class System(
             property("IsParticleUpTowardsEmitter", BooleanValue) { it.isParticleUpTowardsEmitter }
             property("UseMaximumHeight", BooleanValue) { it.useMaximumHeight }
             property("ShroudEmitter", BooleanValue) { it.shroudEmitter }
-            property("PerParticleAttachedSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.perParticleAttachedSystem }
+            property("PerParticleAttachedSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.perParticleAttachedSystem }
             property("SlaveSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.slaveSystem }
             property("SlavePosOffset", Coords.type) { it.slavePosOffset }
         },

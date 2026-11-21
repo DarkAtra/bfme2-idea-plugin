@@ -6,6 +6,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.value.Rgba
 import de.darkatra.bfme2.ini.model.value.TextureFile
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -14,7 +15,7 @@ data class W3DLaserDraw(
     override val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("ArcHeight") val arcHeight: Double = 0.0,
     @SageIniName("Envelope") val envelope: Untyped? = null,
-    @SageIniName("Texture") val texture: TextureFile? = null,
+    @SageIniName("Texture") val texture: List<TextureFile> = emptyList(),
     @SageIniName("NumBeams") val numBeams: Int = 0,
     @SageIniName("Segments") val segments: Int = 0,
     @SageIniName("InnerBeamWidth") val innerBeamWidth: Double = 0.0,
@@ -44,7 +45,7 @@ data class W3DLaserDraw(
         properties = {
             property("ArcHeight", FloatValue) { it.arcHeight }
             property("Envelope", Untyped.type) { it.envelope }
-            property("Texture", TextureFile.type) { it.texture }
+            property("Texture", ListValue(TextureFile.type)) { it.texture }
             property("NumBeams", IntValue) { it.numBeams }
             property("Segments", IntValue) { it.segments }
             property("InnerBeamWidth", FloatValue) { it.innerBeamWidth }

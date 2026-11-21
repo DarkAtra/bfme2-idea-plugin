@@ -7,6 +7,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.MapValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
@@ -19,6 +20,7 @@ import de.darkatra.bfme2.ini.model.`object`.SpecialPower
 import de.darkatra.bfme2.ini.model.value.ModifierCategories
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
+import de.darkatra.bfme2.ini.model.value.WeatherFlag
 
 open class SpecialPowerModuleBehavior(
     open val header: SageBlockHeader = SageBlockHeader(),
@@ -46,6 +48,18 @@ open class SpecialPowerModuleBehavior(
     @SageIniName("DisableDuringAnimDuration") open val disableDuringAnimDuration: Boolean = false,
     @SageIniName("RequirementsFilterMPSkirmish") open val requirementsFilterMPSkirmish: SageFilter? = null,
     @SageIniName("RequirementsFilterStrategic") open val requirementsFilterStrategic: SageFilter? = null,
+    @SageIniName("IdleWhenStartingPower") open val idleWhenStartingPower: Boolean = false,
+    @SageIniName("AdjustVictim") open val adjustVictim: Boolean = false,
+    @SageIniName("AffectEvil") open val affectEvil: Boolean = false,
+    @SageIniName("AffectGood") open val affectGood: Boolean = false,
+    @SageIniName("AntiFX") open val antiFX: SageReference<FXList>? = null,
+    @SageIniName("BurnDecayModifier") open val burnDecayModifier: Int = 0,
+    @SageIniName("ChangeWeather") open val changeWeather: WeatherFlag? = null,
+    @SageIniName("DistanceFromCommandCenter") open val distanceFromCommandCenter: Double = 0.0,
+    @SageIniName("GiveLevels") open val giveLevels: Int = 0,
+    @SageIniName("ReEnableAntiCategory") open val reEnableAntiCategory: Boolean = false,
+    @SageIniName("UseDistanceFromCommandCenter") open val useDistanceFromCommandCenter: Boolean = false,
+    @SageIniName("WeatherDuration") open val weatherDuration: Int = 0,
 ) : SageBehavior {
 
     companion object : SageIniBlockDescriptor<SpecialPowerModuleBehavior>(
@@ -75,6 +89,18 @@ open class SpecialPowerModuleBehavior(
             property("DisableDuringAnimDuration", BooleanValue) { it.disableDuringAnimDuration }
             property("RequirementsFilterMPSkirmish", SageFilter.type) { it.requirementsFilterMPSkirmish }
             property("RequirementsFilterStrategic", SageFilter.type) { it.requirementsFilterStrategic }
+            property("IdleWhenStartingPower", BooleanValue) { it.idleWhenStartingPower }
+            property("AdjustVictim", BooleanValue) { it.adjustVictim }
+            property("AffectEvil", BooleanValue) { it.affectEvil }
+            property("AffectGood", BooleanValue) { it.affectGood }
+            property("AntiFX", ReferenceValue<FXList> { listOf(FXList) }) { it.antiFX }
+            property("BurnDecayModifier", IntValue) { it.burnDecayModifier }
+            property("ChangeWeather", WeatherFlag.type) { it.changeWeather }
+            property("DistanceFromCommandCenter", FloatValue) { it.distanceFromCommandCenter }
+            property("GiveLevels", IntValue) { it.giveLevels }
+            property("ReEnableAntiCategory", BooleanValue) { it.reEnableAntiCategory }
+            property("UseDistanceFromCommandCenter", BooleanValue) { it.useDistanceFromCommandCenter }
+            property("WeatherDuration", IntValue) { it.weatherDuration }
         },
     )
 }

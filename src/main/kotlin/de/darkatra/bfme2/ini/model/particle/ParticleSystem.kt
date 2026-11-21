@@ -8,7 +8,9 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageNestedAttribute
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageFilter
@@ -17,7 +19,7 @@ import de.darkatra.bfme2.ini.model.value.Untyped
 
 data class ParticleSystem(
     val header: SageBlockHeader = SageBlockHeader(),
-    @SageIniName("Name") val name: SageReference<FXParticleSystem>? = null,
+    @SageIniName("Name") val name: SageReference<SageParticleSystem>? = null,
     @SageIniName("Count") val count: Int = 0,
     @SageIniName("Offset") val offset: Coords? = null,
     @SageIniName("Height") val height: Double = 0.0,
@@ -44,7 +46,7 @@ data class ParticleSystem(
     companion object : SageIniBlockDescriptor<ParticleSystem>(
         name = "ParticleSystem",
         properties = {
-            property("Name", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.name }
+            property("Name", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.name }
             property("Count", IntValue) { it.count }
             property("Offset", Coords.type) { it.offset }
             property("Height", FloatValue) { it.height }

@@ -2,6 +2,7 @@ package de.darkatra.bfme2.ini.navigation
 
 import com.intellij.openapi.application.ReadAction
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReference
 import com.intellij.psi.search.PsiSearchScopeUtil
@@ -11,6 +12,7 @@ import com.intellij.util.Processor
 import com.intellij.util.QueryExecutor
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationLookup
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationSchema
+import de.darkatra.bfme2.ini.declarations.SageEngineIniModelResolver
 import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
 
 class SageEngineIniDeclarationReferencesSearch : QueryExecutor<PsiReference, ReferencesSearch.SearchParameters> {
@@ -43,7 +45,8 @@ class SageEngineIniDeclarationReferencesSearch : QueryExecutor<PsiReference, Ref
             SageEngineIniDeclarationLookup.findUseSites(searchRequest.project, searchRequest.declarationKind, searchRequest.declarationName)
                 .filter { PsiSearchScopeUtil.isInScope(searchScope, it) }
                 .all { useSite ->
-                    val reference = SageEngineIniDeclarationReference(useSite, setOf(searchRequest.declarationKind))
+                    val prefixLength = SageEngineIniModelResolver.prefixedNameReference(useSite)?.first ?: 0
+                    val reference = SageEngineIniDeclarationReference(useSite, setOf(searchRequest.declarationKind), TextRange(prefixLength, useSite.textLength))
                     consumer.process(reference)
                 }
         }

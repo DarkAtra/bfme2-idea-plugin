@@ -4,9 +4,7 @@ import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.FXList
@@ -15,7 +13,6 @@ import de.darkatra.bfme2.ini.model.`object`.SpecialPower
 import de.darkatra.bfme2.ini.model.value.ModifierCategories
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
-import de.darkatra.bfme2.ini.model.value.WeatherFlag
 
 data class DarknessSpecialPower(
     override val header: SageBlockHeader = SageBlockHeader(),
@@ -43,9 +40,6 @@ data class DarknessSpecialPower(
     @SageIniName("DisableDuringAnimDuration") override val disableDuringAnimDuration: Boolean = false,
     @SageIniName("RequirementsFilterMPSkirmish") override val requirementsFilterMPSkirmish: SageFilter? = null,
     @SageIniName("RequirementsFilterStrategic") override val requirementsFilterStrategic: SageFilter? = null,
-    @SageIniName("AffectEvil") val affectEvil: Boolean = false,
-    @SageIniName("WeatherDuration") val weatherDuration: Int = 0,
-    @SageIniName("ChangeWeather") val changeWeather: WeatherFlag? = null,
     @SageIniName("DarknessRadius") val darknessRadius: Double = 0.0,
     @SageIniName("DarknessFX") val darknessFX: SageReference<FXList>? = null,
 ) : SpecialPowerModuleBehavior() {
@@ -54,9 +48,6 @@ data class DarknessSpecialPower(
         name = "DarknessSpecialPower",
         parent = SpecialPowerModuleBehavior,
         properties = {
-            property("AffectEvil", BooleanValue) { it.affectEvil }
-            property("WeatherDuration", IntValue) { it.weatherDuration }
-            property("ChangeWeather", WeatherFlag.type) { it.changeWeather }
             property("DarknessRadius", FloatValue) { it.darknessRadius }
             property("DarknessFX", ReferenceValue<FXList> { listOf(FXList) }) { it.darknessFX }
         },

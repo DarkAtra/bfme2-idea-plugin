@@ -3,8 +3,10 @@ package de.darkatra.bfme2.ini.model.draw
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.BlockValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.ui.DecalTemplate
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.TextureFile
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -26,7 +28,7 @@ data class W3DTornadoDraw(
     @SageIniName("InitialRecoilSpeed") override val initialRecoilSpeed: Double = 0.0,
     @SageIniName("MaxRecoilDistance") override val maxRecoilDistance: Double = 0.0,
     @SageIniName("RecoilSettleSpeed") override val recoilSettleSpeed: Double = 0.0,
-    @SageIniName("DecalTemplate") val decalTemplate: Untyped? = null,
+    @SageIniName("DecalTemplate") val decalTemplate: DecalTemplate? = null,
     @SageIniName("DecalCount") val decalCount: Int = 0,
     @SageIniName("DecalMaxRadius") val decalMaxRadius: Double = 0.0,
     @SageIniName("DefaultModelConditionState") override val defaultModelConditionState: List<DefaultModelConditionState> = emptyList(),
@@ -45,7 +47,7 @@ data class W3DTornadoDraw(
         name = "W3DTornadoDraw",
         parent = W3DModelDraw,
         properties = {
-            property("DecalTemplate", Untyped.type) { it.decalTemplate }
+            property("DecalTemplate", BlockValue<DecalTemplate> { listOf(DecalTemplate) }) { it.decalTemplate }
             property("DecalCount", IntValue) { it.decalCount }
             property("DecalMaxRadius", FloatValue) { it.decalMaxRadius }
         },

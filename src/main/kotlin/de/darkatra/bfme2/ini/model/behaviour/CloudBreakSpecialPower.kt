@@ -4,9 +4,7 @@ import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.ChildObject
@@ -18,7 +16,6 @@ import de.darkatra.bfme2.ini.model.`object`.SpecialPower
 import de.darkatra.bfme2.ini.model.value.ModifierCategories
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
-import de.darkatra.bfme2.ini.model.value.WeatherFlag
 
 data class CloudBreakSpecialPower(
     override val header: SageBlockHeader = SageBlockHeader(),
@@ -48,10 +45,6 @@ data class CloudBreakSpecialPower(
     @SageIniName("RequirementsFilterStrategic") override val requirementsFilterStrategic: SageFilter? = null,
     @SageIniName("SunbeamObject") val sunbeamObject: SageReference<Object>? = null,
     @SageIniName("ObjectSpacing") val objectSpacing: Double = 0.0,
-    @SageIniName("AntiFX") val antiFX: SageReference<FXList>? = null,
-    @SageIniName("ReEnableAntiCategory") val reEnableAntiCategory: Boolean = false,
-    @SageIniName("WeatherDuration") val weatherDuration: Int = 0,
-    @SageIniName("ChangeWeather") val changeWeather: WeatherFlag? = null,
     @SageIniName("CloudBreakRadius") val cloudBreakRadius: Double = 0.0,
     @SageIniName("CloudBreakFX") val cloudBreakFX: SageReference<FXList>? = null,
 ) : SpecialPowerModuleBehavior() {
@@ -62,10 +55,6 @@ data class CloudBreakSpecialPower(
         properties = {
             property("SunbeamObject", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.sunbeamObject }
             property("ObjectSpacing", FloatValue) { it.objectSpacing }
-            property("AntiFX", ReferenceValue<FXList> { listOf(FXList) }) { it.antiFX }
-            property("ReEnableAntiCategory", BooleanValue) { it.reEnableAntiCategory }
-            property("WeatherDuration", IntValue) { it.weatherDuration }
-            property("ChangeWeather", WeatherFlag.type) { it.changeWeather }
             property("CloudBreakRadius", FloatValue) { it.cloudBreakRadius }
             property("CloudBreakFX", ReferenceValue<FXList> { listOf(FXList) }) { it.cloudBreakFX }
         },

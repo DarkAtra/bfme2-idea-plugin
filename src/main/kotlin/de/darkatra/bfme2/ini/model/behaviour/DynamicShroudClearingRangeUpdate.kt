@@ -4,9 +4,10 @@ import de.darkatra.bfme2.ini.model.common.SageBehavior
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.BlockValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
-import de.darkatra.bfme2.ini.model.value.Untyped
+import de.darkatra.bfme2.ini.model.ui.GridDecalTemplate
 
 data class DynamicShroudClearingRangeUpdate(
     val header: SageBlockHeader = SageBlockHeader(),
@@ -17,7 +18,7 @@ data class DynamicShroudClearingRangeUpdate(
     @SageIniName("GrowDelay") val growDelay: Int = 0,
     @SageIniName("GrowTime") val growTime: Int = 0,
     @SageIniName("FinalVision") val finalVision: Double = 0.0,
-    @SageIniName("GridDecalTemplate") val gridDecalTemplate: Untyped? = null,
+    @SageIniName("GridDecalTemplate") val gridDecalTemplate: GridDecalTemplate? = null,
 ) : SageBehavior {
 
     companion object : SageIniBlockDescriptor<DynamicShroudClearingRangeUpdate>(
@@ -30,7 +31,7 @@ data class DynamicShroudClearingRangeUpdate(
             property("GrowDelay", IntValue) { it.growDelay }
             property("GrowTime", IntValue) { it.growTime }
             property("FinalVision", FloatValue) { it.finalVision }
-            property("GridDecalTemplate", Untyped.type) { it.gridDecalTemplate }
+            property("GridDecalTemplate", BlockValue<GridDecalTemplate> { listOf(GridDecalTemplate) }) { it.gridDecalTemplate }
         },
     )
 }

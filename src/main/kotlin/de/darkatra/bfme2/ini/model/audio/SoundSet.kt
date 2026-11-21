@@ -32,6 +32,10 @@ open class SoundSet(
     @SageIniName("SoundImpact") open val soundImpact: SageReference<AudioEvent>? = null,
     @SageIniName("VoicePriority") open val voicePriority: Int = 0,
     @SageIniName("UnitSpecificSounds") open val unitSpecificSounds: List<UnitSpecificSounds> = emptyList(),
+    @SageIniName("VoiceEnterStateAttack") open val voiceEnterStateAttack: SageReference<AudioEvent>? = null,
+    @SageIniName("VoiceEnterStateAttackMachine") open val voiceEnterStateAttackMachine: SageReference<AudioEvent>? = null,
+    @SageIniName("VoiceEnterStateAttackStructure") open val voiceEnterStateAttackStructure: SageReference<AudioEvent>? = null,
+    @SageIniName("VoiceEnterStateRetreatToCastle") open val voiceEnterStateRetreatToCastle: SageReference<AudioEvent>? = null,
 ) : SageNestedAttribute {
 
     companion object : SageIniBlockDescriptor<SoundSet>(
@@ -52,6 +56,10 @@ open class SoundSet(
             property("SoundImpact", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.soundImpact }
             property("VoicePriority", IntValue) { it.voicePriority }
             property("UnitSpecificSounds", ListValue(BlockValue<UnitSpecificSounds> { listOf(UnitSpecificSounds) })) { it.unitSpecificSounds }
+            property("VoiceEnterStateAttack", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceEnterStateAttack }
+            property("VoiceEnterStateAttackMachine", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceEnterStateAttackMachine }
+            property("VoiceEnterStateAttackStructure", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceEnterStateAttackStructure }
+            property("VoiceEnterStateRetreatToCastle", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceEnterStateRetreatToCastle }
         },
     )
 }

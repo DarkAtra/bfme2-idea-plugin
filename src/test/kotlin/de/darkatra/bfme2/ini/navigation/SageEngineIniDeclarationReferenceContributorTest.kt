@@ -620,6 +620,86 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
     }
 
     @Test
+    fun `should navigate from fx lists to top level particle system definitions`() {
+
+        myFixture.addFileToProject("data/particlesystem.ini", "ParticleSystem RainOfFireImpactLight\nEnd")
+        myFixture.configureByText("fxlist.ini", "FXList FX_RainOfFireImpact\n    ParticleSystem\n        Name = RainOfFire<caret>ImpactLight\n    End\nEnd")
+
+        val sourceElement = myFixture.file.findElementAt(myFixture.caretOffset)
+        val targets = SageEngineIniDeclarationGotoDeclarationHandler().getGotoDeclarationTargets(sourceElement, myFixture.caretOffset, myFixture.editor)
+
+        assertThat(targets).extracting<String> { it.containingFile.name }.containsExactly("particlesystem.ini")
+    }
+
+    @Test
+    fun `should resolve the object of unit specific voice names`() {
+
+        myFixture.addFileToProject("data/azog.ini", "Object WildAzog\nEnd")
+        myFixture.configureByText(
+            "lugthemauled.ini",
+            """
+            Object WildLugTheMauled
+                UnitSpecificSounds
+                    VoiceAttackUnitWild<caret>Azog = LugVoiceAttackBolgAzog
+                End
+            End
+            """.trimIndent()
+        )
+
+        val reference = myFixture.file.findReferenceAt(myFixture.caretOffset)!!
+
+        assertThat(reference.rangeInElement.substring(reference.element.text)).isEqualTo("WildAzog")
+        assertThat(reference.resolve()?.containingFile?.name).isEqualTo("azog.ini")
+    }
+
+    @Test
+    fun `should find unit specific voice names and values as use-sites`() {
+
+        myFixture.addFileToProject(
+            "data/lugthemauled.ini",
+            """
+            Object WildLugTheMauled
+                UnitSpecificSounds
+                    VoiceAttackUnitWildAzog = LugVoiceAttackBolgAzog
+                End
+            End
+            """.trimIndent()
+        )
+        myFixture.configureByText("azog.ini", "Object Wild<caret>Azog\nEnd\nAudioEvent LugVoiceAttackBolgAzog\nEnd")
+
+        val objectUsages = myFixture.findUsages(TargetElementUtil.findTargetElement(myFixture.editor, TargetElementUtil.ELEMENT_NAME_ACCEPTED)!!)
+        myFixture.editor.caretModel.moveToOffset(myFixture.file.text.indexOf("LugVoiceAttackBolgAzog") + 3)
+        val soundUsages = myFixture.findUsages(TargetElementUtil.findTargetElement(myFixture.editor, TargetElementUtil.ELEMENT_NAME_ACCEPTED)!!)
+
+        assertThat(objectUsages).extracting<String> { it.element!!.text }.containsExactly("VoiceAttackUnitWildAzog")
+        assertThat(soundUsages).extracting<String> { it.element!!.text }.containsExactly("LugVoiceAttackBolgAzog")
+    }
+
+    @Test
+    fun `should complete unit specific voice names with object names`() {
+
+        myFixture.addFileToProject("data/azog.ini", "Object WildAzog\nEnd")
+        myFixture.configureByText(
+            "lugthemauled.ini",
+            """
+            Object WildLugTheMauled
+                UnitSpecificSounds
+                    VoiceAttackUnitWi<caret>
+                End
+            End
+            """.trimIndent()
+        )
+
+        val lookups = myFixture.completeBasic()?.map { it.lookupString }
+
+        if (lookups == null) {
+            assertThat(myFixture.editor.document.text).contains("VoiceAttackUnitWildAzog")
+        } else {
+            assertThat(lookups).contains("VoiceAttackUnitWildAzog")
+        }
+    }
+
+    @Test
     fun `should list declaration names from project index`() {
 
         myFixture.addFileToProject("data/object.ini", "Object ElvenMallornTree\nEnd")

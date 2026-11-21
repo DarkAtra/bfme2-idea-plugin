@@ -256,15 +256,9 @@ class SageEngineIniLexer : LexerBase() {
 
     private fun scanStringEnd(): Int {
         var currentOffset = tokenStart + 1
-        var escaped = false
-        while (currentOffset < endOffset && buffer[currentOffset] != '\n' && buffer[currentOffset] != '\r') {
-            val ch = buffer[currentOffset++]
-            if (ch == '"' && !escaped) {
+        while (currentOffset < endOffset && !isLineBreak(buffer[currentOffset])) {
+            if (buffer[currentOffset++] == '"') {
                 break
-            }
-            escaped = ch == '\\' && !escaped
-            if (ch != '\\') {
-                escaped = false
             }
         }
         return currentOffset

@@ -248,6 +248,21 @@ class SageEngineIniLexerTest {
     }
 
     @Test
+    fun `should not treat backslashes in strings as escapes`() {
+
+        assertTokens(
+            "#include \"..\\..\\\" ; x",
+            SageEngineIniTokenTypes.MACRO to "#include",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.STRING to "\"..\\..\\\"",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_START to ";",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.COMMENT_WORD to "x",
+        )
+    }
+
+    @Test
     fun `should lex ambiguous block and property names by equals sign`() {
 
         assertTokens(

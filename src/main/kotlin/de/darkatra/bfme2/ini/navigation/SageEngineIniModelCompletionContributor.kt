@@ -10,6 +10,7 @@ import com.intellij.patterns.PlatformPatterns.psiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType
 import com.intellij.util.ProcessingContext
+import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationLookup
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationSchema
 import de.darkatra.bfme2.ini.declarations.SageEngineIniModelResolver
 import de.darkatra.bfme2.ini.model.common.SageIniValueType
@@ -61,6 +62,12 @@ class SageEngineIniModelCompletionContributor : CompletionContributor() {
         val descriptor = SageEngineIniModelResolver.descriptor(enclosingBlock) ?: return
         descriptor.properties.forEach { property ->
             result.addElement(LookupElementBuilder.create(property.name).withTypeText(describe(property.type), true))
+        }
+        descriptor.prefixedProperties.forEach { prefixed ->
+            val kinds = SageEngineIniDeclarationSchema.referencedKinds(prefixed.suffix)
+            SageEngineIniDeclarationLookup.allDeclarationNames(position.project, kinds).forEach { name ->
+                result.addElement(LookupElementBuilder.create(prefixed.prefix + name).withTypeText(describe(prefixed.type), true))
+            }
         }
     }
 

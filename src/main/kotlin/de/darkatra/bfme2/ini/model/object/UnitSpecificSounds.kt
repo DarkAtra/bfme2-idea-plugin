@@ -5,6 +5,7 @@ import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniObject
+import de.darkatra.bfme2.ini.model.common.SageIniPrefixedProperties
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.value.SageReference
 
@@ -49,10 +50,24 @@ data class UnitSpecificSounds(
     @SageIniName("VoiceSpecialAbilityCurseEnemy") val voiceSpecialAbilityCurseEnemy: SageReference<AudioEvent>? = null,
     @SageIniName("VoiceInitiatePoisonArrowAttack") val voiceInitiatePoisonArrowAttack: SageReference<AudioEvent>? = null,
     @SageIniName("VoiceInitiateBlackArrowsAttack") val voiceInitiateBlackArrowsAttack: SageReference<AudioEvent>? = null,
+    val voiceAttackUnit: Map<String, SageReference<AudioEvent>> = emptyMap(),
+    val voiceEnterUnit: Map<String, SageReference<SageAudio>> = emptyMap(),
 ) : SageIniObject {
 
     companion object : SageIniBlockDescriptor<UnitSpecificSounds>(
         name = "UnitSpecificSounds",
+        prefixedProperties = listOf(
+            SageIniPrefixedProperties(
+                "VoiceAttackUnit",
+                ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) },
+                ReferenceValue<AudioEvent> { listOf(AudioEvent) },
+            ) { it.voiceAttackUnit },
+            SageIniPrefixedProperties(
+                "VoiceEnterUnit",
+                ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) },
+                ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) },
+            ) { it.voiceEnterUnit },
+        ),
         properties = {
             property("UnderConstruction", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.underConstruction }
             property("UnderRepairFromRubble", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.underRepairFromRubble }

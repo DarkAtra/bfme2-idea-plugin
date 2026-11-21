@@ -6,7 +6,7 @@ import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageDraw
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
-import de.darkatra.bfme2.ini.model.common.SageIniObject
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BlockValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
@@ -40,7 +40,7 @@ data class FXParticleSystem(
     @SageIniName("IsParticleUpTowardsEmitter") val isParticleUpTowardsEmitter: Boolean = false,
     @SageIniName("Lifetime") val lifetime: RandomVariable? = null,
     @SageIniName("ParticleName") val particleName: TextureFile? = null,
-    @SageIniName("PerParticleAttachedSystem") val perParticleAttachedSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("PerParticleAttachedSystem") val perParticleAttachedSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("Priority") val priority: ParticleSystemPriority? = null,
     @SageIniName("Shader") val shader: ParticleSystemShader? = null,
     @SageIniName("ShroudEmitter") val shroudEmitter: Boolean = false,
@@ -63,7 +63,7 @@ data class FXParticleSystem(
     @SageIniName("Draw") val draw: List<SageDraw> = emptyList(),
     @SageIniName("Event") val event: List<Event> = emptyList(),
     @SageIniName("Emitter") val emitter: List<Emitter> = emptyList(),
-) : SageIniObject {
+) : SageParticleSystem {
 
     companion object : SageIniBlockDescriptor<FXParticleSystem>(
         name = "FXParticleSystem",
@@ -78,7 +78,7 @@ data class FXParticleSystem(
             property("IsParticleUpTowardsEmitter", BooleanValue) { it.isParticleUpTowardsEmitter }
             property("Lifetime", RandomVariable.type) { it.lifetime }
             property("ParticleName", TextureFile.type) { it.particleName }
-            property("PerParticleAttachedSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.perParticleAttachedSystem }
+            property("PerParticleAttachedSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.perParticleAttachedSystem }
             property("Priority", ParticleSystemPriority.type) { it.priority }
             property("Shader", ParticleSystemShader.type) { it.shader }
             property("ShroudEmitter", BooleanValue) { it.shroudEmitter }

@@ -28,7 +28,7 @@ object SageEngineIniModelResolver {
 
         val kind = block.declarationKind ?: return null
         val parentBlock = block.parent as? SageEngineIniBlock
-            ?: return SageIniModel.block(kind)
+            ?: return topLevelDescriptor(block, kind)
 
         val parentDescriptor = descriptor(parentBlock) ?: return null
         val candidates = childBlockCandidates(parentDescriptor, kind)
@@ -40,10 +40,33 @@ object SageEngineIniModelResolver {
             ?: candidates.singleOrNull()
     }
 
+    // `.inc` files are included into other blocks, so their top level blocks can be modules of an `Object`, e.g. `Body = RespawnBody ...`
+    private fun topLevelDescriptor(block: SageEngineIniBlock, kind: String): SageIniBlockDescriptor<*>? {
+        if (block.containingFile.name.endsWith(".inc", ignoreCase = true)) {
+            val modules = SageIniModel.block("Object")?.let { childBlockCandidates(it, kind) }.orEmpty()
+            modules.firstOrNull { it.name == block.name }?.let { return it }
+        }
+        return SageIniModel.block(kind)
+    }
+
     fun property(assignment: SageEngineIniPropertyAssignment): SageIniProperty<*, *>? {
         val propertyName = assignment.propertyName ?: return null
         val block = assignment.parent as? SageEngineIniBlock ?: return null
         return descriptor(block)?.property(propertyName)
+    }
+
+    /**
+     * The length of the prefix and the declaration kinds the rest of a prefixed property name references, e.g. `WildAzog` in
+     * `VoiceAttackUnitWildAzog` inside `UnitSpecificSounds`.
+     */
+    fun prefixedNameReference(propertyName: PsiElement): Pair<Int, Set<String>>? {
+        val assignment = propertyName.parent as? SageEngineIniPropertyAssignment ?: return null
+        if (assignment.firstChild != propertyName) {
+            return null
+        }
+        val block = assignment.parent as? SageEngineIniBlock ?: return null
+        val prefixed = descriptor(block)?.prefixedProperty(propertyName.text) ?: return null
+        return prefixed.prefix.length to SageEngineIniDeclarationSchema.referencedKinds(prefixed.suffix)
     }
 
     /**

@@ -199,6 +199,315 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should know the properties of top level particle system definitions`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownPropertyInspection(), SageEngineIniUnknownBlockInspection(), SageEngineIniInvalidValueInspection())
+        myFixture.configureByText(
+            "particlesystem.ini",
+            """
+            ParticleSystem StructureFireGlow
+                Priority = AREA_EFFECT
+                IsOneShot = No
+                Shader = ADDITIVE
+                Type = PARTICLE
+                ParticleName = EXLnzFlar2.tga
+                AngleZ = -0.10 0.10
+                Gravity = 0.00
+                SystemLifetime = 0
+                Alpha1 = 0.00 0.00 0
+                Color1 = R:96 G:46 B:0 0
+                DriftVelocity = X:0.000 Y:0.000 Z:0.000
+                VelocityType = OUTWARD
+                VolumeType = CYLINDER
+                VolCylinderRadius = 8.000
+                WindMotion = PingPong
+                WindPingPongEndAngleMax = 6.283185
+                <warning descr="Unknown property 'AngelZ' in 'ParticleSystem'">AngelZ</warning> = 0.00 0.00
+            End
+            FXList FX_RainOfFireImpact
+                ParticleSystem
+                    Name = RainOfFireImpactLight
+                    Count = 1
+                End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
+    fun `should know system blocks that are nested or declared without a name`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownBlockInspection(), SageEngineIniUnknownPropertyInspection())
+        myFixture.configureByText(
+            "system.ini",
+            """
+            MeshNameMatches GBBarracks_SKN.Spear
+                Instances = 10
+            End
+            Weather
+                SnowEnabled = yes
+                LightningFactor = 0.5 1.0
+                RampSpeed = X:150.0 Y:250.0
+            End
+            LargeGroupAudioMap SmallFireLoop
+                Sound SmallFireLoop
+                    Sound = FireSmallAmbientLoop
+                    Key = BurningCell
+                    <warning descr="Unknown property 'Kye' in 'Sound'">Kye</warning> = BurningCell
+                End
+                Size = 100
+            End
+            StrategicHUD
+                Checklist
+                    ItemNormalColor = R:255 G:255 B:0 A:255
+                End
+                CancelArmyMoveButton
+                    Image = Strategic_CancelMoveBlue
+                    Title = STRATEGICHUD:CancelArmyMemberMoveTitle
+                End
+                TypeImages
+                    UnitHero = Archetype_Hero
+                End
+            End
+            AIData
+                AttackPriority DefaultAttackPriority
+                    Default = 35
+                End
+            End
+            Object Tornado
+                Draw = W3DTornadoDraw ModuleTag_TornadoDraw
+                    DecalTemplate
+                        Texture = EXTornadoGround
+                        OpacityMin = 5%
+                    End
+                End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
+    fun `should know properties that the base game uses in special powers, sound sets and system blocks`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownPropertyInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object Azog
+                Behavior = LevelGrantSpecialPower ModuleTag_LevelGrant
+                    TriggerAttributeModifier = CreateAHeroChargeBonus_Level1
+                    AttributeModifierDuration = 20000
+                    Instant = Yes
+                End
+                Behavior = DominateEnemySpecialPower ModuleTag_Dominate
+                    PackTime = 233
+                End
+                Behavior = OCLSpecialPower ModuleTag_OCL
+                    IdleWhenStartingPower = Yes
+                End
+                Behavior = CurseSpecialPower ModuleTag_Curse
+                    ApproachRequiresLOS = No
+                End
+                Behavior = ModelConditionSpecialAbilityUpdate ModuleTag_ModelCondition
+                    TriggerAttributeModifier = Rider1Tracker
+                    AttributeModifierDuration = 10000
+                    FreezeAfterTriggerDuration = 500
+                    TriggerModelCondition = ModelConditionState:SPECIAL_POWER_1
+                    TriggerModelConditionDuration = 10
+                End
+                Behavior = TeleportSpecialAbilityUpdate ModuleTag_Teleport
+                    TriggerAttributeModifier = NoldorWeaponSong
+                    AttributeModifierDuration = 2000
+                End
+                Behavior = ArrowStormUpdate ModuleTag_ArrowStorm
+                    TriggerAttributeModifier = NoldorWeaponSong
+                    AttributeModifierDuration = 2000
+                End
+                Behavior = SpecialDisguiseUpdate ModuleTag_Disguise
+                    TriggerAttributeModifier = NoldorWeaponSong
+                    AttributeModifierDuration = 2000
+                End
+                Behavior = AODHordeContain ModuleTag_Contain
+                    EvaEventLastMemberDeath = OathbreakerDismiss
+                End
+                ClientBehavior = UpgradeSoundSelectorClientBehavior ModuleTag_UpgradeSoundSelector
+                    SoundUpgrade = Upgrade_DwarvenSiegeHammer
+                        VoiceEnterStateAttack = DwarfGuardianVoiceEnterStateAttackHammer
+                        VoiceEnterStateAttackMachine = DwarfGuardianVoiceEnterStateAttackHammer
+                        VoiceEnterStateAttackStructure = DwarfGuardianVoiceEnterStateAttackHammer
+                        VoiceEnterStateRetreatToCastle = DwarfGuardianVoiceEnterStateAttackHammer
+                    End
+                End
+            End
+            ButtonSet DefaultButtonSet
+                Mode = Queue
+                1 = Blank NULL NULL
+            End
+            AutoResolveReinforcementSchedule Defender
+                1 = 0
+                2 = 15
+                EachRemaining = +1
+            End
+            OptionGroup UserOptions
+                Bool Render.UseCloudMap = No
+                Int Render.ParticleFXCount = 21000
+                String QuickMatch.IPAddress = 1.2.3.4
+                Real SlowDeathScale = 1.0
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
+    fun `should resolve modules at the top level of included files by their type`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownPropertyInspection())
+        myFixture.configureByText(
+            "createaherorespawn.inc",
+            """
+            Body = RespawnBody ModuleTag_RespawnBody
+                CheerRadius = 100
+                MaxHealth = 500
+                <warning descr="Unknown property 'MaxHealht' in 'RespawnBody'">MaxHealht</warning> = 500
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
+    fun `should know nested blocks and properties that the updated base game uses`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownBlockInspection(), SageEngineIniUnknownPropertyInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object Tower
+                Behavior = DynamicShroudClearingRangeUpdate ModuleTag_Grid
+                    GridDecalTemplate
+                        Texture = EXGrid
+                        OpacityThrobTime = 500
+                    End
+                End
+                Behavior = LevelGrantSpecialPower ModuleTag_LevelGrant
+                    ApproachRequiresLOS = No
+                    IgnoreFacingCheck = Yes
+                End
+            End
+            AIData
+                SkirmishBuildList Gondor
+                    Structure GondorBarracks
+                        Location = X:863.19 Y:1151.87
+                        Rebuilds = 0
+                    END
+                End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
+    fun `should know unit specific voices named after an object`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownPropertyInspection())
+        myFixture.configureByText(
+            "lugthemauled.ini",
+            """
+            Object WildLugTheMauled
+                UnitSpecificSounds
+                    VoiceAttackUnitWildAzog = LugVoiceAttackBolgAzog
+                    VoiceEnterUnitMordorMumakil = LugVoiceMoveGarrison
+                    VoiceEnterUnitElvenTransportShip = LugVoiceMoveGarrison
+                    <warning descr="Unknown property 'VoiceAttackUniWildLugtheMauled' in 'UnitSpecificSounds'">VoiceAttackUniWildLugtheMauled</warning> = LugVoiceAttackLug
+                    <warning descr="Unknown property 'VoiceExit' in 'UnitSpecificSounds'">VoiceExit</warning> = LugVoiceAttackLug
+                End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
+    fun `should know the properties that special powers inherit in the engine`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownPropertyInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object RhunFortress
+                Behavior = ActivateModuleSpecialPower ModuleTag_Activate
+                    PersistentPrepTime = 0
+                    AwardXPForTriggering = 0
+                    Instant = Yes
+                    TriggerSound = RhunFortressTrigger
+                    FreezeAfterTriggerDuration = 1000
+                    ParalyzeDurationWhenCompleted = 500
+                    NeedCollisionBeforeTrigger = No
+                    ApproachUntilMembersInRange = No
+                    ApproachRequiresLOS = No
+                    MustFinishAbility = Yes
+                    RequiredConditions = None
+                    TriggerAttributeModifier = NoldorWeaponSong
+                    AttributeModifierDuration = 2000
+                End
+                Behavior = OCLSpecialPower ModuleTag_OCL
+                    UseDistanceFromCommandCenter = Yes
+                    DistanceFromCommandCenter = 300
+                    <warning descr="Unknown property 'TriggerAttributeModifier' in 'OCLSpecialPower'">TriggerAttributeModifier</warning> = NoldorWeaponSong
+                End
+                Behavior = SpecialPowerModule ModuleTag_Module
+                    GiveLevels = 1
+                    WeatherDuration = 1000
+                End
+                Behavior = ModelConditionSpecialAbilityUpdate ModuleTag_ModelCondition
+                    PersistentCount = 3
+                End
+                Behavior = HordeSiegeEngineContain ModuleTag_Contain
+                    CrewAllowedToFire = Yes
+                    <warning descr="Unknown property 'PassengersInTurret' in 'HordeSiegeEngineContain'">PassengersInTurret</warning> = Yes
+                End
+                Behavior = TransportContain ModuleTag_Transport
+                    ShouldThrowOutPassengers = Yes
+                End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
+    fun `should accept model condition flags written with their state prefix`() {
+
+        myFixture.enableInspections(SageEngineIniInvalidValueInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object Sauron
+                Behavior = ModelConditionSpecialAbilityUpdate ModuleTag_ModelCondition
+                    TriggerModelCondition = ModelConditionState:SPECIAL_WEAPON_THREE
+                End
+                Behavior = WeaponFireSpecialAbilityUpdate ModuleTag_WeaponFire
+                    TriggerModelCondition = ModelConditionState : SPECIAL_POWER_1
+                End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should not report top level blocks of included files`() {
 
         myFixture.enableInspections(SageEngineIniUnknownBlockInspection())
@@ -206,6 +515,35 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
             "productionbuilding.inc",
             """
             Behavior = AutoHealBehavior ModuleTag_Heal
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
+    fun `should not report repeated entries of list properties`() {
+
+        myFixture.enableInspections(SageEngineIniRepeatedPropertyInspection())
+        myFixture.configureByText(
+            "animation2d.ini",
+            """
+            Animation DefaultHeal
+                Image = SCPCross000
+                Image = SCPCross001
+            End
+            Object GandalfStaffBeam
+                <warning descr="'BuildCost' is set again later, only the last value takes effect">BuildCost</warning> = 0
+                BuildCost = 10
+                Draw = W3DLaserDraw ModuleTag_01
+                    Texture = EXGandalfStaffBeam_00001.tga
+                    Texture = EXGandalfStaffBeam_00002.tga
+                End
+            End
+            LinearCampaign GOOD_CAMPAIGN
+                CarryoverUnit = ElvenGlorfindel
+                CarryoverUnit = DwarvenGloin
             End
             """.trimIndent()
         )

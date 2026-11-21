@@ -11,6 +11,7 @@ package de.darkatra.bfme2.ini.model.common
  * @param keyedByLabel `true` if the header label is a key instead of a type token, e.g. `ModelConditionState = DAMAGED`
  * @param equalsIsSpurious `true` if the engine ignores the `=` form of a [keyedByLabel] header
  * @param numberedSlots the numbered slots (`1 = Command_X`) the block supports, `null` if it has none
+ * @param prefixedProperties properties named after a declaration, e.g. `VoiceAttackUnitWildAzog`
  * @param bareDirective `true` if the block can be a single line without body and `End`
  */
 open class SageIniBlockDescriptor<T : Any>(
@@ -22,6 +23,7 @@ open class SageIniBlockDescriptor<T : Any>(
     val keyedByLabel: Boolean = false,
     val equalsIsSpurious: Boolean = false,
     val numberedSlots: SageIniNumberedSlots<T, *>? = null,
+    prefixedProperties: List<SageIniPrefixedProperties<T, *>> = emptyList(),
     val bareDirective: Boolean = false,
     properties: SageIniPropertiesBuilder<T>.() -> Unit = {},
 ) {
@@ -31,6 +33,10 @@ open class SageIniBlockDescriptor<T : Any>(
     val properties: List<SageIniProperty<T, *>> by lazy {
         val inherited: List<SageIniProperty<T, *>> = parent?.properties.orEmpty()
         inherited + declaredProperties
+    }
+
+    val prefixedProperties: List<SageIniPrefixedProperties<T, *>> by lazy {
+        parent?.prefixedProperties.orEmpty() + prefixedProperties
     }
 
     /**
@@ -52,6 +58,11 @@ open class SageIniBlockDescriptor<T : Any>(
     fun property(name: String): SageIniProperty<T, *>? {
         return propertiesByName[name]
             ?: name.toIntOrNull()?.let { numberedSlots?.slot(it) }
+            ?: prefixedProperty(name)?.property(name)
+    }
+
+    fun prefixedProperty(name: String): SageIniPrefixedProperties<T, *>? {
+        return prefixedProperties.firstOrNull { it.matches(name) }
     }
 
     fun isSubtypeOf(other: SageIniBlockDescriptor<*>): Boolean {

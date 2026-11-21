@@ -49,6 +49,7 @@ data class HordeSiegeEngineContain(
     @SageIniName("FadePassengerOnExit") val fadePassengerOnExit: Boolean = false,
     @SageIniName("ExitFadeTime") val exitFadeTime: Int = 0,
     @SageIniName("FadeReverse") val fadeReverse: Boolean = false,
+    @SageIniName("CrewAllowedToFire") val crewAllowedToFire: Boolean = false,
 ) : SiegeEngineContain() {
 
     companion object : SageIniBlockDescriptor<HordeSiegeEngineContain>(
@@ -61,6 +62,7 @@ data class HordeSiegeEngineContain(
             property("FadePassengerOnExit", BooleanValue) { it.fadePassengerOnExit }
             property("ExitFadeTime", IntValue) { it.exitFadeTime }
             property("FadeReverse", BooleanValue) { it.fadeReverse }
+            property("CrewAllowedToFire", BooleanValue) { it.crewAllowedToFire }
         },
     )
 }

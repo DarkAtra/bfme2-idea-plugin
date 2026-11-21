@@ -20,7 +20,7 @@ import de.darkatra.bfme2.ini.model.`object`.Multisound
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
-import de.darkatra.bfme2.ini.model.value.ModelCondition
+import de.darkatra.bfme2.ini.model.value.ModelConditionFlag
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.SpecialPowerUnpackConditions
@@ -75,12 +75,22 @@ open class SpecialAbilityUpdate(
     @SageIniName("RejectedConditions") open val rejectedConditions: SpecialPowerUnpackConditions? = null,
     @SageIniName("RequiredConditions") open val requiredConditions: SpecialPowerUnpackConditions? = null,
     @SageIniName("KillAttributeModifierOnRejected") open val killAttributeModifierOnRejected: Boolean = false,
-    @SageIniName("TriggerModelCondition") open val triggerModelCondition: ModelCondition? = null,
+    @SageIniName("TriggerModelCondition") open val triggerModelCondition: ModelConditionFlag? = null,
     @SageIniName("TriggerModelConditionDuration") open val triggerModelConditionDuration: Double = 0.0,
     @SageIniName("FreezeAfterTriggerDuration") open val freezeAfterTriggerDuration: Int = 0,
     @SageIniName("ChainedButton") open val chainedButton: SageReference<CommandButton>? = null,
     @SageIniName("SkillPointsForTriggering") open val skillPointsForTriggering: Int = 0,
     @SageIniName("StopUnitBeforeActivating") open val stopUnitBeforeActivating: Boolean = false,
+    @SageIniName("ActiveLoopSound") open val activeLoopSound: SageReference<AudioEvent>? = null,
+    @SageIniName("ApproachUntilMembersInRange") open val approachUntilMembersInRange: Boolean = false,
+    @SageIniName("DisableWhenWearingTheRing") open val disableWhenWearingTheRing: Boolean = false,
+    @SageIniName("FlipOwnerAfterPacking") open val flipOwnerAfterPacking: Boolean = false,
+    @SageIniName("MustFinishAbility") open val mustFinishAbility: Boolean = false,
+    @SageIniName("NeedCollisionBeforeTrigger") open val needCollisionBeforeTrigger: Boolean = false,
+    @SageIniName("PackUnpackVariationFactor") open val packUnpackVariationFactor: Double = 0.0,
+    @SageIniName("ParalyzeDurationWhenAborted") open val paralyzeDurationWhenAborted: Int = 0,
+    @SageIniName("ParalyzeDurationWhenCompleted") open val paralyzeDurationWhenCompleted: Int = 0,
+    @SageIniName("SuppressForHordes") open val suppressForHordes: Boolean = false,
 ) : SageBehavior {
 
     companion object : SageIniBlockDescriptor<SpecialAbilityUpdate>(
@@ -133,12 +143,22 @@ open class SpecialAbilityUpdate(
             property("RejectedConditions", SpecialPowerUnpackConditions.type) { it.rejectedConditions }
             property("RequiredConditions", SpecialPowerUnpackConditions.type) { it.requiredConditions }
             property("KillAttributeModifierOnRejected", BooleanValue) { it.killAttributeModifierOnRejected }
-            property("TriggerModelCondition", ModelCondition.type) { it.triggerModelCondition }
+            property("TriggerModelCondition", ModelConditionFlag.type) { it.triggerModelCondition }
             property("TriggerModelConditionDuration", FloatValue) { it.triggerModelConditionDuration }
             property("FreezeAfterTriggerDuration", IntValue) { it.freezeAfterTriggerDuration }
             property("ChainedButton", ReferenceValue<CommandButton> { listOf(CommandButton) }) { it.chainedButton }
             property("SkillPointsForTriggering", IntValue) { it.skillPointsForTriggering }
             property("StopUnitBeforeActivating", BooleanValue) { it.stopUnitBeforeActivating }
+            property("ActiveLoopSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.activeLoopSound }
+            property("ApproachUntilMembersInRange", BooleanValue) { it.approachUntilMembersInRange }
+            property("DisableWhenWearingTheRing", BooleanValue) { it.disableWhenWearingTheRing }
+            property("FlipOwnerAfterPacking", BooleanValue) { it.flipOwnerAfterPacking }
+            property("MustFinishAbility", BooleanValue) { it.mustFinishAbility }
+            property("NeedCollisionBeforeTrigger", BooleanValue) { it.needCollisionBeforeTrigger }
+            property("PackUnpackVariationFactor", FloatValue) { it.packUnpackVariationFactor }
+            property("ParalyzeDurationWhenAborted", IntValue) { it.paralyzeDurationWhenAborted }
+            property("ParalyzeDurationWhenCompleted", IntValue) { it.paralyzeDurationWhenCompleted }
+            property("SuppressForHordes", BooleanValue) { it.suppressForHordes }
         },
     )
 }

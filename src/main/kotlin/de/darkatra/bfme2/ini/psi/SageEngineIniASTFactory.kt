@@ -11,7 +11,7 @@ import com.intellij.psi.tree.IElementType
 class SageEngineIniASTFactory : ASTFactory() {
 
     override fun createLeaf(type: IElementType, text: CharSequence): LeafElement? {
-        if (type == SageEngineIniTokenTypes.VALUE || type == SageEngineIniTokenTypes.STRING) {
+        if (type == SageEngineIniTokenTypes.VALUE || type == SageEngineIniTokenTypes.STRING || type == SageEngineIniTokenTypes.PROPERTY) {
             return SageEngineIniReferenceHostLeaf(type, text)
         }
         return null

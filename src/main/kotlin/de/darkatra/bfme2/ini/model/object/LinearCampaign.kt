@@ -14,7 +14,7 @@ import de.darkatra.bfme2.ini.model.value.SageReference
 data class LinearCampaign(
     val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("CampaignDisplayNameLabel") val campaignDisplayNameLabel: String = "",
-    @SageIniName("CarryoverUnit") val carryoverUnit: SageReference<Object>? = null,
+    @SageIniName("CarryoverUnit") val carryoverUnit: List<SageReference<Object>> = emptyList(),
     @SageIniName("OverallCampaignIntroMovie") val overallCampaignIntroMovie: SageReference<Video>? = null,
     @SageIniName("Mission") val mission: List<Mission> = emptyList(),
 ) : SageIniObject {
@@ -24,7 +24,7 @@ data class LinearCampaign(
         tableKey = "linearcampaigns",
         properties = {
             property("CampaignDisplayNameLabel", StringValue) { it.campaignDisplayNameLabel }
-            property("CarryoverUnit", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.carryoverUnit }
+            property("CarryoverUnit", ListValue(ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) })) { it.carryoverUnit }
             property("OverallCampaignIntroMovie", ReferenceValue<Video> { listOf(Video) }) { it.overallCampaignIntroMovie }
             property("Mission", ListValue(BlockValue<Mission> { listOf(Mission) })) { it.mission }
         },

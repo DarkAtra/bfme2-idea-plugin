@@ -4,10 +4,10 @@ import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniObject
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.BlockValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
-import de.darkatra.bfme2.ini.model.value.SageReference
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.value.Untyped
 
 data class LargeGroupAudioMap(
@@ -21,7 +21,7 @@ data class LargeGroupAudioMap(
     @SageIniName("ExcludedModelConditionFlags") val excludedModelConditionFlags: Untyped? = null,
     @SageIniName("RequiredModelConditionFlags") val requiredModelConditionFlags: Untyped? = null,
     @SageIniName("IgnoreStealthedUnits") val ignoreStealthedUnits: Boolean = false,
-    @SageIniName("Sound") val sound: SageReference<AudioEvent>? = null,
+    @SageIniName("Sound") val sound: List<LargeGroupAudioMapSound> = emptyList(),
 ) : SageIniObject {
 
     companion object : SageIniBlockDescriptor<LargeGroupAudioMap>(
@@ -37,7 +37,7 @@ data class LargeGroupAudioMap(
             property("ExcludedModelConditionFlags", Untyped.type) { it.excludedModelConditionFlags }
             property("RequiredModelConditionFlags", Untyped.type) { it.requiredModelConditionFlags }
             property("IgnoreStealthedUnits", BooleanValue) { it.ignoreStealthedUnits }
-            property("Sound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.sound }
+            property("Sound", ListValue(BlockValue<LargeGroupAudioMapSound> { listOf(LargeGroupAudioMapSound) })) { it.sound }
         },
     )
 }

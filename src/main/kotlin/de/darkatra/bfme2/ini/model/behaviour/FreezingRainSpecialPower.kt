@@ -14,7 +14,6 @@ import de.darkatra.bfme2.ini.model.`object`.SpecialPower
 import de.darkatra.bfme2.ini.model.value.ModifierCategories
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
-import de.darkatra.bfme2.ini.model.value.WeatherFlag
 
 data class FreezingRainSpecialPower(
     override val header: SageBlockHeader = SageBlockHeader(),
@@ -42,10 +41,7 @@ data class FreezingRainSpecialPower(
     @SageIniName("DisableDuringAnimDuration") override val disableDuringAnimDuration: Boolean = false,
     @SageIniName("RequirementsFilterMPSkirmish") override val requirementsFilterMPSkirmish: SageFilter? = null,
     @SageIniName("RequirementsFilterStrategic") override val requirementsFilterStrategic: SageFilter? = null,
-    @SageIniName("WeatherDuration") val weatherDuration: Int = 0,
-    @SageIniName("ChangeWeather") val changeWeather: WeatherFlag? = null,
     @SageIniName("BurnRateModifier") val burnRateModifier: Int = 0,
-    @SageIniName("BurnDecayModifier") val burnDecayModifier: Int = 0,
     @SageIniName("FreezingRainRadius") val freezingRainRadius: Double = 0.0,
     @SageIniName("FreezingRainFX") val freezingRainFX: SageReference<FXList>? = null,
 ) : SpecialPowerModuleBehavior() {
@@ -54,10 +50,7 @@ data class FreezingRainSpecialPower(
         name = "FreezingRainSpecialPower",
         parent = SpecialPowerModuleBehavior,
         properties = {
-            property("WeatherDuration", IntValue) { it.weatherDuration }
-            property("ChangeWeather", WeatherFlag.type) { it.changeWeather }
             property("BurnRateModifier", IntValue) { it.burnRateModifier }
-            property("BurnDecayModifier", IntValue) { it.burnDecayModifier }
             property("FreezingRainRadius", FloatValue) { it.freezingRainRadius }
             property("FreezingRainFX", ReferenceValue<FXList> { listOf(FXList) }) { it.freezingRainFX }
         },

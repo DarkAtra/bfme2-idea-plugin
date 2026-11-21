@@ -544,6 +544,20 @@ import de.darkatra.bfme2.ini.model.`object`.ExperienceLevel
 import de.darkatra.bfme2.ini.model.`object`.ExperienceScalarTable
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
+import de.darkatra.bfme2.ini.model.`object`.LargeGroupAudioMapSound
+import de.darkatra.bfme2.ini.model.`object`.MeshNameMatches
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
+import de.darkatra.bfme2.ini.model.`object`.Weather
+import de.darkatra.bfme2.ini.model.ui.ArmyDetailsPanel
+import de.darkatra.bfme2.ini.model.ui.BattleResolver
+import de.darkatra.bfme2.ini.model.ui.BuildQueueDetailsPanel
+import de.darkatra.bfme2.ini.model.ui.Checklist
+import de.darkatra.bfme2.ini.model.ui.DynamicAutoResolveDialog
+import de.darkatra.bfme2.ini.model.ui.RegionDetailsPanelStructuresPage
+import de.darkatra.bfme2.ini.model.ui.RegionDisplay
+import de.darkatra.bfme2.ini.model.ui.StatsDisplay
+import de.darkatra.bfme2.ini.model.ui.StrategicHUDButton
+import de.darkatra.bfme2.ini.model.ui.TypeImages
 import de.darkatra.bfme2.ini.model.`object`.FactionVictoryData
 import de.darkatra.bfme2.ini.model.`object`.Fire
 import de.darkatra.bfme2.ini.model.`object`.FireEffect
@@ -1090,6 +1104,7 @@ object SageIniModel {
             FXListAtBonePos,
             FireWeapon,
             LightPulse,
+            LargeGroupAudioMapSound,
             Sound,
             TerrainScorch,
             TintDrawable,
@@ -1220,6 +1235,7 @@ object SageIniModel {
             ExperienceScalarTable,
             FXList,
             FXParticleSystem,
+            ParticleSystemDefinition,
             FactionVictoryData,
             Fire,
             FireEffect,
@@ -1306,6 +1322,16 @@ object SageIniModel {
             StanceTemplate,
             StaticGameLOD,
             StrategicHUD,
+            StrategicHUDButton,
+            ArmyDetailsPanel,
+            BattleResolver,
+            BuildQueueDetailsPanel,
+            Checklist,
+            DynamicAutoResolveDialog,
+            RegionDetailsPanelStructuresPage,
+            RegionDisplay,
+            StatsDisplay,
+            TypeImages,
             StreamedSound,
             Structure,
             SubClass,
@@ -1330,6 +1356,8 @@ object SageIniModel {
             Weapon,
             WeaponSet,
             WeatherData,
+            Weather,
+            MeshNameMatches,
             WebpageURL,
             WindowTransition,
             Alpha,
@@ -1780,7 +1808,8 @@ object SageIniModel {
     }
 
     private val blocksByName: Map<String, SageIniBlockDescriptor<*>> by lazy {
-        blocks.filterNot { it.isAbstract }.associateBy { it.name }
+        // `ParticleSystem` is both a top level declaration and a block nested in an `FXList`, top level lookups resolve the declaration
+        blocks.filterNot { it.isAbstract }.sortedBy { it.effectiveTableKey != null }.associateBy { it.name }
     }
 
     /**
