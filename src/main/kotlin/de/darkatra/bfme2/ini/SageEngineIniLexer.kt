@@ -149,7 +149,7 @@ class SageEngineIniLexer : LexerBase() {
             return
         }
 
-        if (tokenState == STATE_PROPERTY_VALUE && startsNumberWithLetterSuffix()) {
+        if ((tokenState == STATE_PROPERTY_VALUE || tokenState == STATE_LINE_REST) && startsNumberWithNameSuffix()) {
             finishToken(scanPropertyValueEnd(stopAtCoordinateSeparator = false), SageEngineIniTokenTypes.VALUE)
             return
         }
@@ -388,7 +388,7 @@ class SageEngineIniLexer : LexerBase() {
         return buffer[offset] == ':' && offset + 1 < endOffset && Character.isDigit(buffer[offset + 1])
     }
 
-    private fun startsNumberWithLetterSuffix(): Boolean {
+    private fun startsNumberWithNameSuffix(): Boolean {
         if (!Character.isDigit(buffer[tokenStart]) && buffer[tokenStart] != '.') {
             return false
         }
@@ -396,7 +396,7 @@ class SageEngineIniLexer : LexerBase() {
         while (currentOffset < endOffset && (Character.isDigit(buffer[currentOffset]) || buffer[currentOffset] == '.')) {
             currentOffset++
         }
-        return currentOffset < endOffset && Character.isLetter(buffer[currentOffset])
+        return currentOffset < endOffset && (Character.isLetter(buffer[currentOffset]) || buffer[currentOffset] == '_')
     }
 
     private fun startsComment(offset: Int): Boolean {

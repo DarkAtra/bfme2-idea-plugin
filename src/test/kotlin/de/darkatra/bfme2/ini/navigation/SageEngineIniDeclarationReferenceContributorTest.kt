@@ -235,6 +235,31 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
     }
 
     @Test
+    fun `should navigate to declaration whose name starts with a digit`() {
+
+        myFixture.addFileToProject(
+            "data/attributemodifier.ini",
+            """
+            ModifierList 8PlayerModeAttributeModifier
+            End
+            """.trimIndent()
+        )
+        myFixture.configureByText(
+            "upgrade.ini",
+            "AttributeModifier = 8PlayerMode<caret>AttributeModifier"
+        )
+
+        val sourceElement = myFixture.file.findElementAt(myFixture.caretOffset)
+        val targets = SageEngineIniDeclarationGotoDeclarationHandler().getGotoDeclarationTargets(
+            sourceElement,
+            myFixture.caretOffset,
+            myFixture.editor
+        )
+
+        assertThat(targets).extracting<String> { it.text }.containsExactly("8PlayerModeAttributeModifier")
+    }
+
+    @Test
     fun `should navigate to use-sites from declaration`() {
 
         myFixture.addFileToProject(

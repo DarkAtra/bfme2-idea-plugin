@@ -185,6 +185,23 @@ class SageEngineIniLexerTest {
     }
 
     @Test
+    fun `should lex declaration names starting with digits as single values`() {
+
+        assertTokens(
+            "ModifierList 8PlayerModeAttributeModifier",
+            SageEngineIniTokenTypes.BLOCK_START to "ModifierList",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "8PlayerModeAttributeModifier",
+        )
+        assertTokens(
+            "LargeGroupAudioMap 10_8_GroupCelebrating",
+            SageEngineIniTokenTypes.BLOCK_START to "LargeGroupAudioMap",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "10_8_GroupCelebrating",
+        )
+    }
+
+    @Test
     fun `should lex known keywords as properties when followed by equals`() {
 
         assertTokens(
