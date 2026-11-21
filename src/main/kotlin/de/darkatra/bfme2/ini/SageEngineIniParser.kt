@@ -80,7 +80,10 @@ class SageEngineIniParser : PsiParser {
             val tokenText = builder.tokenText
             builder.advanceLexer()
 
-            if (tokenType == SageEngineIniTokenTypes.BLOCK_START && tokenText.equals("BeginScript", ignoreCase = true)) {
+            // the lexer emits nested `BeginScript`s as script body tokens
+            if ((tokenType == SageEngineIniTokenTypes.BLOCK_START || tokenType == SageEngineIniTokenTypes.SCRIPT_BODY) &&
+                tokenText.equals("BeginScript", ignoreCase = true)
+            ) {
                 nesting++
             }
             if (tokenType == SageEngineIniTokenTypes.BLOCK_END && tokenText.equals("EndScript", ignoreCase = true)) {

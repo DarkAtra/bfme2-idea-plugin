@@ -62,9 +62,10 @@ class SageEngineIniParserTest : LightPlatformCodeInsightFixture4TestCase() {
 
         assertThat(scriptBlocks).hasSize(1)
         assertThat(scriptBlocks.single().text.trim()).startsWith("BeginScript")
-        assertThat(scriptBlocks.single().text.trim()).endsWith("EndScript")
+        assertThat(scriptBlocks.single().text.trim()).endsWith("end\nEndScript")
         assertThat(myFixture.file.descendantsOfType(SageEngineIniPropertyAssignment::class.java)).extracting<String> { it.text.trim() }
             .contains("After = EndScript")
+        assertThat(PsiTreeUtil.findChildrenOfType(myFixture.file, PsiErrorElement::class.java)).isEmpty()
     }
 
     @Test
