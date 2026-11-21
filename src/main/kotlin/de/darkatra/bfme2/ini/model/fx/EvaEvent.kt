@@ -5,6 +5,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageNestedAttribute
 import de.darkatra.bfme2.ini.model.`object`.EvaEventBase
@@ -25,7 +26,7 @@ data class EvaEvent(
     @SageIniName("CountAsJumpToLocation") val countAsJumpToLocation: Boolean = false,
     @SageIniName("ExpirationTimeMS") val expirationTimeMS: Int = 0,
     @SageIniName("MillisecondsToWaitBeforePlaying") val millisecondsToWaitBeforePlaying: Int = 0,
-    @SageIniName("OtherEvaEventsToBlock") val otherEvaEventsToBlock: Opaque? = null,
+    @SageIniName("OtherEvaEventsToBlock") val otherEvaEventsToBlock: List<SageReference<EvaEventBase>> = emptyList(),
     @SageIniName("Priority") val priority: Int = 0,
     @SageIniName("QuietTimeMS") val quietTimeMS: Int = 0,
     @SageIniName("SideSound") val sideSound: Opaque? = null,
@@ -46,7 +47,7 @@ data class EvaEvent(
             property("CountAsJumpToLocation", BooleanValue) { it.countAsJumpToLocation }
             property("ExpirationTimeMS", IntValue) { it.expirationTimeMS }
             property("MillisecondsToWaitBeforePlaying", IntValue) { it.millisecondsToWaitBeforePlaying }
-            property("OtherEvaEventsToBlock", Opaque.type) { it.otherEvaEventsToBlock }
+            property("OtherEvaEventsToBlock", ListValue(ReferenceValue<EvaEventBase> { listOf(NewEvaEvent, PredefinedEvaEvent) })) { it.otherEvaEventsToBlock }
             property("Priority", IntValue) { it.priority }
             property("QuietTimeMS", IntValue) { it.quietTimeMS }
             property("SideSound", Opaque.type) { it.sideSound }

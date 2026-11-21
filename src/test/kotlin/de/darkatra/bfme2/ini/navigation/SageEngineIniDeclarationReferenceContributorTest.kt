@@ -418,6 +418,34 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
     }
 
     @Test
+    fun `should find eva events that block other eva events as use-sites`() {
+
+        myFixture.addFileToProject(
+            "data/eva.ini",
+            """
+            NewEvaEvent UnitUnderAttackFromShroudedUnit
+                OtherEvaEventsToBlock = UnitUnderAttack  DiscoveredRing ; This counts as a "damage" event
+            End
+            """.trimIndent()
+        )
+        myFixture.configureByText(
+            "evaevents.ini",
+            """
+            NewEvaEvent Discovered<caret>Ring
+            End
+            """.trimIndent()
+        )
+
+        val sourceElement = TargetElementUtil.findTargetElement(
+            myFixture.editor,
+            TargetElementUtil.ELEMENT_NAME_ACCEPTED or TargetElementUtil.REFERENCED_ELEMENT_ACCEPTED
+        )!!
+        val usages = myFixture.findUsages(sourceElement)
+
+        assertThat(usages).extracting<String> { (it.element!!.parent.firstChild as LeafPsiElement).text }.containsExactly("OtherEvaEventsToBlock")
+    }
+
+    @Test
     fun `should navigate to object creation list use-sites from declaration`() {
 
         myFixture.addFileToProject(

@@ -6,7 +6,8 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
-import de.darkatra.bfme2.ini.model.value.Opaque
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.value.SageReference
 
 data class NewEvaEvent(
     override val header: SageBlockHeader = SageBlockHeader(),
@@ -16,7 +17,7 @@ data class NewEvaEvent(
     @SageIniName("AlwaysPlayFromHomeBase") override val alwaysPlayFromHomeBase: Boolean = false,
     @SageIniName("CountAsJumpToLocation") override val countAsJumpToLocation: Boolean = false,
     @SageIniName("MillisecondsToWaitBeforePlaying") val millisecondsToWaitBeforePlaying: Int = 0,
-    @SageIniName("OtherEvaEventsToBlock") val otherEvaEventsToBlock: List<Opaque> = emptyList(),
+    @SageIniName("OtherEvaEventsToBlock") val otherEvaEventsToBlock: List<SageReference<EvaEventBase>> = emptyList(),
     @SageIniName("SideSound") override val sideSound: List<SideSound> = emptyList(),
 ) : EvaEventBase() {
 
@@ -26,7 +27,7 @@ data class NewEvaEvent(
         tableKey = "evaevents",
         properties = {
             property("MillisecondsToWaitBeforePlaying", IntValue) { it.millisecondsToWaitBeforePlaying }
-            property("OtherEvaEventsToBlock", ListValue(Opaque.type)) { it.otherEvaEventsToBlock }
+            property("OtherEvaEventsToBlock", ListValue(ReferenceValue<EvaEventBase> { listOf(NewEvaEvent, PredefinedEvaEvent) })) { it.otherEvaEventsToBlock }
         },
     )
 }
