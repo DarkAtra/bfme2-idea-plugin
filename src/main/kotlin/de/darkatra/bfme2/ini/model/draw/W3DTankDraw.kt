@@ -43,11 +43,11 @@ open class W3DTankDraw(
     @SageIniName("AnimationState") override val animationState: List<AnimationState> = emptyList(),
     @SageIniName("TransitionState") override val transitionState: List<TransitionState> = emptyList(),
     @SageIniName("LodOptions") override val lodOptions: List<LodOptions> = emptyList(),
-) : W3DModelDraw() {
+) : W3DScriptedModelDraw() {
 
     companion object : SageIniBlockDescriptor<W3DTankDraw>(
         name = "W3DTankDraw",
-        parent = W3DModelDraw,
+        parent = W3DScriptedModelDraw,
         properties = {
             property("TreadDebrisLeft", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.treadDebrisLeft }
             property("TreadDebrisRight", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.treadDebrisRight }

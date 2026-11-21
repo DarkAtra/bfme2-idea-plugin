@@ -487,6 +487,38 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should know properties that the engine declares for tank draws, player templates and scenarios`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownPropertyInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object ElvenNimrodelHorde
+                Draw = W3DTankDraw ModuleTag_01
+                    StaticModelLODMode = No
+                    WadingParticleSys = WaterRipplesTrail
+                    DependencySharedModelFlags = None
+                    TreadAnimationRate = 1.0
+                End
+            End
+            PlayerTemplate FactionMen
+                StartingUnit6 = MenCitadel
+                StartingUnitOffset6 = X:1 Y:130 Z:0
+                StartingUnit9 = MenCitadel
+                StartingUnitOffset9 = X:1 Y:130 Z:0
+            End
+            LivingWorldCampaign WOTRScenario
+                Scenario
+                    UseMpRulesVictoryCondition = No
+                End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should accept model condition flags written with their state prefix`() {
 
         myFixture.enableInspections(SageEngineIniInvalidValueInspection())

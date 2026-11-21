@@ -49,6 +49,14 @@ data class PlayerTemplate(
     @SageIniName("StartingUnitOffset4") val startingUnitOffset4: Coords? = null,
     @SageIniName("StartingUnit5") val startingUnit5: SageReference<Object>? = null,
     @SageIniName("StartingUnitOffset5") val startingUnitOffset5: Coords? = null,
+    @SageIniName("StartingUnit6") val startingUnit6: SageReference<Object>? = null,
+    @SageIniName("StartingUnitOffset6") val startingUnitOffset6: Coords? = null,
+    @SageIniName("StartingUnit7") val startingUnit7: SageReference<Object>? = null,
+    @SageIniName("StartingUnitOffset7") val startingUnitOffset7: Coords? = null,
+    @SageIniName("StartingUnit8") val startingUnit8: SageReference<Object>? = null,
+    @SageIniName("StartingUnitOffset8") val startingUnitOffset8: Coords? = null,
+    @SageIniName("StartingUnit9") val startingUnit9: SageReference<Object>? = null,
+    @SageIniName("StartingUnitOffset9") val startingUnitOffset9: Coords? = null,
     @SageIniName("StartingUnitTacticalWOTR") val startingUnitTacticalWOTR: List<SageReference<Object>> = emptyList(),
     @SageIniName("IntrinsicSciencesMP") val intrinsicSciencesMP: List<SageReference<Science>>? = null,
     @SageIniName("SpellBook") val spellBook: SageReference<Object>? = null,
@@ -121,6 +129,14 @@ data class PlayerTemplate(
             property("StartingUnitOffset4", Coords.type) { it.startingUnitOffset4 }
             property("StartingUnit5", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.startingUnit5 }
             property("StartingUnitOffset5", Coords.type) { it.startingUnitOffset5 }
+            property("StartingUnit6", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.startingUnit6 }
+            property("StartingUnitOffset6", Coords.type) { it.startingUnitOffset6 }
+            property("StartingUnit7", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.startingUnit7 }
+            property("StartingUnitOffset7", Coords.type) { it.startingUnitOffset7 }
+            property("StartingUnit8", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.startingUnit8 }
+            property("StartingUnitOffset8", Coords.type) { it.startingUnitOffset8 }
+            property("StartingUnit9", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.startingUnit9 }
+            property("StartingUnitOffset9", Coords.type) { it.startingUnitOffset9 }
             property(
                 "StartingUnitTacticalWOTR",
                 ListValue(ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) })

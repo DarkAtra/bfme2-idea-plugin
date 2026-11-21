@@ -31,6 +31,7 @@ data class Scenario(
     @SageIniName("DisableRegions") val disableRegions: List<Opaque> = emptyList(),
     @SageIniName("DisabledFactions") val disabledFactions: Opaque? = null,
     @SageIniName("HistoricalScenario") val historicalScenario: Boolean = false,
+    @SageIniName("UseMpRulesVictoryCondition") val useMpRulesVictoryCondition: Boolean = false,
     @SageIniName("MinPlayers") val minPlayers: Int = 0,
     @SageIniName("PlayerDefeatCondition") val playerDefeatCondition: List<PlayerDefeatCondition> = emptyList(),
     @SageIniName("TeamDefeatCondition") val teamDefeatCondition: List<TeamDefeatCondition> = emptyList(),
@@ -58,6 +59,7 @@ data class Scenario(
             property("DisableRegions", ListValue(Opaque.type)) { it.disableRegions }
             property("DisabledFactions", Opaque.type) { it.disabledFactions }
             property("HistoricalScenario", BooleanValue) { it.historicalScenario }
+            property("UseMpRulesVictoryCondition", BooleanValue) { it.useMpRulesVictoryCondition }
             property("MinPlayers", IntValue) { it.minPlayers }
             property("PlayerDefeatCondition", ListValue(BlockValue<PlayerDefeatCondition> { listOf(PlayerDefeatCondition) })) { it.playerDefeatCondition }
             property("TeamDefeatCondition", ListValue(BlockValue<TeamDefeatCondition> { listOf(TeamDefeatCondition) })) { it.teamDefeatCondition }
