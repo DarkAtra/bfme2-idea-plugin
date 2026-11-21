@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
@@ -10,6 +11,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.FXList
+import de.darkatra.bfme2.ini.model.`object`.Multisound
 import de.darkatra.bfme2.ini.model.`object`.ObjectCreationList
 import de.darkatra.bfme2.ini.model.`object`.Weapon
 import de.darkatra.bfme2.ini.model.value.DeathFlags
@@ -42,7 +44,7 @@ open class SlowDeathBehavior(
     @SageIniName("OCL") open val oCL: List<PhasedReferences<SlowDeathPhase, ObjectCreationList>> = emptyList(),
     @SageIniName("Weapon") open val weapon: List<PhasedReferences<SlowDeathPhase, Weapon>> = emptyList(),
     @SageIniName("FX") open val fX: List<PhasedReferences<SlowDeathPhase, FXList>> = emptyList(),
-    @SageIniName("Sound") open val sound: List<PhasedReferences<SlowDeathPhase, AudioEvent>> = emptyList(),
+    @SageIniName("Sound") open val sound: List<PhasedReferences<SlowDeathPhase, SageAudio>> = emptyList(),
     @SageIniName("FlingForce") open val flingForce: Int = 0,
     @SageIniName("FlingForceVariance") open val flingForceVariance: Int = 0,
     @SageIniName("FlingPitch") open val flingPitch: Int = 0,
@@ -69,7 +71,7 @@ open class SlowDeathBehavior(
             property("OCL", ListValue(PhasedReferences.type(SlowDeathPhase.type, ReferenceValue<ObjectCreationList> { listOf(ObjectCreationList) }))) { it.oCL }
             property("Weapon", ListValue(PhasedReferences.type(SlowDeathPhase.type, ReferenceValue<Weapon> { listOf(Weapon) }))) { it.weapon }
             property("FX", ListValue(PhasedReferences.type(SlowDeathPhase.type, ReferenceValue<FXList> { listOf(FXList) }))) { it.fX }
-            property("Sound", ListValue(PhasedReferences.type(SlowDeathPhase.type, ReferenceValue<AudioEvent> { listOf(AudioEvent) }))) { it.sound }
+            property("Sound", ListValue(PhasedReferences.type(SlowDeathPhase.type, ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }))) { it.sound }
             property("FlingForce", IntValue) { it.flingForce }
             property("FlingForceVariance", IntValue) { it.flingForceVariance }
             property("FlingPitch", IntValue) { it.flingPitch }

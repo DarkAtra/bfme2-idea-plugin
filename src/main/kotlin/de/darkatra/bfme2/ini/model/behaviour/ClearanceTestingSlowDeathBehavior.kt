@@ -1,11 +1,11 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
-import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.ObjectCreationList
 import de.darkatra.bfme2.ini.model.`object`.Weapon
@@ -41,7 +41,7 @@ data class ClearanceTestingSlowDeathBehavior(
     @SageIniName("OCL") override val oCL: List<PhasedReferences<SlowDeathPhase, ObjectCreationList>> = emptyList(),
     @SageIniName("Weapon") override val weapon: List<PhasedReferences<SlowDeathPhase, Weapon>> = emptyList(),
     @SageIniName("FX") override val fX: List<PhasedReferences<SlowDeathPhase, FXList>> = emptyList(),
-    @SageIniName("Sound") override val sound: List<PhasedReferences<SlowDeathPhase, AudioEvent>> = emptyList(),
+    @SageIniName("Sound") override val sound: List<PhasedReferences<SlowDeathPhase, SageAudio>> = emptyList(),
     @SageIniName("FlingForce") override val flingForce: Int = 0,
     @SageIniName("FlingForceVariance") override val flingForceVariance: Int = 0,
     @SageIniName("FlingPitch") override val flingPitch: Int = 0,

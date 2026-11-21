@@ -1,9 +1,9 @@
 package de.darkatra.bfme2.ini.model.`object`
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
-import de.darkatra.bfme2.ini.model.common.SageIniObject
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
@@ -45,7 +45,7 @@ data class AudioEvent(
     @SageIniName("LoopCount") val loopCount: Int = 0,
     @SageIniName("Sound") val sound: Opaque? = null,
     @SageIniName("DelayFromActStart") val delayFromActStart: Double = 0.0,
-) : SageIniObject {
+) : SageAudio {
 
     companion object : SageIniBlockDescriptor<AudioEvent>(
         name = "AudioEvent",

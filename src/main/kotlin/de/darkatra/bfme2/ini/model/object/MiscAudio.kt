@@ -46,18 +46,18 @@ data class MiscAudio(
     @SageIniName("EnabledHotKeyPressed") val enabledHotKeyPressed: SageReference<AudioEvent>? = null,
     @SageIniName("DisabledHotKeyPressed") val disabledHotKeyPressed: SageReference<AudioEvent>? = null,
     @SageIniName("DisabledButtonClicked") val disabledButtonClicked: SageReference<AudioEvent>? = null,
-    @SageIniName("LowLODShellMusic") val lowLODShellMusic: SageReference<AudioEvent>? = null,
-    @SageIniName("HighLODShellMusic") val highLODShellMusic: SageReference<AudioEvent>? = null,
-    @SageIniName("ScoreScreenMusic") val scoreScreenMusic: SageReference<AudioEvent>? = null,
+    @SageIniName("LowLODShellMusic") val lowLODShellMusic: SageReference<Multisound>? = null,
+    @SageIniName("HighLODShellMusic") val highLODShellMusic: SageReference<Multisound>? = null,
+    @SageIniName("ScoreScreenMusic") val scoreScreenMusic: SageReference<MusicTrack>? = null,
     @SageIniName("ShellMapLoadMusic") val shellMapLoadMusic: SageReference<AudioEvent>? = null,
-    @SageIniName("FullScreenSubMenuMusic") val fullScreenSubMenuMusic: SageReference<AudioEvent>? = null,
-    @SageIniName("SaveFileLoadMusic") val saveFileLoadMusic: SageReference<AudioEvent>? = null,
-    @SageIniName("CreditsMusic") val creditsMusic: SageReference<AudioEvent>? = null,
-    @SageIniName("VolumeSampleMusic") val volumeSampleMusic: SageReference<AudioEvent>? = null,
+    @SageIniName("FullScreenSubMenuMusic") val fullScreenSubMenuMusic: SageReference<Multisound>? = null,
+    @SageIniName("SaveFileLoadMusic") val saveFileLoadMusic: SageReference<Multisound>? = null,
+    @SageIniName("CreditsMusic") val creditsMusic: SageReference<Multisound>? = null,
+    @SageIniName("VolumeSampleMusic") val volumeSampleMusic: SageReference<MusicTrack>? = null,
     @SageIniName("VolumeSampleSoundFX") val volumeSampleSoundFX: SageReference<AudioEvent>? = null,
     @SageIniName("VolumeSampleVoice") val volumeSampleVoice: SageReference<AudioEvent>? = null,
     @SageIniName("VolumeSampleAmbient") val volumeSampleAmbient: SageReference<AudioEvent>? = null,
-    @SageIniName("VolumeSampleMovie") val volumeSampleMovie: SageReference<AudioEvent>? = null,
+    @SageIniName("VolumeSampleMovie") val volumeSampleMovie: SageReference<DialogEvent>? = null,
     @SageIniName("MissionBriefingCharacterClick") val missionBriefingCharacterClick: SageReference<AudioEvent>? = null,
     @SageIniName("ComboBoxClick") val comboBoxClick: SageReference<AudioEvent>? = null,
     @SageIniName("RIFThingTemplateReloadedSound") val rIFThingTemplateReloadedSound: SageReference<AudioEvent>? = null,
@@ -125,18 +125,18 @@ data class MiscAudio(
             property("EnabledHotKeyPressed", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.enabledHotKeyPressed }
             property("DisabledHotKeyPressed", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.disabledHotKeyPressed }
             property("DisabledButtonClicked", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.disabledButtonClicked }
-            property("LowLODShellMusic", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.lowLODShellMusic }
-            property("HighLODShellMusic", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.highLODShellMusic }
-            property("ScoreScreenMusic", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.scoreScreenMusic }
+            property("LowLODShellMusic", ReferenceValue<Multisound> { listOf(Multisound) }) { it.lowLODShellMusic }
+            property("HighLODShellMusic", ReferenceValue<Multisound> { listOf(Multisound) }) { it.highLODShellMusic }
+            property("ScoreScreenMusic", ReferenceValue<MusicTrack> { listOf(MusicTrack) }) { it.scoreScreenMusic }
             property("ShellMapLoadMusic", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.shellMapLoadMusic }
-            property("FullScreenSubMenuMusic", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.fullScreenSubMenuMusic }
-            property("SaveFileLoadMusic", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.saveFileLoadMusic }
-            property("CreditsMusic", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.creditsMusic }
-            property("VolumeSampleMusic", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.volumeSampleMusic }
+            property("FullScreenSubMenuMusic", ReferenceValue<Multisound> { listOf(Multisound) }) { it.fullScreenSubMenuMusic }
+            property("SaveFileLoadMusic", ReferenceValue<Multisound> { listOf(Multisound) }) { it.saveFileLoadMusic }
+            property("CreditsMusic", ReferenceValue<Multisound> { listOf(Multisound) }) { it.creditsMusic }
+            property("VolumeSampleMusic", ReferenceValue<MusicTrack> { listOf(MusicTrack) }) { it.volumeSampleMusic }
             property("VolumeSampleSoundFX", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.volumeSampleSoundFX }
             property("VolumeSampleVoice", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.volumeSampleVoice }
             property("VolumeSampleAmbient", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.volumeSampleAmbient }
-            property("VolumeSampleMovie", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.volumeSampleMovie }
+            property("VolumeSampleMovie", ReferenceValue<DialogEvent> { listOf(DialogEvent) }) { it.volumeSampleMovie }
             property("MissionBriefingCharacterClick", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.missionBriefingCharacterClick }
             property("ComboBoxClick", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.comboBoxClick }
             property("RIFThingTemplateReloadedSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.rIFThingTemplateReloadedSound }

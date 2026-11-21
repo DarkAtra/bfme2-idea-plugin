@@ -12,7 +12,6 @@ import de.darkatra.bfme2.ini.model.`object`.ChildObject
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
-import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.Rgb
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -21,7 +20,7 @@ data class BuffNugget(
     val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("BuffType") val buffType: Untyped? = null,
     @SageIniName("BuffName") val buffName: Untyped? = null,
-    @SageIniName("BuffShipTemplate") val buffShipTemplate: Opaque? = null,
+    @SageIniName("BuffShipTemplate") val buffShipTemplate: SageReference<Object>? = null,
     @SageIniName("BuffLifeTime") val buffLifeTime: Int = 0,
     @SageIniName("IsComplexBuff") val isComplexBuff: Boolean = false,
     @SageIniName("FXList") val fXList: SageReference<FXList>? = null,
@@ -41,7 +40,7 @@ data class BuffNugget(
         properties = {
             property("BuffType", Untyped.type) { it.buffType }
             property("BuffName", Untyped.type) { it.buffName }
-            property("BuffShipTemplate", Opaque.type) { it.buffShipTemplate }
+            property("BuffShipTemplate", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.buffShipTemplate }
             property("BuffLifeTime", IntValue) { it.buffLifeTime }
             property("IsComplexBuff", BooleanValue) { it.isComplexBuff }
             property("FXList", ReferenceValue<FXList> { listOf(FXList) }) { it.fXList }

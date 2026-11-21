@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
@@ -42,7 +43,7 @@ data class ScaleWallSpecialAbilityUpdate(
     @SageIniName("FleeRangeAfterCompletion") override val fleeRangeAfterCompletion: Double = 0.0,
     @SageIniName("PackSound") override val packSound: SageReference<AudioEvent>? = null,
     @SageIniName("UnpackSound") override val unpackSound: SageReference<AudioEvent>? = null,
-    @SageIniName("TriggerSound") override val triggerSound: SageReference<AudioEvent>? = null,
+    @SageIniName("TriggerSound") override val triggerSound: SageReference<SageAudio>? = null,
     @SageIniName("PrepSoundLoop") override val prepSoundLoop: SageReference<AudioEvent>? = null,
     @SageIniName("LoseStealthOnTrigger") override val loseStealthOnTrigger: Boolean = false,
     @SageIniName("PreTriggerUnstealthTime") override val preTriggerUnstealthTime: Int = 0,

@@ -16,7 +16,6 @@ import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.Rgb
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
-import de.darkatra.bfme2.ini.model.value.Untyped
 
 data class PlayerTemplate(
     val header: SageBlockHeader = SageBlockHeader(),
@@ -30,7 +29,7 @@ data class PlayerTemplate(
     @SageIniName("IntrinsicSciences") val intrinsicSciences: List<SageReference<Science>>? = null,
     @SageIniName("DisplayName") val displayName: String = "",
     @SageIniName("ScoreScreenImage") val scoreScreenImage: SageReference<MappedImage>? = null,
-    @SageIniName("LoadScreenMusic") val loadScreenMusic: Untyped? = null,
+    @SageIniName("LoadScreenMusic") val loadScreenMusic: SageReference<Multisound>? = null,
     @SageIniName("IsObserver") val isObserver: Boolean = false,
     @SageIniName("LoadScreenImage") val loadScreenImage: SageReference<MappedImage>? = null,
     @SageIniName("BeaconName") val beaconName: SageReference<Object>? = null,
@@ -102,7 +101,7 @@ data class PlayerTemplate(
             property("IntrinsicSciences", ListValue(ReferenceValue<Science> { listOf(Science) })) { it.intrinsicSciences }
             property("DisplayName", StringValue) { it.displayName }
             property("ScoreScreenImage", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.scoreScreenImage }
-            property("LoadScreenMusic", Untyped.type) { it.loadScreenMusic }
+            property("LoadScreenMusic", ReferenceValue<Multisound> { listOf(Multisound) }) { it.loadScreenMusic }
             property("IsObserver", BooleanValue) { it.isObserver }
             property("LoadScreenImage", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.loadScreenImage }
             property("BeaconName", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.beaconName }

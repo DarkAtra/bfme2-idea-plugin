@@ -22,7 +22,7 @@ data class SpawnArmy(
     @SageIniName("InitialRegion") val initialRegion: Opaque? = null,
     @SageIniName("MoveSpeed") val moveSpeed: Double = 0.0,
     @SageIniName("IsCity") val isCity: Boolean = false,
-    @SageIniName("PalantirMovie") val palantirMovie: Opaque? = null,
+    @SageIniName("PalantirMovie") val palantirMovie: SageReference<Video>? = null,
     @SageIniName("Position") val position: Coords? = null,
 ) : SageIniObject {
 
@@ -39,7 +39,7 @@ data class SpawnArmy(
             property("InitialRegion", Opaque.type) { it.initialRegion }
             property("MoveSpeed", FloatValue) { it.moveSpeed }
             property("IsCity", BooleanValue) { it.isCity }
-            property("PalantirMovie", Opaque.type) { it.palantirMovie }
+            property("PalantirMovie", ReferenceValue<Video> { listOf(Video) }) { it.palantirMovie }
             property("Position", Coords.type) { it.position }
         },
     )

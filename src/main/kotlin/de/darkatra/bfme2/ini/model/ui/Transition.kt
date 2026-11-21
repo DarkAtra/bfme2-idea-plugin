@@ -7,9 +7,11 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageNestedAttribute
-import de.darkatra.bfme2.ini.model.value.Opaque
+import de.darkatra.bfme2.ini.model.`object`.MappedImage
 import de.darkatra.bfme2.ini.model.value.Rgba
+import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
 data class Transition(
@@ -24,8 +26,8 @@ data class Transition(
     @SageIniName("AnimationMustCompleteBlend") val animationMustCompleteBlend: Boolean = false,
     @SageIniName("AnimationSpeedFactorRange") val animationSpeedFactorRange: List<Double> = emptyList(),
     @SageIniName("FadeColor") val fadeColor: Rgba? = null,
-    @SageIniName("FadeImage") val fadeImage: Opaque? = null,
-    @SageIniName("CrossFadeImage") val crossFadeImage: Opaque? = null,
+    @SageIniName("FadeImage") val fadeImage: SageReference<MappedImage>? = null,
+    @SageIniName("CrossFadeImage") val crossFadeImage: SageReference<MappedImage>? = null,
     @SageIniName("FadeInUnfrozenSounds") val fadeInUnfrozenSounds: Boolean = false,
 ) : SageNestedAttribute {
 
@@ -43,8 +45,8 @@ data class Transition(
             property("AnimationMustCompleteBlend", BooleanValue) { it.animationMustCompleteBlend }
             property("AnimationSpeedFactorRange", ListValue(FloatValue)) { it.animationSpeedFactorRange }
             property("FadeColor", Rgba.type) { it.fadeColor }
-            property("FadeImage", Opaque.type) { it.fadeImage }
-            property("CrossFadeImage", Opaque.type) { it.crossFadeImage }
+            property("FadeImage", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.fadeImage }
+            property("CrossFadeImage", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.crossFadeImage }
             property("FadeInUnfrozenSounds", BooleanValue) { it.fadeInUnfrozenSounds }
         },
     )

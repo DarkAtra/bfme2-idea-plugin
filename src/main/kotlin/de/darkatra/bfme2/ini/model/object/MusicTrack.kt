@@ -1,9 +1,9 @@
 package de.darkatra.bfme2.ini.model.`object`
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
-import de.darkatra.bfme2.ini.model.common.SageIniObject
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
@@ -41,7 +41,7 @@ data class MusicTrack(
     @SageIniName("ZoomedInOffscreenMinVolumePercent") val zoomedInOffscreenMinVolumePercent: Double = 0.0,
     @SageIniName("ZoomedInOffscreenOcclusionPercent") val zoomedInOffscreenOcclusionPercent: Double = 0.0,
     @SageIniName("ZoomedInOffscreenVolumePercent") val zoomedInOffscreenVolumePercent: Double = 0.0,
-) : SageIniObject {
+) : SageAudio {
 
     companion object : SageIniBlockDescriptor<MusicTrack>(
         name = "MusicTrack",

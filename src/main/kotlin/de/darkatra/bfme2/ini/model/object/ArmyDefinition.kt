@@ -11,7 +11,6 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.livingworld.ArmyMemberDefinition
 import de.darkatra.bfme2.ini.model.value.FakeToken
-import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
@@ -60,7 +59,7 @@ data class ArmyDefinition(
     @SageIniName("ChanceToUseAllUnitsForDefenseTarget_Large") val chanceToUseAllUnitsForDefenseTargetLarge: Double = 0.0,
     @SageIniName("HeroBuildOrder") val heroBuildOrder: List<SageReference<Object>> = emptyList(),
     @SageIniName("OffensiveBuildings") val offensiveBuildings: List<SageReference<Object>> = emptyList(),
-    @SageIniName("ScavangedResourceBuildings") val scavangedResourceBuildings: Opaque? = null,
+    @SageIniName("ScavangedResourceBuildings") val scavangedResourceBuildings: SageReference<Object>? = null,
     @SageIniName("ArmyMemberDefinition") val armyMemberDefinition: List<ArmyMemberDefinition> = emptyList(),
     @SageIniName("AIEconomyAssigment") val aiEconomyAssigment: List<AIEconomyAssigment> = emptyList(),
     @SageIniName("AIWallNodeAssignment") val aiWallNodeAssignment: List<AIWallNodeAssignment> = emptyList(),
@@ -113,7 +112,7 @@ data class ArmyDefinition(
             property("ChanceToUseAllUnitsForDefenseTarget_Large", FloatValue) { it.chanceToUseAllUnitsForDefenseTargetLarge }
             property("HeroBuildOrder", ListValue(ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) })) { it.heroBuildOrder }
             property("OffensiveBuildings", ListValue(ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) })) { it.offensiveBuildings }
-            property("ScavangedResourceBuildings", Opaque.type) { it.scavangedResourceBuildings }
+            property("ScavangedResourceBuildings", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.scavangedResourceBuildings }
             property("ArmyMemberDefinition", ListValue(BlockValue<ArmyMemberDefinition> { listOf(ArmyMemberDefinition) })) { it.armyMemberDefinition }
             property("AIEconomyAssigment", ListValue(BlockValue<AIEconomyAssigment> { listOf(AIEconomyAssigment) })) { it.aiEconomyAssigment }
             property("AIWallNodeAssignment", ListValue(BlockValue<AIWallNodeAssignment> { listOf(AIWallNodeAssignment) })) { it.aiWallNodeAssignment }

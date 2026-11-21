@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.`object`
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
@@ -41,7 +42,7 @@ data class CommandButton(
     @SageIniName("EnableOnModelCondition") val enableOnModelCondition: List<ModelCondition> = emptyList(),
     @SageIniName("Object") val `object`: SageReference<Object>? = null,
     @SageIniName("Science") val science: SageReference<Science>? = null,
-    @SageIniName("UnitSpecificSound") val unitSpecificSound: List<SageReference<AudioEvent>> = emptyList(),
+    @SageIniName("UnitSpecificSound") val unitSpecificSound: List<SageReference<SageAudio>> = emptyList(),
     @SageIniName("SetAutoAbilityUnitSound") val setAutoAbilityUnitSound: SageReference<AudioEvent>? = null,
     @SageIniName("SpecialPower") val specialPower: SageReference<SpecialPower>? = null,
     @SageIniName("DescriptLabel") val descriptLabel: List<String> = emptyList(),
@@ -100,7 +101,7 @@ data class CommandButton(
             property("EnableOnModelCondition", ListValue(ModelCondition.type)) { it.enableOnModelCondition }
             property("Object", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.`object` }
             property("Science", ReferenceValue<Science> { listOf(Science) }) { it.science }
-            property("UnitSpecificSound", ListValue(ReferenceValue<AudioEvent> { listOf(AudioEvent) })) { it.unitSpecificSound }
+            property("UnitSpecificSound", ListValue(ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) })) { it.unitSpecificSound }
             property("SetAutoAbilityUnitSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.setAutoAbilityUnitSound }
             property("SpecialPower", ReferenceValue<SpecialPower> { listOf(SpecialPower) }) { it.specialPower }
             property("DescriptLabel", ListValue(StringValue)) { it.descriptLabel }

@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
@@ -23,7 +24,7 @@ data class ProductionSpeedBonus(
     @SageIniName("SpecialPowerTemplate") override val specialPowerTemplate: SageReference<SpecialPower>? = null,
     @SageIniName("StartsPaused") override val startsPaused: Boolean = false,
     @SageIniName("UpdateModuleStartsAttack") override val updateModuleStartsAttack: Boolean = false,
-    @SageIniName("InitiateSound") override val initiateSound: SageReference<AudioEvent>? = null,
+    @SageIniName("InitiateSound") override val initiateSound: SageReference<SageAudio>? = null,
     @SageIniName("InitiateSound2") override val initiateSound2: SageReference<AudioEvent>? = null,
     @SageIniName("AttributeModifier") override val attributeModifier: SageReference<ModifierList>? = null,
     @SageIniName("AttributeModifierAffectsSelf") override val attributeModifierAffectsSelf: Boolean = false,

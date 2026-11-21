@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBehavior
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
@@ -9,6 +10,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
+import de.darkatra.bfme2.ini.model.`object`.Multisound
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -27,7 +29,7 @@ data class ModelConditionSpecialAbilityUpdate(
     @SageIniName("DisableWhenWearingTheRing") val disableWhenWearingTheRing: Boolean = false,
     @SageIniName("WhichSpecialPower") val whichSpecialPower: Int = 0,
     @SageIniName("ObjectFilter") val objectFilter: SageFilter? = null,
-    @SageIniName("TriggerSound") val triggerSound: SageReference<AudioEvent>? = null,
+    @SageIniName("TriggerSound") val triggerSound: SageReference<SageAudio>? = null,
     @SageIniName("MustFinishAbility") val mustFinishAbility: Boolean = false,
     @SageIniName("LoseStealthOnTrigger") val loseStealthOnTrigger: Boolean = false,
     @SageIniName("PreTriggerUnstealthTime") val preTriggerUnstealthTime: Int = 0,
@@ -49,7 +51,7 @@ data class ModelConditionSpecialAbilityUpdate(
             property("DisableWhenWearingTheRing", BooleanValue) { it.disableWhenWearingTheRing }
             property("WhichSpecialPower", IntValue) { it.whichSpecialPower }
             property("ObjectFilter", SageFilter.type) { it.objectFilter }
-            property("TriggerSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.triggerSound }
+            property("TriggerSound", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.triggerSound }
             property("MustFinishAbility", BooleanValue) { it.mustFinishAbility }
             property("LoseStealthOnTrigger", BooleanValue) { it.loseStealthOnTrigger }
             property("PreTriggerUnstealthTime", IntValue) { it.preTriggerUnstealthTime }

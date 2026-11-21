@@ -1,6 +1,7 @@
 package de.darkatra.bfme2.ini.model.draw
 
 import de.darkatra.bfme2.ini.model.audio.SoundSet
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
@@ -11,13 +12,13 @@ import de.darkatra.bfme2.ini.model.value.SageReference
 
 data class SoundState(
     override val header: SageBlockHeader = SageBlockHeader(),
-    @SageIniName("VoiceSelect") override val voiceSelect: SageReference<AudioEvent>? = null,
-    @SageIniName("VoiceSelectBattle") override val voiceSelectBattle: SageReference<AudioEvent>? = null,
-    @SageIniName("VoiceMove") override val voiceMove: SageReference<AudioEvent>? = null,
+    @SageIniName("VoiceSelect") override val voiceSelect: SageReference<SageAudio>? = null,
+    @SageIniName("VoiceSelectBattle") override val voiceSelectBattle: SageReference<SageAudio>? = null,
+    @SageIniName("VoiceMove") override val voiceMove: SageReference<SageAudio>? = null,
     @SageIniName("VoiceMoveToCamp") override val voiceMoveToCamp: SageReference<AudioEvent>? = null,
     @SageIniName("VoiceMoveWhileAttacking") override val voiceMoveWhileAttacking: SageReference<AudioEvent>? = null,
-    @SageIniName("VoiceAttack") override val voiceAttack: SageReference<AudioEvent>? = null,
-    @SageIniName("VoiceAttackCharge") override val voiceAttackCharge: SageReference<AudioEvent>? = null,
+    @SageIniName("VoiceAttack") override val voiceAttack: SageReference<SageAudio>? = null,
+    @SageIniName("VoiceAttackCharge") override val voiceAttackCharge: SageReference<SageAudio>? = null,
     @SageIniName("VoiceAttackMachine") override val voiceAttackMachine: SageReference<AudioEvent>? = null,
     @SageIniName("VoiceAttackStructure") override val voiceAttackStructure: SageReference<AudioEvent>? = null,
     @SageIniName("VoiceGuard") override val voiceGuard: SageReference<AudioEvent>? = null,

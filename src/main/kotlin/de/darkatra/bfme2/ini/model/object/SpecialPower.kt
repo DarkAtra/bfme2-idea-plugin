@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.`object`
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
@@ -21,7 +22,7 @@ import de.darkatra.bfme2.ini.model.value.Untyped
 data class SpecialPower(
     val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("Enum") val enum: SpecialPowerType? = null,
-    @SageIniName("InitiateSound") val initiateSound: SageReference<AudioEvent>? = null,
+    @SageIniName("InitiateSound") val initiateSound: SageReference<SageAudio>? = null,
     @SageIniName("PreventActivationConditions") val preventActivationConditions: Untyped? = null,
     @SageIniName("SharedSyncedTimer") val sharedSyncedTimer: Boolean = false,
     @SageIniName("EvaEventToPlayOnSuccess") val evaEventToPlayOnSuccess: SageReference<EvaEventBase>? = null,
@@ -31,7 +32,7 @@ data class SpecialPower(
     @SageIniName("PublicTimer") val publicTimer: Boolean = false,
     @SageIniName("Flags") val flags: List<FakeToken> = emptyList(),
     @SageIniName("RequiredSciences") val requiredSciences: ScienceRequirements? = null,
-    @SageIniName("InitiateAtLocationSound") val initiateAtLocationSound: SageReference<AudioEvent>? = null,
+    @SageIniName("InitiateAtLocationSound") val initiateAtLocationSound: SageReference<SageAudio>? = null,
     @SageIniName("ViewObjectDuration") val viewObjectDuration: Double = 0.0,
     @SageIniName("ViewObjectRange") val viewObjectRange: Double = 0.0,
     @SageIniName("RadiusCursorRadius") val radiusCursorRadius: Double = 0.0,
@@ -40,7 +41,7 @@ data class SpecialPower(
     @SageIniName("ForbiddenObjectRange") val forbiddenObjectRange: Double = 0.0,
     @SageIniName("ObjectFilter") val objectFilter: SageFilter? = null,
     @SageIniName("AcademyClassify") val academyClassify: AcademyType? = null,
-    @SageIniName("PalantirMovie") val palantirMovie: Opaque? = null,
+    @SageIniName("PalantirMovie") val palantirMovie: SageReference<Video>? = null,
     @SageIniName("RequiredScience") val requiredScience: SageReference<Science>? = null,
     @SageIniName("ShortcutPower") val shortcutPower: Boolean = false,
     @SageIniName("UnitCost") val unitCost: Int = 0,
@@ -52,7 +53,7 @@ data class SpecialPower(
         tableKey = "specialpowers",
         properties = {
             property("Enum", SpecialPowerType.type) { it.enum }
-            property("InitiateSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.initiateSound }
+            property("InitiateSound", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.initiateSound }
             property("PreventActivationConditions", Untyped.type) { it.preventActivationConditions }
             property("SharedSyncedTimer", BooleanValue) { it.sharedSyncedTimer }
             property("EvaEventToPlayOnSuccess", ReferenceValue<EvaEventBase> { listOf(NewEvaEvent, PredefinedEvaEvent) }) { it.evaEventToPlayOnSuccess }
@@ -62,7 +63,7 @@ data class SpecialPower(
             property("PublicTimer", BooleanValue) { it.publicTimer }
             property("Flags", ListValue(FakeToken.type)) { it.flags }
             property("RequiredSciences", ScienceRequirements.type) { it.requiredSciences }
-            property("InitiateAtLocationSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.initiateAtLocationSound }
+            property("InitiateAtLocationSound", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.initiateAtLocationSound }
             property("ViewObjectDuration", FloatValue) { it.viewObjectDuration }
             property("ViewObjectRange", FloatValue) { it.viewObjectRange }
             property("RadiusCursorRadius", FloatValue) { it.radiusCursorRadius }
@@ -71,7 +72,7 @@ data class SpecialPower(
             property("ForbiddenObjectRange", FloatValue) { it.forbiddenObjectRange }
             property("ObjectFilter", SageFilter.type) { it.objectFilter }
             property("AcademyClassify", AcademyType.type) { it.academyClassify }
-            property("PalantirMovie", Opaque.type) { it.palantirMovie }
+            property("PalantirMovie", ReferenceValue<Video> { listOf(Video) }) { it.palantirMovie }
             property("RequiredScience", ReferenceValue<Science> { listOf(Science) }) { it.requiredScience }
             property("ShortcutPower", BooleanValue) { it.shortcutPower }
             property("UnitCost", IntValue) { it.unitCost }

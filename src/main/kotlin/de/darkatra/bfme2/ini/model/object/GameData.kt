@@ -7,6 +7,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
 import de.darkatra.bfme2.ini.model.value.BodyDamageType
 import de.darkatra.bfme2.ini.model.value.Coords
@@ -55,8 +56,8 @@ data class GameData(
             property("DebugCashValueMapTileDuration", IntValue) { it.section1.debugCashValueMapTileDuration }
             property("MaxDebugCashValueMapValue", IntValue) { it.section1.maxDebugCashValueMapValue }
             property("AdjustCliffTextures", BooleanValue) { it.section1.adjustCliffTextures }
-            property("AdvancedTutorialLoadScreenMusicTrack", Opaque.type) { it.section1.advancedTutorialLoadScreenMusicTrack }
-            property("AdvancedTutorialLoadScreenStillImage", Opaque.type) { it.section1.advancedTutorialLoadScreenStillImage }
+            property("AdvancedTutorialLoadScreenMusicTrack", ReferenceValue<Multisound> { listOf(Multisound) }) { it.section1.advancedTutorialLoadScreenMusicTrack }
+            property("AdvancedTutorialLoadScreenStillImage", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.section1.advancedTutorialLoadScreenStillImage }
             property("AdvancedTutorialMap", Opaque.type) { it.section1.advancedTutorialMap }
             property("AdvancedTutorialMillisecondsAfterStartToStartFadeUp", IntValue) { it.section1.advancedTutorialMillisecondsAfterStartToStartFadeUp }
             property("AdvancedTutorialObjective", StringValue) { it.section1.advancedTutorialObjective }
@@ -76,29 +77,29 @@ data class GameData(
             property("AudioOn", BooleanValue) { it.section1.audioOn }
             property("AutoAflameParticleMax", IntValue) { it.section1.autoAflameParticleMax }
             property("AutoAflameParticlePrefix", StringValue) { it.section1.autoAflameParticlePrefix }
-            property("AutoAflameParticleSystem", Opaque.type) { it.section1.autoAflameParticleSystem }
+            property("AutoAflameParticleSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoAflameParticleSystem }
             property("AutoFireParticleLargeMax", IntValue) { it.section1.autoFireParticleLargeMax }
             property("AutoFireParticleLargePrefix", StringValue) { it.section1.autoFireParticleLargePrefix }
-            property("AutoFireParticleLargeSystem", Opaque.type) { it.section1.autoFireParticleLargeSystem }
+            property("AutoFireParticleLargeSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoFireParticleLargeSystem }
             property("AutoFireParticleMediumMax", IntValue) { it.section1.autoFireParticleMediumMax }
             property("AutoFireParticleMediumPrefix", StringValue) { it.section1.autoFireParticleMediumPrefix }
-            property("AutoFireParticleMediumSystem", Opaque.type) { it.section1.autoFireParticleMediumSystem }
+            property("AutoFireParticleMediumSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoFireParticleMediumSystem }
             property("AutoFireParticleSmallMax", IntValue) { it.section1.autoFireParticleSmallMax }
             property("AutoFireParticleSmallPrefix", StringValue) { it.section1.autoFireParticleSmallPrefix }
-            property("AutoFireParticleSmallSystem", Opaque.type) { it.section1.autoFireParticleSmallSystem }
+            property("AutoFireParticleSmallSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoFireParticleSmallSystem }
             property("AutoSmokeParticleLargeMax", IntValue) { it.section1.autoSmokeParticleLargeMax }
             property("AutoSmokeParticleLargePrefix", StringValue) { it.section1.autoSmokeParticleLargePrefix }
-            property("AutoSmokeParticleLargeSystem", Opaque.type) { it.section1.autoSmokeParticleLargeSystem }
+            property("AutoSmokeParticleLargeSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoSmokeParticleLargeSystem }
             property("AutoSmokeParticleMediumMax", IntValue) { it.section1.autoSmokeParticleMediumMax }
             property("AutoSmokeParticleMediumPrefix", StringValue) { it.section1.autoSmokeParticleMediumPrefix }
-            property("AutoSmokeParticleMediumSystem", Opaque.type) { it.section1.autoSmokeParticleMediumSystem }
+            property("AutoSmokeParticleMediumSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoSmokeParticleMediumSystem }
             property("AutoSmokeParticleSmallMax", IntValue) { it.section1.autoSmokeParticleSmallMax }
             property("AutoSmokeParticleSmallPrefix", StringValue) { it.section1.autoSmokeParticleSmallPrefix }
-            property("AutoSmokeParticleSmallSystem", Opaque.type) { it.section1.autoSmokeParticleSmallSystem }
+            property("AutoSmokeParticleSmallSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoSmokeParticleSmallSystem }
             property("BaseRegenDelay", Opaque.type) { it.section1.baseRegenDelay }
             property("BaseRegenHealthPercentPerSecond", FloatValue) { it.section1.baseRegenHealthPercentPerSecond }
-            property("BasicTutorialLoadScreenMusicTrack", Opaque.type) { it.section1.basicTutorialLoadScreenMusicTrack }
-            property("BasicTutorialLoadScreenStillImage", Opaque.type) { it.section1.basicTutorialLoadScreenStillImage }
+            property("BasicTutorialLoadScreenMusicTrack", ReferenceValue<Multisound> { listOf(Multisound) }) { it.section1.basicTutorialLoadScreenMusicTrack }
+            property("BasicTutorialLoadScreenStillImage", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.section1.basicTutorialLoadScreenStillImage }
             property("BasicTutorialMap", Opaque.type) { it.section1.basicTutorialMap }
             property("BasicTutorialMillisecondsAfterStartToStartFadeUp", IntValue) { it.section1.basicTutorialMillisecondsAfterStartToStartFadeUp }
             property("BasicTutorialObjective", StringValue) { it.section1.basicTutorialObjective }
@@ -134,9 +135,9 @@ data class GameData(
             property("DefaultMaxDistanceForEngaged", IntValue) { it.section1.defaultMaxDistanceForEngaged }
             property("DefaultOcclusionDelay", IntValue) { it.section1.defaultOcclusionDelay }
             property("DefaultStartingCash", IntValue) { it.section1.defaultStartingCash }
-            property("DefaultStructureRepairBuffFxList", Opaque.type) { it.section1.defaultStructureRepairBuffFxList }
+            property("DefaultStructureRepairBuffFxList", ReferenceValue<FXList> { listOf(FXList) }) { it.section1.defaultStructureRepairBuffFxList }
             property("DefaultStructureRubbleHeight", FloatValue) { it.section1.defaultStructureRubbleHeight }
-            property("DefaultUnitHealingBuffFxList", Opaque.type) { it.section1.defaultUnitHealingBuffFxList }
+            property("DefaultUnitHealingBuffFxList", ReferenceValue<FXList> { listOf(FXList) }) { it.section1.defaultUnitHealingBuffFxList }
             property("DefaultVoiceAttackChargeTimeout", IntValue) { it.section1.defaultVoiceAttackChargeTimeout }
             property("DisablePixelShader", BooleanValue) { it.section1.disablePixelShader }
             property("DownwindAngle", FloatValue) { it.section1.downwindAngle }
@@ -163,7 +164,7 @@ data class GameData(
             property("ForceModelsToFollowWeather", BooleanValue) { it.section1.forceModelsToFollowWeather }
             property("FramesPerSecondLimit", IntValue) { it.section1.framesPerSecondLimit }
             property("GarrisonedRangeMultiplier", FloatValue) { it.section1.garrisonedRangeMultiplier }
-            property("GenericDamageFieldName", Opaque.type) { it.section1.genericDamageFieldName }
+            property("GenericDamageFieldName", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.section1.genericDamageFieldName }
             property("GenericDamageWarningName", Opaque.type) { it.section1.genericDamageWarningName }
             property("GetHealedAnimationName", Opaque.type) { it.section1.getHealedAnimationName }
             property("GetHealedAnimationTime", FloatValue) { it.section1.getHealedAnimationTime }
@@ -357,7 +358,7 @@ data class GameData(
             property("SkyBoxScale", FloatValue) { it.section3.skyBoxScale }
             property("Sounds3DOn", BooleanValue) { it.section3.sounds3DOn }
             property("SoundsOn", BooleanValue) { it.section3.soundsOn }
-            property("SpecialPowerViewObject", Opaque.type) { it.section3.specialPowerViewObject }
+            property("SpecialPowerViewObject", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.section3.specialPowerViewObject }
             property("SpeechOn", BooleanValue) { it.section3.speechOn }
             property("StandardMinefieldDensity", FloatValue) { it.section3.standardMinefieldDensity }
             property("StandardMinefieldDistance", FloatValue) { it.section3.standardMinefieldDistance }

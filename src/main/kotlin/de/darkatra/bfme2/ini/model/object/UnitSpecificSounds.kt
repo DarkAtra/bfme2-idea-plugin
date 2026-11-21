@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.`object`
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
@@ -12,14 +13,14 @@ data class UnitSpecificSounds(
     @SageIniName("UnderConstruction") val underConstruction: SageReference<AudioEvent>? = null,
     @SageIniName("UnderRepairFromRubble") val underRepairFromRubble: SageReference<AudioEvent>? = null,
     @SageIniName("UnderRepairFromDamage") val underRepairFromDamage: SageReference<AudioEvent>? = null,
-    @SageIniName("VoiceGarrison") val voiceGarrison: SageReference<AudioEvent>? = null,
-    @SageIniName("VoiceInitiateCaptureBuilding") val voiceInitiateCaptureBuilding: SageReference<AudioEvent>? = null,
+    @SageIniName("VoiceGarrison") val voiceGarrison: SageReference<SageAudio>? = null,
+    @SageIniName("VoiceInitiateCaptureBuilding") val voiceInitiateCaptureBuilding: SageReference<SageAudio>? = null,
     @SageIniName("VoiceEnterUnitElvenTransportShip") val voiceEnterUnitElvenTransportShip: SageReference<AudioEvent>? = null,
-    @SageIniName("VoiceEnterUnitSlaughterHouse") val voiceEnterUnitSlaughterHouse: SageReference<AudioEvent>? = null,
-    @SageIniName("VoiceEnterUnitMordorMumakil") val voiceEnterUnitMordorMumakil: SageReference<AudioEvent>? = null,
-    @SageIniName("VoiceEnterUnitEvilMenTransportShip") val voiceEnterUnitEvilMenTransportShip: SageReference<AudioEvent>? = null,
-    @SageIniName("VoiceEnterUnitTransportShip") val voiceEnterUnitTransportShip: SageReference<AudioEvent>? = null,
-    @SageIniName("VoiceEnter") val voiceEnter: SageReference<AudioEvent>? = null,
+    @SageIniName("VoiceEnterUnitSlaughterHouse") val voiceEnterUnitSlaughterHouse: SageReference<SageAudio>? = null,
+    @SageIniName("VoiceEnterUnitMordorMumakil") val voiceEnterUnitMordorMumakil: SageReference<SageAudio>? = null,
+    @SageIniName("VoiceEnterUnitEvilMenTransportShip") val voiceEnterUnitEvilMenTransportShip: SageReference<SageAudio>? = null,
+    @SageIniName("VoiceEnterUnitTransportShip") val voiceEnterUnitTransportShip: SageReference<SageAudio>? = null,
+    @SageIniName("VoiceEnter") val voiceEnter: SageReference<SageAudio>? = null,
     @SageIniName("VoiceEnterHostile") val voiceEnterHostile: SageReference<AudioEvent>? = null,
     @SageIniName("VoiceGetHealed") val voiceGetHealed: SageReference<AudioEvent>? = null,
     @SageIniName("VoiceMoveToTrees") val voiceMoveToTrees: SageReference<AudioEvent>? = null,
@@ -28,7 +29,7 @@ data class UnitSpecificSounds(
     @SageIniName("VoiceBuildResponse") val voiceBuildResponse: SageReference<AudioEvent>? = null,
     @SageIniName("VoiceExtinguishFireAtLocation") val voiceExtinguishFireAtLocation: SageReference<AudioEvent>? = null,
     @SageIniName("VoiceNoBuild") val voiceNoBuild: SageReference<AudioEvent>? = null,
-    @SageIniName("VoiceSelectIdleWorker") val voiceSelectIdleWorker: SageReference<AudioEvent>? = null,
+    @SageIniName("VoiceSelectIdleWorker") val voiceSelectIdleWorker: SageReference<SageAudio>? = null,
     @SageIniName("VoiceCreatedFromInn") val voiceCreatedFromInn: SageReference<AudioEvent>? = null,
     @SageIniName("VoiceFullyCreatedFromInn") val voiceFullyCreatedFromInn: SageReference<AudioEvent>? = null,
     @SageIniName("VoiceAttackUnitWebbedHumanoidWithGondorFighterInside") val voiceAttackUnitWebbedHumanoidWithGondorFighterInside: SageReference<AudioEvent>? = null,
@@ -56,14 +57,14 @@ data class UnitSpecificSounds(
             property("UnderConstruction", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.underConstruction }
             property("UnderRepairFromRubble", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.underRepairFromRubble }
             property("UnderRepairFromDamage", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.underRepairFromDamage }
-            property("VoiceGarrison", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceGarrison }
-            property("VoiceInitiateCaptureBuilding", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceInitiateCaptureBuilding }
+            property("VoiceGarrison", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.voiceGarrison }
+            property("VoiceInitiateCaptureBuilding", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.voiceInitiateCaptureBuilding }
             property("VoiceEnterUnitElvenTransportShip", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceEnterUnitElvenTransportShip }
-            property("VoiceEnterUnitSlaughterHouse", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceEnterUnitSlaughterHouse }
-            property("VoiceEnterUnitMordorMumakil", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceEnterUnitMordorMumakil }
-            property("VoiceEnterUnitEvilMenTransportShip", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceEnterUnitEvilMenTransportShip }
-            property("VoiceEnterUnitTransportShip", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceEnterUnitTransportShip }
-            property("VoiceEnter", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceEnter }
+            property("VoiceEnterUnitSlaughterHouse", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.voiceEnterUnitSlaughterHouse }
+            property("VoiceEnterUnitMordorMumakil", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.voiceEnterUnitMordorMumakil }
+            property("VoiceEnterUnitEvilMenTransportShip", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.voiceEnterUnitEvilMenTransportShip }
+            property("VoiceEnterUnitTransportShip", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.voiceEnterUnitTransportShip }
+            property("VoiceEnter", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.voiceEnter }
             property("VoiceEnterHostile", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceEnterHostile }
             property("VoiceGetHealed", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceGetHealed }
             property("VoiceMoveToTrees", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceMoveToTrees }
@@ -72,7 +73,7 @@ data class UnitSpecificSounds(
             property("VoiceBuildResponse", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceBuildResponse }
             property("VoiceExtinguishFireAtLocation", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceExtinguishFireAtLocation }
             property("VoiceNoBuild", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceNoBuild }
-            property("VoiceSelectIdleWorker", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceSelectIdleWorker }
+            property("VoiceSelectIdleWorker", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.voiceSelectIdleWorker }
             property("VoiceCreatedFromInn", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceCreatedFromInn }
             property("VoiceFullyCreatedFromInn", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.voiceFullyCreatedFromInn }
             property(

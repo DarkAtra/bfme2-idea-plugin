@@ -9,11 +9,13 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
 import de.darkatra.bfme2.ini.model.ui.RadiusCursorTemplate
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.Rgba
+import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
 data class InGameUI(
@@ -83,8 +85,8 @@ data class InGameUI(
     @SageIniName("MoveRMBScrollAnchor") val moveRMBScrollAnchor: Boolean = false,
     @SageIniName("UnitHelpTextDelay") val unitHelpTextDelay: Double = 0.0,
     @SageIniName("SelectNearestBuilderCycleTimeOut") val selectNearestBuilderCycleTimeOut: Int = 0,
-    @SageIniName("TerrainResourceClaimDecal") val terrainResourceClaimDecal: Opaque? = null,
-    @SageIniName("PlaceTerrainResourceClaimantDecal") val placeTerrainResourceClaimantDecal: Opaque? = null,
+    @SageIniName("TerrainResourceClaimDecal") val terrainResourceClaimDecal: SageReference<MappedImage>? = null,
+    @SageIniName("PlaceTerrainResourceClaimantDecal") val placeTerrainResourceClaimantDecal: SageReference<MappedImage>? = null,
     @SageIniName("PlaceTerrainResourceClaimantFont") val placeTerrainResourceClaimantFont: Untyped? = null,
     @SageIniName("PlaceTerrainResourceClaimantFontColor") val placeTerrainResourceClaimantFontColor: Rgba? = null,
     @SageIniName("HeroInitialSpawnNotificationMessage") val heroInitialSpawnNotificationMessage: String = "",
@@ -228,8 +230,8 @@ data class InGameUI(
             property("MoveRMBScrollAnchor", BooleanValue) { it.moveRMBScrollAnchor }
             property("UnitHelpTextDelay", FloatValue) { it.unitHelpTextDelay }
             property("SelectNearestBuilderCycleTimeOut", IntValue) { it.selectNearestBuilderCycleTimeOut }
-            property("TerrainResourceClaimDecal", Opaque.type) { it.terrainResourceClaimDecal }
-            property("PlaceTerrainResourceClaimantDecal", Opaque.type) { it.placeTerrainResourceClaimantDecal }
+            property("TerrainResourceClaimDecal", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.terrainResourceClaimDecal }
+            property("PlaceTerrainResourceClaimantDecal", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.placeTerrainResourceClaimantDecal }
             property("PlaceTerrainResourceClaimantFont", Untyped.type) { it.placeTerrainResourceClaimantFont }
             property("PlaceTerrainResourceClaimantFontColor", Rgba.type) { it.placeTerrainResourceClaimantFontColor }
             property("HeroInitialSpawnNotificationMessage", StringValue) { it.heroInitialSpawnNotificationMessage }

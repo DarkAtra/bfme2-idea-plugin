@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBehavior
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
@@ -15,6 +16,7 @@ import de.darkatra.bfme2.ini.model.`object`.ChildObject
 import de.darkatra.bfme2.ini.model.`object`.CommandButton
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
+import de.darkatra.bfme2.ini.model.`object`.Multisound
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
@@ -50,7 +52,7 @@ open class SpecialAbilityUpdate(
     @SageIniName("FleeRangeAfterCompletion") open val fleeRangeAfterCompletion: Double = 0.0,
     @SageIniName("PackSound") open val packSound: SageReference<AudioEvent>? = null,
     @SageIniName("UnpackSound") open val unpackSound: SageReference<AudioEvent>? = null,
-    @SageIniName("TriggerSound") open val triggerSound: SageReference<AudioEvent>? = null,
+    @SageIniName("TriggerSound") open val triggerSound: SageReference<SageAudio>? = null,
     @SageIniName("PrepSoundLoop") open val prepSoundLoop: SageReference<AudioEvent>? = null,
     @SageIniName("LoseStealthOnTrigger") open val loseStealthOnTrigger: Boolean = false,
     @SageIniName("PreTriggerUnstealthTime") open val preTriggerUnstealthTime: Int = 0,
@@ -108,7 +110,7 @@ open class SpecialAbilityUpdate(
             property("FleeRangeAfterCompletion", FloatValue) { it.fleeRangeAfterCompletion }
             property("PackSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.packSound }
             property("UnpackSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.unpackSound }
-            property("TriggerSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.triggerSound }
+            property("TriggerSound", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.triggerSound }
             property("PrepSoundLoop", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.prepSoundLoop }
             property("LoseStealthOnTrigger", BooleanValue) { it.loseStealthOnTrigger }
             property("PreTriggerUnstealthTime", IntValue) { it.preTriggerUnstealthTime }

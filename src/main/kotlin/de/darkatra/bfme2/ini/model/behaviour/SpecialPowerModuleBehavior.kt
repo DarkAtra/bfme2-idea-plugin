@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBehavior
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
@@ -13,6 +14,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
+import de.darkatra.bfme2.ini.model.`object`.Multisound
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
 import de.darkatra.bfme2.ini.model.value.ModifierCategories
 import de.darkatra.bfme2.ini.model.value.SageFilter
@@ -23,7 +25,7 @@ open class SpecialPowerModuleBehavior(
     @SageIniName("SpecialPowerTemplate") open val specialPowerTemplate: SageReference<SpecialPower>? = null,
     @SageIniName("StartsPaused") open val startsPaused: Boolean = false,
     @SageIniName("UpdateModuleStartsAttack") open val updateModuleStartsAttack: Boolean = false,
-    @SageIniName("InitiateSound") open val initiateSound: SageReference<AudioEvent>? = null,
+    @SageIniName("InitiateSound") open val initiateSound: SageReference<SageAudio>? = null,
     @SageIniName("InitiateSound2") open val initiateSound2: SageReference<AudioEvent>? = null,
     @SageIniName("AttributeModifier") open val attributeModifier: SageReference<ModifierList>? = null,
     @SageIniName("AttributeModifierAffectsSelf") open val attributeModifierAffectsSelf: Boolean = false,
@@ -52,7 +54,7 @@ open class SpecialPowerModuleBehavior(
             property("SpecialPowerTemplate", ReferenceValue<SpecialPower> { listOf(SpecialPower) }) { it.specialPowerTemplate }
             property("StartsPaused", BooleanValue) { it.startsPaused }
             property("UpdateModuleStartsAttack", BooleanValue) { it.updateModuleStartsAttack }
-            property("InitiateSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.initiateSound }
+            property("InitiateSound", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.initiateSound }
             property("InitiateSound2", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.initiateSound2 }
             property("AttributeModifier", ReferenceValue<ModifierList> { listOf(ModifierList) }) { it.attributeModifier }
             property("AttributeModifierAffectsSelf", BooleanValue) { it.attributeModifierAffectsSelf }

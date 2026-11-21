@@ -85,12 +85,12 @@ data class LivingWorldMapInfo(
     @SageIniName("AnimRaysEffectLifetime") val animRaysEffectLifetime: Int = 0,
     @SageIniName("AnimRaysCreateSound") val animRaysCreateSound: SageReference<AudioEvent>? = null,
     @SageIniName("AnimCloud") val animCloud: Opaque? = null,
-    @SageIniName("AnimCloudPartSys") val animCloudPartSys: Opaque? = null,
+    @SageIniName("AnimCloudPartSys") val animCloudPartSys: SageReference<FXParticleSystem>? = null,
     @SageIniName("NumAnimClouds") val numAnimClouds: Int = 0,
     @SageIniName("AnimCloudRegionMin") val animCloudRegionMin: Coords? = null,
     @SageIniName("AnimCloudRegionMax") val animCloudRegionMax: Coords? = null,
     @SageIniName("AnimCloudLifetime") val animCloudLifetime: Int = 0,
-    @SageIniName("EmbersPartSys") val embersPartSys: Opaque? = null,
+    @SageIniName("EmbersPartSys") val embersPartSys: SageReference<FXParticleSystem>? = null,
     @SageIniName("CloudPos") val cloudPos: Coords? = null,
     @SageIniName("CloudGrowthPos") val cloudGrowthPos: Coords? = null,
     @SageIniName("ShadowColor") val shadowColor: Rgba? = null,
@@ -192,12 +192,12 @@ data class LivingWorldMapInfo(
             property("AnimRaysEffectLifetime", IntValue) { it.animRaysEffectLifetime }
             property("AnimRaysCreateSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.animRaysCreateSound }
             property("AnimCloud", Opaque.type) { it.animCloud }
-            property("AnimCloudPartSys", Opaque.type) { it.animCloudPartSys }
+            property("AnimCloudPartSys", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.animCloudPartSys }
             property("NumAnimClouds", IntValue) { it.numAnimClouds }
             property("AnimCloudRegionMin", Coords.type) { it.animCloudRegionMin }
             property("AnimCloudRegionMax", Coords.type) { it.animCloudRegionMax }
             property("AnimCloudLifetime", IntValue) { it.animCloudLifetime }
-            property("EmbersPartSys", Opaque.type) { it.embersPartSys }
+            property("EmbersPartSys", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.embersPartSys }
             property("CloudPos", Coords.type) { it.cloudPos }
             property("CloudGrowthPos", Coords.type) { it.cloudGrowthPos }
             property("ShadowColor", Rgba.type) { it.shadowColor }

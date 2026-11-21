@@ -48,8 +48,8 @@ data class CreateObject(
     @SageIniName("OffsetInLocalSpace") val offsetInLocalSpace: Boolean = false,
     @SageIniName("PreserveLayer") val preserveLayer: Boolean = false,
     @SageIniName("MoveUsesStrafeUpdate") val moveUsesStrafeUpdate: Boolean = false,
-    @SageIniName("ParticleSystem") val particleSystem: Opaque? = null,
-    @SageIniName("ForbiddenUpgrades") val forbiddenUpgrades: List<Opaque> = emptyList(),
+    @SageIniName("ParticleSystem") val particleSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("ForbiddenUpgrades") val forbiddenUpgrades: List<SageReference<Upgrade>> = emptyList(),
     @SageIniName("DestinationPlayer") val destinationPlayer: Opaque? = null,
     @SageIniName("WaypointSpawnPoints") val waypointSpawnPoints: Opaque? = null,
     @SageIniName("VeterancyLevel") val veterancyLevel: Untyped? = null,
@@ -92,8 +92,8 @@ data class CreateObject(
             property("OffsetInLocalSpace", BooleanValue) { it.offsetInLocalSpace }
             property("PreserveLayer", BooleanValue) { it.preserveLayer }
             property("MoveUsesStrafeUpdate", BooleanValue) { it.moveUsesStrafeUpdate }
-            property("ParticleSystem", Opaque.type) { it.particleSystem }
-            property("ForbiddenUpgrades", ListValue(Opaque.type)) { it.forbiddenUpgrades }
+            property("ParticleSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.particleSystem }
+            property("ForbiddenUpgrades", ListValue(ReferenceValue<Upgrade> { listOf(Upgrade) })) { it.forbiddenUpgrades }
             property("DestinationPlayer", Opaque.type) { it.destinationPlayer }
             property("WaypointSpawnPoints", Opaque.type) { it.waypointSpawnPoints }
             property("VeterancyLevel", Untyped.type) { it.veterancyLevel }

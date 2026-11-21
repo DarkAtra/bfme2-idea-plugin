@@ -22,7 +22,7 @@ data class ObjectSection2(
     @SageIniName("AutoResolveCombatChain") val autoResolveCombatChain: SageReference<AutoResolveCombatChain>? = null,
     @SageIniName("AutoResolveLeadership") val autoResolveLeadership: SageReference<AutoResolveLeadership>? = null,
     @SageIniName("WorldMapArmoryUpgradesAllowed") val worldMapArmoryUpgradesAllowed: List<SageReference<Upgrade>> = emptyList(),
-    @SageIniName("ExperienceScalarTable") val experienceScalarTable: Opaque? = null,
+    @SageIniName("ExperienceScalarTable") val experienceScalarTable: SageReference<ExperienceScalarTable>? = null,
     @SageIniName("KeepSelectableWhenDead") val keepSelectableWhenDead: Boolean = false,
     @SageIniName("HideWhenUnhilighted") val hideWhenUnhilighted: Boolean = false,
     @SageIniName("HideWhenUnselected") val hideWhenUnselected: Boolean = false,

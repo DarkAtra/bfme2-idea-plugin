@@ -7,15 +7,14 @@ import de.darkatra.bfme2.ini.model.common.SageIniObject
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
-import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
 data class LivingWorldPlayerTemplate(
     val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("Faction") val faction: SageReference<PlayerTemplate>? = null,
-    @SageIniName("Music") val music: Opaque? = null,
-    @SageIniName("AutoResolveLoop") val autoResolveLoop: Opaque? = null,
+    @SageIniName("Music") val music: SageReference<Multisound>? = null,
+    @SageIniName("AutoResolveLoop") val autoResolveLoop: SageReference<AudioEvent>? = null,
     @SageIniName("StartingWorldCP") val startingWorldCP: Int = 0,
     @SageIniName("MaxWorldCP") val maxWorldCP: Int = 0,
     @SageIniName("StartingHeroCP") val startingHeroCP: Int = 0,
@@ -37,8 +36,8 @@ data class LivingWorldPlayerTemplate(
         tableKey = "livingworldplayertemplates",
         properties = {
             property("Faction", ReferenceValue<PlayerTemplate> { listOf(PlayerTemplate) }) { it.faction }
-            property("Music", Opaque.type) { it.music }
-            property("AutoResolveLoop", Opaque.type) { it.autoResolveLoop }
+            property("Music", ReferenceValue<Multisound> { listOf(Multisound) }) { it.music }
+            property("AutoResolveLoop", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.autoResolveLoop }
             property("StartingWorldCP", IntValue) { it.startingWorldCP }
             property("MaxWorldCP", IntValue) { it.maxWorldCP }
             property("StartingHeroCP", IntValue) { it.startingHeroCP }

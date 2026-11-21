@@ -11,6 +11,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BlockValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.particle.Alpha
 import de.darkatra.bfme2.ini.model.particle.Color
 import de.darkatra.bfme2.ini.model.particle.EmissionVelocity
@@ -21,11 +22,11 @@ import de.darkatra.bfme2.ini.model.particle.System
 import de.darkatra.bfme2.ini.model.particle.Update
 import de.darkatra.bfme2.ini.model.particle.Wind
 import de.darkatra.bfme2.ini.model.value.Coords
-import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.ParticleSystemPriority
 import de.darkatra.bfme2.ini.model.value.ParticleSystemShader
 import de.darkatra.bfme2.ini.model.value.ParticleSystemType
 import de.darkatra.bfme2.ini.model.value.RandomVariable
+import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.TextureFile
 
 data class FXParticleSystem(
@@ -39,13 +40,13 @@ data class FXParticleSystem(
     @SageIniName("IsParticleUpTowardsEmitter") val isParticleUpTowardsEmitter: Boolean = false,
     @SageIniName("Lifetime") val lifetime: RandomVariable? = null,
     @SageIniName("ParticleName") val particleName: TextureFile? = null,
-    @SageIniName("PerParticleAttachedSystem") val perParticleAttachedSystem: Opaque? = null,
+    @SageIniName("PerParticleAttachedSystem") val perParticleAttachedSystem: SageReference<FXParticleSystem>? = null,
     @SageIniName("Priority") val priority: ParticleSystemPriority? = null,
     @SageIniName("Shader") val shader: ParticleSystemShader? = null,
     @SageIniName("ShroudEmitter") val shroudEmitter: Boolean = false,
     @SageIniName("Size") val size: RandomVariable? = null,
     @SageIniName("SlavePosOffset") val slavePosOffset: Coords? = null,
-    @SageIniName("SlaveSystem") val slaveSystem: Opaque? = null,
+    @SageIniName("SlaveSystem") val slaveSystem: SageReference<FXParticleSystem>? = null,
     @SageIniName("SortLevel") val sortLevel: Int = 0,
     @SageIniName("StartSizeRate") val startSizeRate: RandomVariable? = null,
     @SageIniName("SystemLifetime") val systemLifetime: Int = 0,
@@ -77,13 +78,13 @@ data class FXParticleSystem(
             property("IsParticleUpTowardsEmitter", BooleanValue) { it.isParticleUpTowardsEmitter }
             property("Lifetime", RandomVariable.type) { it.lifetime }
             property("ParticleName", TextureFile.type) { it.particleName }
-            property("PerParticleAttachedSystem", Opaque.type) { it.perParticleAttachedSystem }
+            property("PerParticleAttachedSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.perParticleAttachedSystem }
             property("Priority", ParticleSystemPriority.type) { it.priority }
             property("Shader", ParticleSystemShader.type) { it.shader }
             property("ShroudEmitter", BooleanValue) { it.shroudEmitter }
             property("Size", RandomVariable.type) { it.size }
             property("SlavePosOffset", Coords.type) { it.slavePosOffset }
-            property("SlaveSystem", Opaque.type) { it.slaveSystem }
+            property("SlaveSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.slaveSystem }
             property("SortLevel", IntValue) { it.sortLevel }
             property("StartSizeRate", RandomVariable.type) { it.startSizeRate }
             property("SystemLifetime", IntValue) { it.systemLifetime }

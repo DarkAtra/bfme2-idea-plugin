@@ -11,6 +11,7 @@ import de.darkatra.bfme2.ini.model.`object`.LivingWorldArmyIcon
 import de.darkatra.bfme2.ini.model.`object`.MappedImage
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
+import de.darkatra.bfme2.ini.model.`object`.Video
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
@@ -19,7 +20,7 @@ data class ArmyToSpawn(
     @SageIniName("PlayerArmy") val playerArmy: Untyped? = null,
     @SageIniName("Icon") val icon: SageReference<LivingWorldArmyIcon>? = null,
     @SageIniName("IconSize") val iconSize: Untyped? = null,
-    @SageIniName("PalantirMovie") val palantirMovie: Untyped? = null,
+    @SageIniName("PalantirMovie") val palantirMovie: SageReference<Video>? = null,
     @SageIniName("BuildTime") val buildTime: Int = 0,
     @SageIniName("ConstructButtonImage") val constructButtonImage: SageReference<MappedImage>? = null,
     @SageIniName("ConstructButtonTitle") val constructButtonTitle: Untyped? = null,
@@ -33,7 +34,7 @@ data class ArmyToSpawn(
             property("PlayerArmy", Untyped.type) { it.playerArmy }
             property("Icon", ReferenceValue<LivingWorldArmyIcon> { listOf(LivingWorldArmyIcon) }) { it.icon }
             property("IconSize", Untyped.type) { it.iconSize }
-            property("PalantirMovie", Untyped.type) { it.palantirMovie }
+            property("PalantirMovie", ReferenceValue<Video> { listOf(Video) }) { it.palantirMovie }
             property("BuildTime", IntValue) { it.buildTime }
             property("ConstructButtonImage", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.constructButtonImage }
             property("ConstructButtonTitle", Untyped.type) { it.constructButtonTitle }

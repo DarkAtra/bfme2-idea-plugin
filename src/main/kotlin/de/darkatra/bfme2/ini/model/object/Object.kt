@@ -1,6 +1,7 @@
 package de.darkatra.bfme2.ini.model.`object`
 
 import de.darkatra.bfme2.ini.model.SageIniModel
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBehavior
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageDraw
@@ -98,25 +99,25 @@ open class Object(
             property("VisionBonusTestRadius", FloatValue) { it.section1.visionBonusTestRadius }
             property("MaxVisionBonusPercent", FloatValue) { it.section1.maxVisionBonusPercent }
             property("VoicePriority", IntValue) { it.section1.voicePriority }
-            property("VoiceSelect", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceSelect }
-            property("VoiceSelectBattle", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceSelectBattle }
+            property("VoiceSelect", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceSelect }
+            property("VoiceSelectBattle", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceSelectBattle }
             property("VoiceSelectUnderConstruction", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceSelectUnderConstruction }
-            property("VoiceMove", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceMove }
-            property("VoiceMoveToCamp", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceMoveToCamp }
+            property("VoiceMove", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceMove }
+            property("VoiceMoveToCamp", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceMoveToCamp }
             property("VoiceMoveToHigherGround", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceMoveToHigherGround }
             property("VoiceMoveOverWalls", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceMoveOverWalls }
-            property("VoiceMoveWhileAttacking", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceMoveWhileAttacking }
-            property("VoiceAttack", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceAttack }
-            property("VoiceAttackStructure", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceAttackStructure }
-            property("VoiceAttackMachine", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceAttackMachine }
-            property("VoiceAttackCharge", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceAttackCharge }
-            property("VoiceAttackAir", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceAttackAir }
-            property("VoiceGuard", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceGuard }
-            property("VoiceFear", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceFear }
-            property("VoiceCreated", ListValue(ReferenceValue<AudioEvent> { listOf(AudioEvent) })) { it.section1.voiceCreated }
+            property("VoiceMoveWhileAttacking", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceMoveWhileAttacking }
+            property("VoiceAttack", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceAttack }
+            property("VoiceAttackStructure", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceAttackStructure }
+            property("VoiceAttackMachine", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceAttackMachine }
+            property("VoiceAttackCharge", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceAttackCharge }
+            property("VoiceAttackAir", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceAttackAir }
+            property("VoiceGuard", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceGuard }
+            property("VoiceFear", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceFear }
+            property("VoiceCreated", ListValue(ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) })) { it.section1.voiceCreated }
             property("VoiceFullyCreated", ListValue(ReferenceValue<AudioEvent> { listOf(AudioEvent) })) { it.section1.voiceFullyCreated }
-            property("VoiceRetreatToCastle", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceRetreatToCastle }
-            property("VoiceCombineWithHorde", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceCombineWithHorde }
+            property("VoiceRetreatToCastle", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceRetreatToCastle }
+            property("VoiceCombineWithHorde", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.voiceCombineWithHorde }
             property("VoiceTaskComplete", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceTaskComplete }
             property("VoiceAlert", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceAlert }
             property("VoiceDefect", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceDefect }
@@ -131,11 +132,11 @@ open class Object(
             property("VoiceEnterStateAttackCharge", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceEnterStateAttackCharge }
             property("VoiceEnterStateAttackAir", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceEnterStateAttackAir }
             property("VoiceEnterStateRetreatToCastle", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceEnterStateRetreatToCastle }
-            property("SoundOnDamaged", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundOnDamaged }
-            property("SoundOnReallyDamaged", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundOnReallyDamaged }
-            property("SoundAmbient", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundAmbient }
+            property("SoundOnDamaged", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.soundOnDamaged }
+            property("SoundOnReallyDamaged", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.soundOnReallyDamaged }
+            property("SoundAmbient", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.soundAmbient }
             property("SoundAmbientDamaged", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundAmbientDamaged }
-            property("SoundAmbientReallyDamaged", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundAmbientReallyDamaged }
+            property("SoundAmbientReallyDamaged", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.soundAmbientReallyDamaged }
             property("SoundAmbientBattle", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundAmbientBattle }
             property("SoundAmbientRubble", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundAmbientRubble }
             property("SoundImpact", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundImpact }
@@ -144,7 +145,7 @@ open class Object(
             property("SoundCreated", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundCreated }
             property("SoundMoveStart", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundMoveStart }
             property("SoundMoveStartDamaged", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundMoveStartDamaged }
-            property("SoundMoveLoop", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundMoveLoop }
+            property("SoundMoveLoop", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.soundMoveLoop }
             property("SoundMoveLoopDamaged", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundMoveLoopDamaged }
             property("SoundStealthOn", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundStealthOn }
             property("SoundStealthOff", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundStealthOff }
@@ -217,7 +218,7 @@ open class Object(
             property("AutoResolveCombatChain", ReferenceValue<AutoResolveCombatChain> { listOf(AutoResolveCombatChain) }) { it.section2.autoResolveCombatChain }
             property("AutoResolveLeadership", ReferenceValue<AutoResolveLeadership> { listOf(AutoResolveLeadership) }) { it.section2.autoResolveLeadership }
             property("WorldMapArmoryUpgradesAllowed", ListValue(ReferenceValue<Upgrade> { listOf(Upgrade) })) { it.section2.worldMapArmoryUpgradesAllowed }
-            property("ExperienceScalarTable", Opaque.type) { it.section2.experienceScalarTable }
+            property("ExperienceScalarTable", ReferenceValue<ExperienceScalarTable> { listOf(ExperienceScalarTable) }) { it.section2.experienceScalarTable }
             property("KeepSelectableWhenDead", BooleanValue) { it.section2.keepSelectableWhenDead }
             property("HideWhenUnhilighted", BooleanValue) { it.section2.hideWhenUnhilighted }
             property("HideWhenUnselected", BooleanValue) { it.section2.hideWhenUnselected }

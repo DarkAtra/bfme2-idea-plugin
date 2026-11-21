@@ -11,7 +11,7 @@ import de.darkatra.bfme2.ini.model.value.SageReference
 data class WeatherData(
     val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("HasLightning") val hasLightning: Boolean = false,
-    @SageIniName("WeatherSound") val weatherSound: SageReference<AudioEvent>? = null,
+    @SageIniName("WeatherSound") val weatherSound: SageReference<Multisound>? = null,
 ) : SageIniObject {
 
     companion object : SageIniBlockDescriptor<WeatherData>(
@@ -19,7 +19,7 @@ data class WeatherData(
         tableKey = "weatherdatas",
         properties = {
             property("HasLightning", BooleanValue) { it.hasLightning }
-            property("WeatherSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.weatherSound }
+            property("WeatherSound", ReferenceValue<Multisound> { listOf(Multisound) }) { it.weatherSound }
         },
     )
 }

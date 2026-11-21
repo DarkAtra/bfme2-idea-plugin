@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.`object`
 
+import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
@@ -12,7 +13,6 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
 import de.darkatra.bfme2.ini.model.value.FakeToken
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
-import de.darkatra.bfme2.ini.model.value.Untyped
 import de.darkatra.bfme2.ini.model.value.UpgradeTypes
 
 data class Upgrade(
@@ -21,7 +21,7 @@ data class Upgrade(
     @SageIniName("GroupName") val groupName: String = "",
     @SageIniName("GroupOrder") val groupOrder: Int = 0,
     @SageIniName("UpgradeFX") val upgradeFX: SageReference<FXList>? = null,
-    @SageIniName("UnitSpecificSound") val unitSpecificSound: Untyped? = null,
+    @SageIniName("UnitSpecificSound") val unitSpecificSound: SageReference<AudioEvent>? = null,
     @SageIniName("DisplayName") val displayName: String = "",
     @SageIniName("BuildTime") val buildTime: Int = 0,
     @SageIniName("BuildCost") val buildCost: Int = 0,
@@ -40,7 +40,7 @@ data class Upgrade(
     @SageIniName("UseObjectTemplateForCostDiscount") val useObjectTemplateForCostDiscount: SageReference<Object>? = null,
     @SageIniName("SkirmishAIHeuristic") val skirmishAIHeuristic: FakeToken? = null,
     @SageIniName("ResearchCompleteEvaEvent") val researchCompleteEvaEvent: SageReference<EvaEventBase>? = null,
-    @SageIniName("ResearchSound") val researchSound: SageReference<AudioEvent>? = null,
+    @SageIniName("ResearchSound") val researchSound: SageReference<SageAudio>? = null,
     @SageIniName("RequiredObjectFilter") val requiredObjectFilter: SageFilter? = null,
     @SageIniName("StrategicIcon") val strategicIcon: SageReference<MappedImage>? = null,
     @SageIniName("SubUpgradeTemplateNames") val subUpgradeTemplateNames: List<SageReference<Upgrade>> = emptyList(),
@@ -54,7 +54,7 @@ data class Upgrade(
             property("GroupName", StringValue) { it.groupName }
             property("GroupOrder", IntValue) { it.groupOrder }
             property("UpgradeFX", ReferenceValue<FXList> { listOf(FXList) }) { it.upgradeFX }
-            property("UnitSpecificSound", Untyped.type) { it.unitSpecificSound }
+            property("UnitSpecificSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.unitSpecificSound }
             property("DisplayName", StringValue) { it.displayName }
             property("BuildTime", IntValue) { it.buildTime }
             property("BuildCost", IntValue) { it.buildCost }
@@ -87,7 +87,7 @@ data class Upgrade(
                 ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.useObjectTemplateForCostDiscount }
             property("SkirmishAIHeuristic", FakeToken.type) { it.skirmishAIHeuristic }
             property("ResearchCompleteEvaEvent", ReferenceValue<EvaEventBase> { listOf(NewEvaEvent, PredefinedEvaEvent) }) { it.researchCompleteEvaEvent }
-            property("ResearchSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.researchSound }
+            property("ResearchSound", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.researchSound }
             property("RequiredObjectFilter", SageFilter.type) { it.requiredObjectFilter }
             property("StrategicIcon", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.strategicIcon }
             property("SubUpgradeTemplateNames", ListValue(ReferenceValue<Upgrade> { listOf(Upgrade) })) { it.subUpgradeTemplateNames }

@@ -7,7 +7,10 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
 import de.darkatra.bfme2.ini.model.value.Opaque
+import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.TextureFile
 import de.darkatra.bfme2.ini.model.value.Untyped
 
@@ -46,7 +49,7 @@ open class W3DScriptedModelDraw(
     @SageIniName("RaisedWallMesh") open val raisedWallMesh: Opaque? = null,
     @SageIniName("RampMesh1") open val rampMesh1: Opaque? = null,
     @SageIniName("RampMesh2") open val rampMesh2: Opaque? = null,
-    @SageIniName("WadingParticleSys") open val wadingParticleSys: Opaque? = null,
+    @SageIniName("WadingParticleSys") open val wadingParticleSys: SageReference<FXParticleSystem>? = null,
     @SageIniName("DependencySharedModelFlags") open val dependencySharedModelFlags: Untyped? = null,
     @SageIniName("AlphaCameraFadeOuterRadius") open val alphaCameraFadeOuterRadius: Int = 0,
     @SageIniName("AlphaCameraFadeInnerRadius") open val alphaCameraFadeInnerRadius: Int = 0,
@@ -89,7 +92,7 @@ open class W3DScriptedModelDraw(
             property("RaisedWallMesh", Opaque.type) { it.raisedWallMesh }
             property("RampMesh1", Opaque.type) { it.rampMesh1 }
             property("RampMesh2", Opaque.type) { it.rampMesh2 }
-            property("WadingParticleSys", Opaque.type) { it.wadingParticleSys }
+            property("WadingParticleSys", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.wadingParticleSys }
             property("DependencySharedModelFlags", Untyped.type) { it.dependencySharedModelFlags }
             property("AlphaCameraFadeOuterRadius", IntValue) { it.alphaCameraFadeOuterRadius }
             property("AlphaCameraFadeInnerRadius", IntValue) { it.alphaCameraFadeInnerRadius }

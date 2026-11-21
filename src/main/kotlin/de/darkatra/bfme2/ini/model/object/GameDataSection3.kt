@@ -5,6 +5,7 @@ import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.Rgb
 import de.darkatra.bfme2.ini.model.value.SageFilter
+import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.TerrainLod
 import de.darkatra.bfme2.ini.model.value.TimeOfDay
 
@@ -56,7 +57,7 @@ data class GameDataSection3(
     @SageIniName("SkyBoxScale") val skyBoxScale: Double = 0.0,
     @SageIniName("Sounds3DOn") val sounds3DOn: Boolean = false,
     @SageIniName("SoundsOn") val soundsOn: Boolean = false,
-    @SageIniName("SpecialPowerViewObject") val specialPowerViewObject: Opaque? = null,
+    @SageIniName("SpecialPowerViewObject") val specialPowerViewObject: SageReference<Object>? = null,
     @SageIniName("SpeechOn") val speechOn: Boolean = false,
     @SageIniName("StandardMinefieldDensity") val standardMinefieldDensity: Double = 0.0,
     @SageIniName("StandardMinefieldDistance") val standardMinefieldDistance: Double = 0.0,

@@ -9,16 +9,18 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.livingworld.SideInfo
 import de.darkatra.bfme2.ini.model.value.Opaque
+import de.darkatra.bfme2.ini.model.value.SageReference
 
 data class AIData(
     val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("UseLowLODTrees") val useLowLODTrees: Boolean = false,
     @SageIniName("LowLodTreeScale") val lowLodTreeScale: Double = 0.0,
-    @SageIniName("LowLodTreeName") val lowLodTreeName: Opaque? = null,
-    @SageIniName("LowLodTreeNameNoGrab") val lowLodTreeNameNoGrab: Opaque? = null,
-    @SageIniName("LowLodTreeNameNoHarvest") val lowLodTreeNameNoHarvest: Opaque? = null,
+    @SageIniName("LowLodTreeName") val lowLodTreeName: SageReference<Object>? = null,
+    @SageIniName("LowLodTreeNameNoGrab") val lowLodTreeNameNoGrab: SageReference<Object>? = null,
+    @SageIniName("LowLodTreeNameNoHarvest") val lowLodTreeNameNoHarvest: SageReference<Object>? = null,
     @SageIniName("StructureSeconds") val structureSeconds: Double = 0.0,
     @SageIniName("TeamSeconds") val teamSeconds: Double = 0.0,
     @SageIniName("Wealthy") val wealthy: Double = 0.0,
@@ -101,9 +103,9 @@ data class AIData(
         properties = {
             property("UseLowLODTrees", BooleanValue) { it.useLowLODTrees }
             property("LowLodTreeScale", FloatValue) { it.lowLodTreeScale }
-            property("LowLodTreeName", Opaque.type) { it.lowLodTreeName }
-            property("LowLodTreeNameNoGrab", Opaque.type) { it.lowLodTreeNameNoGrab }
-            property("LowLodTreeNameNoHarvest", Opaque.type) { it.lowLodTreeNameNoHarvest }
+            property("LowLodTreeName", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.lowLodTreeName }
+            property("LowLodTreeNameNoGrab", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.lowLodTreeNameNoGrab }
+            property("LowLodTreeNameNoHarvest", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.lowLodTreeNameNoHarvest }
             property("StructureSeconds", FloatValue) { it.structureSeconds }
             property("TeamSeconds", FloatValue) { it.teamSeconds }
             property("Wealthy", FloatValue) { it.wealthy }

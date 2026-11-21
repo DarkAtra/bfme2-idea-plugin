@@ -7,10 +7,11 @@ import de.darkatra.bfme2.ini.model.common.SageIniObject
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.value.ModelFile
-import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.RandomVariable
 import de.darkatra.bfme2.ini.model.value.Rgb
+import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
 data class Fire(
@@ -24,8 +25,8 @@ data class Fire(
     @SageIniName("ScorchFrequency") val scorchFrequency: RandomVariable? = null,
     @SageIniName("ScorchIntensity") val scorchIntensity: Double = 0.0,
     @SageIniName("ScorchSize") val scorchSize: Double = 0.0,
-    @SageIniName("TerrainFireSystem") val terrainFireSystem: Opaque? = null,
-    @SageIniName("TerrainSmokeSystem") val terrainSmokeSystem: Opaque? = null,
+    @SageIniName("TerrainFireSystem") val terrainFireSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("TerrainSmokeSystem") val terrainSmokeSystem: SageReference<FXParticleSystem>? = null,
 ) : SageIniObject {
 
     companion object : SageIniBlockDescriptor<Fire>(
@@ -41,8 +42,8 @@ data class Fire(
             property("ScorchFrequency", RandomVariable.type) { it.scorchFrequency }
             property("ScorchIntensity", FloatValue) { it.scorchIntensity }
             property("ScorchSize", FloatValue) { it.scorchSize }
-            property("TerrainFireSystem", Opaque.type) { it.terrainFireSystem }
-            property("TerrainSmokeSystem", Opaque.type) { it.terrainSmokeSystem }
+            property("TerrainFireSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.terrainFireSystem }
+            property("TerrainSmokeSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.terrainSmokeSystem }
         },
     )
 }

@@ -7,8 +7,8 @@ import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
-import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
+import de.darkatra.bfme2.ini.model.`object`.Multisound
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.SlotTypes
@@ -22,7 +22,7 @@ data class WeaponModeSpecialPowerUpdate(
     @SageIniName("AttributeModifier") val attributeModifier: SageReference<ModifierList>? = null,
     @SageIniName("LockWeaponSlot") val lockWeaponSlot: SlotTypes? = null,
     @SageIniName("WeaponSetFlags") val weaponSetFlags: WeaponSetConditions? = null,
-    @SageIniName("InitiateSound") val initiateSound: SageReference<AudioEvent>? = null,
+    @SageIniName("InitiateSound") val initiateSound: SageReference<Multisound>? = null,
 ) : SageBehavior {
 
     companion object : SageIniBlockDescriptor<WeaponModeSpecialPowerUpdate>(
@@ -34,7 +34,7 @@ data class WeaponModeSpecialPowerUpdate(
             property("AttributeModifier", ReferenceValue<ModifierList> { listOf(ModifierList) }) { it.attributeModifier }
             property("LockWeaponSlot", SlotTypes.type) { it.lockWeaponSlot }
             property("WeaponSetFlags", WeaponSetConditions.type) { it.weaponSetFlags }
-            property("InitiateSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.initiateSound }
+            property("InitiateSound", ReferenceValue<Multisound> { listOf(Multisound) }) { it.initiateSound }
         },
     )
 }
