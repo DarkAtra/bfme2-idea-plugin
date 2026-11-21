@@ -445,6 +445,37 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
     }
 
     @Test
+    fun `should complete each declaration only once`() {
+
+        myFixture.addFileToProject(
+            "data/specialpower.ini",
+            """
+            SpecialPower SpecialAbilityAragornAthelas
+            End
+            SpecialPower SpecialAbilityAragornElendil
+            End
+            """.trimIndent()
+        )
+        myFixture.configureByText("commandbutton.ini", "SpecialPower = SpecialAbility<caret>")
+
+        val lookups = myFixture.completeBasic().map { it.lookupString }
+
+        assertThat(lookups).containsOnlyOnce("SpecialAbilityAragornAthelas", "SpecialAbilityAragornElendil")
+    }
+
+    @Test
+    fun `should provide a declaration reference on property values`() {
+
+        myFixture.addFileToProject("data/specialpower.ini", "SpecialPower SpecialAbilityAragornAthelas\nEnd")
+        myFixture.configureByText("commandbutton.ini", "SpecialPower = SpecialAbility<caret>AragornAthelas")
+
+        val reference = myFixture.file.findReferenceAt(myFixture.caretOffset)
+
+        assertThat(reference).isInstanceOf(SageEngineIniDeclarationReference::class.java)
+        assertThat(reference!!.resolve()?.text).isEqualTo("SpecialAbilityAragornAthelas")
+    }
+
+    @Test
     fun `should list declaration names from project index`() {
 
         myFixture.addFileToProject("data/object.ini", "Object ElvenMallornTree\nEnd")

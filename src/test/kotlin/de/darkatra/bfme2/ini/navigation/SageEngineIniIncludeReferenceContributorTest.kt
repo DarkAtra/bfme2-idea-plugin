@@ -137,6 +137,19 @@ class SageEngineIniIncludeReferenceContributorTest : LightPlatformCodeInsightFix
     }
 
     @Test
+    fun `should provide include references on include strings`() {
+
+        val includedFile = myFixture.addFileToProject("includes/StandardBuildingEvaEvents.inc", "")
+
+        myFixture.configureByText("elvenmallorntree.ini", "#include \"includes\\Standard<caret>BuildingEvaEvents.inc\"")
+
+        val reference = myFixture.file.findReferenceAt(myFixture.caretOffset)
+
+        assertThat(reference).isInstanceOf(SageEngineIniIncludeReference::class.java)
+        assertThat(reference!!.resolve()).isEqualTo(includedFile)
+    }
+
+    @Test
     fun `should complete include paths for simple include path`() {
 
         myFixture.addFileToProject("data/StandardBuildingEvaEvents.inc", "")
