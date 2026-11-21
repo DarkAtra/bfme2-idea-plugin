@@ -6,6 +6,7 @@ import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ReadAction
 import com.intellij.psi.impl.source.tree.LeafPsiElement
+import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixture4TestCase
@@ -258,6 +259,32 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
         assertThat(usages).extracting<String> { it.element!!.text }.containsExactly("SpecialAbilityAragornAthelas")
         assertThat(usages).extracting<String> { (it.element!!.parent.firstChild as LeafPsiElement).text }.containsExactly("SpecialPowerTemplate")
         assertThat(usages).extracting<String> { it.element!!.containingFile.virtualFile.path }.containsExactly("/src/data/test.ini")
+    }
+
+    @Test
+    fun `should only find use-sites inside the search scope`() {
+
+        myFixture.addFileToProject(
+            "data/test.ini",
+            "SpecialPowerTemplate = SpecialAbilityAragornAthelas"
+        )
+        myFixture.configureByText(
+            "specialpower.ini",
+            """
+            SpecialPower SpecialAbility<caret>AragornAthelas
+            End
+            """.trimIndent()
+        )
+
+        val sourceElement = TargetElementUtil.findTargetElement(
+            myFixture.editor,
+            TargetElementUtil.ELEMENT_NAME_ACCEPTED or TargetElementUtil.REFERENCED_ELEMENT_ACCEPTED
+        )!!
+
+        assertThat(ReferencesSearch.search(sourceElement, GlobalSearchScope.fileScope(myFixture.file)).findAll()).isEmpty()
+        assertThat(ReferencesSearch.search(sourceElement, GlobalSearchScope.projectScope(project)).findAll())
+            .extracting<String> { it.element.containingFile.name }
+            .containsExactly("test.ini")
     }
 
     @Test

@@ -4,6 +4,7 @@ import com.intellij.openapi.application.ReadAction
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReference
+import com.intellij.psi.search.PsiSearchScopeUtil
 import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.Processor
@@ -38,7 +39,9 @@ class SageEngineIniDeclarationReferencesSearch : QueryExecutor<PsiReference, Ref
         } ?: return true
 
         return ReadAction.computeBlocking<Boolean, RuntimeException> {
+            val searchScope = queryParameters.effectiveSearchScope
             SageEngineIniDeclarationLookup.findUseSites(searchRequest.project, searchRequest.declarationKind, searchRequest.declarationName)
+                .filter { PsiSearchScopeUtil.isInScope(searchScope, it) }
                 .all { useSite ->
                     val reference = SageEngineIniDeclarationReference(useSite, setOf(searchRequest.declarationKind))
                     consumer.process(reference)
