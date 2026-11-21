@@ -192,9 +192,10 @@ class SageEngineIniDeclarationSchemaTest {
     }
 
     @Test
-    fun `should match property names case-insensitively`() {
+    fun `should match property names by their exact name`() {
 
-        assertThat(SageEngineIniDeclarationSchema.expectedKindsForProperty("armor")).containsExactly("Armor")
+        assertThat(SageEngineIniDeclarationSchema.expectedKindsForProperty("Armor")).containsExactly("Armor")
+        assertThat(SageEngineIniDeclarationSchema.expectedKindsForProperty("armor")).isEmpty()
     }
 
     @Test

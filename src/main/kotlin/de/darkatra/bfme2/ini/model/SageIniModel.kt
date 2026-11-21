@@ -1780,13 +1780,13 @@ object SageIniModel {
     }
 
     private val blocksByName: Map<String, SageIniBlockDescriptor<*>> by lazy {
-        blocks.filterNot { it.isAbstract }.associateBy { it.name.lowercase() }
+        blocks.filterNot { it.isAbstract }.associateBy { it.name }
     }
 
     /**
-     * Finds a block by its INI name, case-insensitively.
+     * Finds a block by its INI name. Block keywords are case-sensitive, e.g. `object` isn't an `Object`.
      */
     fun block(name: String): SageIniBlockDescriptor<*>? {
-        return blocksByName[name.lowercase()]
+        return blocksByName[name]
     }
 }

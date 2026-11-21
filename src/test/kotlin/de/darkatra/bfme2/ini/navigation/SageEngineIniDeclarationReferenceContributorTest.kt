@@ -609,6 +609,17 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
     }
 
     @Test
+    fun `should only index declarations with a correctly cased keyword but match their names in any case`() {
+
+        myFixture.addFileToProject("data/object.ini", "object LowercaseKeyword\nEnd\nObject MixedCaseName\nEnd")
+
+        assertThat(SageEngineIniDeclarationLookup.findDeclarations(project, "LowercaseKeyword", setOf("Object"))).isEmpty()
+        assertThat(SageEngineIniDeclarationLookup.findDeclarations(project, "mixedcasename", setOf("Object")))
+            .extracting<String?> { it.name }
+            .containsExactly("MixedCaseName")
+    }
+
+    @Test
     fun `should list declaration names from project index`() {
 
         myFixture.addFileToProject("data/object.ini", "Object ElvenMallornTree\nEnd")

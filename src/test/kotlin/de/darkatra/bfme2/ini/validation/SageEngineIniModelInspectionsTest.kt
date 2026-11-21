@@ -14,7 +14,7 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
             """
             Object ElvenMallornTree
                 BuildCost = 100
-                buildcost = 100
+                <warning descr="Unknown property 'buildcost' in 'Object'">buildcost</warning> = 100
                 <warning descr="Unknown property 'BuildCots' in 'Object'">BuildCots</warning> = 100
                 Behavior = AutoHealBehavior ModuleTag_Heal
                     HealingAmount = 5
@@ -180,6 +180,25 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should report block keywords and module types with wrong casing`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownBlockInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            <warning descr="Unknown block 'object'">object</warning> ElvenMallornTree
+            End
+            Object ElvenMallornTree
+                Behavior = <warning descr="Unknown module 'autohealbehavior' for 'Behavior'">autohealbehavior</warning> ModuleTag_Heal
+                End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should not report top level blocks of included files`() {
 
         myFixture.enableInspections(SageEngineIniUnknownBlockInspection())
@@ -203,7 +222,7 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
             """
             Object ElvenMallornTree
                 <warning descr="'BuildCost' is set again later, only the last value takes effect">BuildCost</warning> = 100
-                buildcost = 200
+                BuildCost = 200
                 KindOf = STRUCTURE
                 KindOf = IMMOBILE
                 GeometryContactPoint = X:0 Y:0 Z:0 Swoop

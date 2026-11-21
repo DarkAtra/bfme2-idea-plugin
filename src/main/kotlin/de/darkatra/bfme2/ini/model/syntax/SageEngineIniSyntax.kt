@@ -85,77 +85,59 @@ object SageEngineIniSyntax {
     val topLevelKeys: Set<String> = setOf("AudioLowMHz", "BenchProfile", "EvaEventForwardReference", "LODPreset", "ReallyLowMHz")
 
     // `ChildObject` and `ObjectReskin` share the body of an `Object`, so they also share its contextual rules
-    private val parentAliases: Map<String, String> = caseInsensitiveMapOf(
-        listOf(
-            "ChildObject" to "Object",
-            "ObjectReskin" to "Object",
-        )
+    private val parentAliases: Map<String, String> = mapOf(
+        "ChildObject" to "Object",
+        "ObjectReskin" to "Object",
     )
 
-    private val unconditionalBlockOpenerLookup = caseInsensitiveSetOf(unconditionalBlockOpeners)
-    private val openerValueTokenLookup = caseInsensitiveSetOf(openerValueTokens)
-    private val conditionalValueOpenerLookup = caseInsensitiveMapOf(conditionalValueOpeners.toList())
-    private val bareValueKeyLookup = caseInsensitiveSetOf(bareValueKeys)
-    private val contextualBlockOpenerLookup = caseInsensitiveMapOf(contextualBlockOpeners.mapValues { caseInsensitiveSetOf(it.value) }.toList())
-    private val contextualBareValueKeyLookup = caseInsensitiveMapOf(contextualBareValueKeys.mapValues { caseInsensitiveSetOf(it.value) }.toList())
-    private val equalsRequiringBlockLookup = caseInsensitiveSetOf(equalsRequiringBlocks)
-    private val equalsForbiddenKeyLookup = caseInsensitiveMapOf(equalsForbiddenKeys.mapValues { caseInsensitiveSetOf(it.value) }.toList())
-    private val valuelessKeyLookup = caseInsensitiveMapOf(valuelessKeys.mapValues { caseInsensitiveSetOf(it.value) }.toList())
-    private val topLevelKeyLookup = caseInsensitiveSetOf(topLevelKeys)
+    // keywords are case-sensitive, values such as `FCurve` aren't
+    private val openerValueTokenLookup = sortedSetOf(String.CASE_INSENSITIVE_ORDER).apply { addAll(openerValueTokens) }
 
     /**
      * Whether a line starting with [key] opens a block regardless of its parent. [valueHead] is the first token after the key with `=` ignored.
      */
     fun isBlockOpener(key: String, valueHead: String?): Boolean {
-        return key in unconditionalBlockOpenerLookup ||
+        return key in unconditionalBlockOpeners ||
             (valueHead != null && valueHead in openerValueTokenLookup) ||
-            (valueHead != null && conditionalValueOpenerLookup[key].equals(valueHead, ignoreCase = true))
+            (valueHead != null && conditionalValueOpeners[key].equals(valueHead, ignoreCase = true))
     }
 
     /**
      * Whether a line starting with [key] and no `=` is a value line instead of a block header.
      */
     fun isBareValueKey(key: String): Boolean {
-        return key in bareValueKeyLookup
+        return key in bareValueKeys
     }
 
     fun isContextualBlockOpener(parent: String?, key: String): Boolean {
-        return parent != null && contextualBlockOpenerLookup[resolveParent(parent)]?.contains(key) == true
+        return parent != null && contextualBlockOpeners[resolveParent(parent)]?.contains(key) == true
     }
 
     fun isContextualBareValueKey(parent: String?, key: String): Boolean {
-        return parent != null && contextualBareValueKeyLookup[resolveParent(parent)]?.contains(key) == true
+        return parent != null && contextualBareValueKeys[resolveParent(parent)]?.contains(key) == true
     }
 
     fun isBareValueKeyInAnyBlock(key: String): Boolean {
-        return key in bareValueKeyLookup || contextualBareValueKeyLookup.values.any { key in it }
+        return key in bareValueKeys || contextualBareValueKeys.values.any { key in it }
     }
 
     fun requiresEquals(parent: String?, key: String): Boolean {
-        return parent != null && resolveParent(parent) in equalsRequiringBlockLookup && !forbidsEquals(parent, key)
+        return parent != null && resolveParent(parent) in equalsRequiringBlocks && !forbidsEquals(parent, key)
     }
 
     fun forbidsEquals(parent: String?, key: String): Boolean {
-        return parent != null && equalsForbiddenKeyLookup[resolveParent(parent)]?.contains(key) == true
+        return parent != null && equalsForbiddenKeys[resolveParent(parent)]?.contains(key) == true
     }
 
     fun isValuelessKey(parent: String?, key: String): Boolean {
-        return parent != null && valuelessKeyLookup[resolveParent(parent)]?.contains(key) == true
+        return parent != null && valuelessKeys[resolveParent(parent)]?.contains(key) == true
     }
 
     fun isTopLevelKey(key: String): Boolean {
-        return key in topLevelKeyLookup
+        return key in topLevelKeys
     }
 
     private fun resolveParent(parent: String): String {
         return parentAliases[parent] ?: parent
-    }
-
-    private fun caseInsensitiveSetOf(values: Collection<String>): Set<String> {
-        return sortedSetOf(String.CASE_INSENSITIVE_ORDER).apply { addAll(values) }
-    }
-
-    private fun <V> caseInsensitiveMapOf(entries: List<Pair<String, V>>): Map<String, V> {
-        return sortedMapOf<String, V>(String.CASE_INSENSITIVE_ORDER).apply { putAll(entries) }
     }
 }

@@ -12,12 +12,13 @@ import com.intellij.util.text.EditDistance
 import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
 
 /**
- * Finds known names that are likely meant by a misspelled [name], closest first. Matching ignores case like the engine does.
+ * Finds known names that are likely meant by a misspelled [name], closest first. The similarity ignores case, so a name that only differs in
+ * casing is suggested first.
  */
 fun similarNames(name: String, candidates: Iterable<String>, limit: Int = 3): List<String> {
     return candidates.asSequence()
-        .distinctBy { it.lowercase() }
-        .filterNot { it.equals(name, ignoreCase = true) }
+        .distinct()
+        .filterNot { it == name }
         .map { it to similarity(name, it) }
         .filter { (_, similarity) -> similarity >= MIN_SIMILARITY }
         .sortedByDescending { (_, similarity) -> similarity }

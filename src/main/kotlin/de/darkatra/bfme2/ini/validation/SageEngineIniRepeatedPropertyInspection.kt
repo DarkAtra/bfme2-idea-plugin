@@ -27,7 +27,7 @@ class SageEngineIniRepeatedPropertyInspection : LocalInspectionTool() {
                 val descriptor = SageEngineIniModelResolver.descriptor(element) ?: return
                 element.children
                     .filterIsInstance<SageEngineIniPropertyAssignment>()
-                    .groupBy { it.propertyName?.lowercase() }
+                    .groupBy { it.propertyName }
                     .forEach { (propertyName, assignments) ->
                         val property = propertyName?.let { descriptor.property(it) } ?: return@forEach
                         if (assignments.size < 2 || property.isBlock || property.type.mayBeRepeated()) {

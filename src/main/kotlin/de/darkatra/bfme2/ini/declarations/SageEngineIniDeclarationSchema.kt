@@ -23,7 +23,7 @@ object SageEngineIniDeclarationSchema {
 
     // statements outside of blocks aren't part of the model, e.g. `EvaEventForwardReference DiscoveredRing`
     private val topLevelStatementReferenceRules: Map<String, Set<String>> = mapOf(
-        "evaeventforwardreference" to setOf(NewEvaEvent.name, PredefinedEvaEvent.name),
+        "EvaEventForwardReference" to setOf(NewEvaEvent.name, PredefinedEvaEvent.name),
     )
 
     private val propertyReferenceRules: Map<String, Set<String>> = buildMap<String, Set<String>> {
@@ -31,17 +31,17 @@ object SageEngineIniDeclarationSchema {
         declaredProperties.forEach { property ->
             val kinds = referencedKinds(property)
             if (kinds.isNotEmpty()) {
-                put(property.name.lowercase(), get(property.name.lowercase()).orEmpty() + kinds)
+                put(property.name, get(property.name).orEmpty() + kinds)
             }
         }
     }
 
     // values such as `PRIMARY` in `Weapon = PRIMARY SomeWeapon` are tokens of an enum and never reference a declaration
     private val propertyEnumTokens: Map<String, Set<String>> = buildMap<String, Set<String>> {
-        declaredProperties.filter { propertyReferenceRules.containsKey(it.name.lowercase()) }.forEach { property ->
+        declaredProperties.filter { propertyReferenceRules.containsKey(it.name) }.forEach { property ->
             val tokens = enumTokens(property.type)
             if (tokens.isNotEmpty()) {
-                put(property.name.lowercase(), get(property.name.lowercase()).orEmpty() + tokens)
+                put(property.name, get(property.name).orEmpty() + tokens)
             }
         }
     }
@@ -54,11 +54,11 @@ object SageEngineIniDeclarationSchema {
         if (propertyName?.toIntOrNull() != null) {
             return numberedSlotKinds
         }
-        return propertyReferenceRules[propertyName?.lowercase()].orEmpty()
+        return propertyReferenceRules[propertyName].orEmpty()
     }
 
     fun expectedKindsForPropertyValue(propertyName: String?, propertyValue: String?): Set<String> {
-        if (propertyValue != null && propertyValue.uppercase() in propertyEnumTokens[propertyName?.lowercase()].orEmpty()) {
+        if (propertyValue != null && propertyValue.uppercase() in propertyEnumTokens[propertyName].orEmpty()) {
             return emptySet()
         }
 

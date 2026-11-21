@@ -46,11 +46,11 @@ open class SageIniBlockDescriptor<T : Any>(
         get() = name.startsWith("_")
 
     private val propertiesByName by lazy {
-        this.properties.associateBy { it.name.lowercase() }
+        this.properties.associateBy { it.name }
     }
 
     fun property(name: String): SageIniProperty<T, *>? {
-        return propertiesByName[name.lowercase()]
+        return propertiesByName[name]
             ?: name.toIntOrNull()?.let { numberedSlots?.slot(it) }
     }
 

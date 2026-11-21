@@ -31,6 +31,28 @@ class SageEngineIniModelQuickFixesTest : LightPlatformCodeInsightFixture4TestCas
     }
 
     @Test
+    fun `should fix the casing of block keywords`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownBlockInspection())
+        myFixture.configureByText("object.ini", "obj<caret>ect ElvenMallornTree\nEnd")
+
+        myFixture.launchAction(myFixture.findSingleIntention("Change to 'Object'"))
+
+        myFixture.checkResult("Object ElvenMallornTree\nEnd")
+    }
+
+    @Test
+    fun `should fix the casing of property names`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownPropertyInspection())
+        myFixture.configureByText("object.ini", "Object ElvenMallornTree\n    build<caret>cost = 100\nEnd")
+
+        myFixture.launchAction(myFixture.findSingleIntention("Change to 'BuildCost'"))
+
+        myFixture.checkResult("Object ElvenMallornTree\n    BuildCost = 100\nEnd")
+    }
+
+    @Test
     fun `should suggest known modules for unknown modules`() {
 
         myFixture.enableInspections(SageEngineIniUnknownBlockInspection())

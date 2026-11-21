@@ -74,7 +74,7 @@ class SageIniModelDescriptorTest {
     fun `should read property values of data classes through their descriptors`() {
 
         val armorSet = ArmorSet(armor = SageReference("TreeArmor"))
-        val armor = ArmorSet.property("armor")!!
+        val armor = ArmorSet.property("Armor")!!
 
         assertThat(armor.name).isEqualTo("Armor")
         assertThat(armor.get(armorSet)).isEqualTo(SageReference<Armor>("TreeArmor"))
@@ -174,9 +174,10 @@ class SageIniModelDescriptorTest {
     }
 
     @Test
-    fun `should find blocks by name case-insensitively`() {
+    fun `should find blocks by their exact name`() {
 
-        assertThat(SageIniModel.block("w3dmodeldraw")).isSameAs(W3DModelDraw)
+        assertThat(SageIniModel.block("W3DModelDraw")).isSameAs(W3DModelDraw)
+        assertThat(SageIniModel.block("w3dmodeldraw")).isNull()
         assertThat(SageIniModel.block("_DefeatCondition")).isNull()
         assertThat(SageIniModel.declarations).contains(Object, Armor).doesNotContain(ArmorSet)
     }

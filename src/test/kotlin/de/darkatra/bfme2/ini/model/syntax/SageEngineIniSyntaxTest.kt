@@ -6,10 +6,10 @@ import org.junit.Test
 class SageEngineIniSyntaxTest {
 
     @Test
-    fun `should detect block openers case insensitively`() {
+    fun `should detect block openers by their exact keyword`() {
 
         assertThat(SageEngineIniSyntax.isBlockOpener("ModelConditionState", "DAMAGED")).isTrue()
-        assertThat(SageEngineIniSyntax.isBlockOpener("modelconditionstate", null)).isTrue()
+        assertThat(SageEngineIniSyntax.isBlockOpener("modelconditionstate", null)).isFalse()
         assertThat(SageEngineIniSyntax.isBlockOpener("Radius", "fcurve")).isTrue()
         assertThat(SageEngineIniSyntax.isBlockOpener("AddEmotion", "OVERRIDE")).isTrue()
         assertThat(SageEngineIniSyntax.isBlockOpener("AddEmotion", "Terror_Base")).isFalse()
@@ -17,10 +17,10 @@ class SageEngineIniSyntaxTest {
     }
 
     @Test
-    fun `should detect bare value keys case insensitively`() {
+    fun `should detect bare value keys by their exact key`() {
 
         assertThat(SageEngineIniSyntax.isBareValueKey("RemoveModule")).isTrue()
-        assertThat(SageEngineIniSyntax.isBareValueKey("clearnuggets")).isTrue()
+        assertThat(SageEngineIniSyntax.isBareValueKey("clearnuggets")).isFalse()
         assertThat(SageEngineIniSyntax.isBareValueKey("ArmorSet")).isFalse()
     }
 
@@ -39,6 +39,7 @@ class SageEngineIniSyntaxTest {
     fun `should share the contextual rules of objects with child objects and reskins`() {
 
         assertThat(SageEngineIniSyntax.isContextualBareValueKey("ChildObject", "CommandSet")).isTrue()
-        assertThat(SageEngineIniSyntax.isContextualBareValueKey("ObjectReskin", "commandset")).isTrue()
+        assertThat(SageEngineIniSyntax.isContextualBareValueKey("ObjectReskin", "CommandSet")).isTrue()
+        assertThat(SageEngineIniSyntax.isContextualBareValueKey("ObjectReskin", "commandset")).isFalse()
     }
 }

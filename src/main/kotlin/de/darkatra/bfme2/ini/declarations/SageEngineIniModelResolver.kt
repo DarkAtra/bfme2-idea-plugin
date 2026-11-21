@@ -35,8 +35,8 @@ object SageEngineIniModelResolver {
 
         // module slots are typed by the first token after the `=`, e.g. `Behavior = AutoHealBehavior ModuleTag_Heal`
         val typeToken = block.name
-        return candidates.firstOrNull { typeToken != null && it.name.equals(typeToken, ignoreCase = true) }
-            ?: candidates.firstOrNull { it.name.equals(kind, ignoreCase = true) }
+        return candidates.firstOrNull { typeToken != null && it.name == typeToken }
+            ?: candidates.firstOrNull { it.name == kind }
             ?: candidates.singleOrNull()
     }
 
@@ -72,7 +72,7 @@ object SageEngineIniModelResolver {
         val groupMembers = parent.properties.asSequence()
             .mapNotNull { it.type.elementType() as? SageIniValueType.BlockValue<*> }
             .flatMap { it.candidates }
-            .filter { it.name.equals(name, ignoreCase = true) }
+            .filter { it.name == name }
             .distinct()
             .toList()
         if (groupMembers.isNotEmpty()) {
