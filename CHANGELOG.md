@@ -2,6 +2,26 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.5.0`
+
+### Added
+
+- Inspections for missing values, empty value lists, properties outside of blocks, missing or forbidden `=` in object properties and special
+  characters in declaration names
+- Support for more blocks, modules and properties that the base game and mods like Age of the Ring use
+- Notification when files are too large for the IDE to parse and index, with a hint on how to raise the limit
+
+### Changed
+
+- Block keywords and property names are case-sensitive, like in the game
+- Standard `.ini` files with `[section]` headers are ignored by this plugin
+
+### Fixed
+
+- Navigation, completion and "Find Usages" only treat the words of a value that reference a declaration as references
+- Declaration lookups are much faster in large files
+- Script blocks end at the first `EndScript`
+
 ## `0.4.0`
 
 ### Added
