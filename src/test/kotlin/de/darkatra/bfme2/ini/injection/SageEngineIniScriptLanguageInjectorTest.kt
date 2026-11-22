@@ -50,6 +50,19 @@ class SageEngineIniScriptLanguageInjectorTest : LightPlatformCodeInsightFixture4
     }
 
     @Test
+    fun `should remove the content of a script block when it is cleared`() {
+
+        myFixture.configureByText("script.ini", SCRIPT)
+
+        WriteCommandAction.runWriteCommandAction(project) {
+            scriptContent().updateText("")
+        }
+
+        assertThat(myFixture.file.text).isEqualTo(SCRIPT.replace("\n                $SCRIPT_CONTENT", ""))
+        assertThat(PsiTreeUtil.findChildOfType(myFixture.file, SageEngineIniScriptContent::class.java)).isNull()
+    }
+
+    @Test
     fun `should not replace the content of a script block with text that ends the script block`() {
 
         myFixture.configureByText("script.ini", SCRIPT)

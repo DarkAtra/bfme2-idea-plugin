@@ -51,6 +51,11 @@ class SageEngineIniScriptContent(node: ASTNode) : SageEngineIniPsiElement(node),
     }
 
     override fun updateText(text: String): PsiLanguageInjectionHost {
+        // an empty script block has no content element to replace this one with, and the platform ignores the returned host
+        if (text.isBlank()) {
+            delete()
+            return this
+        }
         val dummyFile = PsiFileFactory.getInstance(project).createFileFromText("dummy.ini", SageEngineIniLanguage, "BeginScript\n$text\nEndScript")
         val newContent = PsiTreeUtil.findChildOfType(dummyFile, SageEngineIniScriptContent::class.java)
             ?.takeIf { it.text == text.trim() }
