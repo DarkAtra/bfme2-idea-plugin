@@ -2,12 +2,12 @@
 
 # Bfme2-idea-plugin Changelog
 
-## `0.6.0`
+## `1.0.0`
 
 ### Added
 
 - Formatting for `#define` statements: their values are aligned and expressions like `#ADD( A 25 )` are spaced consistently
-- Comments like `; @formatter:align=all` and `; @formatter:align-column=65` that change how the values of the defines below them are aligned
+- Comments like `; @formatter:align=all` and `; @formatter:align-column=65` that change how the values of the `defines` below them are aligned
 - Lua highlighting and inspections inside `BeginScript` blocks when a Lua plugin is installed
 
 ### Fixed
