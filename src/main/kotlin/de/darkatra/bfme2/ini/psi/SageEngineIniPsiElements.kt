@@ -6,6 +6,7 @@ import com.intellij.psi.LiteralTextEscaper
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFileFactory
 import com.intellij.psi.PsiLanguageInjectionHost
+import com.intellij.psi.tree.TokenSet
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.elementType
 import com.intellij.util.IncorrectOperationException
@@ -21,14 +22,23 @@ class SageEngineIniBlock(node: ASTNode) : SageEngineIniPsiElement(node) {
             ?.text
 
     override fun getName(): String? {
-        return nameIdentifier?.text
+        return nameIdentifier?.text?.let(::declarationName)
     }
 
     val nameIdentifier: PsiElement?
-        get() = node.findChildByType(SageEngineIniTokenTypes.VALUE)?.psi
+        get() = node.findChildByType(NAME_TOKENS)?.psi
 
     override fun getTextOffset(): Int {
         return nameIdentifier?.textOffset ?: super.getTextOffset()
+    }
+
+    companion object {
+
+        private val NAME_TOKENS = TokenSet.create(SageEngineIniTokenTypes.VALUE, SageEngineIniTokenTypes.NUMBER, SageEngineIniTokenTypes.STRING)
+
+        fun declarationName(nameToken: String): String? {
+            return nameToken.removePrefix("\"").removeSuffix("\"").takeIf { it.isNotEmpty() }
+        }
     }
 }
 

@@ -14,6 +14,7 @@ import com.intellij.util.io.IOUtil
 import com.intellij.util.io.KeyDescriptor
 import de.darkatra.bfme2.ini.SageEngineIniFileType
 import de.darkatra.bfme2.ini.model.syntax.SageEngineIniSyntax
+import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
 import java.io.DataInput
 import java.io.DataOutput
 
@@ -60,11 +61,12 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
     }
 
     private fun MutableMap<String, DeclarationOccurrence>.indexDeclaration(line: String) {
-        val tokens = line.split(WHITESPACE)
-        if (tokens.size < 2 || !SageEngineIniDeclarationSchema.isDeclarationKind(tokens[0])) {
+        val kind = line.split(WHITESPACE).first()
+        if (!SageEngineIniDeclarationSchema.isDeclarationKind(kind)) {
             return
         }
-        mergeOccurrence(SageEngineIniDeclarationIndexKey.create(tokens[0], tokens[1]), SageEngineIniDeclarationIndexKey.DECLARATION, tokens[1])
+        val name = declarationName(line.substring(kind.length)) ?: return
+        mergeOccurrence(SageEngineIniDeclarationIndexKey.create(kind, name), SageEngineIniDeclarationIndexKey.DECLARATION, name)
     }
 
     // e.g. `RadiusCursorTemplate = RainOfFireRadiusCursor` inside the `InGameUI`
@@ -72,8 +74,19 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
         if (!SageEngineIniDeclarationSchema.isLabeledDeclarationKind(kind)) {
             return
         }
-        val label = value.trim().split(WHITESPACE).first().takeIf { it.isNotEmpty() } ?: return
+        val label = declarationName(value) ?: return
         mergeOccurrence(SageEngineIniDeclarationIndexKey.create(kind, label), SageEngineIniDeclarationIndexKey.DECLARATION, label)
+    }
+
+    // must match SageEngineIniBlock.getName, e.g. `Albertus MT` for `FontSubstitution "Albertus MT"`
+    private fun declarationName(header: String): String? {
+        val text = header.trim()
+        val nameToken = if (text.startsWith('"')) {
+            text.substring(0, text.indexOf('"', 1) + 1).ifEmpty { text }
+        } else {
+            text.split(WHITESPACE).first()
+        }
+        return SageEngineIniBlock.declarationName(nameToken)
     }
 
     // e.g. `AttributeModifier FighterHordeStanceAggressive` inside a `Stance`, whether the block allows the bare form is checked on the PSI
@@ -130,7 +143,7 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
 
     override fun getValueExternalizer(): DataExternalizer<DeclarationOccurrence> = OccurrenceExternalizer
 
-    override fun getVersion(): Int = 24
+    override fun getVersion(): Int = 25
 
     override fun getInputFilter(): FileBasedIndex.InputFilter = object : DefaultFileTypeSpecificInputFilter(SageEngineIniFileType) {
 

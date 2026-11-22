@@ -936,4 +936,28 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
             .containsExactly("GenericBuildingComplete-Builder-Elf")
         assertThat(references).allMatch { it.isReferenceTo(nameIdentifier) }
     }
+
+    @Test
+    fun `should look up declarations with quoted and numeric names`() {
+
+        myFixture.configureByText(
+            "declarations.ini",
+            """
+            FontSubstitution "Albertus MT"
+                Size = 12
+            End
+            Rank 1
+                SkillPointsNeeded = 0
+            End
+            """.trimIndent()
+        )
+
+        val blocks = PsiTreeUtil.findChildrenOfType(myFixture.file, SageEngineIniBlock::class.java).toList()
+
+        assertThat(blocks).extracting<String?> { it.name }.containsExactly("Albertus MT", "1")
+        assertThat(SageEngineIniDeclarationLookup.findDeclarationsByName(project, "albertus mt")).containsExactly(blocks[0])
+        assertThat(SageEngineIniDeclarationLookup.findDeclarationsByName(project, "1")).containsExactly(blocks[1])
+        assertThat(SageEngineIniDeclarationLookup.allDeclarationNames(project, setOf("FontSubstitution", "Rank")))
+            .containsExactly("1", "Albertus MT")
+    }
 }
