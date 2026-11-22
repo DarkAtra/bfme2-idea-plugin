@@ -1,9 +1,11 @@
 package de.darkatra.bfme2.ini.formatting
 
 import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.editor.LogicalPosition
 import com.intellij.openapi.editor.impl.TrailingSpacesStripper
 import com.intellij.psi.PsiDocumentManager
+import com.intellij.psi.codeStyle.CodeStyleManager
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixture4TestCase
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
@@ -518,6 +520,26 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
             ; Valid comment
             """.trimIndent(),
         )
+    }
+
+    @Test
+    fun `should keep empty comments that only touch the formatted range`() {
+
+        myFixture.configureByText(
+            "test.ini",
+            """
+            Object TestObject;
+                DisplayName = OBJECT:TestObject;
+            End
+            """.trimIndent(),
+        )
+        val text = myFixture.file.text
+
+        WriteCommandAction.runWriteCommandAction(project) {
+            CodeStyleManager.getInstance(project).reformatText(myFixture.file, text.indexOf(';') + 1, text.lastIndexOf(';'))
+        }
+
+        assertThat(myFixture.file.text.count { it == ';' }).isEqualTo(2)
     }
 
     @Test

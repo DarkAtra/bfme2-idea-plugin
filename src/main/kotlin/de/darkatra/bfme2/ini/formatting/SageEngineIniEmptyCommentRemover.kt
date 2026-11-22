@@ -24,7 +24,7 @@ object SageEngineIniEmptyCommentRemover {
 
                 if (
                     node?.elementType == SageEngineIniTokenTypes.COMMENT_START &&
-                    elementRange.intersects(range) &&
+                    elementRange.intersectsStrict(range) &&
                     lineBeforeCommentContainsNonWhitespaceNode(fileText, elementRange.startOffset) &&
                     hasOnlyWhitespaceUntilLineEnd(fileText, elementRange.endOffset)
                 ) {
