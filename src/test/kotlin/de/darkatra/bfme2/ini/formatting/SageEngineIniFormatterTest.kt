@@ -296,6 +296,124 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
     }
 
     @Test
+    fun `should only align the values of consecutive properties of the same block`() {
+
+        myFixture.configureByText(
+            "test.ini",
+            """
+            Object GhalorDuz
+                Body = ActiveBody ModuleTag_MakesKillWork
+                    MaxHealth = 1
+                End
+                Behavior = LifetimeUpdate ModuleTag_HatchTrigger
+                    MinLifetime = 0.0
+                    MaxLifetime = 0.0
+                End
+                Draw = W3DScriptedModelDraw ModuleTag_Draw
+                    IdleAnimationState
+                        SimilarRestart = Yes
+                        Animation = IDLB
+                            AnimationName = MUOrcPrtr_IDLB
+                            AnimationPriority = 1
+                        End
+                        Animation = WLKA
+                            AnimationName = MUOrcPrtr_WLKA
+                            AnimationMode = LOOP
+                        End
+                        Flags = RESTART_ANIM_WHEN_COMPLETE
+                    End
+                End
+                AutoResolveArmor
+                    Armor = AutoResolve_IsengardPikemanArmor
+                End
+                AutoResolveWeapon
+                    Weapon = AutoResolve_IsengardPikemanWeapon
+                End
+            End
+            """.trimIndent(),
+        )
+
+        myFixture.performEditorAction("ReformatCode")
+
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(
+            """
+            Object GhalorDuz
+                Body = ActiveBody ModuleTag_MakesKillWork
+                    MaxHealth = 1
+                End
+                Behavior = LifetimeUpdate ModuleTag_HatchTrigger
+                    MinLifetime = 0.0
+                    MaxLifetime = 0.0
+                End
+                Draw = W3DScriptedModelDraw ModuleTag_Draw
+                    IdleAnimationState
+                        SimilarRestart = Yes
+                        Animation = IDLB
+                            AnimationName     = MUOrcPrtr_IDLB
+                            AnimationPriority = 1
+                        End
+                        Animation = WLKA
+                            AnimationName = MUOrcPrtr_WLKA
+                            AnimationMode = LOOP
+                        End
+                        Flags = RESTART_ANIM_WHEN_COMPLETE
+                    End
+                End
+                AutoResolveArmor
+                    Armor = AutoResolve_IsengardPikemanArmor
+                End
+                AutoResolveWeapon
+                    Weapon = AutoResolve_IsengardPikemanWeapon
+                End
+            End
+            """.trimIndent(),
+        )
+    }
+
+    @Test
+    fun `should align the values of consecutive defines and format their expressions`() {
+
+        myFixture.configureByText(
+            "gamedata.inc",
+            """
+            ; Region Bonuses
+            #define${'\t'}DEFAULT_REGION_RESOURCE_BONUS${'\t'}${'\t'}${'\t'}10
+            #define DEFAULT_REGION_ARMY_BONUS_GOOD   20 ; good
+            ; a comment between defines
+            #define  BATTLEWAGON_HEARTH_BLIGHT_BUFF_RANGE${'\t'}#ADD(  BATTLEWAGON_HEARTH_RANGE   #MULTIPLY(2   3) )
+
+            #define DARKATRA_VISION                                         300
+            #define DARKATRA_SHROUD 450
+            #include${'\t'}"mod\gamedata.inc"
+
+            Object Foo
+                MaxHealth =   #MULTIPLY(DARKATRA_HEALTH 2)
+            End
+            """.trimIndent(),
+        )
+
+        myFixture.performEditorAction("ReformatCode")
+
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(
+            """
+            ; Region Bonuses
+            #define DEFAULT_REGION_RESOURCE_BONUS        10
+            #define DEFAULT_REGION_ARMY_BONUS_GOOD       20 ; good
+            ; a comment between defines
+            #define BATTLEWAGON_HEARTH_BLIGHT_BUFF_RANGE #ADD( BATTLEWAGON_HEARTH_RANGE #MULTIPLY( 2 3 ) )
+
+            #define DARKATRA_VISION 300
+            #define DARKATRA_SHROUD 450
+            #include "mod\gamedata.inc"
+
+            Object Foo
+                MaxHealth = #MULTIPLY( DARKATRA_HEALTH 2 )
+            End
+            """.trimIndent(),
+        )
+    }
+
+    @Test
     fun `should remove empty comments`() {
 
         myFixture.configureByText(

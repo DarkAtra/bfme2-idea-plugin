@@ -2,6 +2,16 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `0.6.0`
+
+### Added
+
+- Formatting for `#define` statements: their values are aligned and expressions like `#ADD( A 25 )` are spaced consistently
+
+### Fixed
+
+- Formatting only aligns the values of consecutive properties of the same block
+
 ## `0.5.0`
 
 ### Added

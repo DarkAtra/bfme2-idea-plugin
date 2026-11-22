@@ -11,6 +11,7 @@ import com.intellij.lang.ASTNode
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.TokenType
 import com.intellij.psi.codeStyle.CodeStyleSettings
+import com.intellij.psi.tree.IElementType
 import de.darkatra.bfme2.ini.psi.SageEngineIniElementTypes
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
@@ -90,6 +91,10 @@ class SageEngineIniFormattingBlock(
             return createSpacing(1, 1, 0, false, 0)
         }
 
+        if (!SageEngineDocumentUtil.hasLineBreakBetween(left.node.psi, right.node.psi)) {
+            macroSpacing(left.node, right.node)?.let { return it }
+        }
+
         if (right.node.elementType != SageEngineIniTokenTypes.EQUALS && left.node.elementType != SageEngineIniTokenTypes.EQUALS) {
             if (isValuePart(left.node) && isValuePart(right.node) && !SageEngineDocumentUtil.hasLineBreakBetween(left.node.psi, right.node.psi)) {
                 return createSpacing(1, 1, 0, false, 0)
@@ -139,15 +144,28 @@ class SageEngineIniFormattingBlock(
 
         val blocks = mutableListOf<Block>()
         val alignments = mutableMapOf<Int, Alignment>()
+        val defineAlignments = mutableMapOf<Int, Alignment>()
+        var defineTokensOnLine = 0
         val children = flattenedFormattingChildren(node)
         var previousSignificantChild: ASTNode? = null
         var blockDepth = 0
         var scriptBodyBaseIndent: Int? = null
 
         for (child in children) {
-            // reset indentation when encountering a blank line - this ensures that only adjacent properties have aligned values
-            if (child.elementType == TokenType.WHITE_SPACE && SageEngineDocumentUtil.containsBlankLine(child.text)) {
+            // only adjacent properties of the same block have aligned values, so blank lines, nested blocks and block ends start a new group
+            if ((child.elementType == TokenType.WHITE_SPACE && SageEngineDocumentUtil.containsBlankLine(child.text)) ||
+                ((child.elementType == SageEngineIniTokenTypes.BLOCK_START || child.elementType == SageEngineIniTokenTypes.BLOCK_END) &&
+                    SageEngineDocumentUtil.isAtLineStart(child.psi))
+            ) {
                 alignments.clear()
+                defineAlignments.clear()
+            }
+
+            // counts the tokens of a `#define NAME VALUE` line to find its value
+            if (child.elementType == TokenType.WHITE_SPACE && child.textContains('\n')) {
+                defineTokensOnLine = 0
+            } else if (child.elementType != TokenType.WHITE_SPACE) {
+                defineTokensOnLine = if (isDefine(child)) 1 else if (defineTokensOnLine > 0) defineTokensOnLine + 1 else 0
             }
 
             // align property values
@@ -170,9 +188,14 @@ class SageEngineIniFormattingBlock(
                     child,
                     codeStyleSettings,
                     Indent.getSpaceIndent(childIndent * codeStyleSettings.indentOptions.INDENT_SIZE),
-                    when (child.elementType) {
-                        SageEngineIniTokenTypes.EQUALS if previousSignificantChild?.elementType == SageEngineIniTokenTypes.PROPERTY -> {
+                    when {
+                        child.elementType == SageEngineIniTokenTypes.EQUALS && previousSignificantChild?.elementType == SageEngineIniTokenTypes.PROPERTY -> {
                             alignments.getOrPut(childIndent) { Alignment.createAlignment(true) }
+                        }
+
+                        // the values of consecutive defines line up, e.g. `#define DEFAULT_REGION_ARMY_BONUS_GOOD   20`
+                        defineTokensOnLine == DEFINE_VALUE_POSITION -> {
+                            defineAlignments.getOrPut(childIndent) { Alignment.createAlignment(true) }
                         }
 
                         else -> null
@@ -218,10 +241,47 @@ class SageEngineIniFormattingBlock(
             node.elementType == SageEngineIniElementTypes.SCRIPT_BLOCK
     }
 
+    // `#define NAME VALUE`, `#include "file"` and expressions like `#ADD( BASE_DAMAGE 25 )`
+    private fun macroSpacing(left: ASTNode, right: ASTNode): Spacing? {
+        val singleSpace = createSpacing(1, 1, 0, false, 0)
+        return when {
+            left.elementType == SageEngineIniTokenTypes.MACRO && right.elementType == SageEngineIniTokenTypes.LPAREN -> createSpacing(0, 0, 0, false, 0)
+            left.elementType == SageEngineIniTokenTypes.MACRO -> singleSpace
+            isExpressionParenthesis(left, SageEngineIniTokenTypes.LPAREN) || isExpressionParenthesis(right, SageEngineIniTokenTypes.RPAREN) -> singleSpace
+            isExpressionParenthesis(left, SageEngineIniTokenTypes.RPAREN) && (isValuePart(right) || right.elementType == SageEngineIniTokenTypes.MACRO) -> singleSpace
+            isDefineName(left) -> singleSpace
+            isValuePart(left) && right.elementType == SageEngineIniTokenTypes.MACRO -> singleSpace
+            else -> null
+        }
+    }
+
+    // only the parentheses of expressions, names like `MGAmonH_Aragorn030(b)` keep theirs
+    private fun isExpressionParenthesis(node: ASTNode, type: IElementType): Boolean {
+        return node.elementType == type && node.treeParent?.elementType == SageEngineIniElementTypes.MACRO_STATEMENT
+    }
+
+    private fun isDefine(node: ASTNode): Boolean {
+        return node.elementType == SageEngineIniTokenTypes.MACRO && node.text.equals("#define", ignoreCase = true)
+    }
+
+    private fun isDefineName(node: ASTNode): Boolean {
+        var previous = node.treePrev
+        while (previous != null && previous.elementType == TokenType.WHITE_SPACE && !previous.textContains('\n')) {
+            previous = previous.treePrev
+        }
+        return previous != null && isDefine(previous)
+    }
+
     private fun isValuePart(node: ASTNode): Boolean {
         return node.elementType == SageEngineIniTokenTypes.VALUE ||
             node.elementType == SageEngineIniTokenTypes.NUMBER ||
             node.elementType == SageEngineIniTokenTypes.STRING ||
             node.elementType == SageEngineIniTokenTypes.BLOCK_START
+    }
+
+    private companion object {
+
+        // `#define` is the first token of the line, the name the second and the value the third
+        const val DEFINE_VALUE_POSITION = 3
     }
 }
