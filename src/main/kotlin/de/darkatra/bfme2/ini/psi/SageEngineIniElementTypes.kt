@@ -8,4 +8,5 @@ object SageEngineIniElementTypes {
     val PROPERTY_ASSIGNMENT: IElementType = SageEngineIniElementType("PROPERTY_ASSIGNMENT")
     val MACRO_STATEMENT: IElementType = SageEngineIniElementType("MACRO_STATEMENT")
     val SCRIPT_BLOCK: IElementType = SageEngineIniElementType("SCRIPT_BLOCK")
+    val SCRIPT_CONTENT: IElementType = SageEngineIniElementType("SCRIPT_CONTENT")
 }

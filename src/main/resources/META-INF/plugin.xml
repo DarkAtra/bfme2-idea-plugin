@@ -39,6 +39,7 @@
         <completion.contributor language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniModelCompletionContributor"/>
         <completion.contributor language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniMacroCompletionContributor"/>
         <annotator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.highlighting.SageEngineIniContextualHighlightingAnnotator"/>
+        <multiHostInjector implementation="de.darkatra.bfme2.ini.injection.SageEngineIniScriptLanguageInjector"/>
         <!-- <annotator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniDeclarationAnnotator"/> -->
         <localInspection
             language="SageEngineIni"

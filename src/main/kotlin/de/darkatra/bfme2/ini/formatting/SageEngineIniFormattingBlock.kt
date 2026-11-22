@@ -262,7 +262,8 @@ class SageEngineIniFormattingBlock(
         return node.elementType == SageEngineIniElementTypes.BLOCK ||
             node.elementType == SageEngineIniElementTypes.PROPERTY_ASSIGNMENT ||
             node.elementType == SageEngineIniElementTypes.MACRO_STATEMENT ||
-            node.elementType == SageEngineIniElementTypes.SCRIPT_BLOCK
+            node.elementType == SageEngineIniElementTypes.SCRIPT_BLOCK ||
+            node.elementType == SageEngineIniElementTypes.SCRIPT_CONTENT
     }
 
     // `#define NAME VALUE`, `#include "file"` and expressions like `#ADD( BASE_DAMAGE 25 )`

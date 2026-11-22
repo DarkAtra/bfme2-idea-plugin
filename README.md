@@ -22,6 +22,7 @@ Alternatively, download it directly from the [JetBrains Marketplace](https://plu
 - Include-file navigation for `#include "path/to/file.inc"` macros
 - Include path completion from the current file directory
 - Lightweight PSI structure for blocks, property assignments, macro statements, comments, and script blocks
+- Lua language injection into `BeginScript` blocks, provided by any installed Lua plugin that registers the `Lua` language
 
 ## Formatting Comments
 

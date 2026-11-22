@@ -17,6 +17,7 @@ import de.darkatra.bfme2.ini.psi.SageEngineIniElementTypes
 import de.darkatra.bfme2.ini.psi.SageEngineIniMacroStatement
 import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
 import de.darkatra.bfme2.ini.psi.SageEngineIniScriptBlock
+import de.darkatra.bfme2.ini.psi.SageEngineIniScriptContent
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenSets
 
 private val FILE_ELEMENT_TYPE = IFileElementType(SageEngineIniLanguage)
@@ -49,6 +50,7 @@ class SageEngineIniParserDefinition : ParserDefinition {
             SageEngineIniElementTypes.PROPERTY_ASSIGNMENT -> SageEngineIniPropertyAssignment(node)
             SageEngineIniElementTypes.MACRO_STATEMENT -> SageEngineIniMacroStatement(node)
             SageEngineIniElementTypes.SCRIPT_BLOCK -> SageEngineIniScriptBlock(node)
+            SageEngineIniElementTypes.SCRIPT_CONTENT -> SageEngineIniScriptContent(node)
             else -> ASTWrapperPsiElement(node)
         }
     }

@@ -11,6 +11,7 @@ import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
 import de.darkatra.bfme2.ini.psi.SageEngineIniMacroStatement
 import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
 import de.darkatra.bfme2.ini.psi.SageEngineIniScriptBlock
+import de.darkatra.bfme2.ini.psi.SageEngineIniScriptContent
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import java.nio.charset.StandardCharsets
@@ -63,6 +64,41 @@ class SageEngineIniParserTest : LightPlatformCodeInsightFixture4TestCase() {
         assertThat(scriptBlocks.single().text.trim()).endsWith("end\nEndScript")
         assertThat(myFixture.file.descendantsOfType(SageEngineIniPropertyAssignment::class.java)).extracting<String> { it.text.trim() }
             .contains("After = EndScript")
+        assertThat(PsiTreeUtil.findChildrenOfType(myFixture.file, PsiErrorElement::class.java)).isEmpty()
+    }
+
+    @Test
+    fun `should create a script content PSI element between BeginScript and EndScript`() {
+
+        myFixture.configureByText(
+            "script.ini",
+            """
+            BeginScript
+                if Flag
+                then
+                    CurDrawableAllowToContinue()
+                end
+            EndScript
+            """.trimIndent()
+        )
+
+        assertThat(myFixture.file.descendantsOfType(SageEngineIniScriptContent::class.java)).extracting<String> { it.text }
+            .containsExactly("if Flag\n    then\n        CurDrawableAllowToContinue()\n    end")
+    }
+
+    @Test
+    fun `should not create a script content PSI element for empty script blocks`() {
+
+        myFixture.configureByText(
+            "script.ini",
+            """
+            BeginScript
+            EndScript
+            """.trimIndent()
+        )
+
+        assertThat(myFixture.file.descendantsOfType(SageEngineIniScriptBlock::class.java)).hasSize(1)
+        assertThat(myFixture.file.descendantsOfType(SageEngineIniScriptContent::class.java)).isEmpty()
         assertThat(PsiTreeUtil.findChildrenOfType(myFixture.file, PsiErrorElement::class.java)).isEmpty()
     }
 

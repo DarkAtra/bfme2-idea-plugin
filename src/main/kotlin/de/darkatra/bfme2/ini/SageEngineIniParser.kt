@@ -80,8 +80,11 @@ class SageEngineIniParser : PsiParser {
     private fun parseScriptBlock(builder: PsiBuilder) {
         val marker = builder.mark()
         builder.advanceLexer()
+        val content = builder.mark()
+        var hasContent = false
         while (!builder.eof()) {
             if (builder.tokenType == SageEngineIniTokenTypes.BLOCK_END && builder.tokenText.equals("EndScript", ignoreCase = true)) {
+                finishScriptContent(content, hasContent)
                 builder.advanceLexer()
                 marker.done(SageEngineIniElementTypes.SCRIPT_BLOCK)
                 return
@@ -90,9 +93,19 @@ class SageEngineIniParser : PsiParser {
                 builder.error("Missing 'EndScript' before 'BeginScript'")
             }
             builder.advanceLexer()
+            hasContent = true
         }
+        finishScriptContent(content, hasContent)
         builder.error("Missing 'EndScript'")
         marker.done(SageEngineIniElementTypes.SCRIPT_BLOCK)
+    }
+
+    private fun finishScriptContent(content: PsiBuilder.Marker, hasContent: Boolean) {
+        if (hasContent) {
+            content.done(SageEngineIniElementTypes.SCRIPT_CONTENT)
+        } else {
+            content.drop()
+        }
     }
 
     private fun parseUntilStatementBoundary(builder: PsiBuilder, elementType: IElementType) {
