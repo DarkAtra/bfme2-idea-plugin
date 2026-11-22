@@ -909,4 +909,31 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
         assertThat(highlightedRanges).doesNotContain(unrelatedValue.textRange, unrelatedProperty.textRange)
         assertThat(unrelatedReferences).isEmpty()
     }
+
+    @Test
+    fun `should only reference the name of eva events in sound values`() {
+
+        myFixture.addFileToProject(
+            "data/object.ini",
+            """
+            Object ElvenBarracks
+                VoiceFullyCreated = EVA:GenericBuildingComplete-Builder-Elf
+            End
+            """.trimIndent()
+        )
+        myFixture.configureByText(
+            "evaevents.ini",
+            """
+            NewEvaEvent GenericBuildingComplete-Builder-Elf
+            End
+            """.trimIndent()
+        )
+
+        val nameIdentifier = PsiTreeUtil.findChildOfType(myFixture.file, SageEngineIniBlock::class.java)!!.nameIdentifier!!
+        val references = ReferencesSearch.search(nameIdentifier).findAll()
+
+        assertThat(references).extracting<String> { it.rangeInElement.substring(it.element.text) }
+            .containsExactly("GenericBuildingComplete-Builder-Elf")
+        assertThat(references).allMatch { it.isReferenceTo(nameIdentifier) }
+    }
 }

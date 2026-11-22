@@ -8,12 +8,14 @@ import com.intellij.psi.PsiReference
 import com.intellij.psi.search.PsiSearchScopeUtil
 import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.psi.util.PsiTreeUtil
+import com.intellij.psi.util.elementType
 import com.intellij.util.Processor
 import com.intellij.util.QueryExecutor
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationLookup
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationSchema
 import de.darkatra.bfme2.ini.declarations.SageEngineIniModelResolver
 import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
+import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
 class SageEngineIniDeclarationReferencesSearch : QueryExecutor<PsiReference, ReferencesSearch.SearchParameters> {
 
@@ -45,11 +47,18 @@ class SageEngineIniDeclarationReferencesSearch : QueryExecutor<PsiReference, Ref
             SageEngineIniDeclarationLookup.findUseSites(searchRequest.project, searchRequest.declarationKind, searchRequest.declarationName)
                 .filter { PsiSearchScopeUtil.isInScope(searchScope, it) }
                 .all { useSite ->
-                    val prefixLength = SageEngineIniModelResolver.prefixedNameReference(useSite)?.first ?: 0
-                    val reference = SageEngineIniDeclarationReference(useSite, setOf(searchRequest.declarationKind), TextRange(prefixLength, useSite.textLength))
-                    consumer.process(reference)
+                    consumer.process(SageEngineIniDeclarationReference(useSite, setOf(searchRequest.declarationKind), useSite.declarationNameRange()))
                 }
         }
+    }
+
+    // the part of the use-site that names the declaration, e.g. without the `EVA:` of `EVA:GenericBuildingComplete-Builder-Elf`
+    private fun PsiElement.declarationNameRange(): TextRange {
+        if (elementType == SageEngineIniTokenTypes.VALUE) {
+            SageEngineIniModelResolver.valueReference(this)?.let { return it.range }
+        }
+        val prefixLength = SageEngineIniModelResolver.prefixedNameReference(this)?.first ?: 0
+        return TextRange(prefixLength, textLength)
     }
 
     private data class SearchRequest(
