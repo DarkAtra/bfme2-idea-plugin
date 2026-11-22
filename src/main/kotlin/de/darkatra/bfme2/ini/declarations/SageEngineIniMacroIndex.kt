@@ -43,7 +43,7 @@ class SageEngineIniMacroIndex : FileBasedIndexExtension<String, String>() {
 
     override fun getValueExternalizer(): DataExternalizer<String> = EnumeratorStringDescriptor.INSTANCE
 
-    override fun getVersion(): Int = 2
+    override fun getVersion(): Int = 3
 
     override fun getInputFilter(): FileBasedIndex.InputFilter = object : DefaultFileTypeSpecificInputFilter(SageEngineIniFileType) {
 

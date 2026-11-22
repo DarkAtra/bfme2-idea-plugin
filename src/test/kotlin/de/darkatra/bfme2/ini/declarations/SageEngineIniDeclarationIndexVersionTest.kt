@@ -47,6 +47,6 @@ class SageEngineIniDeclarationIndexVersionTest {
     }
 
     private companion object {
-        val INDEXED_RULES = 20 to "0c8591349994f1644e501177c12fe68d56a6508137c0a6b26c8f770f113a59fc"
+        val INDEXED_RULES = 21 to "0c8591349994f1644e501177c12fe68d56a6508137c0a6b26c8f770f113a59fc"
     }
 }

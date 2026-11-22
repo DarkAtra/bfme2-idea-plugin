@@ -14,6 +14,7 @@
             language="SageEngineIni"
             extensions="ini;inc"
         />
+        <fileTypeOverrider implementation="de.darkatra.bfme2.ini.SageEngineIniFileTypeOverrider"/>
         <lang.parserDefinition language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.SageEngineIniParserDefinition"/>
         <lang.ast.factory language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.psi.SageEngineIniASTFactory"/>
         <lang.syntaxHighlighterFactory language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.highlighting.SageEngineIniSyntaxHighlighterFactory"/>
