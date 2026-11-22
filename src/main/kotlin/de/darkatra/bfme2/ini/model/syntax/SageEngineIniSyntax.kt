@@ -72,10 +72,13 @@ object SageEngineIniSyntax {
         "WeaponFireFXBone",
         "WeatherTexture",
     )
-    val contextualBareValueKeys: Map<String, Set<String>> = mapOf("Object" to setOf("CommandSet"))
+    val contextualBareValueKeys: Map<String, Set<String>> = mapOf(
+        "CommandMap" to setOf("Description"),
+        "Object" to setOf("CommandSet"),
+    )
 
     // properties of these blocks are always written with `=`, bare lines of them are only parsed as properties to avoid opening a block
-    val equalsRequiringBlocks: Set<String> = setOf("Object")
+    val equalsRequiringBlocks: Set<String> = setOf("CommandMap", "Object")
     val equalsForbiddenKeys: Map<String, Set<String>> = mapOf("Object" to setOf("RemoveModule"))
 
     // directives that are written as a bare key without any value

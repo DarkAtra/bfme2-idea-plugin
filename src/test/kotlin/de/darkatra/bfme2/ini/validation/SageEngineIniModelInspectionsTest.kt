@@ -725,6 +725,25 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should report command map descriptions written without equals sign`() {
+
+        myFixture.enableInspections(SageEngineIniEqualsSignInspection(), SageEngineIniUnknownBlockInspection(), SageEngineIniUnknownPropertyInspection())
+        myFixture.configureByText(
+            "commandmap.ini",
+            """
+            CommandMap VIEW_TEAM0
+                Key = KEY_0
+                Category = TEAM
+                <warning descr="'Description' requires '=' in 'CommandMap'">Description</warning>  GUI:ViewTeam0Description
+                DisplayName = GUI:ViewTeam0
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should check the game settings of options files`() {
 
         myFixture.enableInspections(
