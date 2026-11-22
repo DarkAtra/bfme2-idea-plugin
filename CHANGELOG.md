@@ -7,6 +7,7 @@
 ### Added
 
 - Formatting for `#define` statements: their values are aligned and expressions like `#ADD( A 25 )` are spaced consistently
+- Comments like `; @formatter:align=all` and `; @formatter:align-column=65` that change how the values of the defines below them are aligned
 
 ### Fixed
 

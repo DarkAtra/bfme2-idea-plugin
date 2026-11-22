@@ -414,6 +414,82 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
     }
 
     @Test
+    fun `should align the values of all following defines when a comment asks for it`() {
+
+        myFixture.configureByText(
+            "gamedata.inc",
+            """
+            #define DEFAULT_A 1
+            #define DEFAULT_LONGER_NAME 2
+            ; @formatter:align=all
+            #define DARKATRA_VISION 300
+            #define DARKATRA_SHROUD${'\t'}450
+
+            #define DARKATRA_SERVANTS_OF_THE_STORM_RANGE 400
+            ; @formatter:align=group
+            #define B 1
+            #define B_LONGER 2
+
+            #define C_MUCH_LONGER_NAME_THAN_BEFORE 3
+            """.trimIndent(),
+        )
+
+        myFixture.performEditorAction("ReformatCode")
+
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(
+            """
+            #define DEFAULT_A           1
+            #define DEFAULT_LONGER_NAME 2
+            ; @formatter:align=all
+            #define DARKATRA_VISION                      300
+            #define DARKATRA_SHROUD                      450
+
+            #define DARKATRA_SERVANTS_OF_THE_STORM_RANGE 400
+            ; @formatter:align=group
+            #define B        1
+            #define B_LONGER 2
+
+            #define C_MUCH_LONGER_NAME_THAN_BEFORE 3
+            """.trimIndent(),
+        )
+    }
+
+    @Test
+    fun `should start the values of the following defines at the column a comment asks for`() {
+
+        myFixture.configureByText(
+            "gamedata.inc",
+            """
+            ; DarkAtra
+            ; @formatter:align-column=30
+            #define DARKATRA_VISION 300
+            #define DARKATRA_BUILDCOST                                              3500
+
+            #define DARKATRA_SERVANTS_OF_THE_STORM_BOUNTY_VALUE 10
+            #define DARKATRA_SERVANTS_OF_THE_STORM_RANGE 400
+            ; @formatter:align-column=1
+            #define SHORT 1
+            """.trimIndent(),
+        )
+
+        myFixture.performEditorAction("ReformatCode")
+
+        assertThat(myFixture.file.text).isEqualToNormalizingNewlines(
+            """
+            ; DarkAtra
+            ; @formatter:align-column=30
+            #define DARKATRA_VISION      300
+            #define DARKATRA_BUILDCOST   3500
+
+            #define DARKATRA_SERVANTS_OF_THE_STORM_BOUNTY_VALUE 10
+            #define DARKATRA_SERVANTS_OF_THE_STORM_RANGE        400
+            ; @formatter:align-column=1
+            #define SHORT 1
+            """.trimIndent(),
+        )
+    }
+
+    @Test
     fun `should remove empty comments`() {
 
         myFixture.configureByText(

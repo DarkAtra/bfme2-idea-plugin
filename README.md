@@ -23,6 +23,14 @@ Alternatively, download it directly from the [JetBrains Marketplace](https://plu
 - Include path completion from the current file directory
 - Lightweight PSI structure for blocks, property assignments, macro statements, comments, and script blocks
 
+## Formatting Comments
+
+Comments can change how the formatter aligns the values of `#define` statements below them, until another comment changes it again:
+
+- `; @formatter:align=all` aligns the values of all following defines, not just the ones of consecutive defines
+- `; @formatter:align=group` aligns only the values of consecutive defines again (default)
+- `; @formatter:align-column=65` lets the values start at column 65 at the earliest, `; @formatter:align-column=1` removes that limit
+
 ## Large Files
 
 The IDE doesn't parse or index files above its code insight size limit (2.5 MB by default), so declarations in them can't be resolved. Some mods

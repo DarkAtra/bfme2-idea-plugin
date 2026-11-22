@@ -20,6 +20,7 @@ class SageEngineIniFormattingBlock(
     private val codeStyleSettings: CodeStyleSettings,
     private val indent: Indent,
     private val alignment: Alignment?,
+    private val spacingAfter: Spacing? = null,
 ) : Block {
 
     private var children: List<Block>? = null
@@ -53,6 +54,10 @@ class SageEngineIniFormattingBlock(
             ?: return null
         val right = child2 as? SageEngineIniFormattingBlock
             ?: return null
+
+        if (left.spacingAfter != null && !SageEngineDocumentUtil.hasLineBreakBetween(left.node.psi, right.node.psi)) {
+            return left.spacingAfter
+        }
 
         if (right.node.elementType == SageEngineIniTokenTypes.COMMENT_START && !SageEngineDocumentUtil.hasLineBreakBetween(left.node.psi, right.node.psi)) {
             return createSpacing(1, 1, 0, false, 0)
@@ -146,6 +151,9 @@ class SageEngineIniFormattingBlock(
         val alignments = mutableMapOf<Int, Alignment>()
         val defineAlignments = mutableMapOf<Int, Alignment>()
         var defineTokensOnLine = 0
+        var defineKeywordLength = 0
+        var directives = SageEngineIniFormatterDirectives()
+        val text = node.text
         val children = flattenedFormattingChildren(node)
         var previousSignificantChild: ASTNode? = null
         var blockDepth = 0
@@ -158,7 +166,19 @@ class SageEngineIniFormattingBlock(
                     SageEngineDocumentUtil.isAtLineStart(child.psi))
             ) {
                 alignments.clear()
-                defineAlignments.clear()
+                if (!directives.alignAllDefines) {
+                    defineAlignments.clear()
+                }
+            }
+
+            // comments like `; @formatter:align=all` change the formatting of the lines below them
+            if (child.elementType == SageEngineIniTokenTypes.COMMENT_START) {
+                val commentStart = child.startOffset - node.startOffset
+                val commentEnd = text.indexOf('\n', commentStart).takeIf { it >= 0 } ?: text.length
+                directives.applying(text.substring(commentStart, commentEnd))?.let {
+                    directives = it
+                    defineAlignments.clear()
+                }
             }
 
             // counts the tokens of a `#define NAME VALUE` line to find its value
@@ -166,6 +186,9 @@ class SageEngineIniFormattingBlock(
                 defineTokensOnLine = 0
             } else if (child.elementType != TokenType.WHITE_SPACE) {
                 defineTokensOnLine = if (isDefine(child)) 1 else if (defineTokensOnLine > 0) defineTokensOnLine + 1 else 0
+                if (isDefine(child)) {
+                    defineKeywordLength = child.textLength
+                }
             }
 
             // align property values
@@ -200,6 +223,7 @@ class SageEngineIniFormattingBlock(
 
                         else -> null
                     },
+                    if (defineTokensOnLine == DEFINE_NAME_POSITION) defineValueSpacing(directives, childIndent, defineKeywordLength, child) else null,
                 )
 
                 previousSignificantChild = child
@@ -260,6 +284,16 @@ class SageEngineIniFormattingBlock(
         return node.elementType == type && node.treeParent?.elementType == SageEngineIniElementTypes.MACRO_STATEMENT
     }
 
+    // the spaces after the name of a define that let its value start at the column a comment asks for
+    private fun defineValueSpacing(directives: SageEngineIniFormatterDirectives, indent: Int, keywordLength: Int, name: ASTNode): Spacing? {
+        if (directives.defineValueColumn <= 1) {
+            return null
+        }
+        val nameEnd = indent * codeStyleSettings.indentOptions.INDENT_SIZE + keywordLength + 1 + name.textLength
+        val spaces = (directives.defineValueColumn - 1 - nameEnd).coerceAtLeast(1)
+        return createSpacing(spaces, spaces, 0, false, 0)
+    }
+
     private fun isDefine(node: ASTNode): Boolean {
         return node.elementType == SageEngineIniTokenTypes.MACRO && node.text.equals("#define", ignoreCase = true)
     }
@@ -282,6 +316,7 @@ class SageEngineIniFormattingBlock(
     private companion object {
 
         // `#define` is the first token of the line, the name the second and the value the third
+        const val DEFINE_NAME_POSITION = 2
         const val DEFINE_VALUE_POSITION = 3
     }
 }
