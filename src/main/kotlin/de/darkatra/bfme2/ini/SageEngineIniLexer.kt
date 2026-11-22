@@ -165,7 +165,7 @@ class SageEngineIniLexer : LexerBase() {
         }
 
         if (isWordStart(currentChar)) {
-            finishToken(scanWhile(tokenStart + 1, ::isWordPart), SageEngineIniTokenTypes.VALUE)
+            finishToken(scanLineRestWordEnd(), SageEngineIniTokenTypes.VALUE)
             return
         }
 
@@ -271,6 +271,20 @@ class SageEngineIniLexer : LexerBase() {
             if (!Character.isDigit(ch) && ch != '.') {
                 break
             }
+            currentOffset++
+        }
+        return currentOffset
+    }
+
+    // names can contain characters such as `'`, `&` or `+`, e.g. `MappedImage HPTheodenKing'sFavor`, but not the ones of expressions
+    private fun scanLineRestWordEnd(): Int {
+        var currentOffset = tokenStart + 1
+        while (currentOffset < endOffset &&
+            !isWhitespace(buffer[currentOffset]) &&
+            buffer[currentOffset] !in LINE_REST_WORD_SEPARATORS &&
+            !startsComment(currentOffset) &&
+            !isCoordinateSeparator(currentOffset)
+        ) {
             currentOffset++
         }
         return currentOffset
@@ -443,6 +457,7 @@ class SageEngineIniLexer : LexerBase() {
         private const val STATE_PROPERTY_VALUE = 2
         private const val STATE_COMMENT_SPACER = 3
         private const val STATE_LINE_REST = 4
+        private const val LINE_REST_WORD_SEPARATORS = "=(),"
         private const val STATE_SCRIPT = 5
         private const val BEGIN_SCRIPT = "BeginScript"
         private const val END_SCRIPT = "EndScript"

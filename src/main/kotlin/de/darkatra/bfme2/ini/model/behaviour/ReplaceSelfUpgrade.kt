@@ -24,7 +24,7 @@ data class ReplaceSelfUpgrade(
     @SageIniName("CustomAnimAndDuration") override val customAnimAndDuration: Map<String, String> = emptyMap(),
     @SageIniName("Permanent") override val permanent: Boolean = false,
     @SageIniName("ReplaceWith") val replaceWith: SageReference<Object>? = null,
-    @SageIniName("AndThenAddA") val andThenAddA: List<SageReference<Upgrade>> = emptyList(),
+    @SageIniName("AndThenAddA") val andThenAddA: List<SageReference<Object>> = emptyList(),
 ) : UpgradeBehavior() {
 
     companion object : SageIniBlockDescriptor<ReplaceSelfUpgrade>(
@@ -32,7 +32,7 @@ data class ReplaceSelfUpgrade(
         parent = UpgradeBehavior,
         properties = {
             property("ReplaceWith", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.replaceWith }
-            property("AndThenAddA", ListValue(ReferenceValue<Upgrade> { listOf(Upgrade) })) { it.andThenAddA }
+            property("AndThenAddA", ListValue(ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) })) { it.andThenAddA }
         },
     )
 }

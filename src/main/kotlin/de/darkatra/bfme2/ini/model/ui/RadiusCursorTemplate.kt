@@ -24,6 +24,7 @@ data class RadiusCursorTemplate(
 
     companion object : SageIniBlockDescriptor<RadiusCursorTemplate>(
         name = "RadiusCursorTemplate",
+        tableKey = "radiuscursors",
         keyedByLabel = true,
         properties = {
             property("Texture", TextureFile.type) { it.texture }

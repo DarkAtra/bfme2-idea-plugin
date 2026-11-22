@@ -40,7 +40,7 @@ data class System(
     @SageIniName("UseMaximumHeight") val useMaximumHeight: Boolean = false,
     @SageIniName("ShroudEmitter") val shroudEmitter: Boolean = false,
     @SageIniName("PerParticleAttachedSystem") val perParticleAttachedSystem: SageReference<SageParticleSystem>? = null,
-    @SageIniName("SlaveSystem") val slaveSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("SlaveSystem") val slaveSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("SlavePosOffset") val slavePosOffset: Coords? = null,
 ) : SageNestedAttribute {
 
@@ -68,7 +68,7 @@ data class System(
             property("UseMaximumHeight", BooleanValue) { it.useMaximumHeight }
             property("ShroudEmitter", BooleanValue) { it.shroudEmitter }
             property("PerParticleAttachedSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.perParticleAttachedSystem }
-            property("SlaveSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.slaveSystem }
+            property("SlaveSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.slaveSystem }
             property("SlavePosOffset", Coords.type) { it.slavePosOffset }
         },
     )

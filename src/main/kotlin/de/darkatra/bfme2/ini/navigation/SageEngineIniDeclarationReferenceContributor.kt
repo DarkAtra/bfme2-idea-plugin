@@ -19,12 +19,8 @@ class SageEngineIniDeclarationReferenceContributor : PsiReferenceContributor() {
             object : PsiReferenceProvider() {
 
                 override fun getReferencesByElement(element: PsiElement, context: ProcessingContext): Array<PsiReference> {
-                    val expectedKinds = SageEngineIniModelResolver.expectedDeclarationKinds(element)
-                    if (expectedKinds.isEmpty()) {
-                        return PsiReference.EMPTY_ARRAY
-                    }
-
-                    return arrayOf(SageEngineIniDeclarationReference(element, expectedKinds))
+                    val reference = SageEngineIniModelResolver.valueReference(element) ?: return PsiReference.EMPTY_ARRAY
+                    return arrayOf(SageEngineIniDeclarationReference(element, reference.kinds, reference.range))
                 }
             }
         )

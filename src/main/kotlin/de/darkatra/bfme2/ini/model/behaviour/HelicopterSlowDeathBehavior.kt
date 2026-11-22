@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
@@ -15,6 +16,7 @@ import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectCreationList
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
 import de.darkatra.bfme2.ini.model.`object`.Weapon
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.DeathFlags
 import de.darkatra.bfme2.ini.model.value.ObjectStatus
 import de.darkatra.bfme2.ini.model.value.Opaque
@@ -65,7 +67,7 @@ data class HelicopterSlowDeathBehavior(
     @SageIniName("FallHowFast") val fallHowFast: Double = 0.0,
     @SageIniName("MinBladeFlyOffDelay") val minBladeFlyOffDelay: Int = 0,
     @SageIniName("MaxBladeFlyOffDelay") val maxBladeFlyOffDelay: Int = 0,
-    @SageIniName("AttachParticle") val attachParticle: SageReference<FXParticleSystem>? = null,
+    @SageIniName("AttachParticle") val attachParticle: SageReference<SageParticleSystem>? = null,
     @SageIniName("AttachParticleBone") val attachParticleBone: Opaque? = null,
     @SageIniName("BladeObjectName") val bladeObjectName: SageReference<Object>? = null,
     @SageIniName("BladeBoneName") val bladeBoneName: Opaque? = null,
@@ -96,7 +98,7 @@ data class HelicopterSlowDeathBehavior(
             property("FallHowFast", FloatValue) { it.fallHowFast }
             property("MinBladeFlyOffDelay", IntValue) { it.minBladeFlyOffDelay }
             property("MaxBladeFlyOffDelay", IntValue) { it.maxBladeFlyOffDelay }
-            property("AttachParticle", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.attachParticle }
+            property("AttachParticle", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.attachParticle }
             property("AttachParticleBone", Opaque.type) { it.attachParticleBone }
             property("BladeObjectName", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.bladeObjectName }
             property("BladeBoneName", Opaque.type) { it.bladeBoneName }

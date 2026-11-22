@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
@@ -10,6 +11,7 @@ import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.ModelConditionFlag
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.SpecialPowerForbiddenUnpackConditions
@@ -44,7 +46,7 @@ data class WoundArrowUpdate(
     @SageIniName("FlipOwnerAfterPacking") override val flipOwnerAfterPacking: Boolean = false,
     @SageIniName("FlipOwnerAfterUnpacking") override val flipOwnerAfterUnpacking: Boolean = false,
     @SageIniName("FleeRangeAfterCompletion") override val fleeRangeAfterCompletion: Double = 0.0,
-    @SageIniName("DisableFXParticleSystem") override val disableFXParticleSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("DisableFXParticleSystem") override val disableFXParticleSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("DoCaptureFX") override val doCaptureFX: Boolean = false,
     @SageIniName("PackSound") override val packSound: SageReference<AudioEvent>? = null,
     @SageIniName("UnpackSound") override val unpackSound: SageReference<AudioEvent>? = null,

@@ -48,7 +48,9 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
 
                 val equalsIndex = line.indexOf('=')
                 if (equalsIndex >= 0) {
-                    indexUseSites(line.substring(0, equalsIndex).trim(), line.substring(equalsIndex + 1))
+                    val propertyName = line.substring(0, equalsIndex).trim()
+                    indexLabeledDeclaration(propertyName, line.substring(equalsIndex + 1))
+                    indexUseSites(propertyName, line.substring(equalsIndex + 1))
                 } else {
                     indexDeclaration(line)
                     indexBareUseSites(line)
@@ -63,6 +65,15 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
             return
         }
         mergeOccurrence(SageEngineIniDeclarationIndexKey.create(tokens[0], tokens[1]), SageEngineIniDeclarationIndexKey.DECLARATION, tokens[1])
+    }
+
+    // e.g. `RadiusCursorTemplate = RainOfFireRadiusCursor` inside the `InGameUI`
+    private fun MutableMap<String, DeclarationOccurrence>.indexLabeledDeclaration(kind: String, value: String) {
+        if (!SageEngineIniDeclarationSchema.isLabeledDeclarationKind(kind)) {
+            return
+        }
+        val label = value.trim().split(WHITESPACE).first().takeIf { it.isNotEmpty() } ?: return
+        mergeOccurrence(SageEngineIniDeclarationIndexKey.create(kind, label), SageEngineIniDeclarationIndexKey.DECLARATION, label)
     }
 
     // e.g. `AttributeModifier FighterHordeStanceAggressive` inside a `Stance`, whether the block allows the bare form is checked on the PSI
@@ -89,9 +100,16 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
         values.split(WHITESPACE)
             .map { it.trim() }
             .filter { it.isNotEmpty() }
+            // keyed words such as `RiderOCL:OCL_RohirrimSpawnDeadRider` reference the declaration after the `:`
+            .flatMap { listOf(it, it.substringAfter(':')).distinct() }
             .forEach { value ->
                 expectedKinds.forEach { kind ->
                     mergeOccurrence(SageEngineIniDeclarationIndexKey.create(kind, value), SageEngineIniDeclarationIndexKey.USE_SITE, "")
+                }
+                SageEngineIniDeclarationSchema.evaEventReference(expectedKinds, value)?.let { reference ->
+                    reference.kinds.forEach { kind ->
+                        mergeOccurrence(SageEngineIniDeclarationIndexKey.create(kind, value.substring(reference.nameOffset)), SageEngineIniDeclarationIndexKey.USE_SITE, "")
+                    }
                 }
             }
     }
@@ -112,7 +130,7 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
 
     override fun getValueExternalizer(): DataExternalizer<DeclarationOccurrence> = OccurrenceExternalizer
 
-    override fun getVersion(): Int = 21
+    override fun getVersion(): Int = 24
 
     override fun getInputFilter(): FileBasedIndex.InputFilter = object : DefaultFileTypeSpecificInputFilter(SageEngineIniFileType) {
 

@@ -134,7 +134,7 @@ open class Object(
             property("VoiceEnterStateRetreatToCastle", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.voiceEnterStateRetreatToCastle }
             property("SoundOnDamaged", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.soundOnDamaged }
             property("SoundOnReallyDamaged", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.soundOnReallyDamaged }
-            property("SoundAmbient", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.soundAmbient }
+            property("SoundAmbient", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound, AmbientStream) }) { it.section1.soundAmbient }
             property("SoundAmbientDamaged", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundAmbientDamaged }
             property("SoundAmbientReallyDamaged", ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound) }) { it.section1.soundAmbientReallyDamaged }
             property("SoundAmbientBattle", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section1.soundAmbientBattle }

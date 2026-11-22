@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageBehavior
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
@@ -9,6 +10,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -29,7 +31,7 @@ data class SlavedUpdate(
     @SageIniName("RepairMaxReadyTime") val repairMaxReadyTime: Int = 0,
     @SageIniName("RepairMinWeldTime") val repairMinWeldTime: Int = 0,
     @SageIniName("RepairMaxWeldTime") val repairMaxWeldTime: Int = 0,
-    @SageIniName("RepairWeldingSys") val repairWeldingSys: SageReference<FXParticleSystem>? = null,
+    @SageIniName("RepairWeldingSys") val repairWeldingSys: SageReference<SageParticleSystem>? = null,
     @SageIniName("RepairWeldingFXBone") val repairWeldingFXBone: Opaque? = null,
     @SageIniName("DistToTargetToGrantRangeBonus") val distToTargetToGrantRangeBonus: Int = 0,
     @SageIniName("StayOnSameLayerAsMaster") val stayOnSameLayerAsMaster: Boolean = false,
@@ -60,7 +62,7 @@ data class SlavedUpdate(
             property("RepairMaxReadyTime", IntValue) { it.repairMaxReadyTime }
             property("RepairMinWeldTime", IntValue) { it.repairMinWeldTime }
             property("RepairMaxWeldTime", IntValue) { it.repairMaxWeldTime }
-            property("RepairWeldingSys", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.repairWeldingSys }
+            property("RepairWeldingSys", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.repairWeldingSys }
             property("RepairWeldingFXBone", Opaque.type) { it.repairWeldingFXBone }
             property("DistToTargetToGrantRangeBonus", IntValue) { it.distToTargetToGrantRangeBonus }
             property("StayOnSameLayerAsMaster", BooleanValue) { it.stayOnSameLayerAsMaster }

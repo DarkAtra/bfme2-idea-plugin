@@ -23,6 +23,12 @@ Alternatively, download it directly from the [JetBrains Marketplace](https://plu
 - Include path completion from the current file directory
 - Lightweight PSI structure for blocks, property assignments, macro statements, comments, and script blocks
 
+## Large Files
+
+The IDE doesn't parse or index files above its code insight size limit (2.5 MB by default), so declarations in them can't be resolved. Some mods
+exceed it, e.g. a 4.8 MB `voice.ini`. The plugin shows a notification when this happens. To raise the limit, open
+`Help > Edit Custom Properties`, add a line like `idea.max.intellisense.filesize=10000` (in KB) and restart the IDE.
+
 ## Project Structure
 
 - `src/main/kotlin/de/darkatra/bfme2/ini` contains the language implementation

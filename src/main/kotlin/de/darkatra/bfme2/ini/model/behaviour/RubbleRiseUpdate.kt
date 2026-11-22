@@ -6,12 +6,14 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.ObjectCreationList
 import de.darkatra.bfme2.ini.model.value.ObjectStatus
+import de.darkatra.bfme2.ini.model.value.PhasedReferences
+import de.darkatra.bfme2.ini.model.value.RubbleRisePhase
 import de.darkatra.bfme2.ini.model.value.SageFilter
-import de.darkatra.bfme2.ini.model.value.SageReference
 
 data class RubbleRiseUpdate(
     val header: SageBlockHeader = SageBlockHeader(),
@@ -23,8 +25,8 @@ data class RubbleRiseUpdate(
     @SageIniName("MinBurstDelay") val minBurstDelay: Int = 0,
     @SageIniName("MaxBurstDelay") val maxBurstDelay: Int = 0,
     @SageIniName("BigBurstFrequency") val bigBurstFrequency: Int = 0,
-    @SageIniName("FXList") val fXList: SageReference<FXList>? = null,
-    @SageIniName("OCL") val oCL: SageReference<ObjectCreationList>? = null,
+    @SageIniName("FXList") val fXList: List<PhasedReferences<RubbleRisePhase, FXList>> = emptyList(),
+    @SageIniName("OCL") val oCL: List<PhasedReferences<RubbleRisePhase, ObjectCreationList>> = emptyList(),
     @SageIniName("DeathType") val deathType: SageFilter? = null,
     @SageIniName("ExemptStatus") val exemptStatus: ObjectStatus? = null,
     @SageIniName("RequiredStatus") val requiredStatus: ObjectStatus? = null,
@@ -45,8 +47,8 @@ data class RubbleRiseUpdate(
             property("MinBurstDelay", IntValue) { it.minBurstDelay }
             property("MaxBurstDelay", IntValue) { it.maxBurstDelay }
             property("BigBurstFrequency", IntValue) { it.bigBurstFrequency }
-            property("FXList", ReferenceValue<FXList> { listOf(FXList) }) { it.fXList }
-            property("OCL", ReferenceValue<ObjectCreationList> { listOf(ObjectCreationList) }) { it.oCL }
+            property("FXList", ListValue(PhasedReferences.type(RubbleRisePhase.type, ReferenceValue<FXList> { listOf(FXList) }))) { it.fXList }
+            property("OCL", ListValue(PhasedReferences.type(RubbleRisePhase.type, ReferenceValue<ObjectCreationList> { listOf(ObjectCreationList) }))) { it.oCL }
             property("DeathType", SageFilter.type) { it.deathType }
             property("ExemptStatus", ObjectStatus.type) { it.exemptStatus }
             property("RequiredStatus", ObjectStatus.type) { it.requiredStatus }

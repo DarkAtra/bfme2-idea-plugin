@@ -1,9 +1,11 @@
 package de.darkatra.bfme2.ini.model.draw
 
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.TextureFile
@@ -44,7 +46,7 @@ data class W3DHordeModelDraw(
     @SageIniName("RaisedWallMesh") override val raisedWallMesh: Opaque? = null,
     @SageIniName("RampMesh1") override val rampMesh1: Opaque? = null,
     @SageIniName("RampMesh2") override val rampMesh2: Opaque? = null,
-    @SageIniName("WadingParticleSys") override val wadingParticleSys: SageReference<FXParticleSystem>? = null,
+    @SageIniName("WadingParticleSys") override val wadingParticleSys: SageReference<SageParticleSystem>? = null,
     @SageIniName("DependencySharedModelFlags") override val dependencySharedModelFlags: Untyped? = null,
     @SageIniName("AlphaCameraFadeOuterRadius") override val alphaCameraFadeOuterRadius: Int = 0,
     @SageIniName("AlphaCameraFadeInnerRadius") override val alphaCameraFadeInnerRadius: Int = 0,

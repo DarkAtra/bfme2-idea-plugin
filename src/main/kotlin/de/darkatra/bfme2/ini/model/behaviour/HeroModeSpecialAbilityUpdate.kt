@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
@@ -12,6 +13,7 @@ import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.ModelConditionFlag
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -27,7 +29,7 @@ data class HeroModeSpecialAbilityUpdate(
     @SageIniName("PersistentPrepTime") override val persistentPrepTime: Int = 0,
     @SageIniName("EffectDuration") override val effectDuration: Int = 0,
     @SageIniName("EffectValue") override val effectValue: Int = 0,
-    @SageIniName("DisableFXParticleSystem") override val disableFXParticleSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("DisableFXParticleSystem") override val disableFXParticleSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("SpecialObject") override val specialObject: SageReference<Object>? = null,
     @SageIniName("SpecialObjectAttachToBone") override val specialObjectAttachToBone: Opaque? = null,
     @SageIniName("MaxSpecialObjects") override val maxSpecialObjects: Int = 0,

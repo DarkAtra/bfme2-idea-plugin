@@ -121,9 +121,11 @@ object SageEngineIniDeclarationLookup {
     }
 
     private fun PsiElement.isValueUseSite(kind: String, name: String): Boolean {
-        return elementType == SageEngineIniTokenTypes.VALUE &&
-            text.equals(name, ignoreCase = true) &&
-            kind in SageEngineIniModelResolver.expectedDeclarationKinds(this)
+        if (elementType != SageEngineIniTokenTypes.VALUE || !text.endsWith(name, ignoreCase = true)) {
+            return false
+        }
+        val reference = SageEngineIniModelResolver.valueReference(this) ?: return false
+        return kind in reference.kinds && reference.name(this).equals(name, ignoreCase = true)
     }
 
     // e.g. `VoiceAttackUnitWildAzog` is a use-site of the object `WildAzog`

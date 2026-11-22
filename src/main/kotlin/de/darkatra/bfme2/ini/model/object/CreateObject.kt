@@ -9,6 +9,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.Dispositions
 import de.darkatra.bfme2.ini.model.value.Opaque
@@ -48,7 +49,7 @@ data class CreateObject(
     @SageIniName("OffsetInLocalSpace") val offsetInLocalSpace: Boolean = false,
     @SageIniName("PreserveLayer") val preserveLayer: Boolean = false,
     @SageIniName("MoveUsesStrafeUpdate") val moveUsesStrafeUpdate: Boolean = false,
-    @SageIniName("ParticleSystem") val particleSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("ParticleSystem") val particleSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("ForbiddenUpgrades") val forbiddenUpgrades: List<SageReference<Upgrade>> = emptyList(),
     @SageIniName("DestinationPlayer") val destinationPlayer: Opaque? = null,
     @SageIniName("WaypointSpawnPoints") val waypointSpawnPoints: Opaque? = null,
@@ -92,7 +93,7 @@ data class CreateObject(
             property("OffsetInLocalSpace", BooleanValue) { it.offsetInLocalSpace }
             property("PreserveLayer", BooleanValue) { it.preserveLayer }
             property("MoveUsesStrafeUpdate", BooleanValue) { it.moveUsesStrafeUpdate }
-            property("ParticleSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.particleSystem }
+            property("ParticleSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.particleSystem }
             property("ForbiddenUpgrades", ListValue(ReferenceValue<Upgrade> { listOf(Upgrade) })) { it.forbiddenUpgrades }
             property("DestinationPlayer", Opaque.type) { it.destinationPlayer }
             property("WaypointSpawnPoints", Opaque.type) { it.waypointSpawnPoints }

@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.declarations
 
+import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.CachedValueProvider
 import com.intellij.psi.util.CachedValuesManager
@@ -12,6 +13,17 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType
 import de.darkatra.bfme2.ini.model.common.elementType
 import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
 import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
+import de.darkatra.bfme2.ini.validation.SageEngineIniValueWord
+import de.darkatra.bfme2.ini.validation.valueWords
+
+/**
+ * A value token that references a declaration of one of the [kinds]. The name is the [range] of the token, e.g. without the `RiderOCL:` of
+ * `RiderOCL:OCL_RohirrimSpawnDeadRider`.
+ */
+data class SageEngineIniValueReference(val kinds: Set<String>, val range: TextRange) {
+
+    fun name(value: PsiElement): String = range.substring(value.text)
+}
 
 /**
  * Maps PSI blocks and properties to the descriptors of the [SageIniModel].
@@ -70,14 +82,47 @@ object SageEngineIniModelResolver {
     }
 
     /**
-     * The declaration kinds the [value] token of a property can reference. Falls back to the properties with the same name in any block
-     * if the property isn't part of the model.
+     * The declaration kinds the [value] token of a property can reference.
      */
     fun expectedDeclarationKinds(value: PsiElement): Set<String> {
-        val assignment = PsiTreeUtil.getParentOfType(value, SageEngineIniPropertyAssignment::class.java) ?: return emptySet()
-        val property = property(assignment)
-            ?: return SageEngineIniDeclarationSchema.expectedKindsForPropertyValue(assignment.propertyName, value.text)
-        return SageEngineIniDeclarationSchema.expectedKindsForPropertyValue(property, value.text)
+        return valueReference(value)?.kinds.orEmpty()
+    }
+
+    /**
+     * The declaration the [value] token of a property references, if any. Falls back to the properties with the same name in any block if
+     * the property isn't part of the model.
+     */
+    fun valueReference(value: PsiElement): SageEngineIniValueReference? {
+        val assignment = PsiTreeUtil.getParentOfType(value, SageEngineIniPropertyAssignment::class.java) ?: return null
+        val tokenRange = value.textRange.shiftLeft(assignment.textRange.startOffset)
+        val (words, references) = wordReferences(assignment)
+        val wordIndex = words.indexOfFirst { it.range.contains(tokenRange) }
+        val reference = references.getOrNull(wordIndex) ?: return null
+
+        val nameStart = words[wordIndex].range.startOffset + reference.nameOffset - tokenRange.startOffset
+        if (nameStart !in 0 until value.textLength) {
+            return null
+        }
+        return SageEngineIniValueReference(reference.kinds, TextRange(nameStart, value.textLength))
+    }
+
+    private fun wordReferences(
+        assignment: SageEngineIniPropertyAssignment
+    ): Pair<List<SageEngineIniValueWord>, List<SageEngineIniDeclarationSchema.WordReference?>> {
+        return CachedValuesManager.getCachedValue(assignment) {
+            val words = assignment.valueWords()
+            val property = property(assignment)
+            val references = if (property != null) {
+                SageEngineIniDeclarationSchema.wordReferences(property.type, words.map { it.text })
+            } else {
+                words.map { word ->
+                    SageEngineIniDeclarationSchema.expectedKindsForPropertyValue(assignment.propertyName, word.text)
+                        .takeIf { it.isNotEmpty() }
+                        ?.let { SageEngineIniDeclarationSchema.WordReference(it) }
+                }
+            }
+            CachedValueProvider.Result.create(words to references, PsiModificationTracker.MODIFICATION_COUNT)
+        }
     }
 
     /**

@@ -41,12 +41,13 @@ class SageEngineIniDeclarationIndexVersionTest {
                 add("prefix $prefix -> $suffixKinds ${SageEngineIniDeclarationSchema.expectedKindsForProperty(name).sorted()}")
             }
             bareValueKeys.forEach { add("bare $it") }
+            SageEngineIniDeclarationSchema.declarationKinds.filter { SageEngineIniDeclarationSchema.isLabeledDeclarationKind(it) }.forEach { add("labeled $it") }
         }.distinct().sorted()
 
         return MessageDigest.getInstance("SHA-256").digest(rules.joinToString("\n").toByteArray()).joinToString("") { "%02x".format(it) }
     }
 
     private companion object {
-        val INDEXED_RULES = 21 to "0c8591349994f1644e501177c12fe68d56a6508137c0a6b26c8f770f113a59fc"
+        val INDEXED_RULES = 24 to "6aa3c99f42a0993f1f7d8a9930d0668034505ef33cc9698dd5959e267d904f18"
     }
 }

@@ -22,6 +22,25 @@ class SageEngineIniLexerTest {
     }
 
     @Test
+    fun `should keep special characters of declaration names in one token`() {
+
+        assertTokens(
+            "MappedImage HPTheodenKing'sFavor\nModifierList CustomStartBonus_1+\nFXList FX_Furnace&Longhouse",
+            SageEngineIniTokenTypes.BLOCK_START to "MappedImage",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "HPTheodenKing'sFavor",
+            TokenType.WHITE_SPACE to "\n",
+            SageEngineIniTokenTypes.BLOCK_START to "ModifierList",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "CustomStartBonus_1+",
+            TokenType.WHITE_SPACE to "\n",
+            SageEngineIniTokenTypes.BLOCK_START to "FXList",
+            TokenType.WHITE_SPACE to " ",
+            SageEngineIniTokenTypes.VALUE to "FX_Furnace&Longhouse",
+        )
+    }
+
+    @Test
     fun `should lex property with numbers`() {
 
         assertTokens(

@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageBehavior
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
@@ -12,6 +13,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.Weapon
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.EmotionTypes
 import de.darkatra.bfme2.ini.model.value.KindOf
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -57,7 +59,7 @@ data class MissileUpdate(
     @SageIniName("DistanceToTravelBeforeTurning") val distanceToTravelBeforeTurning: Double = 0.0,
     @SageIniName("DistanceToTargetBeforeDiving") val distanceToTargetBeforeDiving: Double = 0.0,
     @SageIniName("DetonateOnNoFuel") val detonateOnNoFuel: Boolean = false,
-    @SageIniName("ExhaustTemplate") val exhaustTemplate: SageReference<FXParticleSystem>? = null,
+    @SageIniName("ExhaustTemplate") val exhaustTemplate: SageReference<SageParticleSystem>? = null,
     @SageIniName("GarrisonHitKillFX") val garrisonHitKillFX: SageReference<FXList>? = null,
     @SageIniName("GroundHitFX") val groundHitFX: SageReference<FXList>? = null,
     @SageIniName("GroundBounceFX") val groundBounceFX: SageReference<FXList>? = null,
@@ -106,7 +108,7 @@ data class MissileUpdate(
             property("DistanceToTravelBeforeTurning", FloatValue) { it.distanceToTravelBeforeTurning }
             property("DistanceToTargetBeforeDiving", FloatValue) { it.distanceToTargetBeforeDiving }
             property("DetonateOnNoFuel", BooleanValue) { it.detonateOnNoFuel }
-            property("ExhaustTemplate", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.exhaustTemplate }
+            property("ExhaustTemplate", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.exhaustTemplate }
             property("GarrisonHitKillFX", ReferenceValue<FXList> { listOf(FXList) }) { it.garrisonHitKillFX }
             property("GroundHitFX", ReferenceValue<FXList> { listOf(FXList) }) { it.groundHitFX }
             property("GroundBounceFX", ReferenceValue<FXList> { listOf(FXList) }) { it.groundBounceFX }

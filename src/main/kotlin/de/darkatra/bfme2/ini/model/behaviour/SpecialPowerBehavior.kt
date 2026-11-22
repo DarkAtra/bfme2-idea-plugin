@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageBehavior
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
@@ -18,6 +19,7 @@ import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.ModelConditionFlag
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.SpecialPowerUnpackConditions
@@ -51,7 +53,7 @@ open class SpecialPowerBehavior(
     @SageIniName("FlipOwnerAfterPacking") open val flipOwnerAfterPacking: Boolean = false,
     @SageIniName("FlipOwnerAfterUnpacking") open val flipOwnerAfterUnpacking: Boolean = false,
     @SageIniName("FleeRangeAfterCompletion") open val fleeRangeAfterCompletion: Double = 0.0,
-    @SageIniName("DisableFXParticleSystem") open val disableFXParticleSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("DisableFXParticleSystem") open val disableFXParticleSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("DoCaptureFX") open val doCaptureFX: Boolean = false,
     @SageIniName("PackSound") open val packSound: SageReference<AudioEvent>? = null,
     @SageIniName("UnpackSound") open val unpackSound: SageReference<AudioEvent>? = null,
@@ -116,7 +118,7 @@ open class SpecialPowerBehavior(
             property("FlipOwnerAfterPacking", BooleanValue) { it.flipOwnerAfterPacking }
             property("FlipOwnerAfterUnpacking", BooleanValue) { it.flipOwnerAfterUnpacking }
             property("FleeRangeAfterCompletion", FloatValue) { it.fleeRangeAfterCompletion }
-            property("DisableFXParticleSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.disableFXParticleSystem }
+            property("DisableFXParticleSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.disableFXParticleSystem }
             property("DoCaptureFX", BooleanValue) { it.doCaptureFX }
             property("PackSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.packSound }
             property("UnpackSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.unpackSound }

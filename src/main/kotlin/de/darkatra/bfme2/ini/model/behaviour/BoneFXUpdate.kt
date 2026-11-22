@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageBehavior
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
@@ -8,6 +9,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.ObjectCreationList
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
 
@@ -16,13 +18,13 @@ data class BoneFXUpdate(
     @SageIniName("DamageFXTypes") val damageFXTypes: SageFilter? = null,
     @SageIniName("RubbleFXList1") val rubbleFXList1: SageReference<FXList>? = null,
     @SageIniName("DamageParticleTypes") val damageParticleTypes: SageFilter? = null,
-    @SageIniName("PristineParticleSystem1") val pristineParticleSystem1: SageReference<FXParticleSystem>? = null,
-    @SageIniName("RubbleParticleSystem1") val rubbleParticleSystem1: SageReference<FXParticleSystem>? = null,
-    @SageIniName("PristineParticleSystem2") val pristineParticleSystem2: SageReference<FXParticleSystem>? = null,
-    @SageIniName("PristineParticleSystem3") val pristineParticleSystem3: SageReference<FXParticleSystem>? = null,
-    @SageIniName("PristineParticleSystem4") val pristineParticleSystem4: SageReference<FXParticleSystem>? = null,
-    @SageIniName("PristineParticleSystem5") val pristineParticleSystem5: SageReference<FXParticleSystem>? = null,
-    @SageIniName("PristineParticleSystem6") val pristineParticleSystem6: SageReference<FXParticleSystem>? = null,
+    @SageIniName("PristineParticleSystem1") val pristineParticleSystem1: SageReference<SageParticleSystem>? = null,
+    @SageIniName("RubbleParticleSystem1") val rubbleParticleSystem1: SageReference<SageParticleSystem>? = null,
+    @SageIniName("PristineParticleSystem2") val pristineParticleSystem2: SageReference<SageParticleSystem>? = null,
+    @SageIniName("PristineParticleSystem3") val pristineParticleSystem3: SageReference<SageParticleSystem>? = null,
+    @SageIniName("PristineParticleSystem4") val pristineParticleSystem4: SageReference<SageParticleSystem>? = null,
+    @SageIniName("PristineParticleSystem5") val pristineParticleSystem5: SageReference<SageParticleSystem>? = null,
+    @SageIniName("PristineParticleSystem6") val pristineParticleSystem6: SageReference<SageParticleSystem>? = null,
     @SageIniName("DamageOCLTypes") val damageOCLTypes: SageFilter? = null,
     @SageIniName("PristineOCL1") val pristineOCL1: SageReference<ObjectCreationList>? = null,
     @SageIniName("PristineOCL2") val pristineOCL2: SageReference<ObjectCreationList>? = null,
@@ -87,31 +89,31 @@ data class BoneFXUpdate(
     @SageIniName("RubbleFXList6") val rubbleFXList6: SageReference<FXList>? = null,
     @SageIniName("RubbleFXList7") val rubbleFXList7: SageReference<FXList>? = null,
     @SageIniName("RubbleFXList8") val rubbleFXList8: SageReference<FXList>? = null,
-    @SageIniName("PristineParticleSystem7") val pristineParticleSystem7: SageReference<FXParticleSystem>? = null,
-    @SageIniName("PristineParticleSystem8") val pristineParticleSystem8: SageReference<FXParticleSystem>? = null,
-    @SageIniName("DamagedParticleSystem1") val damagedParticleSystem1: SageReference<FXParticleSystem>? = null,
-    @SageIniName("DamagedParticleSystem2") val damagedParticleSystem2: SageReference<FXParticleSystem>? = null,
-    @SageIniName("DamagedParticleSystem3") val damagedParticleSystem3: SageReference<FXParticleSystem>? = null,
-    @SageIniName("DamagedParticleSystem4") val damagedParticleSystem4: SageReference<FXParticleSystem>? = null,
-    @SageIniName("DamagedParticleSystem5") val damagedParticleSystem5: SageReference<FXParticleSystem>? = null,
-    @SageIniName("DamagedParticleSystem6") val damagedParticleSystem6: SageReference<FXParticleSystem>? = null,
-    @SageIniName("DamagedParticleSystem7") val damagedParticleSystem7: SageReference<FXParticleSystem>? = null,
-    @SageIniName("DamagedParticleSystem8") val damagedParticleSystem8: SageReference<FXParticleSystem>? = null,
-    @SageIniName("ReallyDamagedParticleSystem1") val reallyDamagedParticleSystem1: SageReference<FXParticleSystem>? = null,
-    @SageIniName("ReallyDamagedParticleSystem2") val reallyDamagedParticleSystem2: SageReference<FXParticleSystem>? = null,
-    @SageIniName("ReallyDamagedParticleSystem3") val reallyDamagedParticleSystem3: SageReference<FXParticleSystem>? = null,
-    @SageIniName("ReallyDamagedParticleSystem4") val reallyDamagedParticleSystem4: SageReference<FXParticleSystem>? = null,
-    @SageIniName("ReallyDamagedParticleSystem5") val reallyDamagedParticleSystem5: SageReference<FXParticleSystem>? = null,
-    @SageIniName("ReallyDamagedParticleSystem6") val reallyDamagedParticleSystem6: SageReference<FXParticleSystem>? = null,
-    @SageIniName("ReallyDamagedParticleSystem7") val reallyDamagedParticleSystem7: SageReference<FXParticleSystem>? = null,
-    @SageIniName("ReallyDamagedParticleSystem8") val reallyDamagedParticleSystem8: SageReference<FXParticleSystem>? = null,
-    @SageIniName("RubbleParticleSystem2") val rubbleParticleSystem2: SageReference<FXParticleSystem>? = null,
-    @SageIniName("RubbleParticleSystem3") val rubbleParticleSystem3: SageReference<FXParticleSystem>? = null,
-    @SageIniName("RubbleParticleSystem4") val rubbleParticleSystem4: SageReference<FXParticleSystem>? = null,
-    @SageIniName("RubbleParticleSystem5") val rubbleParticleSystem5: SageReference<FXParticleSystem>? = null,
-    @SageIniName("RubbleParticleSystem6") val rubbleParticleSystem6: SageReference<FXParticleSystem>? = null,
-    @SageIniName("RubbleParticleSystem7") val rubbleParticleSystem7: SageReference<FXParticleSystem>? = null,
-    @SageIniName("RubbleParticleSystem8") val rubbleParticleSystem8: SageReference<FXParticleSystem>? = null,
+    @SageIniName("PristineParticleSystem7") val pristineParticleSystem7: SageReference<SageParticleSystem>? = null,
+    @SageIniName("PristineParticleSystem8") val pristineParticleSystem8: SageReference<SageParticleSystem>? = null,
+    @SageIniName("DamagedParticleSystem1") val damagedParticleSystem1: SageReference<SageParticleSystem>? = null,
+    @SageIniName("DamagedParticleSystem2") val damagedParticleSystem2: SageReference<SageParticleSystem>? = null,
+    @SageIniName("DamagedParticleSystem3") val damagedParticleSystem3: SageReference<SageParticleSystem>? = null,
+    @SageIniName("DamagedParticleSystem4") val damagedParticleSystem4: SageReference<SageParticleSystem>? = null,
+    @SageIniName("DamagedParticleSystem5") val damagedParticleSystem5: SageReference<SageParticleSystem>? = null,
+    @SageIniName("DamagedParticleSystem6") val damagedParticleSystem6: SageReference<SageParticleSystem>? = null,
+    @SageIniName("DamagedParticleSystem7") val damagedParticleSystem7: SageReference<SageParticleSystem>? = null,
+    @SageIniName("DamagedParticleSystem8") val damagedParticleSystem8: SageReference<SageParticleSystem>? = null,
+    @SageIniName("ReallyDamagedParticleSystem1") val reallyDamagedParticleSystem1: SageReference<SageParticleSystem>? = null,
+    @SageIniName("ReallyDamagedParticleSystem2") val reallyDamagedParticleSystem2: SageReference<SageParticleSystem>? = null,
+    @SageIniName("ReallyDamagedParticleSystem3") val reallyDamagedParticleSystem3: SageReference<SageParticleSystem>? = null,
+    @SageIniName("ReallyDamagedParticleSystem4") val reallyDamagedParticleSystem4: SageReference<SageParticleSystem>? = null,
+    @SageIniName("ReallyDamagedParticleSystem5") val reallyDamagedParticleSystem5: SageReference<SageParticleSystem>? = null,
+    @SageIniName("ReallyDamagedParticleSystem6") val reallyDamagedParticleSystem6: SageReference<SageParticleSystem>? = null,
+    @SageIniName("ReallyDamagedParticleSystem7") val reallyDamagedParticleSystem7: SageReference<SageParticleSystem>? = null,
+    @SageIniName("ReallyDamagedParticleSystem8") val reallyDamagedParticleSystem8: SageReference<SageParticleSystem>? = null,
+    @SageIniName("RubbleParticleSystem2") val rubbleParticleSystem2: SageReference<SageParticleSystem>? = null,
+    @SageIniName("RubbleParticleSystem3") val rubbleParticleSystem3: SageReference<SageParticleSystem>? = null,
+    @SageIniName("RubbleParticleSystem4") val rubbleParticleSystem4: SageReference<SageParticleSystem>? = null,
+    @SageIniName("RubbleParticleSystem5") val rubbleParticleSystem5: SageReference<SageParticleSystem>? = null,
+    @SageIniName("RubbleParticleSystem6") val rubbleParticleSystem6: SageReference<SageParticleSystem>? = null,
+    @SageIniName("RubbleParticleSystem7") val rubbleParticleSystem7: SageReference<SageParticleSystem>? = null,
+    @SageIniName("RubbleParticleSystem8") val rubbleParticleSystem8: SageReference<SageParticleSystem>? = null,
 ) : SageBehavior {
 
     companion object : SageIniBlockDescriptor<BoneFXUpdate>(
@@ -120,13 +122,13 @@ data class BoneFXUpdate(
             property("DamageFXTypes", SageFilter.type) { it.damageFXTypes }
             property("RubbleFXList1", ReferenceValue<FXList> { listOf(FXList) }) { it.rubbleFXList1 }
             property("DamageParticleTypes", SageFilter.type) { it.damageParticleTypes }
-            property("PristineParticleSystem1", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.pristineParticleSystem1 }
-            property("RubbleParticleSystem1", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.rubbleParticleSystem1 }
-            property("PristineParticleSystem2", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.pristineParticleSystem2 }
-            property("PristineParticleSystem3", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.pristineParticleSystem3 }
-            property("PristineParticleSystem4", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.pristineParticleSystem4 }
-            property("PristineParticleSystem5", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.pristineParticleSystem5 }
-            property("PristineParticleSystem6", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.pristineParticleSystem6 }
+            property("PristineParticleSystem1", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.pristineParticleSystem1 }
+            property("RubbleParticleSystem1", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.rubbleParticleSystem1 }
+            property("PristineParticleSystem2", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.pristineParticleSystem2 }
+            property("PristineParticleSystem3", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.pristineParticleSystem3 }
+            property("PristineParticleSystem4", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.pristineParticleSystem4 }
+            property("PristineParticleSystem5", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.pristineParticleSystem5 }
+            property("PristineParticleSystem6", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.pristineParticleSystem6 }
             property("DamageOCLTypes", SageFilter.type) { it.damageOCLTypes }
             property("PristineOCL1", ReferenceValue<ObjectCreationList> { listOf(ObjectCreationList) }) { it.pristineOCL1 }
             property("PristineOCL2", ReferenceValue<ObjectCreationList> { listOf(ObjectCreationList) }) { it.pristineOCL2 }
@@ -191,31 +193,31 @@ data class BoneFXUpdate(
             property("RubbleFXList6", ReferenceValue<FXList> { listOf(FXList) }) { it.rubbleFXList6 }
             property("RubbleFXList7", ReferenceValue<FXList> { listOf(FXList) }) { it.rubbleFXList7 }
             property("RubbleFXList8", ReferenceValue<FXList> { listOf(FXList) }) { it.rubbleFXList8 }
-            property("PristineParticleSystem7", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.pristineParticleSystem7 }
-            property("PristineParticleSystem8", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.pristineParticleSystem8 }
-            property("DamagedParticleSystem1", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.damagedParticleSystem1 }
-            property("DamagedParticleSystem2", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.damagedParticleSystem2 }
-            property("DamagedParticleSystem3", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.damagedParticleSystem3 }
-            property("DamagedParticleSystem4", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.damagedParticleSystem4 }
-            property("DamagedParticleSystem5", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.damagedParticleSystem5 }
-            property("DamagedParticleSystem6", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.damagedParticleSystem6 }
-            property("DamagedParticleSystem7", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.damagedParticleSystem7 }
-            property("DamagedParticleSystem8", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.damagedParticleSystem8 }
-            property("ReallyDamagedParticleSystem1", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.reallyDamagedParticleSystem1 }
-            property("ReallyDamagedParticleSystem2", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.reallyDamagedParticleSystem2 }
-            property("ReallyDamagedParticleSystem3", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.reallyDamagedParticleSystem3 }
-            property("ReallyDamagedParticleSystem4", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.reallyDamagedParticleSystem4 }
-            property("ReallyDamagedParticleSystem5", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.reallyDamagedParticleSystem5 }
-            property("ReallyDamagedParticleSystem6", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.reallyDamagedParticleSystem6 }
-            property("ReallyDamagedParticleSystem7", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.reallyDamagedParticleSystem7 }
-            property("ReallyDamagedParticleSystem8", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.reallyDamagedParticleSystem8 }
-            property("RubbleParticleSystem2", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.rubbleParticleSystem2 }
-            property("RubbleParticleSystem3", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.rubbleParticleSystem3 }
-            property("RubbleParticleSystem4", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.rubbleParticleSystem4 }
-            property("RubbleParticleSystem5", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.rubbleParticleSystem5 }
-            property("RubbleParticleSystem6", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.rubbleParticleSystem6 }
-            property("RubbleParticleSystem7", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.rubbleParticleSystem7 }
-            property("RubbleParticleSystem8", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.rubbleParticleSystem8 }
+            property("PristineParticleSystem7", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.pristineParticleSystem7 }
+            property("PristineParticleSystem8", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.pristineParticleSystem8 }
+            property("DamagedParticleSystem1", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.damagedParticleSystem1 }
+            property("DamagedParticleSystem2", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.damagedParticleSystem2 }
+            property("DamagedParticleSystem3", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.damagedParticleSystem3 }
+            property("DamagedParticleSystem4", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.damagedParticleSystem4 }
+            property("DamagedParticleSystem5", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.damagedParticleSystem5 }
+            property("DamagedParticleSystem6", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.damagedParticleSystem6 }
+            property("DamagedParticleSystem7", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.damagedParticleSystem7 }
+            property("DamagedParticleSystem8", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.damagedParticleSystem8 }
+            property("ReallyDamagedParticleSystem1", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.reallyDamagedParticleSystem1 }
+            property("ReallyDamagedParticleSystem2", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.reallyDamagedParticleSystem2 }
+            property("ReallyDamagedParticleSystem3", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.reallyDamagedParticleSystem3 }
+            property("ReallyDamagedParticleSystem4", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.reallyDamagedParticleSystem4 }
+            property("ReallyDamagedParticleSystem5", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.reallyDamagedParticleSystem5 }
+            property("ReallyDamagedParticleSystem6", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.reallyDamagedParticleSystem6 }
+            property("ReallyDamagedParticleSystem7", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.reallyDamagedParticleSystem7 }
+            property("ReallyDamagedParticleSystem8", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.reallyDamagedParticleSystem8 }
+            property("RubbleParticleSystem2", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.rubbleParticleSystem2 }
+            property("RubbleParticleSystem3", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.rubbleParticleSystem3 }
+            property("RubbleParticleSystem4", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.rubbleParticleSystem4 }
+            property("RubbleParticleSystem5", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.rubbleParticleSystem5 }
+            property("RubbleParticleSystem6", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.rubbleParticleSystem6 }
+            property("RubbleParticleSystem7", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.rubbleParticleSystem7 }
+            property("RubbleParticleSystem8", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.rubbleParticleSystem8 }
         },
     )
 }

@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
@@ -10,6 +11,7 @@ import de.darkatra.bfme2.ini.model.`object`.AttackPriority
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.Turret
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.AutoAcquireEnemiesType
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -52,7 +54,7 @@ data class ChinookAIUpdate(
     @SageIniName("RappelSpeed") val rappelSpeed: Int = 0,
     @SageIniName("MinDropHeight") val minDropHeight: Int = 0,
     @SageIniName("UpgradedSupplyBoost") val upgradedSupplyBoost: Int = 0,
-    @SageIniName("RotorWashParticleSystem") val rotorWashParticleSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("RotorWashParticleSystem") val rotorWashParticleSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("Turret") override val turret: List<Turret> = emptyList(),
     @SageIniName("AltTurret") override val altTurret: List<Turret> = emptyList(),
 ) : SupplyTruckAIUpdate() {
@@ -73,7 +75,7 @@ data class ChinookAIUpdate(
             property("RappelSpeed", IntValue) { it.rappelSpeed }
             property("MinDropHeight", IntValue) { it.minDropHeight }
             property("UpgradedSupplyBoost", IntValue) { it.upgradedSupplyBoost }
-            property("RotorWashParticleSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.rotorWashParticleSystem }
+            property("RotorWashParticleSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.rotorWashParticleSystem }
         },
     )
 }

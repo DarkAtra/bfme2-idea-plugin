@@ -46,7 +46,7 @@ data class FXParticleSystem(
     @SageIniName("ShroudEmitter") val shroudEmitter: Boolean = false,
     @SageIniName("Size") val size: RandomVariable? = null,
     @SageIniName("SlavePosOffset") val slavePosOffset: Coords? = null,
-    @SageIniName("SlaveSystem") val slaveSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("SlaveSystem") val slaveSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("SortLevel") val sortLevel: Int = 0,
     @SageIniName("StartSizeRate") val startSizeRate: RandomVariable? = null,
     @SageIniName("SystemLifetime") val systemLifetime: Int = 0,
@@ -84,7 +84,7 @@ data class FXParticleSystem(
             property("ShroudEmitter", BooleanValue) { it.shroudEmitter }
             property("Size", RandomVariable.type) { it.size }
             property("SlavePosOffset", Coords.type) { it.slavePosOffset }
-            property("SlaveSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.slaveSystem }
+            property("SlaveSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.slaveSystem }
             property("SortLevel", IntValue) { it.sortLevel }
             property("StartSizeRate", RandomVariable.type) { it.startSizeRate }
             property("SystemLifetime", IntValue) { it.systemLifetime }

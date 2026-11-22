@@ -99,7 +99,7 @@ data class ParticleSystemDefinition(
     @SageIniName("WindPingPongStartAngleMax") val windPingPongStartAngleMax: Double = 0.0,
     @SageIniName("WindPingPongEndAngleMin") val windPingPongEndAngleMin: Double = 0.0,
     @SageIniName("WindPingPongEndAngleMax") val windPingPongEndAngleMax: Double = 0.0,
-    @SageIniName("SlaveSystem") val slaveSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("SlaveSystem") val slaveSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("SlavePosOffset") val slavePosOffset: Coords? = null,
     @SageIniName("PerParticleAttachedSystem") val perParticleAttachedSystem: SageReference<SageParticleSystem>? = null,
 ) : SageParticleSystem {
@@ -180,7 +180,7 @@ data class ParticleSystemDefinition(
             property("WindPingPongStartAngleMax", FloatValue) { it.windPingPongStartAngleMax }
             property("WindPingPongEndAngleMin", FloatValue) { it.windPingPongEndAngleMin }
             property("WindPingPongEndAngleMax", FloatValue) { it.windPingPongEndAngleMax }
-            property("SlaveSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.slaveSystem }
+            property("SlaveSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.slaveSystem }
             property("SlavePosOffset", Coords.type) { it.slavePosOffset }
             property("PerParticleAttachedSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.perParticleAttachedSystem }
         },

@@ -15,6 +15,7 @@
             extensions="ini;inc"
         />
         <fileTypeOverrider implementation="de.darkatra.bfme2.ini.SageEngineIniFileTypeOverrider"/>
+        <editorNotificationProvider implementation="de.darkatra.bfme2.ini.SageEngineIniFileSizeLimitNotificationProvider"/>
         <lang.parserDefinition language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.SageEngineIniParserDefinition"/>
         <lang.ast.factory language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.psi.SageEngineIniASTFactory"/>
         <lang.syntaxHighlighterFactory language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.highlighting.SageEngineIniSyntaxHighlighterFactory"/>
@@ -119,6 +120,15 @@
             enabledByDefault="true"
             level="WARNING"
             implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniPropertyOutsideBlockInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniSpecialCharacterName"
+            displayName="Special characters in declaration name"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WEAK WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniSpecialCharacterNameInspection"
         />
         <targetElementEvaluator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationTargetElementEvaluator"/>
         <lang.findUsagesProvider language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationFindUsagesProvider"/>

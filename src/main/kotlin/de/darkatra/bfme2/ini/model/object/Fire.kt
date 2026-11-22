@@ -8,6 +8,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.ModelFile
 import de.darkatra.bfme2.ini.model.value.RandomVariable
 import de.darkatra.bfme2.ini.model.value.Rgb
@@ -25,8 +26,8 @@ data class Fire(
     @SageIniName("ScorchFrequency") val scorchFrequency: RandomVariable? = null,
     @SageIniName("ScorchIntensity") val scorchIntensity: Double = 0.0,
     @SageIniName("ScorchSize") val scorchSize: Double = 0.0,
-    @SageIniName("TerrainFireSystem") val terrainFireSystem: SageReference<FXParticleSystem>? = null,
-    @SageIniName("TerrainSmokeSystem") val terrainSmokeSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("TerrainFireSystem") val terrainFireSystem: SageReference<SageParticleSystem>? = null,
+    @SageIniName("TerrainSmokeSystem") val terrainSmokeSystem: SageReference<SageParticleSystem>? = null,
 ) : SageIniObject {
 
     companion object : SageIniBlockDescriptor<Fire>(
@@ -42,8 +43,8 @@ data class Fire(
             property("ScorchFrequency", RandomVariable.type) { it.scorchFrequency }
             property("ScorchIntensity", FloatValue) { it.scorchIntensity }
             property("ScorchSize", FloatValue) { it.scorchSize }
-            property("TerrainFireSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.terrainFireSystem }
-            property("TerrainSmokeSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.terrainSmokeSystem }
+            property("TerrainFireSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.terrainFireSystem }
+            property("TerrainSmokeSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.terrainSmokeSystem }
         },
     )
 }

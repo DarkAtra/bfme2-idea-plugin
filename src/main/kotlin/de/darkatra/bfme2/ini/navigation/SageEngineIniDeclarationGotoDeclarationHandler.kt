@@ -15,12 +15,9 @@ class SageEngineIniDeclarationGotoDeclarationHandler : GotoDeclarationHandler {
             return null
         }
 
-        val expectedKinds = SageEngineIniModelResolver.expectedDeclarationKinds(sourceElement)
-        if (expectedKinds.isEmpty()) {
-            return null
-        }
+        val reference = SageEngineIniModelResolver.valueReference(sourceElement) ?: return null
 
-        return SageEngineIniDeclarationLookup.findDeclarations(sourceElement.project, sourceElement.text, expectedKinds)
+        return SageEngineIniDeclarationLookup.findDeclarations(sourceElement.project, reference.name(sourceElement), reference.kinds)
             .mapNotNull { it.nameIdentifier }
             .takeIf { it.isNotEmpty() }
             ?.toTypedArray()

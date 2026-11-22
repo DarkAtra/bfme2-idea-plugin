@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBehavior
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
@@ -20,6 +21,7 @@ import de.darkatra.bfme2.ini.model.`object`.Multisound
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.ModelConditionFlag
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -35,7 +37,7 @@ open class SpecialAbilityUpdate(
     @SageIniName("PersistentPrepTime") open val persistentPrepTime: Int = 0,
     @SageIniName("EffectDuration") open val effectDuration: Int = 0,
     @SageIniName("EffectValue") open val effectValue: Int = 0,
-    @SageIniName("DisableFXParticleSystem") open val disableFXParticleSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("DisableFXParticleSystem") open val disableFXParticleSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("SpecialObject") open val specialObject: SageReference<Object>? = null,
     @SageIniName("SpecialObjectAttachToBone") open val specialObjectAttachToBone: Opaque? = null,
     @SageIniName("MaxSpecialObjects") open val maxSpecialObjects: Int = 0,
@@ -103,7 +105,7 @@ open class SpecialAbilityUpdate(
             property("PersistentPrepTime", IntValue) { it.persistentPrepTime }
             property("EffectDuration", IntValue) { it.effectDuration }
             property("EffectValue", IntValue) { it.effectValue }
-            property("DisableFXParticleSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.disableFXParticleSystem }
+            property("DisableFXParticleSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.disableFXParticleSystem }
             property("SpecialObject", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.specialObject }
             property("SpecialObjectAttachToBone", Opaque.type) { it.specialObjectAttachToBone }
             property("MaxSpecialObjects", IntValue) { it.maxSpecialObjects }

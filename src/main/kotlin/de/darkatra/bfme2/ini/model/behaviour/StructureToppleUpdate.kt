@@ -6,10 +6,12 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.ObjectCreationList
 import de.darkatra.bfme2.ini.model.`object`.Weapon
+import de.darkatra.bfme2.ini.model.value.AngleFX
 import de.darkatra.bfme2.ini.model.value.ObjectStatus
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -26,7 +28,7 @@ data class StructureToppleUpdate(
     @SageIniName("ToppleStartFX") val toppleStartFX: SageReference<FXList>? = null,
     @SageIniName("ToppleDelayFX") val toppleDelayFX: SageReference<FXList>? = null,
     @SageIniName("CrushingFX") val crushingFX: SageReference<FXList>? = null,
-    @SageIniName("AngleFX") val angleFX: SageReference<FXList>? = null,
+    @SageIniName("AngleFX") val angleFX: List<AngleFX> = emptyList(),
     @SageIniName("ToppleDoneFX") val toppleDoneFX: SageReference<FXList>? = null,
     @SageIniName("CrushingWeaponName") val crushingWeaponName: SageReference<Weapon>? = null,
     @SageIniName("ToppleAccelerationFactor") val toppleAccelerationFactor: Double = 0.0,
@@ -55,7 +57,7 @@ data class StructureToppleUpdate(
             property("ToppleStartFX", ReferenceValue<FXList> { listOf(FXList) }) { it.toppleStartFX }
             property("ToppleDelayFX", ReferenceValue<FXList> { listOf(FXList) }) { it.toppleDelayFX }
             property("CrushingFX", ReferenceValue<FXList> { listOf(FXList) }) { it.crushingFX }
-            property("AngleFX", ReferenceValue<FXList> { listOf(FXList) }) { it.angleFX }
+            property("AngleFX", ListValue(AngleFX.type)) { it.angleFX }
             property("ToppleDoneFX", ReferenceValue<FXList> { listOf(FXList) }) { it.toppleDoneFX }
             property("CrushingWeaponName", ReferenceValue<Weapon> { listOf(Weapon) }) { it.crushingWeaponName }
             property("ToppleAccelerationFactor", FloatValue) { it.toppleAccelerationFactor }

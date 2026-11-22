@@ -1,9 +1,11 @@
 package de.darkatra.bfme2.ini.model.draw
 
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.TextureFile
@@ -26,8 +28,8 @@ data class W3DOverlordTankDraw(
     @SageIniName("InitialRecoilSpeed") override val initialRecoilSpeed: Double = 0.0,
     @SageIniName("MaxRecoilDistance") override val maxRecoilDistance: Double = 0.0,
     @SageIniName("RecoilSettleSpeed") override val recoilSettleSpeed: Double = 0.0,
-    @SageIniName("TreadDebrisLeft") override val treadDebrisLeft: SageReference<FXParticleSystem>? = null,
-    @SageIniName("TreadDebrisRight") override val treadDebrisRight: SageReference<FXParticleSystem>? = null,
+    @SageIniName("TreadDebrisLeft") override val treadDebrisLeft: SageReference<SageParticleSystem>? = null,
+    @SageIniName("TreadDebrisRight") override val treadDebrisRight: SageReference<SageParticleSystem>? = null,
     @SageIniName("TreadAnimationRate") override val treadAnimationRate: Double = 0.0,
     @SageIniName("TreadDriveSpeedFraction") override val treadDriveSpeedFraction: Double = 0.0,
     @SageIniName("TreadPivotSpeedFraction") override val treadPivotSpeedFraction: Double = 0.0,

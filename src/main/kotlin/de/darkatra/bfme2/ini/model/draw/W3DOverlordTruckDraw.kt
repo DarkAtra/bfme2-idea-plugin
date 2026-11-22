@@ -3,7 +3,9 @@ package de.darkatra.bfme2.ini.model.draw
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.Opaque
+import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.TextureFile
 import de.darkatra.bfme2.ini.model.value.Untyped
 
@@ -27,7 +29,7 @@ data class W3DOverlordTruckDraw(
     @SageIniName("StaticModelLODMode") override val staticModelLODMode: Boolean = false,
     @SageIniName("TireRotationMultiplier") override val tireRotationMultiplier: Double = 0.0,
     @SageIniName("PowerslideRotationAddition") override val powerslideRotationAddition: Double = 0.0,
-    @SageIniName("WadingParticleSys") override val wadingParticleSys: String = "",
+    @SageIniName("WadingParticleSys") override val wadingParticleSys: SageReference<SageParticleSystem>? = null,
     @SageIniName("DependencySharedModelFlags") override val dependencySharedModelFlags: Untyped? = null,
     @SageIniName("LeftFrontTireBone") override val leftFrontTireBone: Opaque? = null,
     @SageIniName("RightFrontTireBone") override val rightFrontTireBone: Opaque? = null,

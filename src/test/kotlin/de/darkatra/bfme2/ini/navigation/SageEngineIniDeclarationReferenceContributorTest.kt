@@ -2,7 +2,6 @@ package de.darkatra.bfme2.ini.navigation
 
 import com.intellij.codeInsight.TargetElementUtil
 import com.intellij.codeInsight.navigation.actions.GotoDeclarationAction
-import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ReadAction
 import com.intellij.openapi.command.WriteCommandAction
@@ -16,7 +15,6 @@ import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationLookup
 import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Ignore
 import org.junit.Test
 
 class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsightFixture4TestCase() {
@@ -791,26 +789,72 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
     }
 
     @Test
-    @Ignore
-    fun `should highlight unresolved declaration reference`() {
+    fun `should resolve and find the referenced part of keyed values`() {
 
-        myFixture.configureByText("commandbutton.ini", "SpecialPower = MissingSpecialPower")
+        myFixture.addFileToProject("data/objectcreationlist.ini", "ObjectCreationList OCL_RohirrimSpawnDeadRider\nEnd")
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object RohirrimArcher
+                Behavior = DetachableRiderUpdate ModuleTag_Rider
+                    DeathEntry = AnimState:DEATH_2 AnimTime:3000 RiderOCL:OCL_Rohirrim<caret>SpawnDeadRider
+                End
+            End
+            """.trimIndent()
+        )
 
-        val warnings = myFixture.doHighlighting().filter { it.severity == HighlightSeverity.WARNING }
+        val reference = myFixture.getReferenceAtCaretPositionWithAssertion()
+        val declaration = PsiTreeUtil.getParentOfType(reference.resolve(), SageEngineIniBlock::class.java)!!
 
-        assertThat(warnings).extracting<String> { it.description }.contains("Cannot resolve SpecialPower 'MissingSpecialPower'")
+        assertThat(reference.rangeInElement.substring(reference.element.text)).isEqualTo("OCL_RohirrimSpawnDeadRider")
+        assertThat(declaration.name).isEqualTo("OCL_RohirrimSpawnDeadRider")
+        assertThat(ReferencesSearch.search(declaration.nameIdentifier!!).findAll().map { it.element.text })
+            .containsExactly("RiderOCL:OCL_RohirrimSpawnDeadRider")
     }
 
     @Test
-    @Ignore
-    fun `should highlight declaration reference with wrong kind`() {
+    fun `should resolve radius cursors that the in game ui declares by label`() {
 
-        myFixture.addFileToProject("data/object.ini", "Object ElvenMallornTree\nEnd")
-        myFixture.configureByText("commandbutton.ini", "SpecialPower = ElvenMallornTree")
+        myFixture.addFileToProject(
+            "data/ingameui.ini",
+            """
+            InGameUI
+                RadiusCursorTemplate = RainOfFireRadiusCursor
+                    Texture = SCCRainOfFire
+                End
+            End
+            """.trimIndent()
+        )
+        myFixture.configureByText(
+            "commandbutton.ini",
+            """
+            CommandButton Command_RainOfFire
+                RadiusCursorType = RainOfFire<caret>RadiusCursor
+            End
+            """.trimIndent()
+        )
 
-        val warnings = myFixture.doHighlighting().filter { it.severity == HighlightSeverity.WARNING }
+        val declaration = PsiTreeUtil.getParentOfType(myFixture.getReferenceAtCaretPositionWithAssertion().resolve(), SageEngineIniBlock::class.java)
 
-        assertThat(warnings).extracting<String> { it.description }.contains("Expected SpecialPower, but 'ElvenMallornTree' is Object")
+        assertThat(declaration?.name).isEqualTo("RainOfFireRadiusCursor")
+    }
+
+    @Test
+    fun `should resolve declarations whose names contain apostrophes`() {
+
+        myFixture.addFileToProject("data/heroui.ini", "MappedImage HPTheodenKing'sFavor\nEnd")
+        myFixture.configureByText(
+            "commandbutton.ini",
+            """
+            CommandButton Command_TheodensFavor
+                ButtonImage = HPTheodenKing'sFa<caret>vor
+            End
+            """.trimIndent()
+        )
+
+        val declaration = PsiTreeUtil.getParentOfType(myFixture.getReferenceAtCaretPositionWithAssertion().resolve(), SageEngineIniBlock::class.java)
+
+        assertThat(declaration?.name).isEqualTo("HPTheodenKing'sFavor")
     }
 
     @Test

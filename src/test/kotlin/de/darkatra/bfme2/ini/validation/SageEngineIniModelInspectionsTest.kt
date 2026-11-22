@@ -519,6 +519,31 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should recommend declaration names without special characters`() {
+
+        myFixture.enableInspections(SageEngineIniSpecialCharacterNameInspection())
+        myFixture.configureByText(
+            "heroui.ini",
+            """
+            MappedImage <weak_warning descr="'HPTheodenKing'sFavor' contains the special character ''', names with only letters, digits, '_' and '-' are easier to work with">HPTheodenKing'sFavor</weak_warning>
+            End
+            FXList <weak_warning descr="'FX_Furnace&Longhouse+' contains the special characters '&' and '+', names with only letters, digits, '_' and '-' are easier to work with">FX_Furnace&Longhouse+</weak_warning>
+            End
+            NewEvaEvent GenericBuildingComplete-Builder
+            End
+            ControlBarResizer ControlBar.wnd:ButtonLarge
+            End
+            InGameUI
+                RadiusCursorTemplate = <weak_warning descr="'Rain(Of)Fire' contains the special characters '(' and ')', names with only letters, digits, '_' and '-' are easier to work with">Rain(Of)Fire</weak_warning>
+                End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(false, false, true)
+    }
+
+    @Test
     fun `should accept model condition flags written with their state prefix`() {
 
         myFixture.enableInspections(SageEngineIniInvalidValueInspection())

@@ -1,6 +1,7 @@
 package de.darkatra.bfme2.ini.model.`object`
 
 import de.darkatra.bfme2.ini.model.common.SageIniName
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.Rgb
@@ -55,25 +56,25 @@ data class GameDataSection1(
     @SageIniName("AudioOn") val audioOn: Boolean = false,
     @SageIniName("AutoAflameParticleMax") val autoAflameParticleMax: Int = 0,
     @SageIniName("AutoAflameParticlePrefix") val autoAflameParticlePrefix: String = "",
-    @SageIniName("AutoAflameParticleSystem") val autoAflameParticleSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("AutoAflameParticleSystem") val autoAflameParticleSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("AutoFireParticleLargeMax") val autoFireParticleLargeMax: Int = 0,
     @SageIniName("AutoFireParticleLargePrefix") val autoFireParticleLargePrefix: String = "",
-    @SageIniName("AutoFireParticleLargeSystem") val autoFireParticleLargeSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("AutoFireParticleLargeSystem") val autoFireParticleLargeSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("AutoFireParticleMediumMax") val autoFireParticleMediumMax: Int = 0,
     @SageIniName("AutoFireParticleMediumPrefix") val autoFireParticleMediumPrefix: String = "",
-    @SageIniName("AutoFireParticleMediumSystem") val autoFireParticleMediumSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("AutoFireParticleMediumSystem") val autoFireParticleMediumSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("AutoFireParticleSmallMax") val autoFireParticleSmallMax: Int = 0,
     @SageIniName("AutoFireParticleSmallPrefix") val autoFireParticleSmallPrefix: String = "",
-    @SageIniName("AutoFireParticleSmallSystem") val autoFireParticleSmallSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("AutoFireParticleSmallSystem") val autoFireParticleSmallSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("AutoSmokeParticleLargeMax") val autoSmokeParticleLargeMax: Int = 0,
     @SageIniName("AutoSmokeParticleLargePrefix") val autoSmokeParticleLargePrefix: String = "",
-    @SageIniName("AutoSmokeParticleLargeSystem") val autoSmokeParticleLargeSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("AutoSmokeParticleLargeSystem") val autoSmokeParticleLargeSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("AutoSmokeParticleMediumMax") val autoSmokeParticleMediumMax: Int = 0,
     @SageIniName("AutoSmokeParticleMediumPrefix") val autoSmokeParticleMediumPrefix: String = "",
-    @SageIniName("AutoSmokeParticleMediumSystem") val autoSmokeParticleMediumSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("AutoSmokeParticleMediumSystem") val autoSmokeParticleMediumSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("AutoSmokeParticleSmallMax") val autoSmokeParticleSmallMax: Int = 0,
     @SageIniName("AutoSmokeParticleSmallPrefix") val autoSmokeParticleSmallPrefix: String = "",
-    @SageIniName("AutoSmokeParticleSmallSystem") val autoSmokeParticleSmallSystem: SageReference<FXParticleSystem>? = null,
+    @SageIniName("AutoSmokeParticleSmallSystem") val autoSmokeParticleSmallSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("BaseRegenDelay") val baseRegenDelay: Opaque? = null,
     @SageIniName("BaseRegenHealthPercentPerSecond") val baseRegenHealthPercentPerSecond: Double = 0.0,
     @SageIniName("BasicTutorialLoadScreenMusicTrack") val basicTutorialLoadScreenMusicTrack: SageReference<Multisound>? = null,

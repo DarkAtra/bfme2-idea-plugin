@@ -1,5 +1,6 @@
 package de.darkatra.bfme2.ini.declarations
 
+import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationSchema.WordReference
 import de.darkatra.bfme2.ini.model.SageIniModel
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
@@ -80,22 +81,22 @@ class SageEngineIniDeclarationSchemaTest {
             "LivingWorldArmyIcon.RetreatTeleportToHomeRegionEvaEvent" to setOf("NewEvaEvent", "PredefinedEvaEvent"),
             "LivingWorldArmyIcon.RetreatTeleportToNonHomeRegionEvaEvent" to setOf("NewEvaEvent", "PredefinedEvaEvent"),
             "CreateObject.ForbiddenUpgrades" to setOf("Upgrade"),
-            "CreateObject.ParticleSystem" to setOf("FXParticleSystem"),
-            "Fire.TerrainFireSystem" to setOf("FXParticleSystem"),
-            "Fire.TerrainSmokeSystem" to setOf("FXParticleSystem"),
-            "GameData.AutoFireParticleSmallSystem" to setOf("FXParticleSystem"),
-            "GameData.AutoFireParticleMediumSystem" to setOf("FXParticleSystem"),
-            "GameData.AutoFireParticleLargeSystem" to setOf("FXParticleSystem"),
-            "GameData.AutoSmokeParticleSmallSystem" to setOf("FXParticleSystem"),
-            "GameData.AutoSmokeParticleMediumSystem" to setOf("FXParticleSystem"),
-            "GameData.AutoSmokeParticleLargeSystem" to setOf("FXParticleSystem"),
-            "GameData.AutoAflameParticleSystem" to setOf("FXParticleSystem"),
-            "System.SlaveSystem" to setOf("FXParticleSystem"),
+            "CreateObject.ParticleSystem" to setOf("FXParticleSystem", "ParticleSystem"),
+            "Fire.TerrainFireSystem" to setOf("FXParticleSystem", "ParticleSystem"),
+            "Fire.TerrainSmokeSystem" to setOf("FXParticleSystem", "ParticleSystem"),
+            "GameData.AutoFireParticleSmallSystem" to setOf("FXParticleSystem", "ParticleSystem"),
+            "GameData.AutoFireParticleMediumSystem" to setOf("FXParticleSystem", "ParticleSystem"),
+            "GameData.AutoFireParticleLargeSystem" to setOf("FXParticleSystem", "ParticleSystem"),
+            "GameData.AutoSmokeParticleSmallSystem" to setOf("FXParticleSystem", "ParticleSystem"),
+            "GameData.AutoSmokeParticleMediumSystem" to setOf("FXParticleSystem", "ParticleSystem"),
+            "GameData.AutoSmokeParticleLargeSystem" to setOf("FXParticleSystem", "ParticleSystem"),
+            "GameData.AutoAflameParticleSystem" to setOf("FXParticleSystem", "ParticleSystem"),
+            "System.SlaveSystem" to setOf("FXParticleSystem", "ParticleSystem"),
             "System.PerParticleAttachedSystem" to setOf("FXParticleSystem", "ParticleSystem"),
-            "LivingWorldMapInfo.AnimCloudPartSys" to setOf("FXParticleSystem"),
-            "LivingWorldMapInfo.EmbersPartSys" to setOf("FXParticleSystem"),
-            "W3DHordeModelDraw.WadingParticleSys" to setOf("FXParticleSystem"),
-            "W3DScriptedModelDraw.WadingParticleSys" to setOf("FXParticleSystem"),
+            "LivingWorldMapInfo.AnimCloudPartSys" to setOf("FXParticleSystem", "ParticleSystem"),
+            "LivingWorldMapInfo.EmbersPartSys" to setOf("FXParticleSystem", "ParticleSystem"),
+            "W3DHordeModelDraw.WadingParticleSys" to setOf("FXParticleSystem", "ParticleSystem"),
+            "W3DScriptedModelDraw.WadingParticleSys" to setOf("FXParticleSystem", "ParticleSystem"),
             "GameData.DefaultUnitHealingBuffFxList" to setOf("FXList"),
             "GameData.DefaultStructureRepairBuffFxList" to setOf("FXList"),
             "GameData.GenericDamageFieldName" to setOf("Object", "ChildObject", "ObjectReskin"),
@@ -111,7 +112,7 @@ class SageEngineIniDeclarationSchemaTest {
             "Object.ExperienceScalarTable" to setOf("ExperienceScalarTable"),
             "SpawnArmy.PalantirMovie" to setOf("Video"),
             "SpecialPower.PalantirMovie" to setOf("Video"),
-            "FXParticleSystem.SlaveSystem" to setOf("FXParticleSystem"),
+            "FXParticleSystem.SlaveSystem" to setOf("FXParticleSystem", "ParticleSystem"),
             "FXParticleSystem.PerParticleAttachedSystem" to setOf("FXParticleSystem", "ParticleSystem"),
         ).forEach { (blockAndProperty, expectedKinds) ->
             val (blockName, propertyName) = blockAndProperty.split('.')
@@ -137,8 +138,8 @@ class SageEngineIniDeclarationSchemaTest {
             "MiscAudio.VolumeSampleMovie" to setOf("DialogEvent"),
             "MiscAudio.VolumeSampleMusic" to setOf("MusicTrack"),
             "ModelConditionSpecialAbilityUpdate.TriggerSound" to setOf("AudioEvent", "Multisound"),
-            "Multisound.Subsounds" to setOf("AudioEvent", "Multisound", "MusicTrack"),
-            "Object.SoundAmbient" to setOf("AudioEvent", "Multisound"),
+            "Multisound.Subsounds" to setOf("AudioEvent", "Multisound", "MusicTrack", "StreamedSound"),
+            "Object.SoundAmbient" to setOf("AudioEvent", "Multisound", "AmbientStream"),
             "Object.SoundAmbientReallyDamaged" to setOf("AudioEvent", "Multisound"),
             "Object.SoundMoveLoop" to setOf("AudioEvent", "Multisound"),
             "Object.SoundOnDamaged" to setOf("AudioEvent", "Multisound"),
@@ -177,7 +178,7 @@ class SageEngineIniDeclarationSchemaTest {
             "UnitSpecificSounds.VoiceSelectIdleWorker" to setOf("AudioEvent", "Multisound"),
             "Upgrade.ResearchSound" to setOf("AudioEvent", "Multisound"),
             "WeaponModeSpecialPowerUpdate.InitiateSound" to setOf("Multisound"),
-            "WeatherData.WeatherSound" to setOf("Multisound"),
+            "WeatherData.WeatherSound" to setOf("Multisound", "StreamedSound"),
             "_SoundSet.VoiceAttack" to setOf("AudioEvent", "Multisound"),
             "_SoundSet.VoiceAttackCharge" to setOf("AudioEvent", "Multisound"),
             "_SoundSet.VoiceMove" to setOf("AudioEvent", "Multisound"),
@@ -189,6 +190,97 @@ class SageEngineIniDeclarationSchemaTest {
 
             assertThat(SageEngineIniDeclarationSchema.referencedKinds(property)).describedAs(blockAndProperty).isEqualTo(expectedKinds)
         }
+    }
+
+    @Test
+    fun `should only reference declarations at the positions or keys of struct components that are references`() {
+
+        val particleSystem = WordReference(setOf("FXParticleSystem", "ParticleSystem"))
+        val objectCreationList = WordReference(setOf("ObjectCreationList"))
+
+        assertThat(wordReferences("ModelConditionState", "ParticleSysBone", "B_SWORDBONE LightningCharge FollowBone:Yes"))
+            .containsExactly(null, particleSystem, null)
+        assertThat(wordReferences("DetachableRiderUpdate", "DeathEntry", "AnimState:DEATH_2 AnimTime:3000 RiderOCL:OCL_RohirrimSpawnDeadRider"))
+            .containsExactly(null, null, objectCreationList.copy(nameOffset = 9))
+        assertThat(wordReferences("StructureCollapseUpdate", "OCL", "INITIAL OCL_StructureRubblePileLarge"))
+            .containsExactly(null, objectCreationList)
+        assertThat(wordReferences("StructureCollapseUpdate", "OCL", "OCL_StructureRubblePileLarge"))
+            .containsExactly(objectCreationList)
+        assertThat(wordReferences("WeaponSet", "Weapon", "PRIMARY ElvenEliteArcherSword"))
+            .containsExactly(null, WordReference(setOf("Weapon")))
+    }
+
+    @Test
+    fun `should reference declarations with the words the engine reads as references`() {
+
+        val fxList = WordReference(setOf("FXList"))
+        val upgrade = WordReference(setOf("Upgrade"))
+
+        assertThat(wordReferences("StructureToppleUpdate", "AngleFX", "20.0 FX_StructureToppleAngle20")).containsExactly(null, fxList)
+        assertThat(wordReferences("RubbleRiseUpdate", "FXList", "INITIAL FX_StructureMediumPostCollapse")).containsExactly(null, fxList)
+        assertThat(wordReferences("CitadelSlaughterHordeContain", "UpgradeForRingEntry", "Upgrade_RingHero Upgrade_FortressRingHero"))
+            .containsExactly(upgrade, upgrade)
+        assertThat(wordReferences("ModifierList", "Upgrade", "Upgrade_GenericObjectTypeOn")).containsExactly(upgrade)
+        assertThat(wordReferences("ModifierList", "Upgrade", "Upgrade_Drafted Delay:0")).containsExactly(upgrade, null)
+        assertThat(wordReferences("W3DTruckDraw", "WadingParticleSys", "EntRipples"))
+            .containsExactly(WordReference(setOf("FXParticleSystem", "ParticleSystem")))
+    }
+
+    @Test
+    fun `should reference eva events with sounds that start with the eva prefix`() {
+
+        assertThat(wordReferences("Object", "VoiceFullyCreated", "EVA:GenericBuildingComplete-Builder"))
+            .containsExactly(WordReference(setOf("NewEvaEvent", "PredefinedEvaEvent"), nameOffset = 4))
+    }
+
+    @Test
+    fun `should reference the audio kinds the game files use`() {
+
+        assertThat(wordReferences("Object", "SoundAmbient", "AmbientShireStream"))
+            .containsExactly(WordReference(setOf("AudioEvent", "Multisound", "AmbientStream")))
+        assertThat(wordReferences("ModelConditionAudioLoopClientBehavior", "ModelCondition", "Required:FIRING_OR_PREATTACK_A Sound:DragonAllyFirebreathMS"))
+            .containsExactly(null, WordReference(setOf("AudioEvent", "Multisound"), nameOffset = 6))
+        assertThat(wordReferences("Multisound", "Subsounds", "DarknessStereoLoop"))
+            .containsExactly(WordReference(setOf("AudioEvent", "Multisound", "MusicTrack", "StreamedSound")))
+        assertThat(wordReferences("WeatherData", "WeatherSound", "RainStereoLoop"))
+            .containsExactly(WordReference(setOf("Multisound", "StreamedSound")))
+    }
+
+    @Test
+    fun `should reference the declaration kinds the game files use`() {
+
+        assertThat(wordReferences("InvisibilityUpdate", "UnitSpecificSoundNameToUseAsVoiceMoveToStealthyArea", "VoiceMoveToTrees")).containsExactly(null)
+        assertThat(wordReferences("ReplaceSelfUpgrade", "AndThenAddA", "GondorCastleWallHub"))
+            .containsExactly(WordReference(setOf("Object", "ChildObject", "ObjectReskin")))
+    }
+
+    @Test
+    fun `should not reference declarations with the separators of alternatives`() {
+
+        val science = WordReference(setOf("Science"))
+
+        assertThat(wordReferences("Science", "PrerequisiteSciences", "SCIENCE_GOOD OR SCIENCE_MEN"))
+            .containsExactly(science, null, science)
+    }
+
+    @Test
+    fun `should not reference declarations with words that stand for no value`() {
+
+        assertThat(wordReferences("WeaponSet", "Weapon", "PRIMARY None")).containsExactly(null, null)
+        assertThat(wordReferences("ArmorSet", "Armor", "NONE")).containsExactly(null)
+        assertThat(wordReferences("CommandButton", "UnitSpecificSound", "NoSound")).containsExactly(null)
+    }
+
+    @Test
+    fun `should only reference declarations with the first word of single values`() {
+
+        assertThat(wordReferences("CommandButton", "SpecialPower", "SpecialAbilityAragornAthelas Unused"))
+            .containsExactly(WordReference(setOf("SpecialPower")), null)
+    }
+
+    private fun wordReferences(blockName: String, propertyName: String, value: String): List<WordReference?> {
+        val property = SageIniModel.blocks.firstNotNullOf { block -> block.property(propertyName)?.takeIf { block.name == blockName } }
+        return SageEngineIniDeclarationSchema.wordReferences(property.type, value.split(' '))
     }
 
     @Test

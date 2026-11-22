@@ -1,11 +1,13 @@
 package de.darkatra.bfme2.ini.model.draw
 
+import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.TextureFile
@@ -28,8 +30,8 @@ open class W3DTankDraw(
     @SageIniName("InitialRecoilSpeed") override val initialRecoilSpeed: Double = 0.0,
     @SageIniName("MaxRecoilDistance") override val maxRecoilDistance: Double = 0.0,
     @SageIniName("RecoilSettleSpeed") override val recoilSettleSpeed: Double = 0.0,
-    @SageIniName("TreadDebrisLeft") open val treadDebrisLeft: SageReference<FXParticleSystem>? = null,
-    @SageIniName("TreadDebrisRight") open val treadDebrisRight: SageReference<FXParticleSystem>? = null,
+    @SageIniName("TreadDebrisLeft") open val treadDebrisLeft: SageReference<SageParticleSystem>? = null,
+    @SageIniName("TreadDebrisRight") open val treadDebrisRight: SageReference<SageParticleSystem>? = null,
     @SageIniName("TreadAnimationRate") open val treadAnimationRate: Double = 0.0,
     @SageIniName("TreadDriveSpeedFraction") open val treadDriveSpeedFraction: Double = 0.0,
     @SageIniName("TreadPivotSpeedFraction") open val treadPivotSpeedFraction: Double = 0.0,
@@ -49,8 +51,8 @@ open class W3DTankDraw(
         name = "W3DTankDraw",
         parent = W3DScriptedModelDraw,
         properties = {
-            property("TreadDebrisLeft", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.treadDebrisLeft }
-            property("TreadDebrisRight", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.treadDebrisRight }
+            property("TreadDebrisLeft", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.treadDebrisLeft }
+            property("TreadDebrisRight", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.treadDebrisRight }
             property("TreadAnimationRate", FloatValue) { it.treadAnimationRate }
             property("TreadDriveSpeedFraction", FloatValue) { it.treadDriveSpeedFraction }
             property("TreadPivotSpeedFraction", FloatValue) { it.treadPivotSpeedFraction }

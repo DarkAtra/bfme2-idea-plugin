@@ -5,8 +5,6 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.TextureFile
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -28,11 +26,8 @@ open class W3DTruckDraw(
     @SageIniName("InitialRecoilSpeed") override val initialRecoilSpeed: Double = 0.0,
     @SageIniName("MaxRecoilDistance") override val maxRecoilDistance: Double = 0.0,
     @SageIniName("RecoilSettleSpeed") override val recoilSettleSpeed: Double = 0.0,
-    @SageIniName("StaticModelLODMode") open val staticModelLODMode: Boolean = false,
     @SageIniName("TireRotationMultiplier") open val tireRotationMultiplier: Double = 0.0,
     @SageIniName("PowerslideRotationAddition") open val powerslideRotationAddition: Double = 0.0,
-    @SageIniName("WadingParticleSys") open val wadingParticleSys: String = "",
-    @SageIniName("DependencySharedModelFlags") open val dependencySharedModelFlags: Untyped? = null,
     @SageIniName("LeftFrontTireBone") open val leftFrontTireBone: Opaque? = null,
     @SageIniName("RightFrontTireBone") open val rightFrontTireBone: Opaque? = null,
     @SageIniName("LeftRearTireBone") open val leftRearTireBone: Opaque? = null,
@@ -57,7 +52,6 @@ open class W3DTruckDraw(
     @SageIniName("Dust") open val dust: Opaque? = null,
     @SageIniName("DirtSpray") open val dirtSpray: Opaque? = null,
     @SageIniName("PowerslideSpray") open val powerslideSpray: Opaque? = null,
-    @SageIniName("RandomTexture") open val randomTexture: List<Opaque> = emptyList(),
     @SageIniName("DefaultModelConditionState") override val defaultModelConditionState: List<DefaultModelConditionState> = emptyList(),
     @SageIniName("ModelConditionState") override val modelConditionState: List<ModelConditionState> = emptyList(),
     @SageIniName("ConditionState") override val conditionState: List<ModelConditionState> = emptyList(),
@@ -68,17 +62,14 @@ open class W3DTruckDraw(
     @SageIniName("AnimationState") override val animationState: List<AnimationState> = emptyList(),
     @SageIniName("TransitionState") override val transitionState: List<TransitionState> = emptyList(),
     @SageIniName("LodOptions") override val lodOptions: List<LodOptions> = emptyList(),
-) : W3DModelDraw() {
+) : W3DScriptedModelDraw() {
 
     companion object : SageIniBlockDescriptor<W3DTruckDraw>(
         name = "W3DTruckDraw",
-        parent = W3DModelDraw,
+        parent = W3DScriptedModelDraw,
         properties = {
-            property("StaticModelLODMode", BooleanValue) { it.staticModelLODMode }
             property("TireRotationMultiplier", FloatValue) { it.tireRotationMultiplier }
             property("PowerslideRotationAddition", FloatValue) { it.powerslideRotationAddition }
-            property("WadingParticleSys", StringValue) { it.wadingParticleSys }
-            property("DependencySharedModelFlags", Untyped.type) { it.dependencySharedModelFlags }
             property("LeftFrontTireBone", Opaque.type) { it.leftFrontTireBone }
             property("RightFrontTireBone", Opaque.type) { it.rightFrontTireBone }
             property("LeftRearTireBone", Opaque.type) { it.leftRearTireBone }
@@ -103,7 +94,6 @@ open class W3DTruckDraw(
             property("Dust", Opaque.type) { it.dust }
             property("DirtSpray", Opaque.type) { it.dirtSpray }
             property("PowerslideSpray", Opaque.type) { it.powerslideSpray }
-            property("RandomTexture", ListValue(Opaque.type)) { it.randomTexture }
         },
     )
 }

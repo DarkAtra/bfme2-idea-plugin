@@ -19,7 +19,7 @@ data class Multisound(
         name = "Multisound",
         tableKey = "multisounds",
         properties = {
-            property("Subsounds", ListValue(ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound, MusicTrack) })) { it.subsounds }
+            property("Subsounds", ListValue(ReferenceValue<SageAudio> { listOf(AudioEvent, Multisound, MusicTrack, StreamedSound) })) { it.subsounds }
             property("Control", ListValue(AudioControlFlags.type)) { it.control }
         },
     )

@@ -9,6 +9,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.BodyDamageType
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.MapWeatherType
@@ -77,25 +78,25 @@ data class GameData(
             property("AudioOn", BooleanValue) { it.section1.audioOn }
             property("AutoAflameParticleMax", IntValue) { it.section1.autoAflameParticleMax }
             property("AutoAflameParticlePrefix", StringValue) { it.section1.autoAflameParticlePrefix }
-            property("AutoAflameParticleSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoAflameParticleSystem }
+            property("AutoAflameParticleSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.section1.autoAflameParticleSystem }
             property("AutoFireParticleLargeMax", IntValue) { it.section1.autoFireParticleLargeMax }
             property("AutoFireParticleLargePrefix", StringValue) { it.section1.autoFireParticleLargePrefix }
-            property("AutoFireParticleLargeSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoFireParticleLargeSystem }
+            property("AutoFireParticleLargeSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.section1.autoFireParticleLargeSystem }
             property("AutoFireParticleMediumMax", IntValue) { it.section1.autoFireParticleMediumMax }
             property("AutoFireParticleMediumPrefix", StringValue) { it.section1.autoFireParticleMediumPrefix }
-            property("AutoFireParticleMediumSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoFireParticleMediumSystem }
+            property("AutoFireParticleMediumSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.section1.autoFireParticleMediumSystem }
             property("AutoFireParticleSmallMax", IntValue) { it.section1.autoFireParticleSmallMax }
             property("AutoFireParticleSmallPrefix", StringValue) { it.section1.autoFireParticleSmallPrefix }
-            property("AutoFireParticleSmallSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoFireParticleSmallSystem }
+            property("AutoFireParticleSmallSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.section1.autoFireParticleSmallSystem }
             property("AutoSmokeParticleLargeMax", IntValue) { it.section1.autoSmokeParticleLargeMax }
             property("AutoSmokeParticleLargePrefix", StringValue) { it.section1.autoSmokeParticleLargePrefix }
-            property("AutoSmokeParticleLargeSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoSmokeParticleLargeSystem }
+            property("AutoSmokeParticleLargeSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.section1.autoSmokeParticleLargeSystem }
             property("AutoSmokeParticleMediumMax", IntValue) { it.section1.autoSmokeParticleMediumMax }
             property("AutoSmokeParticleMediumPrefix", StringValue) { it.section1.autoSmokeParticleMediumPrefix }
-            property("AutoSmokeParticleMediumSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoSmokeParticleMediumSystem }
+            property("AutoSmokeParticleMediumSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.section1.autoSmokeParticleMediumSystem }
             property("AutoSmokeParticleSmallMax", IntValue) { it.section1.autoSmokeParticleSmallMax }
             property("AutoSmokeParticleSmallPrefix", StringValue) { it.section1.autoSmokeParticleSmallPrefix }
-            property("AutoSmokeParticleSmallSystem", ReferenceValue<FXParticleSystem> { listOf(FXParticleSystem) }) { it.section1.autoSmokeParticleSmallSystem }
+            property("AutoSmokeParticleSmallSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.section1.autoSmokeParticleSmallSystem }
             property("BaseRegenDelay", Opaque.type) { it.section1.baseRegenDelay }
             property("BaseRegenHealthPercentPerSecond", FloatValue) { it.section1.baseRegenHealthPercentPerSecond }
             property("BasicTutorialLoadScreenMusicTrack", ReferenceValue<Multisound> { listOf(Multisound) }) { it.section1.basicTutorialLoadScreenMusicTrack }

@@ -11,8 +11,8 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.nugget.InvisibilityNugget
-import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.Upgrade
+import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
 
@@ -25,8 +25,8 @@ data class InvisibilityUpdate(
     @SageIniName("BroadcastObjectFilter") val broadcastObjectFilter: SageFilter? = null,
     @SageIniName("BroadcastRange") val broadcastRange: Double = 0.0,
     @SageIniName("StartsActive") val startsActive: Boolean = false,
-    @SageIniName("UnitSpecificSoundNameToUseAsVoiceMoveToStealthyArea") val unitSpecificSoundNameToUseAsVoiceMoveToStealthyArea: SageReference<AudioEvent>? = null,
-    @SageIniName("UnitSpecificSoundNameToUseAsVoiceEnterStateMoveToStealthyArea") val unitSpecificSoundNameToUseAsVoiceEnterStateMoveToStealthyArea: SageReference<AudioEvent>? = null,
+    @SageIniName("UnitSpecificSoundNameToUseAsVoiceMoveToStealthyArea") val unitSpecificSoundNameToUseAsVoiceMoveToStealthyArea: Opaque? = null,
+    @SageIniName("UnitSpecificSoundNameToUseAsVoiceEnterStateMoveToStealthyArea") val unitSpecificSoundNameToUseAsVoiceEnterStateMoveToStealthyArea: Opaque? = null,
     @SageIniName("InvisibilityNugget") val invisibilityNugget: List<InvisibilityNugget> = emptyList(),
 ) : SageBehavior {
 
@@ -40,12 +40,9 @@ data class InvisibilityUpdate(
             property("BroadcastObjectFilter", SageFilter.type) { it.broadcastObjectFilter }
             property("BroadcastRange", FloatValue) { it.broadcastRange }
             property("StartsActive", BooleanValue) { it.startsActive }
-            property(
-                "UnitSpecificSoundNameToUseAsVoiceMoveToStealthyArea",
-                ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.unitSpecificSoundNameToUseAsVoiceMoveToStealthyArea }
-            property(
-                "UnitSpecificSoundNameToUseAsVoiceEnterStateMoveToStealthyArea",
-                ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.unitSpecificSoundNameToUseAsVoiceEnterStateMoveToStealthyArea }
+            // names an entry of the `UnitSpecificSounds` of the unit, e.g. `VoiceMoveToTrees`
+            property("UnitSpecificSoundNameToUseAsVoiceMoveToStealthyArea", Opaque.type) { it.unitSpecificSoundNameToUseAsVoiceMoveToStealthyArea }
+            property("UnitSpecificSoundNameToUseAsVoiceEnterStateMoveToStealthyArea", Opaque.type) { it.unitSpecificSoundNameToUseAsVoiceEnterStateMoveToStealthyArea }
             property("InvisibilityNugget", ListValue(BlockValue<InvisibilityNugget> { listOf(InvisibilityNugget) })) { it.invisibilityNugget }
         },
     )

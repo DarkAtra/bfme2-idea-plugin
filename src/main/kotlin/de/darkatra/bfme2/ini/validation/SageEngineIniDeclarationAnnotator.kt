@@ -16,26 +16,25 @@ class SageEngineIniDeclarationAnnotator : Annotator {
             return
         }
 
-        val expectedKinds = SageEngineIniModelResolver.expectedDeclarationKinds(element)
-        if (expectedKinds.isEmpty()) {
+        val reference = SageEngineIniModelResolver.valueReference(element) ?: return
+        val expectedKinds = reference.kinds
+        val name = reference.name(element)
+
+        if (SageEngineIniDeclarationLookup.findDeclarations(element.project, name, expectedKinds).isNotEmpty()) {
             return
         }
 
-        if (SageEngineIniDeclarationLookup.findDeclarations(element.project, element.text, expectedKinds).isNotEmpty()) {
-            return
-        }
-
-        val actualKinds = SageEngineIniDeclarationLookup.findDeclarationsByName(element.project, element.text)
+        val actualKinds = SageEngineIniDeclarationLookup.findDeclarationsByName(element.project, name)
             .mapNotNull { it.declarationKind }
             .distinct()
             .sorted()
 
         val message = if (actualKinds.isEmpty()) {
-            "Cannot resolve ${expectedKinds.joinToString(" or ")} '${element.text}'"
+            "Cannot resolve ${expectedKinds.joinToString(" or ")} '$name'"
         } else {
-            "Expected ${expectedKinds.joinToString(" or ")}, but '${element.text}' is ${actualKinds.joinToString(" or ")}"
+            "Expected ${expectedKinds.joinToString(" or ")}, but '$name' is ${actualKinds.joinToString(" or ")}"
         }
 
-        holder.newAnnotation(HighlightSeverity.WARNING, message).range(element).create()
+        holder.newAnnotation(HighlightSeverity.WARNING, message).range(reference.range.shiftRight(element.textRange.startOffset)).create()
     }
 }
