@@ -4,6 +4,7 @@ import com.intellij.lang.ASTNode
 import com.intellij.lang.PsiBuilder
 import com.intellij.lang.PsiParser
 import com.intellij.psi.TokenType
+import com.intellij.psi.impl.source.resolve.FileContextUtil
 import com.intellij.psi.tree.IElementType
 import de.darkatra.bfme2.ini.model.syntax.SageEngineIniSyntax
 import de.darkatra.bfme2.ini.psi.SageEngineIniElementTypes
@@ -15,7 +16,11 @@ class SageEngineIniParser : PsiParser {
     override fun parse(root: IElementType, builder: PsiBuilder): ASTNode {
 
         val file = builder.mark()
+        val blockless = SageEngineIniSyntax.isBlocklessFile(builder.getUserData(FileContextUtil.CONTAINING_FILE_KEY)?.name)
         while (!builder.eof()) {
+            if (blockless && builder.tokenType == SageEngineIniTokenTypes.BLOCK_START) {
+                builder.remapCurrentToken(SageEngineIniTokenTypes.PROPERTY)
+            }
             parseStatement(builder, null)
         }
         file.done(root)

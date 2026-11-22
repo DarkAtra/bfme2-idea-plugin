@@ -61,4 +61,20 @@ class SageEngineIniContextualHighlightingAnnotatorTest : LightPlatformCodeInsigh
 
         assertThat(highlights).isEmpty()
     }
+
+    @Test
+    fun `should highlight block keywords in options files as properties`() {
+
+        myFixture.configureByText(
+            "Options.ini",
+            """
+            AllHealthBars = yes
+            StaticGameLOD = High
+            """.trimIndent()
+        )
+
+        val highlights = myFixture.doHighlighting().filter { it.forcedTextAttributesKey == SageEngineIniSyntaxHighlighter.IDENTIFIER }
+
+        assertThat(highlights).extracting<String> { it.text }.containsExactly("StaticGameLOD")
+    }
 }

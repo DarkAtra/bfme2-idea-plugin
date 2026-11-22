@@ -5,11 +5,11 @@ import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiElementVisitor
 import de.darkatra.bfme2.ini.declarations.SageEngineIniModelResolver
-import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
 import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
 
 /**
- * Reports properties that the model doesn't know for the enclosing block. Properties of blocks that aren't part of the model are ignored.
+ * Reports properties that the model doesn't know for the enclosing block, or for files that consist of properties only, like `Options.ini`.
+ * Properties of blocks that aren't part of the model are ignored.
  */
 class SageEngineIniUnknownPropertyInspection : LocalInspectionTool() {
 
@@ -22,8 +22,7 @@ class SageEngineIniUnknownPropertyInspection : LocalInspectionTool() {
                 }
 
                 val propertyName = element.propertyName ?: return
-                val block = element.parent as? SageEngineIniBlock ?: return
-                val descriptor = SageEngineIniModelResolver.descriptor(block) ?: return
+                val descriptor = SageEngineIniModelResolver.enclosingDescriptor(element) ?: return
                 if (descriptor.property(propertyName) != null) {
                     return
                 }

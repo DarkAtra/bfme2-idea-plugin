@@ -13,6 +13,7 @@ import com.intellij.util.ProcessingContext
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationLookup
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationSchema
 import de.darkatra.bfme2.ini.declarations.SageEngineIniModelResolver
+import de.darkatra.bfme2.ini.model.SageIniModel
 import de.darkatra.bfme2.ini.model.common.SageIniValueType
 import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
 import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
@@ -52,14 +53,15 @@ class SageEngineIniModelCompletionContributor : CompletionContributor() {
         }
 
         val enclosingBlock = statement.parent as? SageEngineIniBlock
-        if (enclosingBlock == null) {
+        val fileDescriptor = SageIniModel.fileDescriptor(statement.containingFile.name)
+        if (enclosingBlock == null && fileDescriptor == null) {
             SageEngineIniDeclarationSchema.declarationKinds.forEach { kind ->
                 result.addElement(LookupElementBuilder.create(kind).withTypeText("Declaration", true))
             }
             return
         }
 
-        val descriptor = SageEngineIniModelResolver.descriptor(enclosingBlock) ?: return
+        val descriptor = enclosingBlock?.let { SageEngineIniModelResolver.descriptor(it) } ?: fileDescriptor ?: return
         descriptor.properties.forEach { property ->
             result.addElement(LookupElementBuilder.create(property.name).withTypeText(describe(property.type), true))
         }

@@ -84,6 +84,9 @@ object SageEngineIniSyntax {
     // statements that the engine reads outside of any block
     val topLevelKeys: Set<String> = setOf("AudioLowMHz", "BenchProfile", "EvaEventForwardReference", "LODPreset", "ReallyLowMHz")
 
+    // files that only consist of properties, even keys that open a block elsewhere, e.g. `StaticGameLOD = High` in `Options.ini`
+    val blocklessFiles: Set<String> = setOf("options.ini")
+
     // `ChildObject` and `ObjectReskin` share the body of an `Object`, so they also share its contextual rules
     private val parentAliases: Map<String, String> = mapOf(
         "ChildObject" to "Object",
@@ -135,6 +138,10 @@ object SageEngineIniSyntax {
 
     fun isTopLevelKey(key: String): Boolean {
         return key in topLevelKeys
+    }
+
+    fun isBlocklessFile(fileName: String?): Boolean {
+        return fileName != null && fileName.lowercase() in blocklessFiles
     }
 
     private fun resolveParent(parent: String): String {

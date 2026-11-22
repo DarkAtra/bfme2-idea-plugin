@@ -723,4 +723,55 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
 
         myFixture.checkHighlighting(true, false, false)
     }
+
+    @Test
+    fun `should check the game settings of options files`() {
+
+        myFixture.enableInspections(
+            SageEngineIniUnknownBlockInspection(),
+            SageEngineIniUnknownPropertyInspection(),
+            SageEngineIniPropertyOutsideBlockInspection(),
+            SageEngineIniInvalidValueInspection()
+        )
+        myFixture.configureByText(
+            "Options.ini",
+            """
+            AllHealthBars = yes
+            AmbientVolume = 30.000000
+            AnimationLOD = UltraHigh
+            AudioLOD = High
+            Brightness = 50
+            DecalLOD = High
+            EffectsLOD = UltraHigh
+            FirewallBehavior = 1
+            FirewallNeedToRefresh = TRUE
+            FirewallPortAllocationDelta = 0
+            FlashTutorial = 0
+            GameSpyIPAddress = 192.168.2.11
+            HasGotOnline = yes
+            HasSeenLogoMovies = yes
+            IdealStaticGameLOD = VeryLow
+            ModelLOD = High
+            MovieVolume = 29.000000
+            MusicVolume = 0.000000
+            SFXVolume = 29.000000
+            ScrollFactor = 18
+            SendDelay = no
+            ShaderLOD = UltraHigh
+            ShadowLOD = UltraHigh
+            StaticGameLOD = Very Low
+            SuppressCahPromo = false
+            TerrainLOD = High
+            TextureQualityLOD = Medium
+            TimesInGame = <warning descr="Expected a number but found '1a'">1a</warning>
+            UseEAX3 = no
+            VoiceVolume = 41.000000
+            WaterLOD = UltraHigh
+            Resolution = 1920 1080
+            <warning descr="Unknown property 'UnknownSetting' in 'Options.ini'">UnknownSetting</warning> = 1
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
 }

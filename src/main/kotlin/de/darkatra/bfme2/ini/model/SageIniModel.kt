@@ -572,6 +572,7 @@ import de.darkatra.bfme2.ini.model.`object`.FormationPreviewItemDecal
 import de.darkatra.bfme2.ini.model.`object`.FormationSelection
 import de.darkatra.bfme2.ini.model.`object`.FormationTemplate
 import de.darkatra.bfme2.ini.model.`object`.GameData
+import de.darkatra.bfme2.ini.model.`object`.GameOptions
 import de.darkatra.bfme2.ini.model.`object`.GeometryShape
 import de.darkatra.bfme2.ini.model.`object`.GlowEffect
 import de.darkatra.bfme2.ini.model.`object`.HouseColor
@@ -1817,5 +1818,16 @@ object SageIniModel {
      */
     fun block(name: String): SageIniBlockDescriptor<*>? {
         return blocksByName[name]
+    }
+
+    private val fileDescriptors: Map<String, SageIniBlockDescriptor<*>> by lazy {
+        mapOf("options.ini" to GameOptions)
+    }
+
+    /**
+     * Describes the top level of files that consist of properties only, e.g. `Options.ini`. File names are case-insensitive.
+     */
+    fun fileDescriptor(fileName: String): SageIniBlockDescriptor<*>? {
+        return fileDescriptors[fileName.lowercase()]
     }
 }

@@ -334,6 +334,24 @@ class SageEngineIniParserTest : LightPlatformCodeInsightFixture4TestCase() {
         }
     }
 
+    @Test
+    fun `should only parse properties in options files`() {
+
+        myFixture.configureByText(
+            "Options.ini",
+            """
+            AudioLOD = High
+            StaticGameLOD = Very Low
+            Resolution = 1920 1080
+            """.trimIndent()
+        )
+
+        assertThat(myFixture.file.descendantsOfType(SageEngineIniBlock::class.java)).isEmpty()
+        assertThat(myFixture.file.descendantsOfType(SageEngineIniPropertyAssignment::class.java)).extracting<String?> { it.propertyName }
+            .containsExactly("AudioLOD", "StaticGameLOD", "Resolution")
+        assertThat(PsiTreeUtil.findChildrenOfType(myFixture.file, PsiErrorElement::class.java)).isEmpty()
+    }
+
     private fun SageEngineIniBlock.childBlocks(): List<SageEngineIniBlock> {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, SageEngineIniBlock::class.java)
     }

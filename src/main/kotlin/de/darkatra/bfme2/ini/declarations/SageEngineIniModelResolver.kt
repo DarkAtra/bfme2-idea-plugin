@@ -2,6 +2,7 @@ package de.darkatra.bfme2.ini.declarations
 
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiFile
 import com.intellij.psi.util.CachedValueProvider
 import com.intellij.psi.util.CachedValuesManager
 import com.intellij.psi.util.PsiModificationTracker
@@ -63,8 +64,18 @@ object SageEngineIniModelResolver {
 
     fun property(assignment: SageEngineIniPropertyAssignment): SageIniProperty<*, *>? {
         val propertyName = assignment.propertyName ?: return null
-        val block = assignment.parent as? SageEngineIniBlock ?: return null
-        return descriptor(block)?.property(propertyName)
+        return enclosingDescriptor(assignment)?.property(propertyName)
+    }
+
+    /**
+     * The descriptor of the block the [assignment] is part of, or of the file if it consists of properties only, e.g. `Options.ini`.
+     */
+    fun enclosingDescriptor(assignment: SageEngineIniPropertyAssignment): SageIniBlockDescriptor<*>? {
+        return when (val parent = assignment.parent) {
+            is SageEngineIniBlock -> descriptor(parent)
+            is PsiFile -> SageIniModel.fileDescriptor(parent.name)
+            else -> null
+        }
     }
 
     /**

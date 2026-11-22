@@ -10,7 +10,8 @@ import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
 
 /**
  * Reports properties that aren't inside a block, e.g. because the block header was commented out. Statements that the engine reads outside
- * of blocks, such as `LODPreset`, and the top level of `.inc` files, which are included into blocks, aren't reported.
+ * of blocks, such as `LODPreset`, the top level of `.inc` files, which are included into blocks, and files without blocks, such as
+ * `Options.ini`, aren't reported.
  */
 class SageEngineIniPropertyOutsideBlockInspection : LocalInspectionTool() {
 
@@ -21,7 +22,8 @@ class SageEngineIniPropertyOutsideBlockInspection : LocalInspectionTool() {
                 if (element !is SageEngineIniPropertyAssignment || element.parent !is PsiFile) {
                     return
                 }
-                if (element.containingFile.name.endsWith(".inc", ignoreCase = true)) {
+                val fileName = element.containingFile.name
+                if (fileName.endsWith(".inc", ignoreCase = true) || SageEngineIniSyntax.isBlocklessFile(fileName)) {
                     return
                 }
 

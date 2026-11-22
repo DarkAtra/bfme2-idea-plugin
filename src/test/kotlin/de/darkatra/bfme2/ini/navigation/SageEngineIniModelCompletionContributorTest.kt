@@ -114,4 +114,12 @@ class SageEngineIniModelCompletionContributorTest : LightPlatformCodeInsightFixt
 
         assertThat(myFixture.completeBasic().map { it.lookupString }).containsExactlyInAnyOrder("Yes", "No")
     }
+
+    @Test
+    fun `should complete the game settings in options files`() {
+
+        myFixture.configureByText("Options.ini", "AllHealthBars = yes\n<caret>")
+
+        assertThat(myFixture.completeBasic().map { it.lookupString }).contains("StaticGameLOD", "VoiceVolume").doesNotContain("Object")
+    }
 }
