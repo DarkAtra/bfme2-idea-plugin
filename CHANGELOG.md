@@ -2,6 +2,21 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `1.0.1`
+
+### Added
+
+- Support for `Options.ini`: the game settings it contains are completed and validated
+- Support for the `MissionObjectiveList` block of `map.ini` and the `MapCache` block of `mapcache.ini`, both are reported in any other file
+
+### Fixed
+
+- A `Description` without `=` inside a `CommandMap` is reported as missing its `=` instead of as an unknown block
+- Declarations with numeric or quoted names, such as `Rank 1` or `FontSubstitution "Albertus MT"`, are recognized as declarations
+- "Find Usages" only highlights the declaration name of values like `EVA:GenericBuildingComplete-Builder-Elf`
+- Clearing the content of a `BeginScript` block no longer fails
+- Reformatting a selection no longer removes empty comments right next to it
+
 ## `1.0.0`
 
 ### Added
