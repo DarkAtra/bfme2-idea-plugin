@@ -5,6 +5,8 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
+import com.intellij.psi.util.CachedValueProvider
+import com.intellij.psi.util.CachedValuesManager
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.elementType
 import com.intellij.util.indexing.FileBasedIndex
@@ -85,11 +87,8 @@ object SageEngineIniDeclarationLookup {
             // The key is lowercased, so a single case-insensitive lookup resolves to exactly one index key.
             val key = SageEngineIniDeclarationIndexKey.create(kind, name)
 
-            fileBasedIndex.getFilesWithKey(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, setOf(key), { virtualFile ->
-                val hasOccurrence = fileBasedIndex.getFileData(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, virtualFile, project)[key]
-                    ?.let { it.mask and occurrence != 0 }
-                    ?: false
-                if (hasOccurrence) {
+            fileBasedIndex.processValues(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, key, null, { virtualFile, value ->
+                if (value.mask and occurrence != 0) {
                     PsiManager.getInstance(project).findFile(virtualFile)?.let { file ->
                         result += collect(file)
                     }
@@ -102,10 +101,16 @@ object SageEngineIniDeclarationLookup {
     }
 
     private fun PsiFile.findDeclarationBlocks(kind: String, name: String): Collection<SageEngineIniBlock> {
-        return PsiTreeUtil.findChildrenOfType(this, SageEngineIniBlock::class.java)
-            .asSequence()
-            .filter { it.declarationKind == kind && it.name.equals(name, ignoreCase = true) }
-            .toList()
+        return declarationBlocksByKey()[SageEngineIniDeclarationIndexKey.create(kind, name)].orEmpty()
+    }
+
+    private fun PsiFile.declarationBlocksByKey(): Map<String, List<SageEngineIniBlock>> {
+        return CachedValuesManager.getCachedValue(this) {
+            val blocks = PsiTreeUtil.findChildrenOfType(this, SageEngineIniBlock::class.java)
+                .filter { it.declarationKind != null && it.name != null }
+                .groupBy { SageEngineIniDeclarationIndexKey.create(it.declarationKind!!, it.name!!) }
+            CachedValueProvider.Result.create(blocks, this)
+        }
     }
 
     private fun PsiFile.findDeclarationUseSites(kind: String, name: String): Collection<PsiElement> {

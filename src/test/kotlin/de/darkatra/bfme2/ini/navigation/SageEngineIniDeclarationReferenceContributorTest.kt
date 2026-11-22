@@ -5,6 +5,8 @@ import com.intellij.codeInsight.navigation.actions.GotoDeclarationAction
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ReadAction
+import com.intellij.openapi.command.WriteCommandAction
+import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.searches.ReferencesSearch
@@ -45,6 +47,25 @@ class SageEngineIniDeclarationReferenceContributorTest : LightPlatformCodeInsigh
                 block
             )
         ).isSameAs(block.nameIdentifier)
+    }
+
+    @Test
+    fun `should find declarations again after the declaring file changes`() {
+
+        val file = myFixture.addFileToProject("specialpower.ini", "SpecialPower SpecialAbilityAragornAthelas\nEnd\n")
+
+        assertThat(SageEngineIniDeclarationLookup.findDeclarations(project, "SpecialAbilityAragornAthelas", setOf("SpecialPower"))).hasSize(1)
+
+        myFixture.configureFromExistingVirtualFile(file.virtualFile)
+        WriteCommandAction.runWriteCommandAction(project) {
+            myFixture.editor.document.setText("SpecialPower SpecialAbilityAragornRenamed\nEnd\n")
+        }
+        PsiDocumentManager.getInstance(project).commitAllDocuments()
+
+        assertThat(SageEngineIniDeclarationLookup.findDeclarations(project, "SpecialAbilityAragornAthelas", setOf("SpecialPower"))).isEmpty()
+        assertThat(SageEngineIniDeclarationLookup.findDeclarations(project, "SpecialAbilityAragornRenamed", setOf("SpecialPower")))
+            .extracting<String?> { it.name }
+            .containsExactly("SpecialAbilityAragornRenamed")
     }
 
     @Test
