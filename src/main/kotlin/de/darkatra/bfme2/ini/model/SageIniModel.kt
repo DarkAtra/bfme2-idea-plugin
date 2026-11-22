@@ -602,9 +602,11 @@ import de.darkatra.bfme2.ini.model.`object`.LivingWorldSound
 import de.darkatra.bfme2.ini.model.`object`.LoadSubsystem
 import de.darkatra.bfme2.ini.model.`object`.Locomotor
 import de.darkatra.bfme2.ini.model.`object`.LocomotorSet
+import de.darkatra.bfme2.ini.model.`object`.MapCache
 import de.darkatra.bfme2.ini.model.`object`.MappedImage
 import de.darkatra.bfme2.ini.model.`object`.MiscAudio
 import de.darkatra.bfme2.ini.model.`object`.MiscEvaData
+import de.darkatra.bfme2.ini.model.`object`.MissionObjectiveList
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Mouse
 import de.darkatra.bfme2.ini.model.`object`.MouseCursor
@@ -622,6 +624,7 @@ import de.darkatra.bfme2.ini.model.`object`.OnlineChatColors
 import de.darkatra.bfme2.ini.model.`object`.OptionGroup
 import de.darkatra.bfme2.ini.model.`object`.Pathfinder
 import de.darkatra.bfme2.ini.model.`object`.PlayerAIType
+import de.darkatra.bfme2.ini.model.`object`.PlayerPosition
 import de.darkatra.bfme2.ini.model.`object`.PlayerTemplate
 import de.darkatra.bfme2.ini.model.`object`.PredefinedEvaEvent
 import de.darkatra.bfme2.ini.model.`object`.ProductionModifier
@@ -1280,9 +1283,11 @@ object SageIniModel {
             LoadSubsystem,
             Locomotor,
             LocomotorSet,
+            MapCache,
             MappedImage,
             MiscAudio,
             MiscEvaData,
+            MissionObjectiveList,
             ModifierList,
             Mouse,
             MouseCursor,
@@ -1300,6 +1305,7 @@ object SageIniModel {
             OptionGroup,
             Pathfinder,
             PlayerAIType,
+            PlayerPosition,
             PlayerTemplate,
             PredefinedEvaEvent,
             ProductionModifier,

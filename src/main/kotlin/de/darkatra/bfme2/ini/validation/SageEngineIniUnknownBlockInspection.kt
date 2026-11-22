@@ -12,7 +12,8 @@ import de.darkatra.bfme2.ini.model.common.elementType
 import de.darkatra.bfme2.ini.psi.SageEngineIniBlock
 
 /**
- * Reports blocks and modules that aren't part of the model. Blocks inside unknown blocks are ignored.
+ * Reports blocks and modules that aren't part of the model, and blocks outside the only file they are allowed in, e.g. a `MapCache` outside
+ * of `mapcache.ini`. Blocks inside unknown blocks are ignored.
  */
 class SageEngineIniUnknownBlockInspection : LocalInspectionTool() {
 
@@ -25,7 +26,12 @@ class SageEngineIniUnknownBlockInspection : LocalInspectionTool() {
                 }
 
                 val kind = element.declarationKind ?: return
-                if (SageEngineIniModelResolver.descriptor(element) != null) {
+                val descriptor = SageEngineIniModelResolver.descriptor(element)
+                if (descriptor != null) {
+                    val fileName = descriptor.fileName
+                    if (fileName != null && !element.containingFile.name.equals(fileName, ignoreCase = true)) {
+                        holder.registerProblem(element.firstChild, "'$kind' is only allowed in $fileName")
+                    }
                     return
                 }
 

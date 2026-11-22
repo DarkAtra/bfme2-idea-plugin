@@ -744,6 +744,77 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should only allow mission objective lists in map files`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownBlockInspection(), SageEngineIniUnknownPropertyInspection())
+        val missionObjectiveList = """
+            MissionObjectiveList
+                MissionObjectiveTag = SCRIPT:ANGAngmarObjectiveText_01
+                MissionObjectiveTag = SCRIPT:ANGAngmarObjectiveText_02
+                BonusMissionObjectiveTag = SCRIPT:ANGAngmarBonusObjectiveText_01
+            END
+            """.trimIndent()
+
+        myFixture.configureByText("map.ini", missionObjectiveList)
+        myFixture.checkHighlighting(true, false, false)
+
+        myFixture.configureByText(
+            "objects.ini",
+            missionObjectiveList.replaceFirst(
+                "MissionObjectiveList",
+                "<warning descr=\"'MissionObjectiveList' is only allowed in map.ini\">MissionObjectiveList</warning>"
+            )
+        )
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
+    fun `should only allow map caches in map cache files`() {
+
+        myFixture.enableInspections(
+            SageEngineIniUnknownBlockInspection(),
+            SageEngineIniUnknownPropertyInspection(),
+            SageEngineIniInvalidValueInspection(),
+            SageEngineIniEqualsSignInspection()
+        )
+        val mapCache = """
+            MapCache maps_5Cmap_20wor_20rhun_5Cmap_20wor_20rhun_2Emap
+              fileSize = 424138
+              fileCRC = 3783827778
+              timestampLo = -996901888
+              timestampHi = 29802434
+              isOfficial = yes
+              isMultiplayer = no
+              isScenarioMP = no
+              numPlayers = 2
+              extentMin = X:0.00 Y:0.00 Z:0.00
+              extentMax = X:3250.00 Y:2750.00 Z:0.00
+              displayName = _24_00M_00a_00p_00
+              description = M_00a_00p_00_2F_00D_00e_00s_00c_00
+              InitialCameraPosition = X:1035.84 Y:793.99 Z:0.00
+              Player_1_Start = X:328.03 Y:1586.99 Z:0.00
+              Player_8_Start = X:1719.66 Y:631.15 Z:0.00
+              PlayerPosition 1
+                Human = Yes
+                Computer = No
+                LoadAIScripts = No
+                ForcePlayerTeam = -1
+                AllowedFactions = FactionArnor FactionAngmar
+              END
+            END
+            """.trimIndent()
+
+        myFixture.configureByText("MapCache.ini", mapCache)
+        myFixture.checkHighlighting(true, false, false)
+
+        myFixture.configureByText(
+            "map.ini",
+            mapCache.replaceFirst("MapCache", "<warning descr=\"'MapCache' is only allowed in mapcache.ini\">MapCache</warning>")
+        )
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should check the game settings of options files`() {
 
         myFixture.enableInspections(

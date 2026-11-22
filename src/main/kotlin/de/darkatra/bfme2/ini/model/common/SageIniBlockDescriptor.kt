@@ -13,6 +13,7 @@ package de.darkatra.bfme2.ini.model.common
  * @param numberedSlots the numbered slots (`1 = Command_X`) the block supports, `null` if it has none
  * @param prefixedProperties properties named after a declaration, e.g. `VoiceAttackUnitWildAzog`
  * @param bareDirective `true` if the block can be a single line without body and `End`
+ * @param fileName the only file the block is allowed in, e.g. `map.ini`, `null` if it is allowed in any file
  */
 open class SageIniBlockDescriptor<T : Any>(
     val name: String,
@@ -25,6 +26,7 @@ open class SageIniBlockDescriptor<T : Any>(
     val numberedSlots: SageIniNumberedSlots<T, *>? = null,
     prefixedProperties: List<SageIniPrefixedProperties<T, *>> = emptyList(),
     val bareDirective: Boolean = false,
+    val fileName: String? = null,
     properties: SageIniPropertiesBuilder<T>.() -> Unit = {},
 ) {
 
