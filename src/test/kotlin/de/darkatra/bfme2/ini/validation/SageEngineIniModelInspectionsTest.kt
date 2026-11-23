@@ -864,4 +864,26 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
 
         myFixture.checkHighlighting(true, false, false)
     }
+
+    @Test
+    fun `should report checksums that are not unsigned integers`() {
+
+        myFixture.enableInspections(SageEngineIniInvalidValueInspection())
+        myFixture.configureByText(
+            "mapcache.ini",
+            """
+            MapCache maps_5Cmap_20wor_20rhun_5Cmap_20wor_20rhun_2Emap
+              fileCRC = 4294967295
+            END
+            MapCache maps_5Cmap_20wor_20eriador_5Cmap_20wor_20eriador_2Emap
+              fileCRC = <warning descr="Expected an unsigned integer but found '4294967296'">4294967296</warning>
+            END
+            MapCache maps_5Cmap_20wor_20harad_5Cmap_20wor_20harad_2Emap
+              fileCRC = <warning descr="Expected an unsigned integer but found '1.5'">1.5</warning>
+            END
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
 }

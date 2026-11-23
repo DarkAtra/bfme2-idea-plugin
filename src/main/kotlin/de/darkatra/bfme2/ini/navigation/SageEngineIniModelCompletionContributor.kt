@@ -97,6 +97,7 @@ class SageEngineIniModelCompletionContributor : CompletionContributor() {
         return when (type) {
             is SageIniValueType.BooleanValue -> "Boolean"
             is SageIniValueType.IntValue -> "Int"
+            is SageIniValueType.UnsignedIntValue -> "UInt"
             is SageIniValueType.FloatValue -> "Float"
             is SageIniValueType.StringValue -> "String"
             is SageIniValueType.RawValue<*> -> type.name

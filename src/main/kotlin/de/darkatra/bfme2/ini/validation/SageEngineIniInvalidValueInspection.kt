@@ -64,6 +64,10 @@ class SageEngineIniInvalidValueInspection : LocalInspectionTool() {
                 number.matches(value) || possibleMacro.matches(value)
             }
 
+            is SageIniValueType.UnsignedIntValue -> "Expected an unsigned integer but found '$value'".takeUnless {
+                value.toUIntOrNull() != null || possibleMacro.matches(value)
+            }
+
             // `None` is accepted by every enum and means that no entry is set
             is SageIniValueType.EnumValue<*> -> "Unknown ${type.name} '$value'".takeUnless {
                 type.entry(value) != null || value.equals("None", ignoreCase = true)

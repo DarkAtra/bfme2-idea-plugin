@@ -52,6 +52,7 @@ class SageEngineIniMacroCompletionContributor : CompletionContributor() {
             is SageEngineIniPropertyAssignment -> when (SageEngineIniModelResolver.property(parent)?.type?.elementType()) {
                 is SageIniValueType.BooleanValue,
                 is SageIniValueType.IntValue,
+                is SageIniValueType.UnsignedIntValue,
                 is SageIniValueType.FloatValue,
                 is SageIniValueType.EnumValue<*> -> true
 

@@ -9,12 +9,13 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.value.Coords
 
 data class MapCache(
     val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("fileSize") val fileSize: Int = 0,
-    @SageIniName("fileCRC") val fileCrc: Int = 0,
+    @SageIniName("fileCRC") val fileCrc: UInt = 0u,
     @SageIniName("timestampLo") val timestampLo: Int = 0,
     @SageIniName("timestampHi") val timestampHi: Int = 0,
     @SageIniName("isOfficial") val isOfficial: Boolean = false,
@@ -42,7 +43,7 @@ data class MapCache(
         fileName = "mapcache.ini",
         properties = {
             property("fileSize", IntValue) { it.fileSize }
-            property("fileCRC", IntValue) { it.fileCrc }
+            property("fileCRC", UnsignedIntValue) { it.fileCrc }
             property("timestampLo", IntValue) { it.timestampLo }
             property("timestampHi", IntValue) { it.timestampHi }
             property("isOfficial", BooleanValue) { it.isOfficial }

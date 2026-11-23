@@ -175,6 +175,7 @@ object SageEngineIniDeclarationSchema {
     private fun fits(type: SageIniValueType<*>, word: String): Boolean {
         return when (type) {
             is SageIniValueType.IntValue, is SageIniValueType.FloatValue -> word.first().let { it.isDigit() || it in "+-." }
+            is SageIniValueType.UnsignedIntValue -> word.first().isDigit()
             is SageIniValueType.BooleanValue -> word.equals("Yes", ignoreCase = true) || word.equals("No", ignoreCase = true)
             is SageIniValueType.EnumValue<*> -> type.entry(word) != null
             else -> true

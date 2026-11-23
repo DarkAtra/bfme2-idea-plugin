@@ -12,6 +12,8 @@ sealed interface SageIniValueType<out V> {
 
     data object IntValue : SageIniValueType<Int>
 
+    data object UnsignedIntValue : SageIniValueType<UInt>
+
     data object FloatValue : SageIniValueType<Double>
 
     data object StringValue : SageIniValueType<String>
