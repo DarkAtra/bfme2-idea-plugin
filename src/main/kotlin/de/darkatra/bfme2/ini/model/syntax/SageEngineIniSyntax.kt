@@ -82,7 +82,10 @@ object SageEngineIniSyntax {
     val equalsForbiddenKeys: Map<String, Set<String>> = mapOf("Object" to setOf("RemoveModule"))
 
     // directives that are written as a bare key without any value
-    val valuelessKeys: Map<String, Set<String>> = mapOf("Credits" to setOf("Blank"))
+    val valuelessKeys: Map<String, Set<String>> = mapOf(
+        "Credits" to setOf("Blank"),
+        "Weapon" to setOf("ClearNuggets"),
+    )
 
     // statements that the engine reads outside of any block
     val topLevelKeys: Set<String> = setOf("AudioLowMHz", "BenchProfile", "EvaEventForwardReference", "LODPreset", "ReallyLowMHz")

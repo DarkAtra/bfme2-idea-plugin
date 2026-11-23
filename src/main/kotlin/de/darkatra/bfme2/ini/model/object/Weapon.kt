@@ -147,6 +147,7 @@ data class Weapon(
     @SageIniName("AntiProjectile") val antiProjectile: Boolean = false,
     @SageIniName("AntiSmallMissile") val antiSmallMissile: Boolean = false,
     @SageIniName("AntiMask") val antiMask: Untyped? = null,
+    @SageIniName("ClearNuggets") val clearNuggets: Opaque? = null,
     @SageIniName("Nuggets") val nuggets: List<SageNugget> = emptyList(),
 ) : SageIniObject {
 
@@ -273,6 +274,7 @@ data class Weapon(
             property("AntiProjectile", BooleanValue) { it.antiProjectile }
             property("AntiSmallMissile", BooleanValue) { it.antiSmallMissile }
             property("AntiMask", Untyped.type) { it.antiMask }
+            property("ClearNuggets", Opaque.type) { it.clearNuggets }
             property("Nuggets", ListValue(BlockValue<SageNugget> { SageIniModel.nuggets })) { it.nuggets }
         },
     )

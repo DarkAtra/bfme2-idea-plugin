@@ -907,4 +907,27 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
 
         myFixture.checkHighlighting(true, false, false)
     }
+
+    @Test
+    fun `should allow weapons to clear their nuggets`() {
+
+        myFixture.enableInspections(
+            SageEngineIniUnknownPropertyInspection(),
+            SageEngineIniUnknownBlockInspection(),
+            SageEngineIniMissingValueInspection()
+        )
+        myFixture.configureByText(
+            "map.ini",
+            """
+            Weapon GoblinFighterSword
+              ClearNuggets ; Clear all the damage/fx/paralyze etc nuggets so they can be replaced.
+              DamageNugget
+                Damage = 30
+              End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
 }
