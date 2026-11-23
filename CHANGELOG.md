@@ -8,10 +8,12 @@
 
 - Support for `Options.ini`: the game settings it contains are completed and validated
 - Support for the `MissionObjectiveList` block of `map.ini` and the `MapCache` block of `mapcache.ini`, both are reported in any other file
+- Support for the hardware fog and snow drift settings of the `Weather` block, e.g. `HardwareFogColor` and `SnowXYSpeed`
 
 ### Fixed
 
 - A `Description` without `=` inside a `CommandMap` is reported as missing its `=` instead of as an unknown block
+- `ClearNuggets` inside a `Weapon` is no longer reported as an unknown property
 - Declarations with numeric or quoted names, such as `Rank 1` or `FontSubstitution "Albertus MT"`, are recognized as declarations
 - "Find Usages" only highlights the declaration name of values like `EVA:GenericBuildingComplete-Builder-Elf`
 - Clearing the content of a `BeginScript` block no longer fails
