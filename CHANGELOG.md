@@ -10,6 +10,11 @@
 - Support for the `MissionObjectiveList` block of `map.ini` and the `MapCache` block of `mapcache.ini`, both are reported in any other file
 - Support for the hardware fog and snow drift settings of the `Weather` block, e.g. `HardwareFogColor` and `SnowXYSpeed`
 
+### Changed
+
+- The "Property with empty value list" inspection is disabled by default: the engine doesn't always treat an empty value like a missing
+  property, e.g. `ObjectStatusOfContained =` in a `HordeContain`
+
 ### Fixed
 
 - A `Description` without `=` inside a `CommandMap` is reported as missing its `=` instead of as an unknown block

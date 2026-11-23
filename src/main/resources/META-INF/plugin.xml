@@ -104,12 +104,14 @@
             level="WARNING"
             implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniMissingValueInspection"
         />
+        <!-- disabled by default: an empty value list isn't the same as omitting the property, e.g. the game crashes during startup if a
+             HordeContain omits ObjectStatusOfContained, but starts with an empty ObjectStatusOfContained = -->
         <localInspection
             language="SageEngineIni"
             shortName="SageEngineIniEmptyValueList"
             displayName="Property with empty value list"
             groupName="Sage Engine INI"
-            enabledByDefault="true"
+            enabledByDefault="false"
             level="WEAK WARNING"
             implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniEmptyValueListInspection"
         />
