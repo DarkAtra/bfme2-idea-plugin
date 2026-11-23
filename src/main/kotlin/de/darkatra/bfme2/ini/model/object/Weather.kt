@@ -7,6 +7,8 @@ import de.darkatra.bfme2.ini.model.common.SageIniObject
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Rgb
 import de.darkatra.bfme2.ini.model.value.TextureFile
 import de.darkatra.bfme2.ini.model.value.Untyped
 
@@ -22,6 +24,7 @@ data class Weather(
     @SageIniName("SnowFrequencyScaleX") val snowFrequencyScaleX: Double = 0.0,
     @SageIniName("SnowFrequencyScaleY") val snowFrequencyScaleY: Double = 0.0,
     @SageIniName("SnowSpeed") val snowSpeed: Double = 0.0,
+    @SageIniName("SnowXYSpeed") val snowXYSpeed: Coords? = null,
     @SageIniName("SnowPointSize") val snowPointSize: Double = 0.0,
     @SageIniName("SnowMinPointSize") val snowMinPointSize: Double = 0.0,
     @SageIniName("SnowMaxPointSize") val snowMaxPointSize: Double = 0.0,
@@ -38,6 +41,10 @@ data class Weather(
     @SageIniName("RampSpacing") val rampSpacing: Untyped? = null,
     @SageIniName("CloudTextureSize") val cloudTextureSize: Untyped? = null,
     @SageIniName("CloudOffsetPerSecond") val cloudOffsetPerSecond: Untyped? = null,
+    @SageIniName("HardwareFogEnable") val hardwareFogEnable: Boolean = false,
+    @SageIniName("HardwareFogColor") val hardwareFogColor: Rgb? = null,
+    @SageIniName("HardwareFogStart") val hardwareFogStart: Double = 300.0,
+    @SageIniName("HardwareFogEnd") val hardwareFogEnd: Double = 1500.0,
 ) : SageIniObject {
 
     companion object : SageIniBlockDescriptor<Weather>(
@@ -53,6 +60,7 @@ data class Weather(
             property("SnowFrequencyScaleX", FloatValue) { it.snowFrequencyScaleX }
             property("SnowFrequencyScaleY", FloatValue) { it.snowFrequencyScaleY }
             property("SnowSpeed", FloatValue) { it.snowSpeed }
+            property("SnowXYSpeed", Coords.type) { it.snowXYSpeed }
             property("SnowPointSize", FloatValue) { it.snowPointSize }
             property("SnowMinPointSize", FloatValue) { it.snowMinPointSize }
             property("SnowMaxPointSize", FloatValue) { it.snowMaxPointSize }
@@ -69,6 +77,10 @@ data class Weather(
             property("RampSpacing", Untyped.type) { it.rampSpacing }
             property("CloudTextureSize", Untyped.type) { it.cloudTextureSize }
             property("CloudOffsetPerSecond", Untyped.type) { it.cloudOffsetPerSecond }
+            property("HardwareFogEnable", BooleanValue) { it.hardwareFogEnable }
+            property("HardwareFogColor", Rgb.type) { it.hardwareFogColor }
+            property("HardwareFogStart", FloatValue) { it.hardwareFogStart }
+            property("HardwareFogEnd", FloatValue) { it.hardwareFogEnd }
         },
     )
 }

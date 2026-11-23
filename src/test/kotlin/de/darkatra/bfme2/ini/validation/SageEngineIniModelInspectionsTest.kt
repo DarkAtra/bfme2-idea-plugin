@@ -886,4 +886,25 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
 
         myFixture.checkHighlighting(true, false, false)
     }
+
+    @Test
+    fun `should know the hardware fog and snow drift of the weather in maps`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownPropertyInspection(), SageEngineIniInvalidValueInspection())
+        myFixture.configureByText(
+            "map.ini",
+            """
+            Weather
+                HardwareFogColor = R:219 G:187 B:164
+                HardwareFogEnable = Yes
+                HardwareFogStart = 750
+                HardwareFogEnd = 4900
+                SnowXYSpeed = X:40 Y:25
+                HardwareFogEnable = <warning descr="Expected Yes or No but found '1'">1</warning>
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
 }
