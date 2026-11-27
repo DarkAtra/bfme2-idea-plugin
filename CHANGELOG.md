@@ -2,6 +2,30 @@
 
 # Bfme2-idea-plugin Changelog
 
+## `1.0.2`
+
+### Added
+
+- Support for more properties the engine reads, e.g. `Weather` and `StopIfNuggetPlayed` in every `FXList` nugget, `FlankedScalar` in a
+  `DamageNugget`, `InheritsVeterancy` in a `CreateObject`, `RecoilDamping` in model draws, the pitch settings of a `Turret` and the
+  `ImagePart` and `LinePart` blocks of a `ShellMenuScheme`
+- Values the engine reads as unsigned integers, e.g. `ShadowOpacityPeak` or `MaxQueueEntries`, are reported if they are negative or fractional
+
+### Fixed
+
+- `OpenContain`, `TransportContain`, `SiegeEngineContain` and the horde contain modules know every property the engine reads, e.g.
+  `DeathTypes` in a `TransportContain` or `GrabWeapon` in a `HordeTransportContain`, and `HordeGarrisonContain` inherits the properties
+  of a `GarrisonContain` instead of those of a transport
+- `DecalTemplate`, `GridDecalTemplate`, `RadiusCursorTemplate` and `SelectionDecal` accept all properties of a decal
+- `SpawnObject` of a `CritterEmitterUpdate` references an object creation list instead of an object
+- `RequiredUpgrades` and `ExcludedUpgrades` are reported as unknown in an `AutoResolveArmor`
+- Completion shows 2D positions such as `GrabOffset` or the `HotSpot` of a `MouseCursor` as `Coord2D` or `Coord2DInt` instead of `Coords`
+- The castle of a `CastleToUnpackForFaction` and the object of a `QuantityModifier` are recognized as references to objects
+- Modules know the properties of their engine base, e.g. a `HordeContain` those of a `TransportContain`, special ability modules like
+  `ToggleDeploySpecialAbilityUpdate` those of a `SpecialAbilityUpdate` and `W3DSupplyDraw` those of a `W3DScriptedModelDraw`, and every
+  body accepts `RemoveUpgradesOnDeath`
+- The `Attack` nugget of an `ObjectCreationList` accepts the properties the engine reads, e.g. `NumberOfShots` and `DeliveryDecal`
+
 ## `1.0.1`
 
 ### Added
@@ -9,10 +33,6 @@
 - Support for `Options.ini`: the game settings it contains are completed and validated
 - Support for the `MissionObjectiveList` block of `map.ini` and the `MapCache` block of `mapcache.ini`, both are reported in any other file
 - Support for the hardware fog and snow drift settings of the `Weather` block, e.g. `HardwareFogColor` and `SnowXYSpeed`
-- Support for more properties the engine reads, e.g. `Weather` and `StopIfNuggetPlayed` in every `FXList` nugget, `FlankedScalar` in a
-  `DamageNugget`, `InheritsVeterancy` in a `CreateObject`, `RecoilDamping` in model draws, the pitch settings of a `Turret` and the
-  `ImagePart` and `LinePart` blocks of a `ShellMenuScheme`
-- Values the engine reads as unsigned integers, e.g. `ShadowOpacityPeak` or `MaxQueueEntries`, are reported if they are negative or fractional
 
 ### Changed
 
@@ -27,18 +47,6 @@
 - "Find Usages" only highlights the declaration name of values like `EVA:GenericBuildingComplete-Builder-Elf`
 - Clearing the content of a `BeginScript` block no longer fails
 - Reformatting a selection no longer removes empty comments right next to it
-- `OpenContain`, `TransportContain`, `SiegeEngineContain` and the horde contain modules know every property the engine reads, e.g.
-  `DeathTypes` in a `TransportContain` or `GrabWeapon` in a `HordeTransportContain`, and `HordeGarrisonContain` inherits the properties
-  of a `GarrisonContain` instead of those of a transport
-- `DecalTemplate`, `GridDecalTemplate`, `RadiusCursorTemplate` and `SelectionDecal` accept all properties of a decal
-- `SpawnObject` of a `CritterEmitterUpdate` references an object creation list instead of an object
-- `RequiredUpgrades` and `ExcludedUpgrades` are reported as unknown in an `AutoResolveArmor`
-- Completion shows 2D positions such as `GrabOffset` or the `HotSpot` of a `MouseCursor` as `Coord2D` or `Coord2DInt` instead of `Coords`
-- The castle of a `CastleToUnpackForFaction` and the object of a `QuantityModifier` are recognized as references to objects
-- Modules know the properties of their engine base, e.g. a `HordeContain` those of a `TransportContain`, special ability modules like
-  `ToggleDeploySpecialAbilityUpdate` those of a `SpecialAbilityUpdate` and `W3DSupplyDraw` those of a `W3DScriptedModelDraw`, and every
-  body accepts `RemoveUpgradesOnDeath`
-- The `Attack` nugget of an `ObjectCreationList` accepts the properties the engine reads, e.g. `NumberOfShots` and `DeliveryDecal`
 
 ## `1.0.0`
 
