@@ -5,6 +5,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.draw.Animation
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.Science
@@ -25,7 +26,7 @@ data class VeterancyCrateCollide(
     @SageIniName("ExecuteAnimationTime") override val executeAnimationTime: Double = 0.0,
     @SageIniName("ExecuteAnimationZRise") override val executeAnimationZRise: Double = 0.0,
     @SageIniName("ExecuteAnimationFades") override val executeAnimationFades: Boolean = false,
-    @SageIniName("EffectRange") val effectRange: Int = 0,
+    @SageIniName("EffectRange") val effectRange: UInt = 0u,
     @SageIniName("AddsOwnerVeterancy") val addsOwnerVeterancy: Boolean = false,
     @SageIniName("IsPilot") val isPilot: Boolean = false,
     @SageIniName("AffectsUpToLevel") val affectsUpToLevel: Int = 0,
@@ -35,7 +36,7 @@ data class VeterancyCrateCollide(
         name = "VeterancyCrateCollide",
         parent = CrateCollide,
         properties = {
-            property("EffectRange", IntValue) { it.effectRange }
+            property("EffectRange", UnsignedIntValue) { it.effectRange }
             property("AddsOwnerVeterancy", BooleanValue) { it.addsOwnerVeterancy }
             property("IsPilot", BooleanValue) { it.isPilot }
             property("AffectsUpToLevel", IntValue) { it.affectsUpToLevel }

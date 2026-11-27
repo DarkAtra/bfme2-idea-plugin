@@ -6,7 +6,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniObject
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.Rgba
 
@@ -21,7 +21,7 @@ data class WaterTransparency(
     @SageIniName("RadarWaterColor") val radarWaterColor: Rgba? = null,
     @SageIniName("ReflectionPlaneZ") val reflectionPlaneZ: Double = 0.0,
     @SageIniName("ReflectionOn") val reflectionOn: Boolean = false,
-    @SageIniName("ReflectionGuard") val reflectionGuard: Coords? = null,
+    @SageIniName("ReflectionGuard") val reflectionGuard: Coord2D? = null,
     @SageIniName("SkyboxTextureE") val skyboxTextureE: Opaque? = null,
     @SageIniName("SkyboxTextureN") val skyboxTextureN: Opaque? = null,
     @SageIniName("SkyboxTextureS") val skyboxTextureS: Opaque? = null,
@@ -42,7 +42,7 @@ data class WaterTransparency(
             property("RadarWaterColor", Rgba.type) { it.radarWaterColor }
             property("ReflectionPlaneZ", FloatValue) { it.reflectionPlaneZ }
             property("ReflectionOn", BooleanValue) { it.reflectionOn }
-            property("ReflectionGuard", Coords.type) { it.reflectionGuard }
+            property("ReflectionGuard", Coord2D.type) { it.reflectionGuard }
             property("SkyboxTextureE", Opaque.type) { it.skyboxTextureE }
             property("SkyboxTextureN", Opaque.type) { it.skyboxTextureN }
             property("SkyboxTextureS", Opaque.type) { it.skyboxTextureS }

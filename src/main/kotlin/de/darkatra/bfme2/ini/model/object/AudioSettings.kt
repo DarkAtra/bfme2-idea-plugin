@@ -8,6 +8,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.Rgba
 
@@ -25,10 +26,10 @@ data class AudioSettings(
     @SageIniName("OutputRate") val outputRate: Int = 0,
     @SageIniName("OutputBits") val outputBits: Int = 0,
     @SageIniName("OutputChannels") val outputChannels: Int = 0,
-    @SageIniName("MixaheadLatency") val mixaheadLatency: Int = 0,
-    @SageIniName("MixaheadLatencyDuringMovies") val mixaheadLatencyDuringMovies: Int = 0,
-    @SageIniName("LoopBufferLengthMS") val loopBufferLengthMS: Int = 0,
-    @SageIniName("LoopBufferCallbackCallsPerBufferLength") val loopBufferCallbackCallsPerBufferLength: Int = 0,
+    @SageIniName("MixaheadLatency") val mixaheadLatency: UInt = 0u,
+    @SageIniName("MixaheadLatencyDuringMovies") val mixaheadLatencyDuringMovies: UInt = 0u,
+    @SageIniName("LoopBufferLengthMS") val loopBufferLengthMS: UInt = 0u,
+    @SageIniName("LoopBufferCallbackCallsPerBufferLength") val loopBufferCallbackCallsPerBufferLength: UInt = 0u,
     @SageIniName("ForceResetTimeSeconds") val forceResetTimeSeconds: Int = 0,
     @SageIniName("EmergencyResetTimeSeconds") val emergencyResetTimeSeconds: Int = 0,
     @SageIniName("AutomaticSubtitleDurationMS") val automaticSubtitleDurationMS: Int = 0,
@@ -43,7 +44,7 @@ data class AudioSettings(
     @SageIniName("GlobalMinRange") val globalMinRange: Int = 0,
     @SageIniName("GlobalMaxRange") val globalMaxRange: Int = 0,
     @SageIniName("TimeToFadeAudio") val timeToFadeAudio: Int = 0,
-    @SageIniName("AudioFootprintInBytes") val audioFootprintInBytes: Int = 0,
+    @SageIniName("AudioFootprintInBytes") val audioFootprintInBytes: UInt = 0u,
     @SageIniName("MinSampleVolume") val minSampleVolume: Int = 0,
     @SageIniName("AmbientStreamHysteresisVolume") val ambientStreamHysteresisVolume: Int = 0,
     @SageIniName("MillisecondsPriorToPlayingToReadSoundFile") val millisecondsPriorToPlayingToReadSoundFile: Int = 0,
@@ -92,8 +93,8 @@ data class AudioSettings(
     @SageIniName("LivingWorldMicrophonePreferredFractionCameraToGround") val livingWorldMicrophonePreferredFractionCameraToGround: Double = 0.0,
     @SageIniName("LivingWorldMicrophoneMaxDistanceToCamera") val livingWorldMicrophoneMaxDistanceToCamera: Int = 0,
     @SageIniName("LivingWorldZoomMaxDistance") val livingWorldZoomMaxDistance: Double = 0.0,
-    @SageIniName("VoiceMoveToCampMaxCampnessAtStartPoint") val voiceMoveToCampMaxCampnessAtStartPoint: Int = 0,
-    @SageIniName("VoiceMoveToCampMinCampnessAtEndPoint") val voiceMoveToCampMinCampnessAtEndPoint: Int = 0,
+    @SageIniName("VoiceMoveToCampMaxCampnessAtStartPoint") val voiceMoveToCampMaxCampnessAtStartPoint: UInt = 0u,
+    @SageIniName("VoiceMoveToCampMinCampnessAtEndPoint") val voiceMoveToCampMinCampnessAtEndPoint: UInt = 0u,
     @SageIniName("MinDelayBetweenEnterStateVoiceMS") val minDelayBetweenEnterStateVoiceMS: Int = 0,
     @SageIniName("Default2DSpeakerType") val default2DSpeakerType: String = "",
     @SageIniName("Default3DSoundVolume") val default3DSoundVolume: Double = 0.0,
@@ -124,10 +125,10 @@ data class AudioSettings(
             property("OutputRate", IntValue) { it.outputRate }
             property("OutputBits", IntValue) { it.outputBits }
             property("OutputChannels", IntValue) { it.outputChannels }
-            property("MixaheadLatency", IntValue) { it.mixaheadLatency }
-            property("MixaheadLatencyDuringMovies", IntValue) { it.mixaheadLatencyDuringMovies }
-            property("LoopBufferLengthMS", IntValue) { it.loopBufferLengthMS }
-            property("LoopBufferCallbackCallsPerBufferLength", IntValue) { it.loopBufferCallbackCallsPerBufferLength }
+            property("MixaheadLatency", UnsignedIntValue) { it.mixaheadLatency }
+            property("MixaheadLatencyDuringMovies", UnsignedIntValue) { it.mixaheadLatencyDuringMovies }
+            property("LoopBufferLengthMS", UnsignedIntValue) { it.loopBufferLengthMS }
+            property("LoopBufferCallbackCallsPerBufferLength", UnsignedIntValue) { it.loopBufferCallbackCallsPerBufferLength }
             property("ForceResetTimeSeconds", IntValue) { it.forceResetTimeSeconds }
             property("EmergencyResetTimeSeconds", IntValue) { it.emergencyResetTimeSeconds }
             property("AutomaticSubtitleDurationMS", IntValue) { it.automaticSubtitleDurationMS }
@@ -142,7 +143,7 @@ data class AudioSettings(
             property("GlobalMinRange", IntValue) { it.globalMinRange }
             property("GlobalMaxRange", IntValue) { it.globalMaxRange }
             property("TimeToFadeAudio", IntValue) { it.timeToFadeAudio }
-            property("AudioFootprintInBytes", IntValue) { it.audioFootprintInBytes }
+            property("AudioFootprintInBytes", UnsignedIntValue) { it.audioFootprintInBytes }
             property("MinSampleVolume", IntValue) { it.minSampleVolume }
             property("AmbientStreamHysteresisVolume", IntValue) { it.ambientStreamHysteresisVolume }
             property("MillisecondsPriorToPlayingToReadSoundFile", IntValue) { it.millisecondsPriorToPlayingToReadSoundFile }
@@ -191,8 +192,8 @@ data class AudioSettings(
             property("LivingWorldMicrophonePreferredFractionCameraToGround", FloatValue) { it.livingWorldMicrophonePreferredFractionCameraToGround }
             property("LivingWorldMicrophoneMaxDistanceToCamera", IntValue) { it.livingWorldMicrophoneMaxDistanceToCamera }
             property("LivingWorldZoomMaxDistance", FloatValue) { it.livingWorldZoomMaxDistance }
-            property("VoiceMoveToCampMaxCampnessAtStartPoint", IntValue) { it.voiceMoveToCampMaxCampnessAtStartPoint }
-            property("VoiceMoveToCampMinCampnessAtEndPoint", IntValue) { it.voiceMoveToCampMinCampnessAtEndPoint }
+            property("VoiceMoveToCampMaxCampnessAtStartPoint", UnsignedIntValue) { it.voiceMoveToCampMaxCampnessAtStartPoint }
+            property("VoiceMoveToCampMinCampnessAtEndPoint", UnsignedIntValue) { it.voiceMoveToCampMinCampnessAtEndPoint }
             property("MinDelayBetweenEnterStateVoiceMS", IntValue) { it.minDelayBetweenEnterStateVoiceMS }
             property("Default2DSpeakerType", StringValue) { it.default2DSpeakerType }
             property("Default3DSoundVolume", FloatValue) { it.default3DSoundVolume }

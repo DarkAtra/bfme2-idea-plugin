@@ -3,8 +3,8 @@ package de.darkatra.bfme2.ini.model.behaviour
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.draw.Animation
 import de.darkatra.bfme2.ini.model.`object`.ChildObject
 import de.darkatra.bfme2.ini.model.`object`.FXList
@@ -28,7 +28,7 @@ data class UnitCrateCollide(
     @SageIniName("ExecuteAnimationTime") override val executeAnimationTime: Double = 0.0,
     @SageIniName("ExecuteAnimationZRise") override val executeAnimationZRise: Double = 0.0,
     @SageIniName("ExecuteAnimationFades") override val executeAnimationFades: Boolean = false,
-    @SageIniName("UnitCount") val unitCount: Int = 0,
+    @SageIniName("UnitCount") val unitCount: UInt = 0u,
     @SageIniName("UnitName") val unitName: SageReference<Object>? = null,
 ) : CrateCollide() {
 
@@ -36,7 +36,7 @@ data class UnitCrateCollide(
         name = "UnitCrateCollide",
         parent = CrateCollide,
         properties = {
-            property("UnitCount", IntValue) { it.unitCount }
+            property("UnitCount", UnsignedIntValue) { it.unitCount }
             property("UnitName", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.unitName }
         },
     )

@@ -7,6 +7,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.value.SageReference
 
 data class NewEvaEvent(
@@ -19,7 +20,7 @@ data class NewEvaEvent(
     @SageIniName("MillisecondsToWaitBeforePlaying") val millisecondsToWaitBeforePlaying: Int = 0,
     @SageIniName("OtherEvaEventsToBlock") val otherEvaEventsToBlock: List<SageReference<EvaEventBase>> = emptyList(),
     @SageIniName("SideSound") override val sideSound: List<SideSound> = emptyList(),
-    @SageIniName("QuietTimeMS") val quietTimeMs: Int = 0,
+    @SageIniName("QuietTimeMS") val quietTimeMs: UInt = 0u,
 ) : EvaEventBase() {
 
     companion object : SageIniBlockDescriptor<NewEvaEvent>(
@@ -29,7 +30,7 @@ data class NewEvaEvent(
         properties = {
             property("MillisecondsToWaitBeforePlaying", IntValue) { it.millisecondsToWaitBeforePlaying }
             property("OtherEvaEventsToBlock", ListValue(ReferenceValue<EvaEventBase> { listOf(NewEvaEvent, PredefinedEvaEvent) })) { it.otherEvaEventsToBlock }
-            property("QuietTimeMS", IntValue) { it.quietTimeMs }
+            property("QuietTimeMS", UnsignedIntValue) { it.quietTimeMs }
         },
     )
 }

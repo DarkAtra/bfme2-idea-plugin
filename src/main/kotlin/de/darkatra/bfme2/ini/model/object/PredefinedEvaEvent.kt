@@ -4,7 +4,7 @@ import de.darkatra.bfme2.ini.model.audio.SideSound
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 
 data class PredefinedEvaEvent(
     override val header: SageBlockHeader = SageBlockHeader(),
@@ -13,7 +13,7 @@ data class PredefinedEvaEvent(
     @SageIniName("ExpirationTimeMS") override val expirationTimeMS: Int = 0,
     @SageIniName("AlwaysPlayFromHomeBase") override val alwaysPlayFromHomeBase: Boolean = false,
     @SageIniName("CountAsJumpToLocation") override val countAsJumpToLocation: Boolean = false,
-    @SageIniName("QuietTimeMS") val quietTimeMS: Int = 0,
+    @SageIniName("QuietTimeMS") val quietTimeMS: UInt = 0u,
     @SageIniName("SideSound") override val sideSound: List<SideSound> = emptyList(),
 ) : EvaEventBase() {
 
@@ -22,7 +22,7 @@ data class PredefinedEvaEvent(
         parent = EvaEventBase,
         tableKey = "evaevents",
         properties = {
-            property("QuietTimeMS", IntValue) { it.quietTimeMS }
+            property("QuietTimeMS", UnsignedIntValue) { it.quietTimeMS }
         },
     )
 }

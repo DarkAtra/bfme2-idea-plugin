@@ -12,6 +12,7 @@
 - Support for more properties the engine reads, e.g. `Weather` and `StopIfNuggetPlayed` in every `FXList` nugget, `FlankedScalar` in a
   `DamageNugget`, `InheritsVeterancy` in a `CreateObject`, `RecoilDamping` in model draws, the pitch settings of a `Turret` and the
   `ImagePart` and `LinePart` blocks of a `ShellMenuScheme`
+- Values the engine reads as unsigned integers, e.g. `ShadowOpacityPeak` or `MaxQueueEntries`, are reported if they are negative or fractional
 
 ### Changed
 
@@ -32,6 +33,8 @@
 - `DecalTemplate`, `GridDecalTemplate`, `RadiusCursorTemplate` and `SelectionDecal` accept all properties of a decal
 - `SpawnObject` of a `CritterEmitterUpdate` references an object creation list instead of an object
 - `RequiredUpgrades` and `ExcludedUpgrades` are reported as unknown in an `AutoResolveArmor`
+- Completion shows 2D positions such as `GrabOffset` or the `HotSpot` of a `MouseCursor` as `Coord2D` or `Coord2DInt` instead of `Coords`
+- The castle of a `CastleToUnpackForFaction` and the object of a `QuantityModifier` are recognized as references to objects
 
 ## `1.0.0`
 

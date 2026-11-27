@@ -3,7 +3,7 @@ package de.darkatra.bfme2.ini.model.`object`
 import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.value.ContactPoint
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.EditorSorting
 import de.darkatra.bfme2.ini.model.value.FakeToken
 import de.darkatra.bfme2.ini.model.value.KindOf
@@ -45,7 +45,7 @@ data class ObjectSection1(
     @SageIniName("PlacementViewAngle") val placementViewAngle: Int = 0,
     @SageIniName("TransportSlotCount") val transportSlotCount: Int = 0,
     @SageIniName("BountyValue") val bountyValue: Int = 0,
-    @SageIniName("CampnessValue") val campnessValue: Int = 0,
+    @SageIniName("CampnessValue") val campnessValue: UInt = 0u,
     @SageIniName("CrushableLevel") val crushableLevel: Int = 0,
     @SageIniName("CrusherLevel") val crusherLevel: Int = 0,
     @SageIniName("ShroudClearingRange") val shroudClearingRange: Int = 0,
@@ -54,7 +54,7 @@ data class ObjectSection1(
     @SageIniName("EmotionRange") val emotionRange: Int = 0,
     @SageIniName("InstanceScaleFuzziness") val instanceScaleFuzziness: Double = 0.0,
     @SageIniName("GeometryUsedForHealthBox") val geometryUsedForHealthBox: Boolean = false,
-    @SageIniName("GeometryRotationAnchorOffset") val geometryRotationAnchorOffset: List<Coords> = emptyList(),
+    @SageIniName("GeometryRotationAnchorOffset") val geometryRotationAnchorOffset: List<Coord2D> = emptyList(),
     @SageIniName("GeometryContactPoint") val geometryContactPoint: List<ContactPoint> = emptyList(),
     @SageIniName("AttackContactPoint") val attackContactPoint: List<ContactPoint> = emptyList(),
     @SageIniName("Shadow") val shadow: ObjectShadowType? = null,
@@ -65,9 +65,9 @@ data class ObjectSection1(
     @SageIniName("ShadowMaxHeight") val shadowMaxHeight: Double = 0.0,
     @SageIniName("ShadowSunAngle") val shadowSunAngle: Double = 0.0,
     @SageIniName("ShadowOverrideLODVisibility") val shadowOverrideLODVisibility: Boolean = false,
-    @SageIniName("ShadowOpacityStart") val shadowOpacityStart: Int = 0,
-    @SageIniName("ShadowOpacityPeak") val shadowOpacityPeak: Int = 0,
-    @SageIniName("ShadowOpacityEnd") val shadowOpacityEnd: Int = 0,
+    @SageIniName("ShadowOpacityStart") val shadowOpacityStart: UInt = 0u,
+    @SageIniName("ShadowOpacityPeak") val shadowOpacityPeak: UInt = 0u,
+    @SageIniName("ShadowOpacityEnd") val shadowOpacityEnd: UInt = 0u,
     @SageIniName("ShadowOpacityFadeInTime") val shadowOpacityFadeInTime: Int = 0,
     @SageIniName("ShadowOpacityFadeOutTime") val shadowOpacityFadeOutTime: Int = 0,
     @SageIniName("VisionSide") val visionSide: Double = 0.0,

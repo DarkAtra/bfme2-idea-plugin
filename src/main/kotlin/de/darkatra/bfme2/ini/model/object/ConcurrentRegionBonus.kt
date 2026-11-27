@@ -8,7 +8,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.Opaque
 
 data class ConcurrentRegionBonus(
@@ -18,7 +18,7 @@ data class ConcurrentRegionBonus(
     @SageIniName("Regions") val regions: List<Opaque> = emptyList(),
     @SageIniName("UnifiedEvaEvent") val unifiedEvaEvent: Opaque? = null,
     @SageIniName("LostEvaEvent") val lostEvaEvent: Opaque? = null,
-    @SageIniName("LookAtCenter") val lookAtCenter: Coords? = null,
+    @SageIniName("LookAtCenter") val lookAtCenter: Coord2D? = null,
     @SageIniName("LookAtHeading") val lookAtHeading: Double = 0.0,
     @SageIniName("LookAtZoom") val lookAtZoom: Double = 0.0,
     @SageIniName("AttackBonus") val attackBonus: Int = 0,
@@ -45,7 +45,7 @@ data class ConcurrentRegionBonus(
             property("Regions", ListValue(Opaque.type)) { it.regions }
             property("UnifiedEvaEvent", Opaque.type) { it.unifiedEvaEvent }
             property("LostEvaEvent", Opaque.type) { it.lostEvaEvent }
-            property("LookAtCenter", Coords.type) { it.lookAtCenter }
+            property("LookAtCenter", Coord2D.type) { it.lookAtCenter }
             property("LookAtHeading", FloatValue) { it.lookAtHeading }
             property("LookAtZoom", FloatValue) { it.lookAtZoom }
             property("AttackBonus", IntValue) { it.attackBonus }

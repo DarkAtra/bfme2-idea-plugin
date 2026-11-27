@@ -12,6 +12,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.MapValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.ChildObject
 import de.darkatra.bfme2.ini.model.`object`.CommandButton
@@ -40,7 +41,7 @@ open class SpecialAbilityUpdate(
     @SageIniName("DisableFXParticleSystem") open val disableFXParticleSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("SpecialObject") open val specialObject: SageReference<Object>? = null,
     @SageIniName("SpecialObjectAttachToBone") open val specialObjectAttachToBone: Opaque? = null,
-    @SageIniName("MaxSpecialObjects") open val maxSpecialObjects: Int = 0,
+    @SageIniName("MaxSpecialObjects") open val maxSpecialObjects: UInt = 0u,
     @SageIniName("SpecialObjectsPersistWhenOwnerDies") open val specialObjectsPersistWhenOwnerDies: Boolean = false,
     @SageIniName("AlwaysValidateSpecialObjects") open val alwaysValidateSpecialObjects: Boolean = false,
     @SageIniName("SpecialObjectsPersistent") open val specialObjectsPersistent: Boolean = false,
@@ -108,7 +109,7 @@ open class SpecialAbilityUpdate(
             property("DisableFXParticleSystem", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.disableFXParticleSystem }
             property("SpecialObject", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.specialObject }
             property("SpecialObjectAttachToBone", Opaque.type) { it.specialObjectAttachToBone }
-            property("MaxSpecialObjects", IntValue) { it.maxSpecialObjects }
+            property("MaxSpecialObjects", UnsignedIntValue) { it.maxSpecialObjects }
             property("SpecialObjectsPersistWhenOwnerDies", BooleanValue) { it.specialObjectsPersistWhenOwnerDies }
             property("AlwaysValidateSpecialObjects", BooleanValue) { it.alwaysValidateSpecialObjects }
             property("SpecialObjectsPersistent", BooleanValue) { it.specialObjectsPersistent }

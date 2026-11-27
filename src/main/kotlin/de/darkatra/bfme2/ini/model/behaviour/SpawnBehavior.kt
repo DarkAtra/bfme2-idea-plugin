@@ -8,6 +8,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.`object`.ChildObject
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
@@ -46,7 +47,7 @@ data class SpawnBehavior(
     @SageIniName("PropagateDamageTypesToSlavesWhenExisting") val propagateDamageTypesToSlavesWhenExisting: SageFilter? = null,
     @SageIniName("InitialBurst") val initialBurst: Int = 0,
     @SageIniName("RespectCommandLimit") val respectCommandLimit: Boolean = false,
-    @SageIniName("FadeInTime") val fadeInTime: Int = 0,
+    @SageIniName("FadeInTime") val fadeInTime: UInt = 0u,
     @SageIniName("KillSpawnsBasedOnModelConditionState") val killSpawnsBasedOnModelConditionState: Boolean = false,
     @SageIniName("ShareUpgrades") val shareUpgrades: Boolean = false,
     @SageIniName("SpawnInsideBuilding") val spawnInsideBuilding: Boolean = false,
@@ -75,7 +76,7 @@ data class SpawnBehavior(
             property("PropagateDamageTypesToSlavesWhenExisting", SageFilter.type) { it.propagateDamageTypesToSlavesWhenExisting }
             property("InitialBurst", IntValue) { it.initialBurst }
             property("RespectCommandLimit", BooleanValue) { it.respectCommandLimit }
-            property("FadeInTime", IntValue) { it.fadeInTime }
+            property("FadeInTime", UnsignedIntValue) { it.fadeInTime }
             property("KillSpawnsBasedOnModelConditionState", BooleanValue) { it.killSpawnsBasedOnModelConditionState }
             property("ShareUpgrades", BooleanValue) { it.shareUpgrades }
             property("SpawnInsideBuilding", BooleanValue) { it.spawnInsideBuilding }

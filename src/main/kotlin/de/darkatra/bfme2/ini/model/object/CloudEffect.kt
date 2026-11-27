@@ -8,7 +8,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.Rgba
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -38,9 +38,9 @@ data class CloudEffect(
     @SageIniName("LightningIntensity") val lightningIntensity: Untyped? = null,
     @SageIniName("LightningShadowColor") val lightningShadowColor: Rgba? = null,
     @SageIniName("LightningShadowIntensity") val lightningShadowIntensity: Double = 0.0,
-    @SageIniName("LightningLightPosition1") val lightningLightPosition1: Coords? = null,
-    @SageIniName("LightningLightPosition2") val lightningLightPosition2: Coords? = null,
-    @SageIniName("LightningLightPosition3") val lightningLightPosition3: Coords? = null,
+    @SageIniName("LightningLightPosition1") val lightningLightPosition1: Coord2D? = null,
+    @SageIniName("LightningLightPosition2") val lightningLightPosition2: Coord2D? = null,
+    @SageIniName("LightningLightPosition3") val lightningLightPosition3: Coord2D? = null,
     @SageIniName("LightningFX") val lightningFX: SageReference<FXList>? = null,
 ) : SageIniObject {
 
@@ -70,9 +70,9 @@ data class CloudEffect(
             property("LightningIntensity", Untyped.type) { it.lightningIntensity }
             property("LightningShadowColor", Rgba.type) { it.lightningShadowColor }
             property("LightningShadowIntensity", FloatValue) { it.lightningShadowIntensity }
-            property("LightningLightPosition1", Coords.type) { it.lightningLightPosition1 }
-            property("LightningLightPosition2", Coords.type) { it.lightningLightPosition2 }
-            property("LightningLightPosition3", Coords.type) { it.lightningLightPosition3 }
+            property("LightningLightPosition1", Coord2D.type) { it.lightningLightPosition1 }
+            property("LightningLightPosition2", Coord2D.type) { it.lightningLightPosition2 }
+            property("LightningLightPosition3", Coord2D.type) { it.lightningLightPosition3 }
             property("LightningFX", ReferenceValue<FXList> { listOf(FXList) }) { it.lightningFX }
         },
     )

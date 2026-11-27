@@ -5,6 +5,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniObject
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 
 data class MiscEvaData(
     val header: SageBlockHeader = SageBlockHeader(),
@@ -12,7 +13,7 @@ data class MiscEvaData(
     @SageIniName("EnemyCampDestroyedDamageTimeoutMS") val enemyCampDestroyedDamageTimeoutMS: Int = 0,
     @SageIniName("FriendlyCampDestroyedDamageTimeoutMS") val friendlyCampDestroyedDamageTimeoutMS: Int = 0,
     @SageIniName("MaxMillisecondsToKeepJumpToEvents") val maxMillisecondsToKeepJumpToEvents: Int = 0,
-    @SageIniName("MaxMillisecondsBeforeResettingLastJumpTo") val maxMillisecondsBeforeResettingLastJumpTo: Int = 0,
+    @SageIniName("MaxMillisecondsBeforeResettingLastJumpTo") val maxMillisecondsBeforeResettingLastJumpTo: UInt = 0u,
     @SageIniName("MinDistanceBetweenJumpToEvents") val minDistanceBetweenJumpToEvents: Int = 0,
 ) : SageIniObject {
 
@@ -24,7 +25,7 @@ data class MiscEvaData(
             property("EnemyCampDestroyedDamageTimeoutMS", IntValue) { it.enemyCampDestroyedDamageTimeoutMS }
             property("FriendlyCampDestroyedDamageTimeoutMS", IntValue) { it.friendlyCampDestroyedDamageTimeoutMS }
             property("MaxMillisecondsToKeepJumpToEvents", IntValue) { it.maxMillisecondsToKeepJumpToEvents }
-            property("MaxMillisecondsBeforeResettingLastJumpTo", IntValue) { it.maxMillisecondsBeforeResettingLastJumpTo }
+            property("MaxMillisecondsBeforeResettingLastJumpTo", UnsignedIntValue) { it.maxMillisecondsBeforeResettingLastJumpTo }
             property("MinDistanceBetweenJumpToEvents", IntValue) { it.minDistanceBetweenJumpToEvents }
         },
     )

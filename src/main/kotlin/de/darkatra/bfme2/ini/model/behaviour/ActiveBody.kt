@@ -14,7 +14,7 @@ import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.DamageCreation
 import de.darkatra.bfme2.ini.model.value.SageReference
 
@@ -29,7 +29,7 @@ open class ActiveBody(
     @SageIniName("SubdualDamageHealRate") open val subdualDamageHealRate: Int = 0,
     @SageIniName("SubdualDamageHealAmount") open val subdualDamageHealAmount: Double = 0.0,
     @SageIniName("GrabObject") open val grabObject: SageReference<Object>? = null,
-    @SageIniName("GrabOffset") open val grabOffset: Coords? = null,
+    @SageIniName("GrabOffset") open val grabOffset: Coord2D? = null,
     @SageIniName("DamageCreationList") open val damageCreationList: List<DamageCreation> = emptyList(),
     @SageIniName("GrabFX") open val grabFX: SageReference<FXList>? = null,
     @SageIniName("GrabDamage") open val grabDamage: Double = 0.0,
@@ -56,7 +56,7 @@ open class ActiveBody(
             property("SubdualDamageHealRate", IntValue) { it.subdualDamageHealRate }
             property("SubdualDamageHealAmount", FloatValue) { it.subdualDamageHealAmount }
             property("GrabObject", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.grabObject }
-            property("GrabOffset", Coords.type) { it.grabOffset }
+            property("GrabOffset", Coord2D.type) { it.grabOffset }
             property("DamageCreationList", ListValue(DamageCreation.type)) { it.damageCreationList }
             property("GrabFX", ReferenceValue<FXList> { listOf(FXList) }) { it.grabFX }
             property("GrabDamage", FloatValue) { it.grabDamage }

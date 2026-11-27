@@ -7,7 +7,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniObject
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageReference
 
@@ -23,7 +23,7 @@ data class SpawnArmy(
     @SageIniName("MoveSpeed") val moveSpeed: Double = 0.0,
     @SageIniName("IsCity") val isCity: Boolean = false,
     @SageIniName("PalantirMovie") val palantirMovie: SageReference<Video>? = null,
-    @SageIniName("Position") val position: Coords? = null,
+    @SageIniName("Position") val position: Coord2D? = null,
 ) : SageIniObject {
 
     companion object : SageIniBlockDescriptor<SpawnArmy>(
@@ -40,7 +40,7 @@ data class SpawnArmy(
             property("MoveSpeed", FloatValue) { it.moveSpeed }
             property("IsCity", BooleanValue) { it.isCity }
             property("PalantirMovie", ReferenceValue<Video> { listOf(Video) }) { it.palantirMovie }
-            property("Position", Coords.type) { it.position }
+            property("Position", Coord2D.type) { it.position }
         },
     )
 }

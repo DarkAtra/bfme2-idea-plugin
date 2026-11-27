@@ -9,6 +9,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.Weapon
 import de.darkatra.bfme2.ini.model.value.EmotionTypes
@@ -37,7 +38,7 @@ data class BezierProjectileBehavior(
     @SageIniName("BounceSecondPercentIndent") val bounceSecondPercentIndent: Double = 0.0,
     @SageIniName("GarrisonHitKillRequiredKindOf") val garrisonHitKillRequiredKindOf: List<KindOf> = emptyList(),
     @SageIniName("GarrisonHitKillForbiddenKindOf") val garrisonHitKillForbiddenKindOf: List<KindOf> = emptyList(),
-    @SageIniName("GarrisonHitKillCount") val garrisonHitKillCount: Int = 0,
+    @SageIniName("GarrisonHitKillCount") val garrisonHitKillCount: UInt = 0u,
     @SageIniName("GroundHitWeapon") val groundHitWeapon: SageReference<Weapon>? = null,
     @SageIniName("GroundBounceWeapon") val groundBounceWeapon: SageReference<Weapon>? = null,
     @SageIniName("FlightPathAdjustDistPerSecond") val flightPathAdjustDistPerSecond: Double = 0.0,
@@ -47,8 +48,8 @@ data class BezierProjectileBehavior(
     @SageIniName("CurveFlattenMinDist") val curveFlattenMinDist: Double = 0.0,
     @SageIniName("PreLandingEmotion") val preLandingEmotion: EmotionTypes? = null,
     @SageIniName("PreLandingEmotionRadius") val preLandingEmotionRadius: Double = 0.0,
-    @SageIniName("InvisibleFrames") val invisibleFrames: Int = 0,
-    @SageIniName("FadeInTime") val fadeInTime: Int = 0,
+    @SageIniName("InvisibleFrames") val invisibleFrames: UInt = 0u,
+    @SageIniName("FadeInTime") val fadeInTime: UInt = 0u,
     @SageIniName("PostLandingStateTime") val postLandingStateTime: Int = 0,
     @SageIniName("PostLandingEmotion") val postLandingEmotion: EmotionTypes? = null,
     @SageIniName("PostLandingEmotionRadius") val postLandingEmotionRadius: Double = 0.0,
@@ -80,7 +81,7 @@ data class BezierProjectileBehavior(
             property("BounceSecondPercentIndent", FloatValue) { it.bounceSecondPercentIndent }
             property("GarrisonHitKillRequiredKindOf", ListValue(KindOf.type)) { it.garrisonHitKillRequiredKindOf }
             property("GarrisonHitKillForbiddenKindOf", ListValue(KindOf.type)) { it.garrisonHitKillForbiddenKindOf }
-            property("GarrisonHitKillCount", IntValue) { it.garrisonHitKillCount }
+            property("GarrisonHitKillCount", UnsignedIntValue) { it.garrisonHitKillCount }
             property("GroundHitWeapon", ReferenceValue<Weapon> { listOf(Weapon) }) { it.groundHitWeapon }
             property("GroundBounceWeapon", ReferenceValue<Weapon> { listOf(Weapon) }) { it.groundBounceWeapon }
             property("FlightPathAdjustDistPerSecond", FloatValue) { it.flightPathAdjustDistPerSecond }
@@ -90,8 +91,8 @@ data class BezierProjectileBehavior(
             property("CurveFlattenMinDist", FloatValue) { it.curveFlattenMinDist }
             property("PreLandingEmotion", EmotionTypes.type) { it.preLandingEmotion }
             property("PreLandingEmotionRadius", FloatValue) { it.preLandingEmotionRadius }
-            property("InvisibleFrames", IntValue) { it.invisibleFrames }
-            property("FadeInTime", IntValue) { it.fadeInTime }
+            property("InvisibleFrames", UnsignedIntValue) { it.invisibleFrames }
+            property("FadeInTime", UnsignedIntValue) { it.fadeInTime }
             property("PostLandingStateTime", IntValue) { it.postLandingStateTime }
             property("PostLandingEmotion", EmotionTypes.type) { it.postLandingEmotion }
             property("PostLandingEmotionRadius", FloatValue) { it.postLandingEmotionRadius }

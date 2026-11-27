@@ -933,6 +933,26 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should report negative values of properties the engine reads as unsigned integers`() {
+
+        myFixture.enableInspections(SageEngineIniInvalidValueInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object GondorTower
+                ShadowOpacityStart = 0
+                ShadowOpacityPeak = <warning descr="Expected an unsigned integer but found '-1'">-1</warning>
+                Behavior = ProductionUpdate ModuleTag_01
+                    MaxQueueEntries = 9
+                End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should know the hardware fog and snow drift of the weather in maps`() {
 
         myFixture.enableInspections(SageEngineIniUnknownPropertyInspection(), SageEngineIniInvalidValueInspection())

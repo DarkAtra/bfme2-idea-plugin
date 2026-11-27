@@ -6,7 +6,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2DInt
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.TextureFile
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -39,7 +39,7 @@ open class W3DModelDraw(
     @SageIniName("TransitionState") override val transitionState: List<TransitionState> = emptyList(),
     @SageIniName("LodOptions") override val lodOptions: List<LodOptions> = emptyList(),
     @SageIniName("AlphaRefAnimated") open val alphaRefAnimated: Boolean = false,
-    @SageIniName("AlphaRefRange") open val alphaRefRange: Coords? = null,
+    @SageIniName("AlphaRefRange") open val alphaRefRange: Coord2DInt? = null,
     @SageIniName("BurntTexture") open val burntTexture: Untyped? = null,
     @SageIniName("HighDetailLODThreshold") open val highDetailLODThreshold: Double = 0.0,
     @SageIniName("LowDetailLODThreshold") open val lowDetailLODThreshold: Double = 0.0,
@@ -70,7 +70,7 @@ open class W3DModelDraw(
             property("MaxRecoilDistance", FloatValue) { it.maxRecoilDistance }
             property("RecoilSettleSpeed", FloatValue) { it.recoilSettleSpeed }
             property("AlphaRefAnimated", BooleanValue) { it.alphaRefAnimated }
-            property("AlphaRefRange", Coords.type) { it.alphaRefRange }
+            property("AlphaRefRange", Coord2DInt.type) { it.alphaRefRange }
             property("BurntTexture", Untyped.type) { it.burntTexture }
             property("HighDetailLODThreshold", FloatValue) { it.highDetailLODThreshold }
             property("LowDetailLODThreshold", FloatValue) { it.lowDetailLODThreshold }

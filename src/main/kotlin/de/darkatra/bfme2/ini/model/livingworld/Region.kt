@@ -8,6 +8,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageNestedAttribute
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -25,7 +26,7 @@ data class Region(
     @SageIniName("RegionPortrait") val regionPortrait: Opaque? = null,
     @SageIniName("ConnectsTo") val connectsTo: List<Opaque> = emptyList(),
     @SageIniName("GarrisonArmySpot") val garrisonArmySpot: Coords? = null,
-    @SageIniName("CenterPoint") val centerPoint: Coords? = null,
+    @SageIniName("CenterPoint") val centerPoint: Coord2D? = null,
     @SageIniName("CustomCenterPoint") val customCenterPoint: Boolean = false,
     @SageIniName("CPLimit") val cPLimit: Int = 0,
     @SageIniName("AllyCPLimit") val allyCPLimit: Int = 0,
@@ -60,7 +61,7 @@ data class Region(
             property("RegionPortrait", Opaque.type) { it.regionPortrait }
             property("ConnectsTo", ListValue(Opaque.type)) { it.connectsTo }
             property("GarrisonArmySpot", Coords.type) { it.garrisonArmySpot }
-            property("CenterPoint", Coords.type) { it.centerPoint }
+            property("CenterPoint", Coord2D.type) { it.centerPoint }
             property("CustomCenterPoint", BooleanValue) { it.customCenterPoint }
             property("CPLimit", IntValue) { it.cPLimit }
             property("AllyCPLimit", IntValue) { it.allyCPLimit }

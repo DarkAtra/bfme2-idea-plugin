@@ -9,6 +9,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.MapValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.`object`.Upgrade
 import de.darkatra.bfme2.ini.model.`object`.UpgradeTrigger
 import de.darkatra.bfme2.ini.model.value.Coords
@@ -29,7 +30,7 @@ data class DynamicPortalBehaviour(
     @SageIniName("Permanent") override val permanent: Boolean = false,
     @SageIniName("NumberOfBones") val numberOfBones: Int = 0,
     @SageIniName("GenerateNow") val generateNow: Boolean = false,
-    @SageIniName("AboveWall") val aboveWall: Int = 0,
+    @SageIniName("AboveWall") val aboveWall: UInt = 0u,
     @SageIniName("TopAttackPos") val topAttackPos: Coords? = null,
     @SageIniName("TopAttackRadius") val topAttackRadius: Double = 0.0,
     @SageIniName("AllowEnemies") val allowEnemies: Boolean = false,
@@ -47,7 +48,7 @@ data class DynamicPortalBehaviour(
         properties = {
             property("NumberOfBones", IntValue) { it.numberOfBones }
             property("GenerateNow", BooleanValue) { it.generateNow }
-            property("AboveWall", IntValue) { it.aboveWall }
+            property("AboveWall", UnsignedIntValue) { it.aboveWall }
             property("TopAttackPos", Coords.type) { it.topAttackPos }
             property("TopAttackRadius", FloatValue) { it.topAttackRadius }
             property("AllowEnemies", BooleanValue) { it.allowEnemies }

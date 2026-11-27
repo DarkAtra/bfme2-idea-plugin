@@ -8,6 +8,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.MapValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.`object`.ChildObject
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectCreationList
@@ -36,7 +37,7 @@ data class ObjectCreationUpgrade(
     @SageIniName("Offset") val offset: Coords? = null,
     @SageIniName("Angle") val angle: Int = 0,
     @SageIniName("DestroyWhenSold") val destroyWhenSold: Boolean = false,
-    @SageIniName("FadeInTime") val fadeInTime: Int = 0,
+    @SageIniName("FadeInTime") val fadeInTime: UInt = 0u,
     @SageIniName("UseBuildingProduction") val useBuildingProduction: Boolean = false,
     @SageIniName("DeathAnimAndDuration") val deathAnimAndDuration: Map<String, String> = emptyMap(),
 ) : UpgradeBehavior() {
@@ -53,7 +54,7 @@ data class ObjectCreationUpgrade(
             property("Offset", Coords.type) { it.offset }
             property("Angle", IntValue) { it.angle }
             property("DestroyWhenSold", BooleanValue) { it.destroyWhenSold }
-            property("FadeInTime", IntValue) { it.fadeInTime }
+            property("FadeInTime", UnsignedIntValue) { it.fadeInTime }
             property("UseBuildingProduction", BooleanValue) { it.useBuildingProduction }
             property("DeathAnimAndDuration", MapValue(StringValue, StringValue)) { it.deathAnimAndDuration }
         },

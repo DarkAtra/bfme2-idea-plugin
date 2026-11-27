@@ -14,7 +14,9 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.value.ContactPoint
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.EditorSorting
 import de.darkatra.bfme2.ini.model.value.FakeToken
@@ -68,7 +70,7 @@ open class Object(
             property("PlacementViewAngle", IntValue) { it.section1.placementViewAngle }
             property("TransportSlotCount", IntValue) { it.section1.transportSlotCount }
             property("BountyValue", IntValue) { it.section1.bountyValue }
-            property("CampnessValue", IntValue) { it.section1.campnessValue }
+            property("CampnessValue", UnsignedIntValue) { it.section1.campnessValue }
             property("CrushableLevel", IntValue) { it.section1.crushableLevel }
             property("CrusherLevel", IntValue) { it.section1.crusherLevel }
             property("ShroudClearingRange", IntValue) { it.section1.shroudClearingRange }
@@ -77,7 +79,7 @@ open class Object(
             property("EmotionRange", IntValue) { it.section1.emotionRange }
             property("InstanceScaleFuzziness", FloatValue) { it.section1.instanceScaleFuzziness }
             property("GeometryUsedForHealthBox", BooleanValue) { it.section1.geometryUsedForHealthBox }
-            property("GeometryRotationAnchorOffset", ListValue(Coords.type)) { it.section1.geometryRotationAnchorOffset }
+            property("GeometryRotationAnchorOffset", ListValue(Coord2D.type)) { it.section1.geometryRotationAnchorOffset }
             property("GeometryContactPoint", ListValue(ContactPoint.type)) { it.section1.geometryContactPoint }
             property("AttackContactPoint", ListValue(ContactPoint.type)) { it.section1.attackContactPoint }
             property("Shadow", ObjectShadowType.type) { it.section1.shadow }
@@ -88,9 +90,9 @@ open class Object(
             property("ShadowMaxHeight", FloatValue) { it.section1.shadowMaxHeight }
             property("ShadowSunAngle", FloatValue) { it.section1.shadowSunAngle }
             property("ShadowOverrideLODVisibility", BooleanValue) { it.section1.shadowOverrideLODVisibility }
-            property("ShadowOpacityStart", IntValue) { it.section1.shadowOpacityStart }
-            property("ShadowOpacityPeak", IntValue) { it.section1.shadowOpacityPeak }
-            property("ShadowOpacityEnd", IntValue) { it.section1.shadowOpacityEnd }
+            property("ShadowOpacityStart", UnsignedIntValue) { it.section1.shadowOpacityStart }
+            property("ShadowOpacityPeak", UnsignedIntValue) { it.section1.shadowOpacityPeak }
+            property("ShadowOpacityEnd", UnsignedIntValue) { it.section1.shadowOpacityEnd }
             property("ShadowOpacityFadeInTime", IntValue) { it.section1.shadowOpacityFadeInTime }
             property("ShadowOpacityFadeOutTime", IntValue) { it.section1.shadowOpacityFadeOutTime }
             property("VisionSide", FloatValue) { it.section1.visionSide }
@@ -235,8 +237,8 @@ open class Object(
             property("FadeTypeForShowing", Untyped.type) { it.section2.fadeTypeForShowing }
             property("FadeTypeForHiding", Untyped.type) { it.section2.fadeTypeForHiding }
             property("FadeHoldPercent", Opaque.type) { it.section2.fadeHoldPercent }
-            property("FadeInTime", IntValue) { it.section2.fadeInTime }
-            property("FadeOutTime", IntValue) { it.section2.fadeOutTime }
+            property("FadeInTime", UnsignedIntValue) { it.section2.fadeInTime }
+            property("FadeOutTime", UnsignedIntValue) { it.section2.fadeOutTime }
             property("CrushWeapon", ReferenceValue<Weapon> { listOf(Weapon) }) { it.section2.crushWeapon }
             property("CrushRevengeWeapon", ReferenceValue<Weapon> { listOf(Weapon) }) { it.section2.crushRevengeWeapon }
             property("UseCrushAttack", BooleanValue) { it.section2.useCrushAttack }

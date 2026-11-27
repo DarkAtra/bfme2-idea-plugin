@@ -31,7 +31,7 @@ data class WeaponSetSpecialAbilityUpdate(
     @SageIniName("DisableFXParticleSystem") override val disableFXParticleSystem: SageReference<SageParticleSystem>? = null,
     @SageIniName("SpecialObject") override val specialObject: SageReference<Object>? = null,
     @SageIniName("SpecialObjectAttachToBone") override val specialObjectAttachToBone: Opaque? = null,
-    @SageIniName("MaxSpecialObjects") override val maxSpecialObjects: Int = 0,
+    @SageIniName("MaxSpecialObjects") override val maxSpecialObjects: UInt = 0u,
     @SageIniName("SpecialObjectsPersistWhenOwnerDies") override val specialObjectsPersistWhenOwnerDies: Boolean = false,
     @SageIniName("AlwaysValidateSpecialObjects") override val alwaysValidateSpecialObjects: Boolean = false,
     @SageIniName("SpecialObjectsPersistent") override val specialObjectsPersistent: Boolean = false,

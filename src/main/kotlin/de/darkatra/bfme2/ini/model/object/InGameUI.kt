@@ -11,8 +11,10 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.ui.RadiusCursorTemplate
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2D
+import de.darkatra.bfme2.ini.model.value.Coord2DInt
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.Rgba
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -23,13 +25,13 @@ data class InGameUI(
     @SageIniName("MaxSelectionSize") val maxSelectionSize: Int = 0,
     @SageIniName("MessageColor1") val messageColor1: Rgba? = null,
     @SageIniName("MessageColor2") val messageColor2: Rgba? = null,
-    @SageIniName("MessagePosition") val messagePosition: Coords? = null,
-    @SageIniName("MessagePositionLW") val messagePositionLW: Coords? = null,
+    @SageIniName("MessagePosition") val messagePosition: Coord2DInt? = null,
+    @SageIniName("MessagePositionLW") val messagePositionLW: Coord2DInt? = null,
     @SageIniName("MessageFont") val messageFont: Untyped? = null,
     @SageIniName("MessagePointSize") val messagePointSize: Int = 0,
     @SageIniName("MessageDelayMS") val messageDelayMS: Int = 0,
     @SageIniName("MilitaryCaptionColor") val militaryCaptionColor: Rgba? = null,
-    @SageIniName("MilitaryCaptionPosition") val militaryCaptionPosition: Coords? = null,
+    @SageIniName("MilitaryCaptionPosition") val militaryCaptionPosition: Coord2D? = null,
     @SageIniName("MilitaryCaptionCentered") val militaryCaptionCentered: Boolean = false,
     @SageIniName("MilitaryCaptionTitleFont") val militaryCaptionTitleFont: Untyped? = null,
     @SageIniName("MilitaryCaptionTitlePointSize") val militaryCaptionTitlePointSize: Int = 0,
@@ -42,7 +44,7 @@ data class InGameUI(
     @SageIniName("DrawableCaptionPointSize") val drawableCaptionPointSize: Int = 0,
     @SageIniName("DrawableCaptionBold") val drawableCaptionBold: Boolean = false,
     @SageIniName("DrawableCaptionColor") val drawableCaptionColor: Rgba? = null,
-    @SageIniName("SuperweaponCountdownPosition") val superweaponCountdownPosition: Coords? = null,
+    @SageIniName("SuperweaponCountdownPosition") val superweaponCountdownPosition: Coord2D? = null,
     @SageIniName("SuperweaponCountdownFlashDuration") val superweaponCountdownFlashDuration: Int = 0,
     @SageIniName("SuperweaponCountdownFlashColor") val superweaponCountdownFlashColor: Rgba? = null,
     @SageIniName("SuperweaponCountdownNormalFont") val superweaponCountdownNormalFont: Untyped? = null,
@@ -51,7 +53,7 @@ data class InGameUI(
     @SageIniName("SuperweaponCountdownReadyFont") val superweaponCountdownReadyFont: Untyped? = null,
     @SageIniName("SuperweaponCountdownReadyPointSize") val superweaponCountdownReadyPointSize: Int = 0,
     @SageIniName("SuperweaponCountdownReadyBold") val superweaponCountdownReadyBold: Boolean = false,
-    @SageIniName("NamedTimerCountdownPosition") val namedTimerCountdownPosition: Coords? = null,
+    @SageIniName("NamedTimerCountdownPosition") val namedTimerCountdownPosition: Coord2D? = null,
     @SageIniName("NamedTimerCountdownFlashDuration") val namedTimerCountdownFlashDuration: Int = 0,
     @SageIniName("NamedTimerCountdownFlashColor") val namedTimerCountdownFlashColor: Rgba? = null,
     @SageIniName("NamedTimerCountdownNormalFont") val namedTimerCountdownNormalFont: Untyped? = null,
@@ -84,7 +86,7 @@ data class InGameUI(
     @SageIniName("DrawRMBScrollAnchor") val drawRMBScrollAnchor: Boolean = false,
     @SageIniName("MoveRMBScrollAnchor") val moveRMBScrollAnchor: Boolean = false,
     @SageIniName("UnitHelpTextDelay") val unitHelpTextDelay: Double = 0.0,
-    @SageIniName("SelectNearestBuilderCycleTimeOut") val selectNearestBuilderCycleTimeOut: Int = 0,
+    @SageIniName("SelectNearestBuilderCycleTimeOut") val selectNearestBuilderCycleTimeOut: UInt = 0u,
     @SageIniName("TerrainResourceClaimDecal") val terrainResourceClaimDecal: SageReference<MappedImage>? = null,
     @SageIniName("PlaceTerrainResourceClaimantDecal") val placeTerrainResourceClaimantDecal: SageReference<MappedImage>? = null,
     @SageIniName("PlaceTerrainResourceClaimantFont") val placeTerrainResourceClaimantFont: Untyped? = null,
@@ -169,13 +171,13 @@ data class InGameUI(
             property("MaxSelectionSize", IntValue) { it.maxSelectionSize }
             property("MessageColor1", Rgba.type) { it.messageColor1 }
             property("MessageColor2", Rgba.type) { it.messageColor2 }
-            property("MessagePosition", Coords.type) { it.messagePosition }
-            property("MessagePositionLW", Coords.type) { it.messagePositionLW }
+            property("MessagePosition", Coord2DInt.type) { it.messagePosition }
+            property("MessagePositionLW", Coord2DInt.type) { it.messagePositionLW }
             property("MessageFont", Untyped.type) { it.messageFont }
             property("MessagePointSize", IntValue) { it.messagePointSize }
             property("MessageDelayMS", IntValue) { it.messageDelayMS }
             property("MilitaryCaptionColor", Rgba.type) { it.militaryCaptionColor }
-            property("MilitaryCaptionPosition", Coords.type) { it.militaryCaptionPosition }
+            property("MilitaryCaptionPosition", Coord2D.type) { it.militaryCaptionPosition }
             property("MilitaryCaptionCentered", BooleanValue) { it.militaryCaptionCentered }
             property("MilitaryCaptionTitleFont", Untyped.type) { it.militaryCaptionTitleFont }
             property("MilitaryCaptionTitlePointSize", IntValue) { it.militaryCaptionTitlePointSize }
@@ -188,7 +190,7 @@ data class InGameUI(
             property("DrawableCaptionPointSize", IntValue) { it.drawableCaptionPointSize }
             property("DrawableCaptionBold", BooleanValue) { it.drawableCaptionBold }
             property("DrawableCaptionColor", Rgba.type) { it.drawableCaptionColor }
-            property("SuperweaponCountdownPosition", Coords.type) { it.superweaponCountdownPosition }
+            property("SuperweaponCountdownPosition", Coord2D.type) { it.superweaponCountdownPosition }
             property("SuperweaponCountdownFlashDuration", IntValue) { it.superweaponCountdownFlashDuration }
             property("SuperweaponCountdownFlashColor", Rgba.type) { it.superweaponCountdownFlashColor }
             property("SuperweaponCountdownNormalFont", Untyped.type) { it.superweaponCountdownNormalFont }
@@ -197,7 +199,7 @@ data class InGameUI(
             property("SuperweaponCountdownReadyFont", Untyped.type) { it.superweaponCountdownReadyFont }
             property("SuperweaponCountdownReadyPointSize", IntValue) { it.superweaponCountdownReadyPointSize }
             property("SuperweaponCountdownReadyBold", BooleanValue) { it.superweaponCountdownReadyBold }
-            property("NamedTimerCountdownPosition", Coords.type) { it.namedTimerCountdownPosition }
+            property("NamedTimerCountdownPosition", Coord2D.type) { it.namedTimerCountdownPosition }
             property("NamedTimerCountdownFlashDuration", IntValue) { it.namedTimerCountdownFlashDuration }
             property("NamedTimerCountdownFlashColor", Rgba.type) { it.namedTimerCountdownFlashColor }
             property("NamedTimerCountdownNormalFont", Untyped.type) { it.namedTimerCountdownNormalFont }
@@ -230,7 +232,7 @@ data class InGameUI(
             property("DrawRMBScrollAnchor", BooleanValue) { it.drawRMBScrollAnchor }
             property("MoveRMBScrollAnchor", BooleanValue) { it.moveRMBScrollAnchor }
             property("UnitHelpTextDelay", FloatValue) { it.unitHelpTextDelay }
-            property("SelectNearestBuilderCycleTimeOut", IntValue) { it.selectNearestBuilderCycleTimeOut }
+            property("SelectNearestBuilderCycleTimeOut", UnsignedIntValue) { it.selectNearestBuilderCycleTimeOut }
             property("TerrainResourceClaimDecal", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.terrainResourceClaimDecal }
             property("PlaceTerrainResourceClaimantDecal", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.placeTerrainResourceClaimantDecal }
             property("PlaceTerrainResourceClaimantFont", Untyped.type) { it.placeTerrainResourceClaimantFont }

@@ -3,7 +3,7 @@ package de.darkatra.bfme2.ini.model.behaviour
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.draw.Animation
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.Science
@@ -25,7 +25,7 @@ data class MoneyCrateCollide(
     @SageIniName("ExecuteAnimationTime") override val executeAnimationTime: Double = 0.0,
     @SageIniName("ExecuteAnimationZRise") override val executeAnimationZRise: Double = 0.0,
     @SageIniName("ExecuteAnimationFades") override val executeAnimationFades: Boolean = false,
-    @SageIniName("MoneyProvided") val moneyProvided: Int = 0,
+    @SageIniName("MoneyProvided") val moneyProvided: UInt = 0u,
     @SageIniName("UpgradedBoost") val upgradedBoost: Untyped? = null,
 ) : CrateCollide() {
 
@@ -33,7 +33,7 @@ data class MoneyCrateCollide(
         name = "MoneyCrateCollide",
         parent = CrateCollide,
         properties = {
-            property("MoneyProvided", IntValue) { it.moneyProvided }
+            property("MoneyProvided", UnsignedIntValue) { it.moneyProvided }
             property("UpgradedBoost", Untyped.type) { it.upgradedBoost }
         },
     )

@@ -9,7 +9,7 @@ import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.Weapon
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.DamageCreation
 import de.darkatra.bfme2.ini.model.value.SageReference
 
@@ -24,7 +24,7 @@ data class PorcupineFormationBodyModule(
     @SageIniName("SubdualDamageHealRate") override val subdualDamageHealRate: Int = 0,
     @SageIniName("SubdualDamageHealAmount") override val subdualDamageHealAmount: Double = 0.0,
     @SageIniName("GrabObject") override val grabObject: SageReference<Object>? = null,
-    @SageIniName("GrabOffset") override val grabOffset: Coords? = null,
+    @SageIniName("GrabOffset") override val grabOffset: Coord2D? = null,
     @SageIniName("DamageCreationList") override val damageCreationList: List<DamageCreation> = emptyList(),
     @SageIniName("GrabFX") override val grabFX: SageReference<FXList>? = null,
     @SageIniName("GrabDamage") override val grabDamage: Double = 0.0,

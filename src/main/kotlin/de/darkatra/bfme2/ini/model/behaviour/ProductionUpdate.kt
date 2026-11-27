@@ -9,12 +9,13 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.ChildObject
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
 import de.darkatra.bfme2.ini.model.`object`.ProductionModifier
-import de.darkatra.bfme2.ini.model.value.Opaque
+import de.darkatra.bfme2.ini.model.value.ObjectCount
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
@@ -25,8 +26,8 @@ data class ProductionUpdate(
     @SageIniName("DoorWaitOpenTime") val doorWaitOpenTime: Int = 0,
     @SageIniName("DoorCloseTime") val doorCloseTime: Int = 0,
     @SageIniName("ConstructionCompleteDuration") val constructionCompleteDuration: Int = 0,
-    @SageIniName("MaxQueueEntries") val maxQueueEntries: Int = 0,
-    @SageIniName("QuantityModifier") val quantityModifier: Opaque? = null,
+    @SageIniName("MaxQueueEntries") val maxQueueEntries: UInt = 0u,
+    @SageIniName("QuantityModifier") val quantityModifier: List<ObjectCount> = emptyList(),
     @SageIniName("DisabledTypesToProcess") val disabledTypesToProcess: List<Untyped> = emptyList(),
     @SageIniName("VeteranUnitsFromVeteranFactory") val veteranUnitsFromVeteranFactory: Boolean = false,
     @SageIniName("SetBonusModelConditionOnSpeedBonus") val setBonusModelConditionOnSpeedBonus: Boolean = false,
@@ -48,8 +49,8 @@ data class ProductionUpdate(
             property("DoorWaitOpenTime", IntValue) { it.doorWaitOpenTime }
             property("DoorCloseTime", IntValue) { it.doorCloseTime }
             property("ConstructionCompleteDuration", IntValue) { it.constructionCompleteDuration }
-            property("MaxQueueEntries", IntValue) { it.maxQueueEntries }
-            property("QuantityModifier", Opaque.type) { it.quantityModifier }
+            property("MaxQueueEntries", UnsignedIntValue) { it.maxQueueEntries }
+            property("QuantityModifier", ListValue(ObjectCount.type)) { it.quantityModifier }
             property("DisabledTypesToProcess", ListValue(Untyped.type)) { it.disabledTypesToProcess }
             property("VeteranUnitsFromVeteranFactory", BooleanValue) { it.veteranUnitsFromVeteranFactory }
             property("SetBonusModelConditionOnSpeedBonus", BooleanValue) { it.setBonusModelConditionOnSpeedBonus }

@@ -8,7 +8,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BlockValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.ui.ImagePart
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2DInt
 import de.darkatra.bfme2.ini.model.value.FakeToken
 import de.darkatra.bfme2.ini.model.value.Rgba
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -29,14 +29,14 @@ data class ControlBarScheme(
     @SageIniName("BeaconButtonEnable") val beaconButtonEnable: SageReference<MappedImage>? = null,
     @SageIniName("BeaconButtonHightlited") val beaconButtonHightlited: SageReference<MappedImage>? = null,
     @SageIniName("BeaconButtonPushed") val beaconButtonPushed: SageReference<MappedImage>? = null,
-    @SageIniName("BeaconLR") val beaconLR: Coords? = null,
-    @SageIniName("BeaconUL") val beaconUL: Coords? = null,
+    @SageIniName("BeaconLR") val beaconLR: Coord2DInt? = null,
+    @SageIniName("BeaconUL") val beaconUL: Coord2DInt? = null,
     @SageIniName("BuddyButtonDisabled") val buddyButtonDisabled: SageReference<MappedImage>? = null,
     @SageIniName("BuddyButtonEnable") val buddyButtonEnable: SageReference<MappedImage>? = null,
     @SageIniName("BuddyButtonHightlited") val buddyButtonHightlited: SageReference<MappedImage>? = null,
     @SageIniName("BuddyButtonPushed") val buddyButtonPushed: SageReference<MappedImage>? = null,
-    @SageIniName("ChatLR") val chatLR: Coords? = null,
-    @SageIniName("ChatUL") val chatUL: Coords? = null,
+    @SageIniName("ChatLR") val chatLR: Coord2DInt? = null,
+    @SageIniName("ChatUL") val chatUL: Coord2DInt? = null,
     @SageIniName("CommandMarkerImage") val commandMarkerImage: SageReference<MappedImage>? = null,
     @SageIniName("ExpBarForegroundImage") val expBarForegroundImage: SageReference<MappedImage>? = null,
     @SageIniName("GenArrow") val genArrow: SageReference<MappedImage>? = null,
@@ -46,8 +46,8 @@ data class ControlBarScheme(
     @SageIniName("GeneralButtonEnable") val generalButtonEnable: SageReference<MappedImage>? = null,
     @SageIniName("GeneralButtonHightlited") val generalButtonHightlited: SageReference<MappedImage>? = null,
     @SageIniName("GeneralButtonPushed") val generalButtonPushed: SageReference<MappedImage>? = null,
-    @SageIniName("GeneralLR") val generalLR: Coords? = null,
-    @SageIniName("GeneralUL") val generalUL: Coords? = null,
+    @SageIniName("GeneralLR") val generalLR: Coord2DInt? = null,
+    @SageIniName("GeneralUL") val generalUL: Coord2DInt? = null,
     @SageIniName("IdleWorkerButtonDisabled") val idleWorkerButtonDisabled: SageReference<MappedImage>? = null,
     @SageIniName("IdleWorkerButtonEnable") val idleWorkerButtonEnable: SageReference<MappedImage>? = null,
     @SageIniName("IdleWorkerButtonHightlited") val idleWorkerButtonHightlited: SageReference<MappedImage>? = null,
@@ -55,18 +55,18 @@ data class ControlBarScheme(
     @SageIniName("MinMaxButtonEnable") val minMaxButtonEnable: SageReference<MappedImage>? = null,
     @SageIniName("MinMaxButtonHightlited") val minMaxButtonHightlited: SageReference<MappedImage>? = null,
     @SageIniName("MinMaxButtonPushed") val minMaxButtonPushed: SageReference<MappedImage>? = null,
-    @SageIniName("MinMaxLR") val minMaxLR: Coords? = null,
-    @SageIniName("MinMaxUL") val minMaxUL: Coords? = null,
-    @SageIniName("MoneyLR") val moneyLR: Coords? = null,
-    @SageIniName("MoneyUL") val moneyUL: Coords? = null,
+    @SageIniName("MinMaxLR") val minMaxLR: Coord2DInt? = null,
+    @SageIniName("MinMaxUL") val minMaxUL: Coord2DInt? = null,
+    @SageIniName("MoneyLR") val moneyLR: Coord2DInt? = null,
+    @SageIniName("MoneyUL") val moneyUL: Coord2DInt? = null,
     @SageIniName("OptionsButtonDisabled") val optionsButtonDisabled: SageReference<MappedImage>? = null,
     @SageIniName("OptionsButtonEnable") val optionsButtonEnable: SageReference<MappedImage>? = null,
     @SageIniName("OptionsButtonHightlited") val optionsButtonHightlited: SageReference<MappedImage>? = null,
     @SageIniName("OptionsButtonPushed") val optionsButtonPushed: SageReference<MappedImage>? = null,
-    @SageIniName("OptionsLR") val optionsLR: Coords? = null,
-    @SageIniName("OptionsUL") val optionsUL: Coords? = null,
-    @SageIniName("PowerBarLR") val powerBarLR: Coords? = null,
-    @SageIniName("PowerBarUL") val powerBarUL: Coords? = null,
+    @SageIniName("OptionsLR") val optionsLR: Coord2DInt? = null,
+    @SageIniName("OptionsUL") val optionsUL: Coord2DInt? = null,
+    @SageIniName("PowerBarLR") val powerBarLR: Coord2DInt? = null,
+    @SageIniName("PowerBarUL") val powerBarUL: Coord2DInt? = null,
     @SageIniName("PowerPurchaseImage") val powerPurchaseImage: SageReference<MappedImage>? = null,
     @SageIniName("QueueButtonImage") val queueButtonImage: SageReference<MappedImage>? = null,
     @SageIniName("RightHUDImage") val rightHUDImage: SageReference<MappedImage>? = null,
@@ -79,10 +79,10 @@ data class ControlBarScheme(
     @SageIniName("UAttackButtonEnable") val uAttackButtonEnable: SageReference<MappedImage>? = null,
     @SageIniName("UAttackButtonHightlited") val uAttackButtonHightlited: SageReference<MappedImage>? = null,
     @SageIniName("UAttackButtonPushed") val uAttackButtonPushed: SageReference<MappedImage>? = null,
-    @SageIniName("UAttackLR") val uAttackLR: Coords? = null,
-    @SageIniName("UAttackUL") val uAttackUL: Coords? = null,
-    @SageIniName("WorkerLR") val workerLR: Coords? = null,
-    @SageIniName("WorkerUL") val workerUL: Coords? = null,
+    @SageIniName("UAttackLR") val uAttackLR: Coord2DInt? = null,
+    @SageIniName("UAttackUL") val uAttackUL: Coord2DInt? = null,
+    @SageIniName("WorkerLR") val workerLR: Coord2DInt? = null,
+    @SageIniName("WorkerUL") val workerUL: Coord2DInt? = null,
     @SageIniName("ImagePart") val imagePart: List<ImagePart> = emptyList(),
 ) : SageIniObject {
 
@@ -103,14 +103,14 @@ data class ControlBarScheme(
             property("BeaconButtonEnable", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.beaconButtonEnable }
             property("BeaconButtonHightlited", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.beaconButtonHightlited }
             property("BeaconButtonPushed", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.beaconButtonPushed }
-            property("BeaconLR", Coords.type) { it.beaconLR }
-            property("BeaconUL", Coords.type) { it.beaconUL }
+            property("BeaconLR", Coord2DInt.type) { it.beaconLR }
+            property("BeaconUL", Coord2DInt.type) { it.beaconUL }
             property("BuddyButtonDisabled", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.buddyButtonDisabled }
             property("BuddyButtonEnable", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.buddyButtonEnable }
             property("BuddyButtonHightlited", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.buddyButtonHightlited }
             property("BuddyButtonPushed", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.buddyButtonPushed }
-            property("ChatLR", Coords.type) { it.chatLR }
-            property("ChatUL", Coords.type) { it.chatUL }
+            property("ChatLR", Coord2DInt.type) { it.chatLR }
+            property("ChatUL", Coord2DInt.type) { it.chatUL }
             property("CommandMarkerImage", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.commandMarkerImage }
             property("ExpBarForegroundImage", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.expBarForegroundImage }
             property("GenArrow", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.genArrow }
@@ -120,8 +120,8 @@ data class ControlBarScheme(
             property("GeneralButtonEnable", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.generalButtonEnable }
             property("GeneralButtonHightlited", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.generalButtonHightlited }
             property("GeneralButtonPushed", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.generalButtonPushed }
-            property("GeneralLR", Coords.type) { it.generalLR }
-            property("GeneralUL", Coords.type) { it.generalUL }
+            property("GeneralLR", Coord2DInt.type) { it.generalLR }
+            property("GeneralUL", Coord2DInt.type) { it.generalUL }
             property("IdleWorkerButtonDisabled", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.idleWorkerButtonDisabled }
             property("IdleWorkerButtonEnable", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.idleWorkerButtonEnable }
             property("IdleWorkerButtonHightlited", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.idleWorkerButtonHightlited }
@@ -129,18 +129,18 @@ data class ControlBarScheme(
             property("MinMaxButtonEnable", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.minMaxButtonEnable }
             property("MinMaxButtonHightlited", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.minMaxButtonHightlited }
             property("MinMaxButtonPushed", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.minMaxButtonPushed }
-            property("MinMaxLR", Coords.type) { it.minMaxLR }
-            property("MinMaxUL", Coords.type) { it.minMaxUL }
-            property("MoneyLR", Coords.type) { it.moneyLR }
-            property("MoneyUL", Coords.type) { it.moneyUL }
+            property("MinMaxLR", Coord2DInt.type) { it.minMaxLR }
+            property("MinMaxUL", Coord2DInt.type) { it.minMaxUL }
+            property("MoneyLR", Coord2DInt.type) { it.moneyLR }
+            property("MoneyUL", Coord2DInt.type) { it.moneyUL }
             property("OptionsButtonDisabled", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.optionsButtonDisabled }
             property("OptionsButtonEnable", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.optionsButtonEnable }
             property("OptionsButtonHightlited", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.optionsButtonHightlited }
             property("OptionsButtonPushed", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.optionsButtonPushed }
-            property("OptionsLR", Coords.type) { it.optionsLR }
-            property("OptionsUL", Coords.type) { it.optionsUL }
-            property("PowerBarLR", Coords.type) { it.powerBarLR }
-            property("PowerBarUL", Coords.type) { it.powerBarUL }
+            property("OptionsLR", Coord2DInt.type) { it.optionsLR }
+            property("OptionsUL", Coord2DInt.type) { it.optionsUL }
+            property("PowerBarLR", Coord2DInt.type) { it.powerBarLR }
+            property("PowerBarUL", Coord2DInt.type) { it.powerBarUL }
             property("PowerPurchaseImage", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.powerPurchaseImage }
             property("QueueButtonImage", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.queueButtonImage }
             property("RightHUDImage", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.rightHUDImage }
@@ -153,10 +153,10 @@ data class ControlBarScheme(
             property("UAttackButtonEnable", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.uAttackButtonEnable }
             property("UAttackButtonHightlited", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.uAttackButtonHightlited }
             property("UAttackButtonPushed", ReferenceValue<MappedImage> { listOf(MappedImage) }) { it.uAttackButtonPushed }
-            property("UAttackLR", Coords.type) { it.uAttackLR }
-            property("UAttackUL", Coords.type) { it.uAttackUL }
-            property("WorkerLR", Coords.type) { it.workerLR }
-            property("WorkerUL", Coords.type) { it.workerUL }
+            property("UAttackLR", Coord2DInt.type) { it.uAttackLR }
+            property("UAttackUL", Coord2DInt.type) { it.uAttackUL }
+            property("WorkerLR", Coord2DInt.type) { it.workerLR }
+            property("WorkerUL", Coord2DInt.type) { it.workerUL }
             property("ImagePart", ListValue(BlockValue<ImagePart> { listOf(ImagePart) })) { it.imagePart }
         },
     )

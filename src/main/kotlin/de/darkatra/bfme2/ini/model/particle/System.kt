@@ -8,6 +8,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.common.SageNestedAttribute
 import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
@@ -24,8 +25,8 @@ data class System(
     @SageIniName("Shader") val shader: Untyped? = null,
     @SageIniName("Type") val type: ParticleSystemType? = null,
     @SageIniName("ParticleName") val particleName: TextureFile? = null,
-    @SageIniName("SystemLifetime") val systemLifetime: Int = 0,
-    @SageIniName("SortLevel") val sortLevel: Int = 0,
+    @SageIniName("SystemLifetime") val systemLifetime: UInt = 0u,
+    @SageIniName("SortLevel") val sortLevel: UInt = 0u,
     @SageIniName("IsOneShot") val isOneShot: Boolean = false,
     @SageIniName("IsGroundAligned") val isGroundAligned: Boolean = false,
     @SageIniName("Lifetime") val lifetime: List<Int> = emptyList(),
@@ -52,8 +53,8 @@ data class System(
             property("Shader", Untyped.type) { it.shader }
             property("Type", ParticleSystemType.type) { it.type }
             property("ParticleName", TextureFile.type) { it.particleName }
-            property("SystemLifetime", IntValue) { it.systemLifetime }
-            property("SortLevel", IntValue) { it.sortLevel }
+            property("SystemLifetime", UnsignedIntValue) { it.systemLifetime }
+            property("SortLevel", UnsignedIntValue) { it.sortLevel }
             property("IsOneShot", BooleanValue) { it.isOneShot }
             property("IsGroundAligned", BooleanValue) { it.isGroundAligned }
             property("Lifetime", ListValue(IntValue)) { it.lifetime }

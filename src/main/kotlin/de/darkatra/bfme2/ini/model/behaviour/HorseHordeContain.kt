@@ -8,7 +8,7 @@ import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.value.BannerCarrierPosition
 import de.darkatra.bfme2.ini.model.value.ComboHorde
 import de.darkatra.bfme2.ini.model.value.ContainCondition
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.LocomotorSetType
 import de.darkatra.bfme2.ini.model.value.ObjectCount
 import de.darkatra.bfme2.ini.model.value.ObjectStatus
@@ -54,7 +54,7 @@ data class HorseHordeContain(
     @SageIniName("FrontAngle") override val frontAngle: Double = 0.0,
     @SageIniName("FlankedDelay") override val flankedDelay: Int = 0,
     @SageIniName("IsPorcupineFormation") override val isPorcupineFormation: Boolean = false,
-    @SageIniName("MinimumHordeSize") override val minimumHordeSize: Int = 0,
+    @SageIniName("MinimumHordeSize") override val minimumHordeSize: UInt = 0u,
     @SageIniName("VisionRearOverride") override val visionRearOverride: Double = 0.0,
     @SageIniName("VisionSideOverride") override val visionSideOverride: Double = 0.0,
     @SageIniName("BannerCarrierMinLevel") override val bannerCarrierMinLevel: Int = 0,
@@ -62,7 +62,7 @@ data class HorseHordeContain(
     @SageIniName("BannerCarrierHordeDeathType") override val bannerCarrierHordeDeathType: SageFilter? = null,
     @SageIniName("LivingWorldOverloadTemplate") override val livingWorldOverloadTemplate: SageReference<Object>? = null,
     @SageIniName("ConditionForEntry") override val conditionForEntry: ContainCondition? = null,
-    @SageIniName("RandomOffset") override val randomOffset: Coords? = null,
+    @SageIniName("RandomOffset") override val randomOffset: Coord2D? = null,
     @SageIniName("MeleeBehavior") override val meleeBehavior: List<MeleeBehavior> = emptyList(),
 ) : HordeContain() {
 

@@ -7,6 +7,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.Upgrade
 import de.darkatra.bfme2.ini.model.`object`.UpgradeTrigger
@@ -40,7 +41,7 @@ data class AutoHealBehavior(
     @SageIniName("HealOnlyOthers") val healOnlyOthers: Boolean = false,
     @SageIniName("NonStackable") val nonStackable: Boolean = false,
     @SageIniName("RespawnNearbyHordeMembers") val respawnNearbyHordeMembers: Boolean = false,
-    @SageIniName("RespawnMinimumDelay") val respawnMinimumDelay: Int = 0,
+    @SageIniName("RespawnMinimumDelay") val respawnMinimumDelay: UInt = 0u,
     @SageIniName("UnitHealPulseFX") val unitHealPulseFX: SageReference<FXList>? = null,
     @SageIniName("RespawnFXList") val respawnFXList: SageReference<FXList>? = null,
 ) : UpgradeBehavior() {
@@ -65,7 +66,7 @@ data class AutoHealBehavior(
             property("HealOnlyOthers", BooleanValue) { it.healOnlyOthers }
             property("NonStackable", BooleanValue) { it.nonStackable }
             property("RespawnNearbyHordeMembers", BooleanValue) { it.respawnNearbyHordeMembers }
-            property("RespawnMinimumDelay", IntValue) { it.respawnMinimumDelay }
+            property("RespawnMinimumDelay", UnsignedIntValue) { it.respawnMinimumDelay }
             property("UnitHealPulseFX", ReferenceValue<FXList> { listOf(FXList) }) { it.unitHealPulseFX }
             property("RespawnFXList", ReferenceValue<FXList> { listOf(FXList) }) { it.respawnFXList }
         },

@@ -7,6 +7,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniObject
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.value.Rgba
 import de.darkatra.bfme2.ini.model.value.Untyped
 
@@ -29,9 +30,9 @@ data class Mouse(
     @SageIniName("AdjustTooltipAltColor") val adjustTooltipAltColor: Boolean = false,
     @SageIniName("OrthoCamera") val orthoCamera: Boolean = false,
     @SageIniName("OrthoZoom") val orthoZoom: Double = 0.0,
-    @SageIniName("DragTolerance") val dragTolerance: Int = 0,
-    @SageIniName("DragTolerance3D") val dragTolerance3D: Int = 0,
-    @SageIniName("DragToleranceMS") val dragToleranceMS: Int = 0,
+    @SageIniName("DragTolerance") val dragTolerance: UInt = 0u,
+    @SageIniName("DragTolerance3D") val dragTolerance3D: UInt = 0u,
+    @SageIniName("DragToleranceMS") val dragToleranceMS: UInt = 0u,
 ) : SageIniObject {
 
     companion object : SageIniBlockDescriptor<Mouse>(
@@ -55,9 +56,9 @@ data class Mouse(
             property("AdjustTooltipAltColor", BooleanValue) { it.adjustTooltipAltColor }
             property("OrthoCamera", BooleanValue) { it.orthoCamera }
             property("OrthoZoom", FloatValue) { it.orthoZoom }
-            property("DragTolerance", IntValue) { it.dragTolerance }
-            property("DragTolerance3D", IntValue) { it.dragTolerance3D }
-            property("DragToleranceMS", IntValue) { it.dragToleranceMS }
+            property("DragTolerance", UnsignedIntValue) { it.dragTolerance }
+            property("DragTolerance3D", UnsignedIntValue) { it.dragTolerance3D }
+            property("DragToleranceMS", UnsignedIntValue) { it.dragToleranceMS }
         },
     )
 }

@@ -8,29 +8,29 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
 import de.darkatra.bfme2.ini.model.common.SageNestedAttribute
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2D
 
 data class Structure(
     val header: SageBlockHeader = SageBlockHeader(),
-    @SageIniName("Location") val location: Coords? = null,
+    @SageIniName("Location") val location: Coord2D? = null,
     @SageIniName("Rebuilds") val rebuilds: Int = 0,
     @SageIniName("Angle") val angle: Double = 0.0,
     @SageIniName("InitiallyBuilt") val initiallyBuilt: Boolean = false,
     @SageIniName("AutomaticallyBuild") val automaticallyBuild: Boolean = false,
     @SageIniName("Name") val name: String = "",
-    @SageIniName("RallyPointOffset") val rallyPointOffset: Coords? = null,
+    @SageIniName("RallyPointOffset") val rallyPointOffset: Coord2D? = null,
 ) : SageNestedAttribute {
 
     companion object : SageIniBlockDescriptor<Structure>(
         name = "Structure",
         properties = {
-            property("Location", Coords.type) { it.location }
+            property("Location", Coord2D.type) { it.location }
             property("Rebuilds", IntValue) { it.rebuilds }
             property("Angle", FloatValue) { it.angle }
             property("InitiallyBuilt", BooleanValue) { it.initiallyBuilt }
             property("AutomaticallyBuild", BooleanValue) { it.automaticallyBuild }
             property("Name", StringValue) { it.name }
-            property("RallyPointOffset", Coords.type) { it.rallyPointOffset }
+            property("RallyPointOffset", Coord2D.type) { it.rallyPointOffset }
         },
     )
 }

@@ -9,8 +9,11 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.BodyDamageType
+import de.darkatra.bfme2.ini.model.value.Coord2D
+import de.darkatra.bfme2.ini.model.value.Coord2DInt
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.MapWeatherType
 import de.darkatra.bfme2.ini.model.value.Opaque
@@ -66,7 +69,7 @@ data class GameData(
             property("AllowedHeightVariationForBuilding", FloatValue) { it.section1.allowedHeightVariationForBuilding }
             property("AmbientStreamsOn", BooleanValue) { it.section1.ambientStreamsOn }
             property("AmmoPipScaleFactor", FloatValue) { it.section1.ammoPipScaleFactor }
-            property("AmmoPipScreenOffset", Coords.type) { it.section1.ammoPipScreenOffset }
+            property("AmmoPipScreenOffset", Coord2D.type) { it.section1.ammoPipScreenOffset }
             property("AmmoPipWorldOffset", Coords.type) { it.section1.ammoPipWorldOffset }
             property("AnimationSharingCap", IntValue) { it.section1.animationSharingCap }
             property("AnimationSharingDrasticThreshold", FloatValue) { it.section1.animationSharingDrasticThreshold }
@@ -122,7 +125,7 @@ data class GameData(
             property("CommandCenterHealAmount", FloatValue) { it.section1.commandCenterHealAmount }
             property("CommandCenterHealRange", FloatValue) { it.section1.commandCenterHealRange }
             property("ContainerPipScaleFactor", FloatValue) { it.section1.containerPipScaleFactor }
-            property("ContainerPipScreenOffset", Coords.type) { it.section1.containerPipScreenOffset }
+            property("ContainerPipScreenOffset", Coord2D.type) { it.section1.containerPipScreenOffset }
             property("ContainerPipWorldOffset", Coords.type) { it.section1.containerPipWorldOffset }
             property("DamageRadiusMinimumForSplash", FloatValue) { it.section1.damageRadiusMinimumForSplash }
             property("DebugAI", BooleanValue) { it.section1.debugAI }
@@ -135,7 +138,7 @@ data class GameData(
             property("DefaultEngagedStateTimeout", IntValue) { it.section1.defaultEngagedStateTimeout }
             property("DefaultMaxDistanceForEngaged", IntValue) { it.section1.defaultMaxDistanceForEngaged }
             property("DefaultOcclusionDelay", IntValue) { it.section1.defaultOcclusionDelay }
-            property("DefaultStartingCash", IntValue) { it.section1.defaultStartingCash }
+            property("DefaultStartingCash", UnsignedIntValue) { it.section1.defaultStartingCash }
             property("DefaultStructureRepairBuffFxList", ReferenceValue<FXList> { listOf(FXList) }) { it.section1.defaultStructureRepairBuffFxList }
             property("DefaultStructureRubbleHeight", FloatValue) { it.section1.defaultStructureRubbleHeight }
             property("DefaultUnitHealingBuffFxList", ReferenceValue<FXList> { listOf(FXList) }) { it.section1.defaultUnitHealingBuffFxList }
@@ -223,7 +226,7 @@ data class GameData(
             property("InfantryLightMorningScale", FloatValue) { it.section2.infantryLightMorningScale }
             property("InfantryLightNightScale", FloatValue) { it.section2.infantryLightNightScale }
             property("InitialMaxRingLevel", IntValue) { it.section2.initialMaxRingLevel }
-            property("InvisibilityOpacityCycleFrames", IntValue) { it.section2.invisibilityOpacityCycleFrames }
+            property("InvisibilityOpacityCycleFrames", UnsignedIntValue) { it.section2.invisibilityOpacityCycleFrames }
             property("InvisibilityOpacityMax", FloatValue) { it.section2.invisibilityOpacityMax }
             property("InvisibilityOpacityMin", FloatValue) { it.section2.invisibilityOpacityMin }
             property("KeyboardCameraRotateSpeed", FloatValue) { it.section2.keyboardCameraRotateSpeed }
@@ -236,24 +239,24 @@ data class GameData(
             property("MapName", StringValue) { it.section2.mapName }
             property("MaxCameraHeight", FloatValue) { it.section2.maxCameraHeight }
             property("MaxCastleRadius", IntValue) { it.section2.maxCastleRadius }
-            property("MaxCellsAdjustDestination", IntValue) { it.section2.maxCellsAdjustDestination }
-            property("MaxCellsAdjustHordeMeleeDestination", IntValue) { it.section2.maxCellsAdjustHordeMeleeDestination }
-            property("MaxCellsAdjustTargetDestination", IntValue) { it.section2.maxCellsAdjustTargetDestination }
-            property("MaxCellsAdjustToMeleeDestination", IntValue) { it.section2.maxCellsAdjustToMeleeDestination }
-            property("MaxCellsAdjustToNearestGroundCell", IntValue) { it.section2.maxCellsAdjustToNearestGroundCell }
-            property("MaxCellsAdjustToNearestValidCell", IntValue) { it.section2.maxCellsAdjustToNearestValidCell }
-            property("MaxCellsAdjustToPossibleDestination", IntValue) { it.section2.maxCellsAdjustToPossibleDestination }
-            property("MaxCellsFindAttackPath", IntValue) { it.section2.maxCellsFindAttackPath }
-            property("MaxCellsFindAttackPathSideways", IntValue) { it.section2.maxCellsFindAttackPathSideways }
-            property("MaxCellsFindMeleeEngagementLocation", IntValue) { it.section2.maxCellsFindMeleeEngagementLocation }
-            property("MaxCellsFindPathLimit", IntValue) { it.section2.maxCellsFindPathLimit }
-            property("MaxCellsPatchPath", IntValue) { it.section2.maxCellsPatchPath }
-            property("MaxCellsToExamineTowardsGoal", IntValue) { it.section2.maxCellsToExamineTowardsGoal }
+            property("MaxCellsAdjustDestination", UnsignedIntValue) { it.section2.maxCellsAdjustDestination }
+            property("MaxCellsAdjustHordeMeleeDestination", UnsignedIntValue) { it.section2.maxCellsAdjustHordeMeleeDestination }
+            property("MaxCellsAdjustTargetDestination", UnsignedIntValue) { it.section2.maxCellsAdjustTargetDestination }
+            property("MaxCellsAdjustToMeleeDestination", UnsignedIntValue) { it.section2.maxCellsAdjustToMeleeDestination }
+            property("MaxCellsAdjustToNearestGroundCell", UnsignedIntValue) { it.section2.maxCellsAdjustToNearestGroundCell }
+            property("MaxCellsAdjustToNearestValidCell", UnsignedIntValue) { it.section2.maxCellsAdjustToNearestValidCell }
+            property("MaxCellsAdjustToPossibleDestination", UnsignedIntValue) { it.section2.maxCellsAdjustToPossibleDestination }
+            property("MaxCellsFindAttackPath", UnsignedIntValue) { it.section2.maxCellsFindAttackPath }
+            property("MaxCellsFindAttackPathSideways", UnsignedIntValue) { it.section2.maxCellsFindAttackPathSideways }
+            property("MaxCellsFindMeleeEngagementLocation", UnsignedIntValue) { it.section2.maxCellsFindMeleeEngagementLocation }
+            property("MaxCellsFindPathLimit", UnsignedIntValue) { it.section2.maxCellsFindPathLimit }
+            property("MaxCellsPatchPath", UnsignedIntValue) { it.section2.maxCellsPatchPath }
+            property("MaxCellsToExamineTowardsGoal", UnsignedIntValue) { it.section2.maxCellsToExamineTowardsGoal }
             property("MaxFieldParticleCount", IntValue) { it.section2.maxFieldParticleCount }
             property("MaxLineBuildObjects", IntValue) { it.section2.maxLineBuildObjects }
             property("MaxLowEnergyProductionSpeed", FloatValue) { it.section2.maxLowEnergyProductionSpeed }
             property("MaxParticleCount", IntValue) { it.section2.maxParticleCount }
-            property("MaxPathfindCellsPerFrame", IntValue) { it.section2.maxPathfindCellsPerFrame }
+            property("MaxPathfindCellsPerFrame", UnsignedIntValue) { it.section2.maxPathfindCellsPerFrame }
             property("MaxRoadIndex", IntValue) { it.section2.maxRoadIndex }
             property("MaxRoadSegments", IntValue) { it.section2.maxRoadSegments }
             property("MaxRoadTypes", IntValue) { it.section2.maxRoadTypes }
@@ -292,12 +295,12 @@ data class GameData(
             property("OpacityOfSimpleMergeDecals", FloatValue) { it.section2.opacityOfSimpleMergeDecals }
             property("ParticleCursorAlpha", IntValue) { it.section2.particleCursorAlpha }
             property("ParticleCursorAnim2DTemplateName", Opaque.type) { it.section2.particleCursorAnim2DTemplateName }
-            property("ParticleCursorBurstCount", IntValue) { it.section2.particleCursorBurstCount }
+            property("ParticleCursorBurstCount", UnsignedIntValue) { it.section2.particleCursorBurstCount }
             property("ParticleCursorBurstFactor", RandomVariable.type) { it.section2.particleCursorBurstFactor }
-            property("ParticleCursorBurstFrequency", IntValue) { it.section2.particleCursorBurstFrequency }
+            property("ParticleCursorBurstFrequency", UnsignedIntValue) { it.section2.particleCursorBurstFrequency }
             property("ParticleCursorDriftVelX", RandomVariable.type) { it.section2.particleCursorDriftVelX }
             property("ParticleCursorDriftVelY", RandomVariable.type) { it.section2.particleCursorDriftVelY }
-            property("ParticleCursorOffset", Coords.type) { it.section2.particleCursorOffset }
+            property("ParticleCursorOffset", Coord2DInt.type) { it.section2.particleCursorOffset }
             property("ParticleCursorParticleLife", RandomVariable.type) { it.section2.particleCursorParticleLife }
             property("ParticleCursorParticleSize", RandomVariable.type) { it.section2.particleCursorParticleSize }
             property("ParticleCursorPerFrameSize", BooleanValue) { it.section2.particleCursorPerFrameSize }
@@ -308,8 +311,8 @@ data class GameData(
             property("PartitionCellSize", FloatValue) { it.section2.partitionCellSize }
             property("PlayIntro", BooleanValue) { it.section2.playIntro }
             property("PowerLimit", IntValue) { it.section2.powerLimit }
-            property("ProgressMovieOffset", Coords.type) { it.section2.progressMovieOffset }
-            property("ProgressMovieSize", Coords.type) { it.section2.progressMovieSize }
+            property("ProgressMovieOffset", Coord2DInt.type) { it.section2.progressMovieOffset }
+            property("ProgressMovieSize", Coord2DInt.type) { it.section2.progressMovieSize }
             property("RefundPercent", FloatValue) { it.section2.refundPercent }
             property("ReinvisibityDelay", IntValue) { it.section2.reinvisibityDelay }
             property("ResourceBonusMultiplier", FloatValue) { it.section2.resourceBonusMultiplier }

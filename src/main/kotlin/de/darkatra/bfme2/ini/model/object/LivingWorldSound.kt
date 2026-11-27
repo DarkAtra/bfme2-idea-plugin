@@ -5,6 +5,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniObject
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -14,8 +15,8 @@ data class LivingWorldSound(
     @SageIniName("Sound") val sound: SageReference<AudioEvent>? = null,
     @SageIniName("Flags") val flags: Untyped? = null,
     @SageIniName("Position") val position: Coords? = null,
-    @SageIniName("ZoomRegionLow") val zoomRegionLow: Coords? = null,
-    @SageIniName("ZoomRegionHigh") val zoomRegionHigh: Coords? = null,
+    @SageIniName("ZoomRegionLow") val zoomRegionLow: Coord2D? = null,
+    @SageIniName("ZoomRegionHigh") val zoomRegionHigh: Coord2D? = null,
 ) : SageIniObject {
 
     companion object : SageIniBlockDescriptor<LivingWorldSound>(
@@ -25,8 +26,8 @@ data class LivingWorldSound(
             property("Sound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.sound }
             property("Flags", Untyped.type) { it.flags }
             property("Position", Coords.type) { it.position }
-            property("ZoomRegionLow", Coords.type) { it.zoomRegionLow }
-            property("ZoomRegionHigh", Coords.type) { it.zoomRegionHigh }
+            property("ZoomRegionLow", Coord2D.type) { it.zoomRegionLow }
+            property("ZoomRegionHigh", Coord2D.type) { it.zoomRegionHigh }
         },
     )
 }

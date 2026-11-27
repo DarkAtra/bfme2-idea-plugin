@@ -9,6 +9,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.ObjectCreationList
 import de.darkatra.bfme2.ini.model.`object`.Weapon
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.DeathFlags
 import de.darkatra.bfme2.ini.model.value.GeometryType
@@ -49,7 +50,7 @@ data class ClearanceTestingSlowDeathBehavior(
     @SageIniName("DoNotRandomizeMidpoint") override val doNotRandomizeMidpoint: Boolean = false,
     @SageIniName("ClearanceGeometryMajorRadius") val clearanceGeometryMajorRadius: Double = 0.0,
     @SageIniName("ClearanceGeometryMinorRadius") val clearanceGeometryMinorRadius: Double = 0.0,
-    @SageIniName("ClearanceGeometryRotationAnchorOffset") val clearanceGeometryRotationAnchorOffset: Coords? = null,
+    @SageIniName("ClearanceGeometryRotationAnchorOffset") val clearanceGeometryRotationAnchorOffset: Coord2D? = null,
     @SageIniName("ClearanceGeometryHeight") val clearanceGeometryHeight: Double = 0.0,
     @SageIniName("ClearanceGeometryIsSmall") val clearanceGeometryIsSmall: Boolean = false,
     @SageIniName("ClearanceGeometryOffset") val clearanceGeometryOffset: Coords? = null,
@@ -66,7 +67,7 @@ data class ClearanceTestingSlowDeathBehavior(
         properties = {
             property("ClearanceGeometryMajorRadius", FloatValue) { it.clearanceGeometryMajorRadius }
             property("ClearanceGeometryMinorRadius", FloatValue) { it.clearanceGeometryMinorRadius }
-            property("ClearanceGeometryRotationAnchorOffset", Coords.type) { it.clearanceGeometryRotationAnchorOffset }
+            property("ClearanceGeometryRotationAnchorOffset", Coord2D.type) { it.clearanceGeometryRotationAnchorOffset }
             property("ClearanceGeometryHeight", FloatValue) { it.clearanceGeometryHeight }
             property("ClearanceGeometryIsSmall", BooleanValue) { it.clearanceGeometryIsSmall }
             property("ClearanceGeometryOffset", Coords.type) { it.clearanceGeometryOffset }

@@ -138,7 +138,7 @@ class SageEngineIniModelTest {
         val flammability = Flammability()
 
         assertThat(flammability).isInstanceOf(SageNestedAttribute::class.java)
-        assertThat(flammability.fuel).isEqualTo(0)
+        assertThat(flammability.fuel).isEqualTo(0u)
     }
 
     @Test

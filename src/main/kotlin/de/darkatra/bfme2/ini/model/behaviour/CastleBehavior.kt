@@ -15,8 +15,8 @@ import de.darkatra.bfme2.ini.model.`object`.NewEvaEvent
 import de.darkatra.bfme2.ini.model.`object`.PredefinedEvaEvent
 import de.darkatra.bfme2.ini.model.`object`.Turret
 import de.darkatra.bfme2.ini.model.value.AutoAcquireEnemiesType
+import de.darkatra.bfme2.ini.model.value.CastleUnpack
 import de.darkatra.bfme2.ini.model.value.ObjectCount
-import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -61,7 +61,7 @@ data class CastleBehavior(
     @SageIniName("DisableStructureRotation") val disableStructureRotation: Boolean = false,
     @SageIniName("Summoned") val summoned: Boolean = false,
     @SageIniName("TransferFoundationHealthToCastleUponUnpack") val transferFoundationHealthToCastleUponUnpack: Boolean = false,
-    @SageIniName("CastleToUnpackForFaction") val castleToUnpackForFaction: Opaque? = null,
+    @SageIniName("CastleToUnpackForFaction") val castleToUnpackForFaction: List<CastleUnpack> = emptyList(),
     @SageIniName("FactionDecal") val factionDecal: Untyped? = null,
     @SageIniName("PreBuiltList") val preBuiltList: List<ObjectCount> = emptyList(),
     @SageIniName("PreBuiltPlyr") val preBuiltPlyr: Untyped? = null,
@@ -96,7 +96,7 @@ data class CastleBehavior(
             property("DisableStructureRotation", BooleanValue) { it.disableStructureRotation }
             property("Summoned", BooleanValue) { it.summoned }
             property("TransferFoundationHealthToCastleUponUnpack", BooleanValue) { it.transferFoundationHealthToCastleUponUnpack }
-            property("CastleToUnpackForFaction", Opaque.type) { it.castleToUnpackForFaction }
+            property("CastleToUnpackForFaction", ListValue(CastleUnpack.type)) { it.castleToUnpackForFaction }
             property("FactionDecal", Untyped.type) { it.factionDecal }
             property("PreBuiltList", ListValue(ObjectCount.type)) { it.preBuiltList }
             property("PreBuiltPlyr", Untyped.type) { it.preBuiltPlyr }

@@ -6,7 +6,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2D
 
 data class RainOfFireUpdate(
     val header: SageBlockHeader = SageBlockHeader(),
@@ -18,7 +18,7 @@ data class RainOfFireUpdate(
     @SageIniName("DPSMin") val dPSMin: Double = 0.0,
     @SageIniName("DPSMax") val dPSMax: Double = 0.0,
     @SageIniName("DPSRampupTime") val dPSRampupTime: Int = 0,
-    @SageIniName("RainOffset") val rainOffset: Coords? = null,
+    @SageIniName("RainOffset") val rainOffset: Coord2D? = null,
 ) : SageBehavior {
 
     companion object : SageIniBlockDescriptor<RainOfFireUpdate>(
@@ -32,7 +32,7 @@ data class RainOfFireUpdate(
             property("DPSMin", FloatValue) { it.dPSMin }
             property("DPSMax", FloatValue) { it.dPSMax }
             property("DPSRampupTime", IntValue) { it.dPSRampupTime }
-            property("RainOffset", Coords.type) { it.rainOffset }
+            property("RainOffset", Coord2D.type) { it.rainOffset }
         },
     )
 }

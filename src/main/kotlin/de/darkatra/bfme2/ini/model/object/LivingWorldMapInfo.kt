@@ -9,8 +9,10 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.livingworld.EyeTower
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.Rgba
@@ -24,9 +26,9 @@ data class LivingWorldMapInfo(
     @SageIniName("CloudBorderSubObject") val cloudBorderSubObject: Opaque? = null,
     @SageIniName("TextLayerSubObject") val textLayerSubObject: Opaque? = null,
     @SageIniName("AddShadowSubObject") val addShadowSubObject: Opaque? = null,
-    @SageIniName("Center") val center: Coords? = null,
-    @SageIniName("Extent") val extent: Coords? = null,
-    @SageIniName("AptCenter") val aptCenter: Coords? = null,
+    @SageIniName("Center") val center: Coord2D? = null,
+    @SageIniName("Extent") val extent: Coord2D? = null,
+    @SageIniName("AptCenter") val aptCenter: Coord2D? = null,
     @SageIniName("AptZoom") val aptZoom: Double = 0.0,
     @SageIniName("AptPitch") val aptPitch: Double = 0.0,
     @SageIniName("CameraBoundX") val cameraBoundX: Double = 0.0,
@@ -36,7 +38,7 @@ data class LivingWorldMapInfo(
     @SageIniName("MouseWheelZoomDampenFactor") val mouseWheelZoomDampenFactor: Double = 0.0,
     @SageIniName("AutoScrollSpeed") val autoScrollSpeed: Double = 0.0,
     @SageIniName("MaxAutoScrollTime") val maxAutoScrollTime: Double = 0.0,
-    @SageIniName("NumPointsPerArmyLine") val numPointsPerArmyLine: Int = 0,
+    @SageIniName("NumPointsPerArmyLine") val numPointsPerArmyLine: UInt = 0u,
     @SageIniName("ArmyLineHeightBias") val armyLineHeightBias: Double = 0.0,
     @SageIniName("ArmyLineWidth") val armyLineWidth: Double = 0.0,
     @SageIniName("ArmyLineColorAttacking") val armyLineColorAttacking: Rgba? = null,
@@ -44,11 +46,11 @@ data class LivingWorldMapInfo(
     @SageIniName("ArmyLineColorAllied") val armyLineColorAllied: Rgba? = null,
     @SageIniName("ArmyLineTextureName") val armyLineTextureName: TextureFile? = null,
     @SageIniName("Ambient") val ambient: Rgba? = null,
-    @SageIniName("SunDir") val sunDir: Coords? = null,
+    @SageIniName("SunDir") val sunDir: Coord2D? = null,
     @SageIniName("SunRGB") val sunRGB: Rgba? = null,
-    @SageIniName("Accent1Dir") val accent1Dir: Coords? = null,
+    @SageIniName("Accent1Dir") val accent1Dir: Coord2D? = null,
     @SageIniName("Accent1RGB") val accent1RGB: Rgba? = null,
-    @SageIniName("Accent2Dir") val accent2Dir: Coords? = null,
+    @SageIniName("Accent2Dir") val accent2Dir: Coord2D? = null,
     @SageIniName("Accent2RGB") val accent2RGB: Rgba? = null,
     @SageIniName("MenBanner") val menBanner: Opaque? = null,
     @SageIniName("ElvesBanner") val elvesBanner: Opaque? = null,
@@ -131,9 +133,9 @@ data class LivingWorldMapInfo(
             property("CloudBorderSubObject", Opaque.type) { it.cloudBorderSubObject }
             property("TextLayerSubObject", Opaque.type) { it.textLayerSubObject }
             property("AddShadowSubObject", Opaque.type) { it.addShadowSubObject }
-            property("Center", Coords.type) { it.center }
-            property("Extent", Coords.type) { it.extent }
-            property("AptCenter", Coords.type) { it.aptCenter }
+            property("Center", Coord2D.type) { it.center }
+            property("Extent", Coord2D.type) { it.extent }
+            property("AptCenter", Coord2D.type) { it.aptCenter }
             property("AptZoom", FloatValue) { it.aptZoom }
             property("AptPitch", FloatValue) { it.aptPitch }
             property("CameraBoundX", FloatValue) { it.cameraBoundX }
@@ -143,7 +145,7 @@ data class LivingWorldMapInfo(
             property("MouseWheelZoomDampenFactor", FloatValue) { it.mouseWheelZoomDampenFactor }
             property("AutoScrollSpeed", FloatValue) { it.autoScrollSpeed }
             property("MaxAutoScrollTime", FloatValue) { it.maxAutoScrollTime }
-            property("NumPointsPerArmyLine", IntValue) { it.numPointsPerArmyLine }
+            property("NumPointsPerArmyLine", UnsignedIntValue) { it.numPointsPerArmyLine }
             property("ArmyLineHeightBias", FloatValue) { it.armyLineHeightBias }
             property("ArmyLineWidth", FloatValue) { it.armyLineWidth }
             property("ArmyLineColorAttacking", Rgba.type) { it.armyLineColorAttacking }
@@ -151,11 +153,11 @@ data class LivingWorldMapInfo(
             property("ArmyLineColorAllied", Rgba.type) { it.armyLineColorAllied }
             property("ArmyLineTextureName", TextureFile.type) { it.armyLineTextureName }
             property("Ambient", Rgba.type) { it.ambient }
-            property("SunDir", Coords.type) { it.sunDir }
+            property("SunDir", Coord2D.type) { it.sunDir }
             property("SunRGB", Rgba.type) { it.sunRGB }
-            property("Accent1Dir", Coords.type) { it.accent1Dir }
+            property("Accent1Dir", Coord2D.type) { it.accent1Dir }
             property("Accent1RGB", Rgba.type) { it.accent1RGB }
-            property("Accent2Dir", Coords.type) { it.accent2Dir }
+            property("Accent2Dir", Coord2D.type) { it.accent2Dir }
             property("Accent2RGB", Rgba.type) { it.accent2RGB }
             property("MenBanner", Opaque.type) { it.menBanner }
             property("ElvesBanner", Opaque.type) { it.elvesBanner }

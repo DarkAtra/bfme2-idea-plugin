@@ -2,6 +2,7 @@ package de.darkatra.bfme2.ini.model.`object`
 
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageParticleSystem
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.Rgb
@@ -44,7 +45,7 @@ data class GameDataSection1(
     @SageIniName("AllowedHeightVariationForBuilding") val allowedHeightVariationForBuilding: Double = 0.0,
     @SageIniName("AmbientStreamsOn") val ambientStreamsOn: Boolean = false,
     @SageIniName("AmmoPipScaleFactor") val ammoPipScaleFactor: Double = 0.0,
-    @SageIniName("AmmoPipScreenOffset") val ammoPipScreenOffset: Coords? = null,
+    @SageIniName("AmmoPipScreenOffset") val ammoPipScreenOffset: Coord2D? = null,
     @SageIniName("AmmoPipWorldOffset") val ammoPipWorldOffset: Coords? = null,
     @SageIniName("AnimationSharingCap") val animationSharingCap: Int = 0,
     @SageIniName("AnimationSharingDrasticThreshold") val animationSharingDrasticThreshold: Double = 0.0,
@@ -100,7 +101,7 @@ data class GameDataSection1(
     @SageIniName("CommandCenterHealAmount") val commandCenterHealAmount: Double = 0.0,
     @SageIniName("CommandCenterHealRange") val commandCenterHealRange: Double = 0.0,
     @SageIniName("ContainerPipScaleFactor") val containerPipScaleFactor: Double = 0.0,
-    @SageIniName("ContainerPipScreenOffset") val containerPipScreenOffset: Coords? = null,
+    @SageIniName("ContainerPipScreenOffset") val containerPipScreenOffset: Coord2D? = null,
     @SageIniName("ContainerPipWorldOffset") val containerPipWorldOffset: Coords? = null,
     @SageIniName("DamageRadiusMinimumForSplash") val damageRadiusMinimumForSplash: Double = 0.0,
     @SageIniName("DebugAI") val debugAI: Boolean = false,
@@ -113,7 +114,7 @@ data class GameDataSection1(
     @SageIniName("DefaultEngagedStateTimeout") val defaultEngagedStateTimeout: Int = 0,
     @SageIniName("DefaultMaxDistanceForEngaged") val defaultMaxDistanceForEngaged: Int = 0,
     @SageIniName("DefaultOcclusionDelay") val defaultOcclusionDelay: Int = 0,
-    @SageIniName("DefaultStartingCash") val defaultStartingCash: Int = 0,
+    @SageIniName("DefaultStartingCash") val defaultStartingCash: UInt = 0u,
     @SageIniName("DefaultStructureRepairBuffFxList") val defaultStructureRepairBuffFxList: SageReference<FXList>? = null,
     @SageIniName("DefaultStructureRubbleHeight") val defaultStructureRubbleHeight: Double = 0.0,
     @SageIniName("DefaultUnitHealingBuffFxList") val defaultUnitHealingBuffFxList: SageReference<FXList>? = null,

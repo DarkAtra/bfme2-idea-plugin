@@ -9,6 +9,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.common.SageNestedAttribute
 import de.darkatra.bfme2.ini.model.`object`.MappedImage
 import de.darkatra.bfme2.ini.model.value.Opaque
@@ -42,9 +43,9 @@ open class ModelConditionState(
     @SageIniName("ShadowTexture") open val shadowTexture: Opaque? = null,
     @SageIniName("ShadowMaxHeight") open val shadowMaxHeight: Double = 0.0,
     @SageIniName("ShadowOverrideLODVisibility") open val shadowOverrideLODVisibility: Boolean = false,
-    @SageIniName("ShadowOpacityStart") open val shadowOpacityStart: Int = 0,
-    @SageIniName("ShadowOpacityPeak") open val shadowOpacityPeak: Int = 0,
-    @SageIniName("ShadowOpacityEnd") open val shadowOpacityEnd: Int = 0,
+    @SageIniName("ShadowOpacityStart") open val shadowOpacityStart: UInt = 0u,
+    @SageIniName("ShadowOpacityPeak") open val shadowOpacityPeak: UInt = 0u,
+    @SageIniName("ShadowOpacityEnd") open val shadowOpacityEnd: UInt = 0u,
     @SageIniName("ShadowOpacityFadeInTime") open val shadowOpacityFadeInTime: Int = 0,
     @SageIniName("ShadowOpacityFadeOutTime") open val shadowOpacityFadeOutTime: Int = 0,
     @SageIniName("AltTurret") open val altTurret: Opaque? = null,
@@ -83,9 +84,9 @@ open class ModelConditionState(
             property("ShadowTexture", Opaque.type) { it.shadowTexture }
             property("ShadowMaxHeight", FloatValue) { it.shadowMaxHeight }
             property("ShadowOverrideLODVisibility", BooleanValue) { it.shadowOverrideLODVisibility }
-            property("ShadowOpacityStart", IntValue) { it.shadowOpacityStart }
-            property("ShadowOpacityPeak", IntValue) { it.shadowOpacityPeak }
-            property("ShadowOpacityEnd", IntValue) { it.shadowOpacityEnd }
+            property("ShadowOpacityStart", UnsignedIntValue) { it.shadowOpacityStart }
+            property("ShadowOpacityPeak", UnsignedIntValue) { it.shadowOpacityPeak }
+            property("ShadowOpacityEnd", UnsignedIntValue) { it.shadowOpacityEnd }
             property("ShadowOpacityFadeInTime", IntValue) { it.shadowOpacityFadeInTime }
             property("ShadowOpacityFadeOutTime", IntValue) { it.shadowOpacityFadeOutTime }
             property("AltTurret", Opaque.type) { it.altTurret }

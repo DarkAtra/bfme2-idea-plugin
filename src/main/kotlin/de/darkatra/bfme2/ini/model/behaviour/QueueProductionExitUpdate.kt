@@ -6,6 +6,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.value.Coords
 
 data class QueueProductionExitUpdate(
@@ -13,7 +14,7 @@ data class QueueProductionExitUpdate(
     @SageIniName("UnitCreatePoint") val unitCreatePoint: Coords? = null,
     @SageIniName("NaturalRallyPoint") val naturalRallyPoint: Coords? = null,
     @SageIniName("ExitDelay") val exitDelay: Int = 0,
-    @SageIniName("InitialBurst") val initialBurst: Int = 0,
+    @SageIniName("InitialBurst") val initialBurst: UInt = 0u,
     @SageIniName("PlacementViewAngle") val placementViewAngle: Int = 0,
     @SageIniName("NoExitPath") val noExitPath: Boolean = false,
     @SageIniName("AllowAirborneCreation") val allowAirborneCreation: Boolean = false,
@@ -27,7 +28,7 @@ data class QueueProductionExitUpdate(
             property("UnitCreatePoint", Coords.type) { it.unitCreatePoint }
             property("NaturalRallyPoint", Coords.type) { it.naturalRallyPoint }
             property("ExitDelay", IntValue) { it.exitDelay }
-            property("InitialBurst", IntValue) { it.initialBurst }
+            property("InitialBurst", UnsignedIntValue) { it.initialBurst }
             property("PlacementViewAngle", IntValue) { it.placementViewAngle }
             property("NoExitPath", BooleanValue) { it.noExitPath }
             property("AllowAirborneCreation", BooleanValue) { it.allowAirborneCreation }

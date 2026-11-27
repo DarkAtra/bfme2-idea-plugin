@@ -12,6 +12,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.MapValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.`object`.ChildObject
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
@@ -19,7 +20,7 @@ import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
 import de.darkatra.bfme2.ini.model.value.BannerCarrierPosition
 import de.darkatra.bfme2.ini.model.value.ComboHorde
 import de.darkatra.bfme2.ini.model.value.ContainCondition
-import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.LocomotorSetType
 import de.darkatra.bfme2.ini.model.value.ObjectCount
 import de.darkatra.bfme2.ini.model.value.ObjectStatus
@@ -65,7 +66,7 @@ open class HordeContain(
     @SageIniName("FrontAngle") open val frontAngle: Double = 0.0,
     @SageIniName("FlankedDelay") open val flankedDelay: Int = 0,
     @SageIniName("IsPorcupineFormation") open val isPorcupineFormation: Boolean = false,
-    @SageIniName("MinimumHordeSize") open val minimumHordeSize: Int = 0,
+    @SageIniName("MinimumHordeSize") open val minimumHordeSize: UInt = 0u,
     @SageIniName("VisionRearOverride") open val visionRearOverride: Double = 0.0,
     @SageIniName("VisionSideOverride") open val visionSideOverride: Double = 0.0,
     @SageIniName("BannerCarrierMinLevel") open val bannerCarrierMinLevel: Int = 0,
@@ -73,7 +74,7 @@ open class HordeContain(
     @SageIniName("BannerCarrierHordeDeathType") open val bannerCarrierHordeDeathType: SageFilter? = null,
     @SageIniName("LivingWorldOverloadTemplate") open val livingWorldOverloadTemplate: SageReference<Object>? = null,
     @SageIniName("ConditionForEntry") open val conditionForEntry: ContainCondition? = null,
-    @SageIniName("RandomOffset") open val randomOffset: Coords? = null,
+    @SageIniName("RandomOffset") open val randomOffset: Coord2D? = null,
     @SageIniName("MeleeBehavior") open val meleeBehavior: List<MeleeBehavior> = emptyList(),
 ) : SageBehavior {
 
@@ -116,7 +117,7 @@ open class HordeContain(
             property("FrontAngle", FloatValue) { it.frontAngle }
             property("FlankedDelay", IntValue) { it.flankedDelay }
             property("IsPorcupineFormation", BooleanValue) { it.isPorcupineFormation }
-            property("MinimumHordeSize", IntValue) { it.minimumHordeSize }
+            property("MinimumHordeSize", UnsignedIntValue) { it.minimumHordeSize }
             property("VisionRearOverride", FloatValue) { it.visionRearOverride }
             property("VisionSideOverride", FloatValue) { it.visionSideOverride }
             property("BannerCarrierMinLevel", IntValue) { it.bannerCarrierMinLevel }
@@ -124,7 +125,7 @@ open class HordeContain(
             property("BannerCarrierHordeDeathType", SageFilter.type) { it.bannerCarrierHordeDeathType }
             property("LivingWorldOverloadTemplate", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.livingWorldOverloadTemplate }
             property("ConditionForEntry", ContainCondition.type) { it.conditionForEntry }
-            property("RandomOffset", Coords.type) { it.randomOffset }
+            property("RandomOffset", Coord2D.type) { it.randomOffset }
             property("MeleeBehavior", ListValue(BlockValue<MeleeBehavior> { listOf(MeleeBehavior) })) { it.meleeBehavior }
         },
     )

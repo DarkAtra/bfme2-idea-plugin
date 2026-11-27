@@ -10,6 +10,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.value.FakeToken
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -19,7 +20,7 @@ data class Upgrade(
     val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("Type") val type: UpgradeTypes? = null,
     @SageIniName("GroupName") val groupName: String = "",
-    @SageIniName("GroupOrder") val groupOrder: Int = 0,
+    @SageIniName("GroupOrder") val groupOrder: UInt = 0u,
     @SageIniName("UpgradeFX") val upgradeFX: SageReference<FXList>? = null,
     @SageIniName("UnitSpecificSound") val unitSpecificSound: SageReference<AudioEvent>? = null,
     @SageIniName("DisplayName") val displayName: String = "",
@@ -52,7 +53,7 @@ data class Upgrade(
         properties = {
             property("Type", UpgradeTypes.type) { it.type }
             property("GroupName", StringValue) { it.groupName }
-            property("GroupOrder", IntValue) { it.groupOrder }
+            property("GroupOrder", UnsignedIntValue) { it.groupOrder }
             property("UpgradeFX", ReferenceValue<FXList> { listOf(FXList) }) { it.upgradeFX }
             property("UnitSpecificSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.unitSpecificSound }
             property("DisplayName", StringValue) { it.displayName }
