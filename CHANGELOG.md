@@ -21,7 +21,7 @@
 - `DecalTemplate`, `GridDecalTemplate`, `RadiusCursorTemplate` and `SelectionDecal` accept all properties of a decal
 - `SpawnObject` of a `CritterEmitterUpdate` references an object creation list instead of an object
 - Completion shows 2D positions such as `GrabOffset` or the `HotSpot` of a `MouseCursor` as `Coord2D` or `Coord2DInt` instead of `Coords`
-- The castle of a `CastleToUnpackForFaction` and the object of a `QuantityModifier` are recognized as references to objects
+- The object of a `QuantityModifier` is recognized as a reference to an object
 - Modules know the properties of their engine base, e.g. a `HordeContain` those of a `TransportContain`, special ability modules like
   `ToggleDeploySpecialAbilityUpdate` those of a `SpecialAbilityUpdate` and `W3DSupplyDraw` those of a `W3DScriptedModelDraw`, and every
   body accepts `RemoveUpgradesOnDeath`
@@ -30,6 +30,8 @@
 - `MeleeBehavior` blocks know the properties of `WaitForLeader` and `Amoeba`, e.g. `FollowLeader` and `DelayUntilIdle`
 - Blocks named after a module or type, e.g. `AutoHealBehavior` in an `Object` or `Swarm` in a `HordeContain`, are reported as unknown instead of
   being accepted as that module
+- `LevelUpFx` of an `ExperienceLevel` and the effects of a `TransitionDamageFX` or `BoneFXUpdate` are read like the engine reads them,
+  e.g. `FX:GoodLevelUpFX` or `Loc: X:0 Y:0 Z:0 FXList:FX_BasicSevereScreenShake`
 - Properties that the engine doesn't read are reported as unknown: `AllowInsideKindOf`, `ForbidInsideKindOf` and `ShouldDrawPips` of containers,
   `IsEnclosingContainer` of garrisons, `TransferSelection` of a `HordeSiegeEngineContain`, `AnimationName` and the other animation settings of
   an `Attack` nugget and transport settings like `PassengersAllowedToFire`

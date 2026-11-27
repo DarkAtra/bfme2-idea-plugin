@@ -10,6 +10,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.value.EmotionTypes
+import de.darkatra.bfme2.ini.model.value.FXListAtBone
 import de.darkatra.bfme2.ini.model.value.Rgb
 import de.darkatra.bfme2.ini.model.value.SageReference
 
@@ -27,7 +28,7 @@ data class ExperienceLevel(
     @SageIniName("LevelUpTintPostColorTime") val levelUpTintPostColorTime: Double = 0.0,
     @SageIniName("LevelUpTintSustainColorTime") val levelUpTintSustainColorTime: Double = 0.0,
     @SageIniName("AttributeModifiers") val attributeModifiers: List<SageReference<ModifierList>> = emptyList(),
-    @SageIniName("LevelUpFx") val levelUpFx: SageReference<FXList>? = null,
+    @SageIniName("LevelUpFx") val levelUpFx: FXListAtBone? = null,
     @SageIniName("ShowLevelUpTint") val showLevelUpTint: Boolean = false,
     @SageIniName("EmotionType") val emotionType: EmotionTypes? = null,
     @SageIniName("SelectionDecal") val selectionDecal: List<SelectionDecal> = emptyList(),
@@ -49,7 +50,7 @@ data class ExperienceLevel(
             property("LevelUpTintPostColorTime", FloatValue) { it.levelUpTintPostColorTime }
             property("LevelUpTintSustainColorTime", FloatValue) { it.levelUpTintSustainColorTime }
             property("AttributeModifiers", ListValue(ReferenceValue<ModifierList> { listOf(ModifierList) })) { it.attributeModifiers }
-            property("LevelUpFx", ReferenceValue<FXList> { listOf(FXList) }) { it.levelUpFx }
+            property("LevelUpFx", FXListAtBone.type) { it.levelUpFx }
             property("ShowLevelUpTint", BooleanValue) { it.showLevelUpTint }
             property("EmotionType", EmotionTypes.type) { it.emotionType }
             property("SelectionDecal", ListValue(BlockValue<SelectionDecal> { listOf(SelectionDecal) })) { it.selectionDecal }
