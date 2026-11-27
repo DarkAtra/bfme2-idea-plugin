@@ -4,35 +4,30 @@ import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniObject
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
-import de.darkatra.bfme2.ini.model.value.FakeToken
-import de.darkatra.bfme2.ini.model.value.Opaque
+import de.darkatra.bfme2.ini.model.ui.DeliveryDecal
+import de.darkatra.bfme2.ini.model.value.Rgba
 import de.darkatra.bfme2.ini.model.value.TextureFile
+import de.darkatra.bfme2.ini.model.value.Untyped
 
 data class SelectionDecal(
-    val header: SageBlockHeader = SageBlockHeader(),
-    @SageIniName("Texture") val texture: TextureFile? = null,
-    @SageIniName("Texture2") val texture2: Opaque? = null,
-    @SageIniName("Style") val style: FakeToken? = null,
-    @SageIniName("OpacityMin") val opacityMin: Double = 0.0,
-    @SageIniName("OpacityMax") val opacityMax: Double = 0.0,
-    @SageIniName("MinRadius") val minRadius: Double = 0.0,
-    @SageIniName("MaxRadius") val maxRadius: Double = 0.0,
-    @SageIniName("MaxSelectedUnits") val maxSelectedUnits: Int = 0,
-) : SageIniObject {
+    override val header: SageBlockHeader = SageBlockHeader(),
+    @SageIniName("Texture") override val texture: TextureFile? = null,
+    @SageIniName("Texture2") override val texture2: TextureFile? = null,
+    @SageIniName("Style") override val style: Untyped? = null,
+    @SageIniName("OpacityMin") override val opacityMin: Double = 0.0,
+    @SageIniName("OpacityMax") override val opacityMax: Double = 0.0,
+    @SageIniName("OpacityThrobTime") override val opacityThrobTime: Double = 0.0,
+    @SageIniName("RotationsPerMinute") override val rotationsPerMinute: Double = 0.0,
+    @SageIniName("Color") override val color: Rgba? = null,
+    @SageIniName("OnlyVisibleToOwningPlayer") override val onlyVisibleToOwningPlayer: Boolean = false,
+    @SageIniName("MaxRadius") override val maxRadius: Double = 0.0,
+    @SageIniName("MinRadius") override val minRadius: Double = 0.0,
+    @SageIniName("MaxSelectedUnits") override val maxSelectedUnits: Int = 0,
+    @SageIniName("SpiralAcceleration") override val spiralAcceleration: Double = 0.0,
+) : DeliveryDecal(), SageIniObject {
 
     companion object : SageIniBlockDescriptor<SelectionDecal>(
         name = "SelectionDecal",
-        properties = {
-            property("Texture", TextureFile.type) { it.texture }
-            property("Texture2", Opaque.type) { it.texture2 }
-            property("Style", FakeToken.type) { it.style }
-            property("OpacityMin", FloatValue) { it.opacityMin }
-            property("OpacityMax", FloatValue) { it.opacityMax }
-            property("MinRadius", FloatValue) { it.minRadius }
-            property("MaxRadius", FloatValue) { it.maxRadius }
-            property("MaxSelectedUnits", IntValue) { it.maxSelectedUnits }
-        },
+        parent = DeliveryDecal,
     )
 }

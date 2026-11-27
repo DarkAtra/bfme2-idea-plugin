@@ -685,6 +685,7 @@ import de.darkatra.bfme2.ini.model.particle.System
 import de.darkatra.bfme2.ini.model.particle.Update
 import de.darkatra.bfme2.ini.model.particle.Wind
 import de.darkatra.bfme2.ini.model.ui.DecalTemplate
+import de.darkatra.bfme2.ini.model.ui.DeliveryDecal
 import de.darkatra.bfme2.ini.model.ui.GridDecalTemplate
 import de.darkatra.bfme2.ini.model.ui.ImagePart
 import de.darkatra.bfme2.ini.model.ui.RadiusCursorTemplate
@@ -1378,6 +1379,7 @@ object SageIniModel {
             Update,
             Wind,
             DecalTemplate,
+            DeliveryDecal,
             GridDecalTemplate,
             ImagePart,
             RadiusCursorTemplate,

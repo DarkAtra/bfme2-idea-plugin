@@ -23,6 +23,12 @@
 - "Find Usages" only highlights the declaration name of values like `EVA:GenericBuildingComplete-Builder-Elf`
 - Clearing the content of a `BeginScript` block no longer fails
 - Reformatting a selection no longer removes empty comments right next to it
+- `OpenContain`, `TransportContain`, `SiegeEngineContain` and the horde contain modules know every property the engine reads, e.g.
+  `DeathTypes` in a `TransportContain` or `GrabWeapon` in a `HordeTransportContain`, and `HordeGarrisonContain` inherits the properties
+  of a `GarrisonContain` instead of those of a transport
+- `DecalTemplate`, `GridDecalTemplate`, `RadiusCursorTemplate` and `SelectionDecal` accept all properties of a decal
+- `SpawnObject` of a `CritterEmitterUpdate` references an object creation list instead of an object
+- `RequiredUpgrades` and `ExcludedUpgrades` are reported as unknown in an `AutoResolveArmor`
 
 ## `1.0.0`
 

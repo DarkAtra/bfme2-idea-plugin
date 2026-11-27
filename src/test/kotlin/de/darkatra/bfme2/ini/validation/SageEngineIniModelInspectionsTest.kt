@@ -474,7 +474,7 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
                 End
                 Behavior = HordeSiegeEngineContain ModuleTag_Contain
                     CrewAllowedToFire = Yes
-                    <warning descr="Unknown property 'PassengersInTurret' in 'HordeSiegeEngineContain'">PassengersInTurret</warning> = Yes
+                    <warning descr="Unknown property 'TransferSelection' in 'HordeSiegeEngineContain'">TransferSelection</warning> = Yes
                 End
                 Behavior = TransportContain ModuleTag_Transport
                     ShouldThrowOutPassengers = Yes
