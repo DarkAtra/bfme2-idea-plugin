@@ -12,12 +12,23 @@ import de.darkatra.bfme2.ini.model.`object`.ChildObject
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
+import de.darkatra.bfme2.ini.model.value.MapWeatherType
+import de.darkatra.bfme2.ini.model.value.ModelCondition
 import de.darkatra.bfme2.ini.model.value.Rgb
+import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
 data class BuffNugget(
-    val header: SageBlockHeader = SageBlockHeader(),
+    override val header: SageBlockHeader = SageBlockHeader(),
+    @SageIniName("ObjectFilter") override val objectFilter: SageFilter? = null,
+    @SageIniName("SourceObjectFilter") override val sourceObjectFilter: SageFilter? = null,
+    @SageIniName("RequiredSourceModelConditions") override val requiredSourceModelConditions: List<ModelCondition> = emptyList(),
+    @SageIniName("ExcludedSourceModelConditions") override val excludedSourceModelConditions: List<ModelCondition> = emptyList(),
+    @SageIniName("RequiredSecondaryModelConditions") override val requiredSecondaryModelConditions: List<ModelCondition> = emptyList(),
+    @SageIniName("ExcludedSecondaryModelConditions") override val excludedSecondaryModelConditions: List<ModelCondition> = emptyList(),
+    @SageIniName("StopIfNuggetPlayed") override val stopIfNuggetPlayed: Boolean = false,
+    @SageIniName("Weather") override val weather: MapWeatherType? = null,
     @SageIniName("BuffType") val buffType: Untyped? = null,
     @SageIniName("BuffName") val buffName: Untyped? = null,
     @SageIniName("BuffShipTemplate") val buffShipTemplate: SageReference<Object>? = null,
@@ -33,10 +44,11 @@ data class BuffNugget(
     @SageIniName("BuffOrcTemplate") val buffOrcTemplate: SageReference<Object>? = null,
     @SageIniName("BuffMonsterTemplate") val buffMonsterTemplate: SageReference<Object>? = null,
     @SageIniName("BuffThingTemplate") val buffThingTemplate: SageReference<Object>? = null,
-) : SageNestedAttribute {
+) : FXNugget(), SageNestedAttribute {
 
     companion object : SageIniBlockDescriptor<BuffNugget>(
         name = "BuffNugget",
+        parent = FXNugget,
         properties = {
             property("BuffType", Untyped.type) { it.buffType }
             property("BuffName", Untyped.type) { it.buffName }

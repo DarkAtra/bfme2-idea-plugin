@@ -6,6 +6,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
+import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Upgrade
 import de.darkatra.bfme2.ini.model.value.DamageFXType
@@ -23,6 +24,8 @@ data class AttributeModifierNugget(
     @SageIniName("Radius") val radius: Double = 0.0,
     @SageIniName("DamageFXType") val damageFXType: DamageFXType? = null,
     @SageIniName("AffectHordeMembers") val affectHordeMembers: Boolean = false,
+    @SageIniName("AntiFX") val antiFX: SageReference<FXList>? = null,
+    @SageIniName("DamageArc") val damageArc: Double = 180.0,
 ) : WeaponEffectNugget() {
 
     companion object : SageIniBlockDescriptor<AttributeModifierNugget>(
@@ -34,6 +37,8 @@ data class AttributeModifierNugget(
             property("Radius", FloatValue) { it.radius }
             property("DamageFXType", DamageFXType.type) { it.damageFXType }
             property("AffectHordeMembers", BooleanValue) { it.affectHordeMembers }
+            property("AntiFX", ReferenceValue<FXList> { listOf(FXList) }) { it.antiFX }
+            property("DamageArc", FloatValue) { it.damageArc }
         },
     )
 }

@@ -11,17 +11,26 @@ import de.darkatra.bfme2.ini.model.common.SageNestedAttribute
 import de.darkatra.bfme2.ini.model.`object`.EvaEventBase
 import de.darkatra.bfme2.ini.model.`object`.NewEvaEvent
 import de.darkatra.bfme2.ini.model.`object`.PredefinedEvaEvent
+import de.darkatra.bfme2.ini.model.value.MapWeatherType
+import de.darkatra.bfme2.ini.model.value.ModelCondition
 import de.darkatra.bfme2.ini.model.value.Opaque
+import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
 data class EvaEvent(
-    val header: SageBlockHeader = SageBlockHeader(),
+    override val header: SageBlockHeader = SageBlockHeader(),
+    @SageIniName("ObjectFilter") override val objectFilter: SageFilter? = null,
+    @SageIniName("SourceObjectFilter") override val sourceObjectFilter: SageFilter? = null,
+    @SageIniName("RequiredSourceModelConditions") override val requiredSourceModelConditions: List<ModelCondition> = emptyList(),
+    @SageIniName("ExcludedSourceModelConditions") override val excludedSourceModelConditions: List<ModelCondition> = emptyList(),
+    @SageIniName("RequiredSecondaryModelConditions") override val requiredSecondaryModelConditions: List<ModelCondition> = emptyList(),
+    @SageIniName("ExcludedSecondaryModelConditions") override val excludedSecondaryModelConditions: List<ModelCondition> = emptyList(),
+    @SageIniName("StopIfNuggetPlayed") override val stopIfNuggetPlayed: Boolean = false,
+    @SageIniName("Weather") override val weather: MapWeatherType? = null,
     @SageIniName("EvaEventOwner") val evaEventOwner: SageReference<EvaEventBase>? = null,
     @SageIniName("EvaEventAlly") val evaEventAlly: Untyped? = null,
     @SageIniName("EvaEventEnemy") val evaEventEnemy: Untyped? = null,
-    @SageIniName("RequiredSourceModelConditions") val requiredSourceModelConditions: Untyped? = null,
-    @SageIniName("ExcludedSourceModelConditions") val excludedSourceModelConditions: Untyped? = null,
     @SageIniName("AlwaysPlayFromHomeBase") val alwaysPlayFromHomeBase: Boolean = false,
     @SageIniName("CountAsJumpToLocation") val countAsJumpToLocation: Boolean = false,
     @SageIniName("ExpirationTimeMS") val expirationTimeMS: Int = 0,
@@ -33,16 +42,15 @@ data class EvaEvent(
     @SageIniName("SideSounds") val sideSounds: Opaque? = null,
     @SageIniName("TimeBetweenChecksMS") val timeBetweenChecksMS: Int = 0,
     @SageIniName("TimeBetweenEventsMS") val timeBetweenEventsMS: Int = 0,
-) : SageNestedAttribute {
+) : FXNugget(), SageNestedAttribute {
 
     companion object : SageIniBlockDescriptor<EvaEvent>(
         name = "EvaEvent",
+        parent = FXNugget,
         properties = {
             property("EvaEventOwner", ReferenceValue<EvaEventBase> { listOf(NewEvaEvent, PredefinedEvaEvent) }) { it.evaEventOwner }
             property("EvaEventAlly", Untyped.type) { it.evaEventAlly }
             property("EvaEventEnemy", Untyped.type) { it.evaEventEnemy }
-            property("RequiredSourceModelConditions", Untyped.type) { it.requiredSourceModelConditions }
-            property("ExcludedSourceModelConditions", Untyped.type) { it.excludedSourceModelConditions }
             property("AlwaysPlayFromHomeBase", BooleanValue) { it.alwaysPlayFromHomeBase }
             property("CountAsJumpToLocation", BooleanValue) { it.countAsJumpToLocation }
             property("ExpirationTimeMS", IntValue) { it.expirationTimeMS }

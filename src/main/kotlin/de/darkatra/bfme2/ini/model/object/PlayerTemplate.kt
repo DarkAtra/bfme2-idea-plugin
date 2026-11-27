@@ -93,6 +93,7 @@ data class PlayerTemplate(
     @SageIniName("SpecialPowerShortcutCommandSet") val specialPowerShortcutCommandSet: SageReference<CommandSet>? = null,
     @SageIniName("SpecialPowerShortcutButtonCount") val specialPowerShortcutButtonCount: Int = 0,
     @SageIniName("SpecialPowerShortcutWinName") val specialPowerShortcutWinName: Opaque? = null,
+    @SageIniName("IntrinsicSciencePurchasePoints") val intrinsicSciencePurchasePoints: Int = 0,
 ) : SageIniObject {
 
     companion object : SageIniBlockDescriptor<PlayerTemplate>(
@@ -176,6 +177,7 @@ data class PlayerTemplate(
             property("SpecialPowerShortcutCommandSet", ReferenceValue<CommandSet> { listOf(CommandSet) }) { it.specialPowerShortcutCommandSet }
             property("SpecialPowerShortcutButtonCount", IntValue) { it.specialPowerShortcutButtonCount }
             property("SpecialPowerShortcutWinName", Opaque.type) { it.specialPowerShortcutWinName }
+            property("IntrinsicSciencePurchasePoints", IntValue) { it.intrinsicSciencePurchasePoints }
         },
     )
 }

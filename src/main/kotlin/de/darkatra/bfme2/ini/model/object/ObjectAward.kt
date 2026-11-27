@@ -17,6 +17,7 @@ data class ObjectAward(
     @SageIniName("NameTag") val nameTag: Untyped? = null,
     @SageIniName("DescriptionTag") val descriptionTag: Untyped? = null,
     @SageIniName("Trigger") val trigger: List<Trigger> = emptyList(),
+    @SageIniName("UpgradeAwards") val upgradeAwards: List<SageReference<Upgrade>> = emptyList(),
 ) : SageNestedAttribute {
 
     companion object : SageIniBlockDescriptor<ObjectAward>(
@@ -27,6 +28,7 @@ data class ObjectAward(
             property("NameTag", Untyped.type) { it.nameTag }
             property("DescriptionTag", Untyped.type) { it.descriptionTag }
             property("Trigger", ListValue(BlockValue<Trigger> { listOf(Trigger) })) { it.trigger }
+            property("UpgradeAwards", ListValue(ReferenceValue<Upgrade> { listOf(Upgrade) })) { it.upgradeAwards }
         },
     )
 }

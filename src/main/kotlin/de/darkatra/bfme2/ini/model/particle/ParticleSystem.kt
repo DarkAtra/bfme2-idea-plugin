@@ -9,16 +9,27 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageNestedAttribute
 import de.darkatra.bfme2.ini.model.common.SageParticleSystem
+import de.darkatra.bfme2.ini.model.fx.FXNugget
 import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.MapWeatherType
+import de.darkatra.bfme2.ini.model.value.ModelCondition
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
 data class ParticleSystem(
-    val header: SageBlockHeader = SageBlockHeader(),
+    override val header: SageBlockHeader = SageBlockHeader(),
+    @SageIniName("ObjectFilter") override val objectFilter: SageFilter? = null,
+    @SageIniName("SourceObjectFilter") override val sourceObjectFilter: SageFilter? = null,
+    @SageIniName("RequiredSourceModelConditions") override val requiredSourceModelConditions: List<ModelCondition> = emptyList(),
+    @SageIniName("ExcludedSourceModelConditions") override val excludedSourceModelConditions: List<ModelCondition> = emptyList(),
+    @SageIniName("RequiredSecondaryModelConditions") override val requiredSecondaryModelConditions: List<ModelCondition> = emptyList(),
+    @SageIniName("ExcludedSecondaryModelConditions") override val excludedSecondaryModelConditions: List<ModelCondition> = emptyList(),
+    @SageIniName("StopIfNuggetPlayed") override val stopIfNuggetPlayed: Boolean = false,
+    @SageIniName("Weather") override val weather: MapWeatherType? = null,
     @SageIniName("Name") val name: SageReference<SageParticleSystem>? = null,
     @SageIniName("Count") val count: Int = 0,
     @SageIniName("Offset") val offset: Coords? = null,
@@ -37,14 +48,13 @@ data class ParticleSystem(
     @SageIniName("SetTargetMatrix") val setTargetMatrix: Boolean = false,
     @SageIniName("CreateAtGroundHeight") val createAtGroundHeight: Boolean = false,
     @SageIniName("AttachToBone") val attachToBone: Opaque? = null,
-    @SageIniName("ObjectFilter") val objectFilter: SageFilter? = null,
-    @SageIniName("Weather") val weather: Untyped? = null,
     @SageIniName("TargetCoeff") val targetCoeff: Double = 0.0,
     @SageIniName("SystemLife") val systemLife: Int = 0,
-) : SageNestedAttribute {
+) : FXNugget(), SageNestedAttribute {
 
     companion object : SageIniBlockDescriptor<ParticleSystem>(
         name = "ParticleSystem",
+        parent = FXNugget,
         properties = {
             property("Name", ReferenceValue<SageParticleSystem> { listOf(FXParticleSystem, ParticleSystemDefinition) }) { it.name }
             property("Count", IntValue) { it.count }
@@ -64,8 +74,6 @@ data class ParticleSystem(
             property("SetTargetMatrix", BooleanValue) { it.setTargetMatrix }
             property("CreateAtGroundHeight", BooleanValue) { it.createAtGroundHeight }
             property("AttachToBone", Opaque.type) { it.attachToBone }
-            property("ObjectFilter", SageFilter.type) { it.objectFilter }
-            property("Weather", Untyped.type) { it.weather }
             property("TargetCoeff", FloatValue) { it.targetCoeff }
             property("SystemLife", IntValue) { it.systemLife }
         },

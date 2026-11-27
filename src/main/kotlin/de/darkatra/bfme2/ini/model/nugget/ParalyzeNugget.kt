@@ -21,6 +21,7 @@ data class ParalyzeNugget(
     @SageIniName("FreezeAnimation") val freezeAnimation: Boolean = false,
     @SageIniName("AffectHordeMembers") val affectHordeMembers: Boolean = false,
     @SageIniName("ParalyzeFX") val paralyzeFX: SageReference<FXList>? = null,
+    @SageIniName("DamageArc") val damageArc: Double = 180.0,
 ) : WeaponEffectNugget() {
 
     companion object : SageIniBlockDescriptor<ParalyzeNugget>(
@@ -32,6 +33,7 @@ data class ParalyzeNugget(
             property("FreezeAnimation", BooleanValue) { it.freezeAnimation }
             property("AffectHordeMembers", BooleanValue) { it.affectHordeMembers }
             property("ParalyzeFX", ReferenceValue<FXList> { listOf(FXList) }) { it.paralyzeFX }
+            property("DamageArc", FloatValue) { it.damageArc }
         },
     )
 }

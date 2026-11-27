@@ -42,6 +42,7 @@ open class DamageNugget(
     @SageIniName("DeathType") open val deathType: DeathType? = null,
     @SageIniName("MinRadius") open val minRadius: Double = 0.0,
     @SageIniName("LostLeadershipUselessAgainst") open val lostLeadershipUselessAgainst: KindOf? = null,
+    @SageIniName("FlankedScalar") open val flankedScalar: Double = 0.0,
 ) : WeaponEffectNugget() {
 
     companion object : SageIniBlockDescriptor<DamageNugget>(
@@ -70,6 +71,7 @@ open class DamageNugget(
             property("DeathType", DeathType.type) { it.deathType }
             property("MinRadius", FloatValue) { it.minRadius }
             property("LostLeadershipUselessAgainst", KindOf.type) { it.lostLeadershipUselessAgainst }
+            property("FlankedScalar", FloatValue) { it.flankedScalar }
         },
     )
 }

@@ -25,6 +25,7 @@ data class ProjectileNugget(
     @SageIniName("ProjectileTemplateName") val projectileTemplateName: SageReference<Object>? = null,
     @SageIniName("AlwaysAttackHereOffset") val alwaysAttackHereOffset: Coords? = null,
     @SageIniName("UseAlwaysAttackOffset") val useAlwaysAttackOffset: Boolean = false,
+    @SageIniName("ProjectileStreamName") val projectileStreamName: SageReference<Object>? = null,
 ) : WeaponEffectNugget() {
 
     companion object : SageIniBlockDescriptor<ProjectileNugget>(
@@ -36,6 +37,7 @@ data class ProjectileNugget(
             property("ProjectileTemplateName", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.projectileTemplateName }
             property("AlwaysAttackHereOffset", Coords.type) { it.alwaysAttackHereOffset }
             property("UseAlwaysAttackOffset", BooleanValue) { it.useAlwaysAttackOffset }
+            property("ProjectileStreamName", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.projectileStreamName }
         },
     )
 }

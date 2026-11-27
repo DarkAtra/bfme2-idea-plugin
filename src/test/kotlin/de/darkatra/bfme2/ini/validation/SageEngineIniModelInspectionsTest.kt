@@ -519,6 +519,51 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should know properties that the engine declares for contains, draws and nuggets`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownPropertyInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object GondorTower
+                Behavior = HordeTransportContain ModuleTag_01
+                    DeathTypes = ALL
+                    ThrowOutPassengersDelay = 100
+                End
+                Behavior = HordeGarrisonContain ModuleTag_02
+                    ShowPips = Yes
+                    <warning descr="Unknown property 'Slots' in 'HordeGarrisonContain'">Slots</warning> = 2
+                End
+                Draw = W3DScriptedModelDraw ModuleTag_03
+                    RecoilDamping = 0.4
+                End
+            End
+            FXList FX_GondorTower
+                AttachedModel
+                    Weather = SNOWY
+                    StopIfNuggetPlayed = Yes
+                End
+            End
+            Weapon GondorTowerArrow
+                DamageNugget
+                    FlankedScalar = 50%
+                End
+            End
+            ObjectCreationList OCL_GondorTower
+                CreateObject
+                    InheritsVeterancy = Yes
+                End
+            End
+            AutoResolveArmor GondorTowerArmor
+                <warning descr="Unknown property 'RequiredUpgrades' in 'AutoResolveArmor'">RequiredUpgrades</warning> = Upgrade_GondorTower
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should recommend declaration names without special characters`() {
 
         myFixture.enableInspections(SageEngineIniSpecialCharacterNameInspection())

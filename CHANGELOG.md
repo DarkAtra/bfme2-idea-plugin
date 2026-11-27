@@ -9,6 +9,9 @@
 - Support for `Options.ini`: the game settings it contains are completed and validated
 - Support for the `MissionObjectiveList` block of `map.ini` and the `MapCache` block of `mapcache.ini`, both are reported in any other file
 - Support for the hardware fog and snow drift settings of the `Weather` block, e.g. `HardwareFogColor` and `SnowXYSpeed`
+- Support for more properties the engine reads, e.g. `Weather` and `StopIfNuggetPlayed` in every `FXList` nugget, `FlankedScalar` in a
+  `DamageNugget`, `InheritsVeterancy` in a `CreateObject`, `RecoilDamping` in model draws, the pitch settings of a `Turret` and the
+  `ImagePart` and `LinePart` blocks of a `ShellMenuScheme`
 
 ### Changed
 

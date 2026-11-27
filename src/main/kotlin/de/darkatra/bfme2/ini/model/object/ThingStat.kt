@@ -3,6 +3,7 @@ package de.darkatra.bfme2.ini.model.`object`
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
@@ -19,6 +20,10 @@ data class ThingStat(
     @SageIniName("ThingTemplateNames") val thingTemplateNames: List<SageReference<Object>> = emptyList(),
     @SageIniName("KindOf") val kindOf: List<KindOf> = emptyList(),
     @SageIniName("ExcludedKindOf") val excludedKindOf: List<KindOf> = emptyList(),
+    @SageIniName("ExcludedThings") val excludedThings: List<SageReference<Object>> = emptyList(),
+    @SageIniName("MultiPlayerOnly") val multiPlayerOnly: Boolean = false,
+    @SageIniName("PrimaryKey") val primaryKey: String = "",
+    @SageIniName("SecondaryKey") val secondaryKey: String = "",
 ) : SageNestedAttribute {
 
     companion object : SageIniBlockDescriptor<ThingStat>(
@@ -30,6 +35,10 @@ data class ThingStat(
             property("ThingTemplateNames", ListValue(ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) })) { it.thingTemplateNames }
             property("KindOf", ListValue(KindOf.type)) { it.kindOf }
             property("ExcludedKindOf", ListValue(KindOf.type)) { it.excludedKindOf }
+            property("ExcludedThings", ListValue(ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) })) { it.excludedThings }
+            property("MultiPlayerOnly", BooleanValue) { it.multiPlayerOnly }
+            property("PrimaryKey", StringValue) { it.primaryKey }
+            property("SecondaryKey", StringValue) { it.secondaryKey }
         },
     )
 }

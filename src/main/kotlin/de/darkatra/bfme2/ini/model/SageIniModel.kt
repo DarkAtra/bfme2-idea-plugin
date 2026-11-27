@@ -412,6 +412,7 @@ import de.darkatra.bfme2.ini.model.fx.CreateDebris
 import de.darkatra.bfme2.ini.model.fx.DynamicDecal
 import de.darkatra.bfme2.ini.model.fx.EvaEvent
 import de.darkatra.bfme2.ini.model.fx.FXListAtBonePos
+import de.darkatra.bfme2.ini.model.fx.FXNugget
 import de.darkatra.bfme2.ini.model.fx.FireWeapon
 import de.darkatra.bfme2.ini.model.fx.LightPulse
 import de.darkatra.bfme2.ini.model.fx.Sound
@@ -688,6 +689,7 @@ import de.darkatra.bfme2.ini.model.ui.DecalTemplate
 import de.darkatra.bfme2.ini.model.ui.DeliveryDecal
 import de.darkatra.bfme2.ini.model.ui.GridDecalTemplate
 import de.darkatra.bfme2.ini.model.ui.ImagePart
+import de.darkatra.bfme2.ini.model.ui.LinePart
 import de.darkatra.bfme2.ini.model.ui.RadiusCursorTemplate
 import de.darkatra.bfme2.ini.model.ui.Transition
 import de.darkatra.bfme2.ini.model.ui.Window
@@ -1107,6 +1109,7 @@ object SageIniModel {
             DynamicDecal,
             EvaEvent,
             FXListAtBonePos,
+            FXNugget,
             FireWeapon,
             LightPulse,
             LargeGroupAudioMapSound,
@@ -1382,6 +1385,7 @@ object SageIniModel {
             DeliveryDecal,
             GridDecalTemplate,
             ImagePart,
+            LinePart,
             RadiusCursorTemplate,
             Transition,
             Window,

@@ -159,6 +159,7 @@ data class InGameUI(
     @SageIniName("TrainingRadiusCursor") val trainingRadiusCursor: Opaque? = null,
     @SageIniName("WarChantRadiusCursor") val warChantRadiusCursor: Opaque? = null,
     @SageIniName("RadiusCursorTemplate") val radiusCursorTemplate: List<RadiusCursorTemplate> = emptyList(),
+    @SageIniName("NamedTimerCountdownCentered") val namedTimerCountdownCentered: Boolean = false,
 ) : SageIniObject {
 
     companion object : SageIniBlockDescriptor<InGameUI>(
@@ -304,6 +305,7 @@ data class InGameUI(
             property("TrainingRadiusCursor", Opaque.type) { it.trainingRadiusCursor }
             property("WarChantRadiusCursor", Opaque.type) { it.warChantRadiusCursor }
             property("RadiusCursorTemplate", ListValue(BlockValue<RadiusCursorTemplate> { listOf(RadiusCursorTemplate) })) { it.radiusCursorTemplate }
+            property("NamedTimerCountdownCentered", BooleanValue) { it.namedTimerCountdownCentered }
         },
     )
 }

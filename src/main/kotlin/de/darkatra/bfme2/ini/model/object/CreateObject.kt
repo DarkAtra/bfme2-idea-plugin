@@ -57,6 +57,11 @@ data class CreateObject(
     @SageIniName("MinLifetime") val minLifetime: Int = 0,
     @SageIniName("MaxLifetime") val maxLifetime: Int = 0,
     @SageIniName("SkipIfSignificantlyAirborne") val skipIfSignificantlyAirborne: Boolean = false,
+    @SageIniName("ContainInsideSourceObject") val containInsideSourceObject: Boolean = false,
+    @SageIniName("InheritsVeterancy") val inheritsVeterancy: Boolean = false,
+    @SageIniName("MinHealth") val minHealth: Double = 0.0,
+    @SageIniName("MaxHealth") val maxHealth: Double = 0.0,
+    @SageIniName("ObjectCount") val objectCount: Int = 0,
 ) : SageIniObject {
 
     companion object : SageIniBlockDescriptor<CreateObject>(
@@ -101,6 +106,11 @@ data class CreateObject(
             property("MinLifetime", IntValue) { it.minLifetime }
             property("MaxLifetime", IntValue) { it.maxLifetime }
             property("SkipIfSignificantlyAirborne", BooleanValue) { it.skipIfSignificantlyAirborne }
+            property("ContainInsideSourceObject", BooleanValue) { it.containInsideSourceObject }
+            property("InheritsVeterancy", BooleanValue) { it.inheritsVeterancy }
+            property("MinHealth", FloatValue) { it.minHealth }
+            property("MaxHealth", FloatValue) { it.maxHealth }
+            property("ObjectCount", IntValue) { it.objectCount }
         },
     )
 }

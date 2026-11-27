@@ -4,6 +4,7 @@ import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageNestedAttribute
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -22,6 +23,15 @@ data class Turret(
     @SageIniName("NaturalTurretAngle") val naturalTurretAngle: Int = 0,
     @SageIniName("TurretMaxDeflectionCW") val turretMaxDeflectionCW: Int = 0,
     @SageIniName("TurretMaxDeflectionACW") val turretMaxDeflectionACW: Int = 0,
+    @SageIniName("FirePitch") val firePitch: Double = 0.0,
+    @SageIniName("GroundUnitPitch") val groundUnitPitch: Double = 0.0,
+    @SageIniName("InitiallyDisabled") val initiallyDisabled: Boolean = false,
+    @SageIniName("MinIdleScanAngle") val minIdleScanAngle: Double = 0.0,
+    @SageIniName("MaxIdleScanAngle") val maxIdleScanAngle: Double = 0.0,
+    @SageIniName("MinPhysicalPitch") val minPhysicalPitch: Double = 0.0,
+    @SageIniName("NaturalTurretPitch") val naturalTurretPitch: Double = 0.0,
+    @SageIniName("TurretFireAngleSweep") val turretFireAngleSweep: Untyped? = null,
+    @SageIniName("TurretSweepSpeedModifier") val turretSweepSpeedModifier: Untyped? = null,
 ) : SageNestedAttribute {
 
     companion object : SageIniBlockDescriptor<Turret>(
@@ -39,6 +49,15 @@ data class Turret(
             property("NaturalTurretAngle", IntValue) { it.naturalTurretAngle }
             property("TurretMaxDeflectionCW", IntValue) { it.turretMaxDeflectionCW }
             property("TurretMaxDeflectionACW", IntValue) { it.turretMaxDeflectionACW }
+            property("FirePitch", FloatValue) { it.firePitch }
+            property("GroundUnitPitch", FloatValue) { it.groundUnitPitch }
+            property("InitiallyDisabled", BooleanValue) { it.initiallyDisabled }
+            property("MinIdleScanAngle", FloatValue) { it.minIdleScanAngle }
+            property("MaxIdleScanAngle", FloatValue) { it.maxIdleScanAngle }
+            property("MinPhysicalPitch", FloatValue) { it.minPhysicalPitch }
+            property("NaturalTurretPitch", FloatValue) { it.naturalTurretPitch }
+            property("TurretFireAngleSweep", Untyped.type) { it.turretFireAngleSweep }
+            property("TurretSweepSpeedModifier", Untyped.type) { it.turretSweepSpeedModifier }
         },
     )
 }

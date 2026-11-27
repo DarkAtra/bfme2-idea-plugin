@@ -19,6 +19,7 @@ data class NewEvaEvent(
     @SageIniName("MillisecondsToWaitBeforePlaying") val millisecondsToWaitBeforePlaying: Int = 0,
     @SageIniName("OtherEvaEventsToBlock") val otherEvaEventsToBlock: List<SageReference<EvaEventBase>> = emptyList(),
     @SageIniName("SideSound") override val sideSound: List<SideSound> = emptyList(),
+    @SageIniName("QuietTimeMS") val quietTimeMs: Int = 0,
 ) : EvaEventBase() {
 
     companion object : SageIniBlockDescriptor<NewEvaEvent>(
@@ -28,6 +29,7 @@ data class NewEvaEvent(
         properties = {
             property("MillisecondsToWaitBeforePlaying", IntValue) { it.millisecondsToWaitBeforePlaying }
             property("OtherEvaEventsToBlock", ListValue(ReferenceValue<EvaEventBase> { listOf(NewEvaEvent, PredefinedEvaEvent) })) { it.otherEvaEventsToBlock }
+            property("QuietTimeMS", IntValue) { it.quietTimeMs }
         },
     )
 }

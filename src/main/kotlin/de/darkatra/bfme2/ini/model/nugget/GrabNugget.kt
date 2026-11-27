@@ -21,6 +21,7 @@ data class GrabNugget(
     @SageIniName("ShockWaveRadius") val shockWaveRadius: Double = 0.0,
     @SageIniName("ShockWaveTaperOff") val shockWaveTaperOff: Double = 0.0,
     @SageIniName("ShockWaveZMult") val shockWaveZMult: Double = 0.0,
+    @SageIniName("ShockWaveSpeed") val shockWaveSpeed: Double = 0.0,
 ) : WeaponEffectNugget() {
 
     companion object : SageIniBlockDescriptor<GrabNugget>(
@@ -34,6 +35,7 @@ data class GrabNugget(
             property("ShockWaveRadius", FloatValue) { it.shockWaveRadius }
             property("ShockWaveTaperOff", FloatValue) { it.shockWaveTaperOff }
             property("ShockWaveZMult", FloatValue) { it.shockWaveZMult }
+            property("ShockWaveSpeed", FloatValue) { it.shockWaveSpeed }
         },
     )
 }
