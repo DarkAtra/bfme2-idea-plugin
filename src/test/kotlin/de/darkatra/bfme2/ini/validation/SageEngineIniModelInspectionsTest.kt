@@ -50,6 +50,8 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
                 End
                 Behavior = <warning descr="Unknown module 'AutoHealBehaviour' for 'Behavior'">AutoHealBehaviour</warning> ModuleTag_Heal
                 End
+                <warning descr="Unknown block 'AutoHealBehavior' in 'Object'">AutoHealBehavior</warning>
+                End
                 Draw = W3DModelDraw ModuleTag_Draw
                     ModelConditionState = DAMAGED
                     End
@@ -611,6 +613,8 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
                 End
                 BuildingNugget <warning descr="Unknown module 'GiveTreasure' for 'BuildingNugget'">GiveTreasure</warning> NuggetTag_Treasure
                 End
+                <warning descr="Unknown block 'SpawnArmy' in 'LivingWorldBuilding'">SpawnArmy</warning>
+                End
             End
             Object GondorSoldiers
                 Behavior = HordeContain ModuleTag_01
@@ -620,6 +624,8 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
                     End
                     MeleeBehavior = Amoeba
                         FacingBonus = 30.0
+                    End
+                    <warning descr="Unknown block 'Swarm' in 'HordeContain'">Swarm</warning>
                     End
                 End
             End

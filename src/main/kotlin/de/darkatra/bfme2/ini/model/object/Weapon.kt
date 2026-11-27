@@ -275,7 +275,7 @@ data class Weapon(
             property("AntiSmallMissile", BooleanValue) { it.antiSmallMissile }
             property("AntiMask", Untyped.type) { it.antiMask }
             property("ClearNuggets", Opaque.type) { it.clearNuggets }
-            property("Nuggets", ListValue(BlockValue<SageNugget> { SageIniModel.nuggets })) { it.nuggets }
+            property("Nuggets", ListValue(BlockValue<SageNugget>(group = true) { SageIniModel.nuggets })) { it.nuggets }
         },
     )
 }

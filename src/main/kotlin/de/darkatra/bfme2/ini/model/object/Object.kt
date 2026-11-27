@@ -380,7 +380,7 @@ open class Object(
             property("VoiceTaskUnable", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.section3.voiceTaskUnable }
             property("WeaponSet", ListValue(BlockValue<WeaponSet> { listOf(WeaponSet) })) { it.section3.weaponSet }
             property("ArmorSet", ListValue(BlockValue<ArmorSet> { listOf(ArmorSet) })) { it.section3.armorSet }
-            property("AutoResolve", ListValue(BlockValue<AutoResolveEntry> { listOf(AutoResolveArmor, AutoResolveWeapon) })) { it.section3.autoResolve }
+            property("AutoResolve", ListValue(BlockValue<AutoResolveEntry>(group = true) { listOf(AutoResolveArmor, AutoResolveWeapon) })) { it.section3.autoResolve }
             property("UnitSpecificSounds", ListValue(BlockValue<UnitSpecificSounds> { listOf(UnitSpecificSounds) })) { it.section3.unitSpecificSounds }
             property("LocomotorSet", ListValue(BlockValue<LocomotorSet> { listOf(LocomotorSet) })) { it.section3.locomotorSet }
             property("Draw", ListValue(BlockValue<SageDraw> { SageIniModel.draws })) { it.section3.draw }

@@ -75,7 +75,10 @@ class SageEngineIniUnknownBlockInspection : LocalInspectionTool() {
     private fun childBlockNames(parent: SageIniBlockDescriptor<*>): List<String> {
         return parent.properties.flatMap { property ->
             val blockValue = property.type.elementType() as? SageIniValueType.BlockValue<*> ?: return@flatMap emptyList()
-            listOf(property.name) + blockValue.candidates.filterNot { it.isAbstract }.map { it.name }
+            when (blockValue.group) {
+                true -> blockValue.candidates.filterNot { it.isAbstract }.map { it.name }
+                false -> listOf(property.name)
+            }
         }
     }
 }

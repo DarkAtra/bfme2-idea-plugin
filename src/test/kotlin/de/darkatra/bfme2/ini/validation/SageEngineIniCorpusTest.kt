@@ -1,6 +1,5 @@
 package de.darkatra.bfme2.ini.validation
 
-import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.application.runWriteAction
 import com.intellij.openapi.vfs.PersistentFSConstants
@@ -11,8 +10,9 @@ import org.junit.Test
 import java.io.File
 
 /**
- * Runs the model inspections over real INI files to find false positives, e.g. the base game files and mods like Age of the Ring. Opt-in
- * because the files aren't part of the repository: set `BFME2_INI_CORPUS` to one or more directories separated by `File.pathSeparator`.
+ * Runs the model inspections over real INI files to find false positives, e.g. the base game files.
+ * Opt-in because the files aren't part of the repository: set `BFME2_INI_CORPUS` to one or more
+ * directories separated by `File.pathSeparator`.
  */
 class SageEngineIniCorpusTest : LightPlatformCodeInsightFixture4TestCase() {
 
@@ -37,7 +37,8 @@ class SageEngineIniCorpusTest : LightPlatformCodeInsightFixture4TestCase() {
             PersistentFSConstants.setMaxIntellisenseFileSize(maxFileSize)
         }
 
-        assertThat(problems.filterNot { it.replace(LINE_NUMBER, ":") in knownProblems() }).isEmpty()
+        val knownProblems = knownProblems()
+        assertThat(problems.filterNot { it.replace(LINE_NUMBER, ":") in knownProblems }).isEmpty()
     }
 
     // problems of the base game and Age of the Ring files themselves, e.g. typos and blocks closed in an included file
@@ -62,13 +63,10 @@ class SageEngineIniCorpusTest : LightPlatformCodeInsightFixture4TestCase() {
     private fun problems(path: String): List<String> {
 
         myFixture.configureFromTempProjectFile(path)
-        val text = myFixture.editor.document.text
-        return myFixture.doHighlighting(HighlightSeverity.WEAK_WARNING).map { info -> describe(path, text, info) }
-    }
-
-    private fun describe(path: String, text: String, info: HighlightInfo): String {
-        val line = text.substring(0, info.startOffset).count { it == '\n' } + 1
-        return "$path:$line: ${info.description}"
+        val document = myFixture.editor.document
+        return myFixture.doHighlighting(HighlightSeverity.WEAK_WARNING).map { info ->
+            "$path:${document.getLineNumber(info.startOffset) + 1}: ${info.description}"
+        }
     }
 
     private companion object {

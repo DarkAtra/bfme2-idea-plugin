@@ -28,6 +28,8 @@
 - The `Attack` nugget of an `ObjectCreationList` accepts the properties the engine reads, e.g. `NumberOfShots` and `DeliveryDecal`
 - `Banner` and the other properties of an `ArmyToSpawn` the engine reads, e.g. `SpawnAtActStart`, are known, and `Banner` references a `BannerType`
 - `MeleeBehavior` blocks know the properties of `WaitForLeader` and `Amoeba`, e.g. `FollowLeader` and `DelayUntilIdle`
+- Blocks named after a module or type, e.g. `AutoHealBehavior` in an `Object` or `Swarm` in a `HordeContain`, are reported as unknown instead of
+  being accepted as that module
 - Properties that the engine doesn't read are reported as unknown: `AllowInsideKindOf`, `ForbidInsideKindOf` and `ShouldDrawPips` of containers,
   `IsEnclosingContainer` of garrisons, `TransferSelection` of a `HordeSiegeEngineContain`, `AnimationName` and the other animation settings of
   an `Attack` nugget and transport settings like `PassengersAllowedToFire`

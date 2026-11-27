@@ -62,8 +62,11 @@ sealed interface SageIniValueType<out V> {
 
     /**
      * A nested block that is one of the [candidates].
+     *
+     * @param group `true` if the blocks are opened by the name of their candidate instead of the property name, e.g. a `DamageNugget` in
+     * the `Nuggets` of a `Weapon`
      */
-    class BlockValue<B : Any>(candidates: () -> List<SageIniBlockDescriptor<out B>>) : SageIniValueType<B> {
+    class BlockValue<B : Any>(val group: Boolean = false, candidates: () -> List<SageIniBlockDescriptor<out B>>) : SageIniValueType<B> {
 
         // lazy because blocks can contain each other cyclically
         val candidates: List<SageIniBlockDescriptor<out B>> by lazy(candidates)

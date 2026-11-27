@@ -150,6 +150,7 @@ object SageEngineIniModelResolver {
         // groups such as the `Nuggets` of a `Weapon` contain blocks named after their type
         val groupMembers = parent.properties.asSequence()
             .mapNotNull { it.type.elementType() as? SageIniValueType.BlockValue<*> }
+            .filter { it.group }
             .flatMap { it.candidates }
             .filter { it.name == name }
             .distinct()
