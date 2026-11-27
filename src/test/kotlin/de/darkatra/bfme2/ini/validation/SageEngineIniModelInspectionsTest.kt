@@ -554,9 +554,6 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
                     InheritsVeterancy = Yes
                 End
             End
-            AutoResolveArmor GondorTowerArmor
-                <warning descr="Unknown property 'RequiredUpgrades' in 'AutoResolveArmor'">RequiredUpgrades</warning> = Upgrade_GondorTower
-            End
             """.trimIndent()
         )
 

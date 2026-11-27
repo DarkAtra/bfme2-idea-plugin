@@ -7,7 +7,6 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
-import de.darkatra.bfme2.ini.model.value.KindOf
 import de.darkatra.bfme2.ini.model.value.ObjectCount
 import de.darkatra.bfme2.ini.model.value.ObjectStatus
 import de.darkatra.bfme2.ini.model.value.SageFilter
@@ -16,8 +15,6 @@ import de.darkatra.bfme2.ini.model.value.Untyped
 
 open class GarrisonContain(
     override val header: SageBlockHeader = SageBlockHeader(),
-    @SageIniName("AllowInsideKindOf") override val allowInsideKindOf: List<KindOf> = emptyList(),
-    @SageIniName("ForbidInsideKindOf") override val forbidInsideKindOf: List<KindOf> = emptyList(),
     @SageIniName("ContainMax") override val containMax: Int = 0,
     @SageIniName("EnterSound") override val enterSound: SageReference<AudioEvent>? = null,
     @SageIniName("ExitSound") override val exitSound: SageReference<AudioEvent>? = null,
@@ -26,7 +23,6 @@ open class GarrisonContain(
     @SageIniName("AllowAlliesInside") override val allowAlliesInside: Boolean = false,
     @SageIniName("AllowNeutralInside") override val allowNeutralInside: Boolean = false,
     @SageIniName("AllowEnemiesInside") override val allowEnemiesInside: Boolean = false,
-    @SageIniName("ShouldDrawPips") override val shouldDrawPips: Boolean = false,
     @SageIniName("AllowOwnPlayerInsideOverride") override val allowOwnPlayerInsideOverride: Boolean = false,
     @SageIniName("BoneSpecificConditionState") override val boneSpecificConditionState: List<Untyped> = emptyList(),
     @SageIniName("CollidePickup") override val collidePickup: Boolean = false,
@@ -52,7 +48,6 @@ open class GarrisonContain(
     @SageIniName("MobileGarrison") open val mobileGarrison: Boolean = false,
     @SageIniName("InitialRoster") open val initialRoster: ObjectCount? = null,
     @SageIniName("ImmuneToClearBuildingAttacks") open val immuneToClearBuildingAttacks: Boolean = false,
-    @SageIniName("IsEnclosingContainer") open val isEnclosingContainer: Boolean = false,
     @SageIniName("HealObjects") open val healObjects: Boolean = false,
     @SageIniName("TimeForFullHeal") open val timeForFullHeal: Int = 0,
 ) : OpenContain() {
@@ -64,7 +59,6 @@ open class GarrisonContain(
             property("MobileGarrison", BooleanValue) { it.mobileGarrison }
             property("InitialRoster", ObjectCount.type) { it.initialRoster }
             property("ImmuneToClearBuildingAttacks", BooleanValue) { it.immuneToClearBuildingAttacks }
-            property("IsEnclosingContainer", BooleanValue) { it.isEnclosingContainer }
             property("HealObjects", BooleanValue) { it.healObjects }
             property("TimeForFullHeal", IntValue) { it.timeForFullHeal }
         },

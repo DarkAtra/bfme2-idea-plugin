@@ -13,7 +13,6 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
-import de.darkatra.bfme2.ini.model.value.KindOf
 import de.darkatra.bfme2.ini.model.value.ObjectStatus
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -21,8 +20,6 @@ import de.darkatra.bfme2.ini.model.value.Untyped
 
 open class OpenContain(
     open val header: SageBlockHeader = SageBlockHeader(),
-    @SageIniName("AllowInsideKindOf") open val allowInsideKindOf: List<KindOf> = emptyList(),
-    @SageIniName("ForbidInsideKindOf") open val forbidInsideKindOf: List<KindOf> = emptyList(),
     @SageIniName("ContainMax") open val containMax: Int = 0,
     @SageIniName("EnterSound") open val enterSound: SageReference<AudioEvent>? = null,
     @SageIniName("ExitSound") open val exitSound: SageReference<AudioEvent>? = null,
@@ -31,7 +28,6 @@ open class OpenContain(
     @SageIniName("AllowAlliesInside") open val allowAlliesInside: Boolean = false,
     @SageIniName("AllowNeutralInside") open val allowNeutralInside: Boolean = false,
     @SageIniName("AllowEnemiesInside") open val allowEnemiesInside: Boolean = false,
-    @SageIniName("ShouldDrawPips") open val shouldDrawPips: Boolean = false,
     @SageIniName("AllowOwnPlayerInsideOverride") open val allowOwnPlayerInsideOverride: Boolean = false,
     @SageIniName("BoneSpecificConditionState") open val boneSpecificConditionState: List<Untyped> = emptyList(),
     @SageIniName("CollidePickup") open val collidePickup: Boolean = false,
@@ -59,8 +55,6 @@ open class OpenContain(
     companion object : SageIniBlockDescriptor<OpenContain>(
         name = "OpenContain",
         properties = {
-            property("AllowInsideKindOf", ListValue(KindOf.type)) { it.allowInsideKindOf }
-            property("ForbidInsideKindOf", ListValue(KindOf.type)) { it.forbidInsideKindOf }
             property("ContainMax", IntValue) { it.containMax }
             property("EnterSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.enterSound }
             property("ExitSound", ReferenceValue<AudioEvent> { listOf(AudioEvent) }) { it.exitSound }
@@ -69,7 +63,6 @@ open class OpenContain(
             property("AllowAlliesInside", BooleanValue) { it.allowAlliesInside }
             property("AllowNeutralInside", BooleanValue) { it.allowNeutralInside }
             property("AllowEnemiesInside", BooleanValue) { it.allowEnemiesInside }
-            property("ShouldDrawPips", BooleanValue) { it.shouldDrawPips }
             property("AllowOwnPlayerInsideOverride", BooleanValue) { it.allowOwnPlayerInsideOverride }
             property("BoneSpecificConditionState", ListValue(Untyped.type)) { it.boneSpecificConditionState }
             property("CollidePickup", BooleanValue) { it.collidePickup }

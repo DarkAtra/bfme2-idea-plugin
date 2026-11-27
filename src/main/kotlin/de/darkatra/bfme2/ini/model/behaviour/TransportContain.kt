@@ -24,8 +24,6 @@ import de.darkatra.bfme2.ini.model.value.UpgradeCreationTrigger
 
 open class TransportContain(
     override val header: SageBlockHeader = SageBlockHeader(),
-    @SageIniName("AllowInsideKindOf") override val allowInsideKindOf: List<KindOf> = emptyList(),
-    @SageIniName("ForbidInsideKindOf") override val forbidInsideKindOf: List<KindOf> = emptyList(),
     @SageIniName("ContainMax") override val containMax: Int = 0,
     @SageIniName("EnterSound") override val enterSound: SageReference<AudioEvent>? = null,
     @SageIniName("ExitSound") override val exitSound: SageReference<AudioEvent>? = null,
@@ -34,7 +32,6 @@ open class TransportContain(
     @SageIniName("AllowAlliesInside") override val allowAlliesInside: Boolean = false,
     @SageIniName("AllowNeutralInside") override val allowNeutralInside: Boolean = false,
     @SageIniName("AllowEnemiesInside") override val allowEnemiesInside: Boolean = false,
-    @SageIniName("ShouldDrawPips") override val shouldDrawPips: Boolean = false,
     @SageIniName("AllowOwnPlayerInsideOverride") override val allowOwnPlayerInsideOverride: Boolean = false,
     @SageIniName("BoneSpecificConditionState") override val boneSpecificConditionState: List<Untyped> = emptyList(),
     @SageIniName("CollidePickup") override val collidePickup: Boolean = false,
@@ -57,21 +54,15 @@ open class TransportContain(
     @SageIniName("PassengersTestCollisionHeight") override val passengersTestCollisionHeight: Double = -1000.0,
     @SageIniName("RequiredStatus") override val requiredStatus: ObjectStatus? = null,
     @SageIniName("ShowPips") override val showPips: Boolean = false,
-    @SageIniName("PassengersAllowedToFire") open val passengersAllowedToFire: Boolean = false,
     @SageIniName("Slots") open val slots: Int = 0,
-    @SageIniName("BurnedDeathToUnits") open val burnedDeathToUnits: Boolean = false,
     @SageIniName("ExitDelay") open val exitDelay: Int = 0,
     @SageIniName("GoAggressiveOnExit") open val goAggressiveOnExit: Boolean = false,
     @SageIniName("ScatterNearbyOnExit") open val scatterNearbyOnExit: Boolean = false,
     @SageIniName("OrientLikeContainerOnExit") open val orientLikeContainerOnExit: Boolean = false,
-    @SageIniName("KeepContainerVelocityOnExit") open val keepContainerVelocityOnExit: Boolean = false,
     @SageIniName("ExitPitchRate") open val exitPitchRate: Int = 0,
     @SageIniName("ExitBone") open val exitBone: Opaque? = null,
     @SageIniName("DestroyRidersWhoAreNotFreeToExit") open val destroyRidersWhoAreNotFreeToExit: Boolean = false,
     @SageIniName("InitialPayload") open val initialPayload: List<ObjectCount> = emptyList(),
-    @SageIniName("ArmedRidersUpgradeMyWeaponSet") open val armedRidersUpgradeMyWeaponSet: Boolean = false,
-    @SageIniName("WeaponBonusPassedToPassengers") open val weaponBonusPassedToPassengers: Boolean = false,
-    @SageIniName("DelayExitInAir") open val delayExitInAir: Boolean = false,
     @SageIniName("TypeOneForWeaponSet") open val typeOneForWeaponSet: KindOf? = null,
     @SageIniName("TypeTwoForWeaponSet") open val typeTwoForWeaponSet: KindOf? = null,
     @SageIniName("TypeOneForWeaponState") open val typeOneForWeaponState: KindOf? = null,
@@ -102,21 +93,15 @@ open class TransportContain(
         name = "TransportContain",
         parent = OpenContain,
         properties = {
-            property("PassengersAllowedToFire", BooleanValue) { it.passengersAllowedToFire }
             property("Slots", IntValue) { it.slots }
-            property("BurnedDeathToUnits", BooleanValue) { it.burnedDeathToUnits }
             property("ExitDelay", IntValue) { it.exitDelay }
             property("GoAggressiveOnExit", BooleanValue) { it.goAggressiveOnExit }
             property("ScatterNearbyOnExit", BooleanValue) { it.scatterNearbyOnExit }
             property("OrientLikeContainerOnExit", BooleanValue) { it.orientLikeContainerOnExit }
-            property("KeepContainerVelocityOnExit", BooleanValue) { it.keepContainerVelocityOnExit }
             property("ExitPitchRate", IntValue) { it.exitPitchRate }
             property("ExitBone", Opaque.type) { it.exitBone }
             property("DestroyRidersWhoAreNotFreeToExit", BooleanValue) { it.destroyRidersWhoAreNotFreeToExit }
             property("InitialPayload", ListValue(ObjectCount.type)) { it.initialPayload }
-            property("ArmedRidersUpgradeMyWeaponSet", BooleanValue) { it.armedRidersUpgradeMyWeaponSet }
-            property("WeaponBonusPassedToPassengers", BooleanValue) { it.weaponBonusPassedToPassengers }
-            property("DelayExitInAir", BooleanValue) { it.delayExitInAir }
             property("TypeOneForWeaponSet", KindOf.type) { it.typeOneForWeaponSet }
             property("TypeTwoForWeaponSet", KindOf.type) { it.typeTwoForWeaponSet }
             property("TypeOneForWeaponState", KindOf.type) { it.typeOneForWeaponState }

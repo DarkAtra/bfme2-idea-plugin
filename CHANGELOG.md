@@ -18,13 +18,16 @@
   of a `GarrisonContain` instead of those of a transport
 - `DecalTemplate`, `GridDecalTemplate`, `RadiusCursorTemplate` and `SelectionDecal` accept all properties of a decal
 - `SpawnObject` of a `CritterEmitterUpdate` references an object creation list instead of an object
-- `RequiredUpgrades` and `ExcludedUpgrades` are reported as unknown in an `AutoResolveArmor`
 - Completion shows 2D positions such as `GrabOffset` or the `HotSpot` of a `MouseCursor` as `Coord2D` or `Coord2DInt` instead of `Coords`
 - The castle of a `CastleToUnpackForFaction` and the object of a `QuantityModifier` are recognized as references to objects
 - Modules know the properties of their engine base, e.g. a `HordeContain` those of a `TransportContain`, special ability modules like
   `ToggleDeploySpecialAbilityUpdate` those of a `SpecialAbilityUpdate` and `W3DSupplyDraw` those of a `W3DScriptedModelDraw`, and every
   body accepts `RemoveUpgradesOnDeath`
 - The `Attack` nugget of an `ObjectCreationList` accepts the properties the engine reads, e.g. `NumberOfShots` and `DeliveryDecal`
+- `Banner` of an `ArmyToSpawn` is known and references a `BannerType`
+- Properties that the engine doesn't read are reported as unknown: `AllowInsideKindOf`, `ForbidInsideKindOf` and `ShouldDrawPips` of containers,
+  `IsEnclosingContainer` of garrisons, `TransferSelection` of a `HordeSiegeEngineContain`, `AnimationName` and the other animation settings of
+  an `Attack` nugget and transport settings like `PassengersAllowedToFire`
 
 ## `1.0.1`
 

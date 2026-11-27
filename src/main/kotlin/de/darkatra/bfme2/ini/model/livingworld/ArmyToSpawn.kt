@@ -6,6 +6,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageNestedAttribute
+import de.darkatra.bfme2.ini.model.`object`.BannerType
 import de.darkatra.bfme2.ini.model.`object`.ChildObject
 import de.darkatra.bfme2.ini.model.`object`.LivingWorldArmyIcon
 import de.darkatra.bfme2.ini.model.`object`.MappedImage
@@ -26,6 +27,7 @@ data class ArmyToSpawn(
     @SageIniName("ConstructButtonTitle") val constructButtonTitle: Untyped? = null,
     @SageIniName("ConstructButtonHelp") val constructButtonHelp: Untyped? = null,
     @SageIniName("HeroTemplateName") val heroTemplateName: SageReference<Object>? = null,
+    @SageIniName("Banner") val banner: SageReference<BannerType>? = null,
 ) : SageNestedAttribute {
 
     companion object : SageIniBlockDescriptor<ArmyToSpawn>(
@@ -40,6 +42,7 @@ data class ArmyToSpawn(
             property("ConstructButtonTitle", Untyped.type) { it.constructButtonTitle }
             property("ConstructButtonHelp", Untyped.type) { it.constructButtonHelp }
             property("HeroTemplateName", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.heroTemplateName }
+            property("Banner", ReferenceValue<BannerType> { listOf(BannerType) }) { it.banner }
         },
     )
 }
