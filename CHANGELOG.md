@@ -24,7 +24,8 @@
   `ToggleDeploySpecialAbilityUpdate` those of a `SpecialAbilityUpdate` and `W3DSupplyDraw` those of a `W3DScriptedModelDraw`, and every
   body accepts `RemoveUpgradesOnDeath`
 - The `Attack` nugget of an `ObjectCreationList` accepts the properties the engine reads, e.g. `NumberOfShots` and `DeliveryDecal`
-- `Banner` of an `ArmyToSpawn` is known and references a `BannerType`
+- `Banner` and the other properties of an `ArmyToSpawn` the engine reads, e.g. `SpawnAtActStart`, are known, and `Banner` references a `BannerType`
+- `MeleeBehavior` blocks know the properties of `WaitForLeader` and `Amoeba`, e.g. `FollowLeader` and `DelayUntilIdle`
 - Properties that the engine doesn't read are reported as unknown: `AllowInsideKindOf`, `ForbidInsideKindOf` and `ShouldDrawPips` of containers,
   `IsEnclosingContainer` of garrisons, `TransferSelection` of a `HordeSiegeEngineContain`, `AnimationName` and the other animation settings of
   an `Attack` nugget and transport settings like `PassengersAllowedToFire`
