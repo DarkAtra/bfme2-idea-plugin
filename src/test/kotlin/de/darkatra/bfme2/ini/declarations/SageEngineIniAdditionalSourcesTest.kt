@@ -136,6 +136,19 @@ class SageEngineIniAdditionalSourcesTest : LightPlatformCodeInsightFixture4TestC
         assertThat(SageEngineIniIncludeReference(includeValue).resolve()).isEqualTo(psiFile(baseGame, "includes/buildings.inc"))
     }
 
+    @Test
+    fun `should resolve includes of the project to files of additional directories`() {
+
+        val baseGame = createDirectory("object/includes/capturebuilding.inc" to "")
+        useAdditionalDirectories(baseGame)
+        myFixture.configureByText("dummy.ini", "")
+        val modFile = myFixture.addFileToProject("data/ini/object/units/gondor.ini", "#include \"..\\Includes\\CaptureBuilding.inc\"")
+
+        val includeValue = PsiTreeUtil.collectElements(modFile) { it.firstChild == null && it.text.endsWith(".inc\"") }.single()
+
+        assertThat(SageEngineIniIncludeReference(includeValue).resolve()).isEqualTo(psiFile(baseGame, "object/includes/capturebuilding.inc"))
+    }
+
     private fun winningDirectories(name: String, kind: String): List<File> {
         return SageEngineIniDeclarationLookup.findDeclarations(project, name, setOf(kind))
             .map { block -> directories.single { block.containingFile.virtualFile.path.startsWith(FileUtil.toSystemIndependentName(it.path) + "/") } }

@@ -30,6 +30,8 @@
 - `MeleeBehavior` blocks know the properties of `WaitForLeader` and `Amoeba`, e.g. `FollowLeader` and `DelayUntilIdle`
 - Blocks named after a module or type, e.g. `AutoHealBehavior` in an `Object` or `Swarm` in a `HordeContain`, are reported as unknown instead of
   being accepted as that module
+- `#include` paths are resolved case-insensitively, like in the game, and files the project doesn't contain are looked up in the additional
+  directories, e.g. the base game files a mod includes
 - `LevelUpFx` of an `ExperienceLevel` and the effects of a `TransitionDamageFX` or `BoneFXUpdate` are read like the engine reads them,
   e.g. `FX:GoodLevelUpFX` or `Loc: X:0 Y:0 Z:0 FXList:FX_BasicSevereScreenShake`
 - Properties that the engine doesn't read are reported as unknown: `AllowInsideKindOf`, `ForbidInsideKindOf` and `ShouldDrawPips` of containers,
