@@ -1,12 +1,577 @@
+ini/attributemodifier.ini: 'BolgUnpierceable' is declared more than once, also in line 14831
+ini/attributemodifier.ini: 'BolgUnpierceable' is declared more than once, also in line 14889
+ini/attributemodifier.ini: 'DurinPillarDebuff' is declared more than once, also in line 18593
+ini/attributemodifier.ini: 'DurinPillarDebuff' is declared more than once, also in line 75
+ini/attributemodifier.ini: 'LurtzPassiveOutlawLeadership' is declared more than once, also in line 1528
+ini/attributemodifier.ini: 'LurtzPassiveOutlawLeadership' is declared more than once, also in line 1534
+ini/attributemodifier.ini: 'ViduChallengeWeaponDebuff' is declared more than once, also in line 11428
+ini/attributemodifier.ini: 'ViduChallengeWeaponDebuff' is declared more than once, also in line 18076
+ini/attributemodifier.ini: 'WraithDebuff' is declared more than once, also in line 2215
+ini/attributemodifier.ini: 'WraithDebuff' is declared more than once, also in line 2271
+ini/campaigns/scenarios/testscenario001.inc: Cannot resolve LivingWorldRegionCampaign 'PaperMapCampaign_Test'
+ini/campaigns/scenarios/wotrscenario002.inc: Cannot resolve LivingWorldRegionCampaign 'WarInTheNorth'
+ini/campaigns/scenarios/wotrscenario042.inc: Cannot resolve LivingWorldRegionCampaign 'WarInTheNorth'
+ini/campaigns/scenarios/wotrscenario043.inc: Cannot resolve LivingWorldRegionCampaign 'WarInTheSouth'
 ini/campaigns/scenarios/wotrtutorial.inc: Unknown block 'Tutorial' in 'LivingWorldCampaign'
+ini/commandbutton.ini: 'Command_BilboOneRing' is declared more than once, also in line 36008
+ini/commandbutton.ini: 'Command_BilboOneRing' is declared more than once, also in line 41348
+ini/commandbutton.ini: 'Command_CerinAmrothPorcupineFormation' is declared more than once, also in line 40049
+ini/commandbutton.ini: 'Command_CerinAmrothPorcupineFormation' is declared more than once, also in line 858
+ini/commandbutton.ini: 'Command_ConstructRivendellWallHubExpansion' is declared more than once, also in line 45969
+ini/commandbutton.ini: 'Command_ConstructRivendellWallHubExpansion' is declared more than once, also in line 46090
+ini/commandbutton.ini: 'Command_GothmogCorpseRain' is declared more than once, also in line 2127
+ini/commandbutton.ini: 'Command_GothmogCorpseRain' is declared more than once, also in line 39523
+ini/commandbutton.ini: 'Command_PurchaseUpgradeArnorBasicTrainingForElves' is declared more than once, also in line 46574
+ini/commandbutton.ini: 'Command_PurchaseUpgradeArnorBasicTrainingForElves' is declared more than once, also in line 53043
+ini/commandbutton.ini: 'Command_PurchaseUpgradeArnorForgedBlades_GondorInn' is declared more than once, also in line 45054
+ini/commandbutton.ini: 'Command_PurchaseUpgradeArnorForgedBlades_GondorInn' is declared more than once, also in line 46733
+ini/commandbutton.ini: 'Command_PurchaseUpgradeDaleForgedBlades' is declared more than once, also in line 12234
+ini/commandbutton.ini: 'Command_PurchaseUpgradeDaleForgedBlades' is declared more than once, also in line 75103
+ini/commandbutton.ini: 'Command_PurchaseUpgradeDwarvenBasicTraining' is declared more than once, also in line 12161
+ini/commandbutton.ini: 'Command_PurchaseUpgradeDwarvenBasicTraining' is declared more than once, also in line 13079
+ini/commandbutton.ini: 'Command_SpawnOathbreakers' is declared more than once, also in vengefulbuttons.inc:42
+ini/commandbutton.ini: 'Command_SpecialAbilityAgmundCaptainCounsel' is declared more than once, also in line 63001
+ini/commandbutton.ini: 'Command_SpecialAbilityAgmundCaptainCounsel' is declared more than once, also in line 73748
+ini/commandbutton.ini: 'Command_SpecialAbilityAgmundCaptainOfGuard' is declared more than once, also in line 62987
+ini/commandbutton.ini: 'Command_SpecialAbilityAgmundCaptainOfGuard' is declared more than once, also in line 73734
+ini/commandbutton.ini: 'Command_SpecialAbilityBardDragonSlayerLegacy' is declared more than once, also in line 62975
+ini/commandbutton.ini: 'Command_SpecialAbilityBardDragonSlayerLegacy' is declared more than once, also in line 73812
+ini/commandbutton.ini: 'Command_SpecialAbilityBardPrinceOfDale' is declared more than once, also in line 62953
+ini/commandbutton.ini: 'Command_SpecialAbilityBardPrinceOfDale' is declared more than once, also in line 73790
+ini/commandbutton.ini: 'Command_SpecialAbilityBardWarriorsWit' is declared more than once, also in line 62964
+ini/commandbutton.ini: 'Command_SpecialAbilityBardWarriorsWit' is declared more than once, also in line 73801
+ini/commandbutton.ini: 'Command_SpecialAbilityShelobTerror' is declared more than once, also in line 37216
+ini/commandbutton.ini: 'Command_SpecialAbilityShelobTerror' is declared more than once, also in line 8540
+ini/commandbutton.ini: Cannot resolve ChildObject or Object or ObjectReskin 'AngmarCastleWallHub'
+ini/commandbutton.ini: Cannot resolve ChildObject or Object or ObjectReskin 'ArnorFortress_Tutorial'
+ini/commandbutton.ini: Cannot resolve ChildObject or Object or ObjectReskin 'ElvenLindonKnightHorde'
+ini/commandbutton.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GuldurSpiderlingHorde'
+ini/commandbutton.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RivendellWallHubSmall'
+ini/commandbutton.ini: Cannot resolve MappedImage 'BIEreborReinforcements'
+ini/commandbutton.ini: Cannot resolve MappedImage 'BIGundabadPit'
+ini/commandbutton.ini: Cannot resolve MappedImage 'BIMMGuardsoftheMountains'
+ini/commandbutton.ini: Cannot resolve MappedImage 'BIMordorDolGuldur'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIAgmundCaptain'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIAgmundCounsel'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIAgmundDefense'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIAgmundSummonGrd'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIAngmarShroudedWraith'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIAngmarWKRingwraith'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIAragornAthelasnew'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIBardIIDisarm'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIBardIISturdy'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIDainAxe'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIDragonslayerLegacy'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIPrinceOfDale'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HISharkuTametheBeast'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIViduAlarm'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIViduCourage'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HIWarriorsWit'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HSAzogServantsoftheDarkLord'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HSEriadorAragonOathbreakers'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HSEriadorAragornElendil'
+ini/commandbutton.ini: Cannot resolve MappedImage 'HiKhamulLeadershipNew'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBEvil_AwakenWyrm'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBEvil_CalltheHorde'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBEvil_Crebain'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBEvil_Devastation'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBEvil_EyeofSauron'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBEvil_Plus100CommandPoints'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBEvil_RainofFire'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBEvil_SummonDragonBlue'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBEvil_Taint'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_ArmyoftheDead'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_ArrowVolley'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_Bombard'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_Citadel'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_DwarvenRiches'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_ElvenWood'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_EnshroudingMist'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_EntAllies'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_Flood'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_LoneTower'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_RallyingCall'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_Rebuild'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_SummonHobbits'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_Sunflare'
+ini/commandbutton.ini: Cannot resolve MappedImage 'SBGood_Undermine'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UCCommon_PorcupineFormation'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIAngmarColdSteel'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIAragornDispatch'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIAragornRangerSubtlety'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIAragornRareGift'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIAragornToken'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UICottageResourceGathering'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UICottageUnitProduction'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIDismRohSongofBattle'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIDismSwanImrahil'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIDoorWardenImpenetrableShieldWall'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIEreborGuardianCharge'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIGondorBattleTower'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIGondorDenethorSummon'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIGondorDunedainRanger'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIGondorLossAxeSummon'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIGondorwesternwinds'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIGreenwoodCaveExpansion'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIIsenWargLone'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIIthilRangersVolley'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIIthilienRangerCharge'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UILothlorienSummonedRangersCloak'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIMMAzogLeadership'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIMTArcherDesperateVolley'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIMTSpearsFierceCharge'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIMTSwordsForGondor'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIMordorHaradSpearmen'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIMordorHaradrimArchers'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIMordorWight'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIRohanBowMastery'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIRohanPeasantRepair'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIRohanWestfolderDefault'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIRohanWestfolderFormation'
+ini/commandbutton.ini: Cannot resolve MappedImage 'UIYeomanArcherPiercingVolley'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uibelokhzadeathmark'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uibelokhzadragontalon'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uibelokhzafanofknives'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uibelokhzashadowstrike'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uibelokhzatogglebow'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uibelokhzatogglemelee'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uiblackgateanduril'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uiblackgateenvinyatar'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uiblackgateestel'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uiblackgatemoswords'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uiblackgateswordofelendil'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uiblackgatewordsofhope'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uiblackurukvenomarrows'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uibrandkingsfavorlotrera'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uigandalfbanishevil'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uigandalflightanar'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uiharadherodismount'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uiharadrimraiderstogglemelee'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uiharadrimraiderstoggleranged'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uikhrentakwardeneast'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uioathbreakerwisps'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uipipernil'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uipolemarchflamingsteel'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uipolemarchresolve'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uirisencarrionpassive'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uisamphial'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uisamtorch'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uitrotter'
+ini/commandbutton.ini: Cannot resolve MappedImage 'uiunfoldthemap'
+ini/commandbutton.ini: Cannot resolve RadiusCursorTemplate 'ATHELAS'
+ini/commandbutton.ini: Cannot resolve RadiusCursorTemplate 'SUMMON_OATH_BREAKERS'
+ini/commandbutton.ini: Cannot resolve RadiusCursorTemplate 'TRAINING'
+ini/commandbutton.ini: Cannot resolve SpecialPower 'SpecialAbilityKrimpulSummonDummy'
+ini/commandbutton.ini: Cannot resolve SpecialPower 'SpecialAbilityKrimpulSummonLvl3'
+ini/commandbutton.ini: Cannot resolve SpecialPower 'SpecialAbilityKrimpulSummonLvl7'
+ini/commandbutton.ini: Cannot resolve SpecialPower 'SpecialPowerGilGaladShieldBubble'
+ini/commandbutton.ini: Cannot resolve SpecialPower 'SpellBookSpawnDurinVII_Upgrade'
+ini/commandbutton.ini: Cannot resolve Upgrade 'Upgrade_DwarvesHaveArcheryRangeLevel2'
+ini/commandbutton.ini: Expected RadiusCursorTemplate, but 'HISarumanDominate' is MappedImage
+ini/commandbutton.ini: Expected RadiusCursorTemplate, but 'HSSarumanThunderbolt' is MappedImage
+ini/commandbutton.ini: Expected RadiusCursorTemplate, but 'SBOrcHorn' is MappedImage
+ini/commandbutton.ini: Expected Upgrade, but 'Command_PurchaseUpgradeElvenBasicTrainingForElvesLAAdventure' is CommandButton
+ini/commandbutton.ini: Expected Upgrade, but 'SCIENCE_FreezingRain' is Science
+ini/commandmapdebug.ini: 'DEBUG_LOSE' is declared more than once, also in line 18
+ini/commandmapdebug.ini: 'DEBUG_LOSE' is declared more than once, also in line 19
+ini/commandmapdebug.ini: 'DEBUG_LOSE' is declared more than once, also in line 32
+ini/commandmapdebug.ini: 'DEBUG_LOSE' is declared more than once, also in line 7
+ini/commandmapdebug.ini: 'DEBUG_WIN' is declared more than once, also in line 1
+ini/commandmapdebug.ini: 'DEBUG_WIN' is declared more than once, also in line 11
+ini/commandmapdebug.ini: 'DEBUG_WIN' is declared more than once, also in line 13
+ini/commandmapdebug.ini: 'DEBUG_WIN' is declared more than once, also in line 25
+ini/createaherosystemarcher.inc: Cannot resolve Upgrade '@Upgrade_CHB08'
+ini/createaherosystemarcher.inc: Cannot resolve Upgrade '@Upgrade_CHBOD01'
+ini/createaherosystemarcher.inc: Cannot resolve Upgrade '@Upgrade_CHBOD02'
+ini/createaherosystemarcher.inc: Cannot resolve Upgrade '@Upgrade_CHH02'
+ini/createaherosystemarcher.inc: Cannot resolve Upgrade '@Upgrade_CHS03'
+ini/createaherosystemarcher.inc: Cannot resolve Upgrade '@Upgrade_CHW39'
+ini/createaherosystemarcher.inc: Cannot resolve Upgrade '@Upgrade_FEARCH_CHBOD02'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_CHB02'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_CHBOD01'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_CHBOD02'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_CHG02'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_CHSP02'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_CHW25'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_CHW26'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_CM01_CHBOD01'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_CM02_CHBOD02'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_CorruptedMan_1_CHB01'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_CorruptedMan_1_CHG01'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_CorruptedMan_1_CHSP01'
+ini/createaherosystemcorruptedman.inc: Cannot resolve Upgrade '@Upgrade_NoHelmet'
+ini/createaherosystemdwarf.inc: Cannot resolve Upgrade '@Upgrade_CHB08'
+ini/createaherosystemdwarf.inc: Cannot resolve Upgrade '@Upgrade_CHBOD02'
+ini/createaherosystemdwarf.inc: Cannot resolve Upgrade '@Upgrade_CHBOD06'
+ini/createaherosystemdwarf.inc: Cannot resolve Upgrade '@Upgrade_CHH02'
+ini/createaherosystemdwarf.inc: Cannot resolve Upgrade '@Upgrade_CHH08'
+ini/createaherosystemdwarf.inc: Cannot resolve Upgrade '@Upgrade_CHS03'
+ini/createaherosystemdwarf.inc: Cannot resolve Upgrade '@Upgrade_CHS04'
+ini/createaherosystemdwarf.inc: Cannot resolve Upgrade '@Upgrade_CHSP02'
+ini/createaherosystemdwarf.inc: Cannot resolve Upgrade '@Upgrade_CHSP04'
+ini/createaherosystemdwarf.inc: Cannot resolve Upgrade '@Upgrade_CHW03'
+ini/createaherosystemdwarf.inc: Cannot resolve Upgrade '@Upgrade_CHW06'
+ini/createaherosystemmenofthewest.inc: Cannot resolve Upgrade '@Upgrade_CAPG_CHS02'
+ini/createaherosystemmenofthewest.inc: Cannot resolve Upgrade '@Upgrade_CAPG_CHS03'
+ini/createaherosystemmenofthewest.inc: Cannot resolve Upgrade '@Upgrade_CHB05'
+ini/createaherosystemmenofthewest.inc: Cannot resolve Upgrade '@Upgrade_CHBOD01'
+ini/createaherosystemmenofthewest.inc: Cannot resolve Upgrade '@Upgrade_CHG01'
+ini/createaherosystemmenofthewest.inc: Cannot resolve Upgrade '@Upgrade_CHH01'
+ini/createaherosystemmenofthewest.inc: Cannot resolve Upgrade '@Upgrade_CHS04'
+ini/createaherosystemmenofthewest.inc: Cannot resolve Upgrade '@Upgrade_CHSP02'
+ini/createaherosystemmenofthewest.inc: Cannot resolve Upgrade '@Upgrade_CHW03'
+ini/createaherosystemmenofthewest.inc: Cannot resolve Upgrade '@Upgrade_CaptainOfGondor_CHH01'
+ini/createaherosystemologhai.inc: Cannot resolve Upgrade '@Upgrade_CHBOD01'
+ini/createaherosystemologhai.inc: Cannot resolve Upgrade '@Upgrade_CHH02'
+ini/createaherosystemologhai.inc: Cannot resolve Upgrade '@Upgrade_TRLL_CHBOD05'
+ini/createaherosystemologhai.inc: Cannot resolve Upgrade '@Upgrade_TRLL_CHH02'
+ini/createaherosystemservantsofsauron.inc: Cannot resolve Upgrade '@Upgrade_CHW20'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_CHBOD01'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_CHBOD02'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_CHBOD03'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_CHH01'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_CHH03'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_CHH06'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_CHW07'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_CHW09'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_CHW10'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_CHW11'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_NoHelmet'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_WIZ_CHBOD01'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_WIZ_CHBOD02'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_WIZ_CHBOD03'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_WIZ_CHH02'
+ini/createaherosystemwizard.inc: Cannot resolve Upgrade '@Upgrade_WIZ_CHH03'
+ini/createaherosystemwraith.inc: Cannot resolve Upgrade '@Upgrade_CHSP02'
+ini/createaherosystemwraith.inc: Cannot resolve Upgrade '@Upgrade_CHW07'
 ini/credits.ini: 'End' without an open block
 ini/default/object.ini: Unknown DamageType 'SELF'
 ini/default/skirmishaidata.ini: Unknown CombatChainUnitType 'SLAYER'
 ini/default/skirmishaidata.ini: Unknown CombatChainUnitType 'SPAM'
+ini/experiencelevels.ini: 'AragornLevelMP5' is declared more than once, also in line 2235
+ini/experiencelevels.ini: 'AragornLevelMP5' is declared more than once, also in line 3848
+ini/experiencelevels.ini: 'Balrog' is declared more than once, also in line 18354
+ini/experiencelevels.ini: 'Balrog' is declared more than once, also in line 18729
+ini/experiencelevels.ini: 'DwarvenFortressLevel1' is declared more than once, also in line 17860
+ini/experiencelevels.ini: 'DwarvenFortressLevel1' is declared more than once, also in line 6273
+ini/experiencelevels.ini: 'GoblinArcherLevel1' is declared more than once, also in line 16868
+ini/experiencelevels.ini: 'GoblinArcherLevel1' is declared more than once, also in line 779
+ini/experiencelevels.ini: 'TomBombadilLevel10' is declared more than once, also in line 1581
+ini/experiencelevels.ini: 'TomBombadilLevel10' is declared more than once, also in line 1598
+ini/experiencelevels.ini: 'WitchKingLevel1' is declared more than once, also in line 15118
+ini/experiencelevels.ini: 'WitchKingLevel1' is declared more than once, also in line 23606
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'Angmar'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'AngmarSentryTower'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'ArPharazon'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'BGGondorArcherHorde'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'BGGondorFighterHorde'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'BGGondorFighterHordeBlock'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'BGGondorSpearmenHorde'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'BGGondorSpearmenHordeHordePorcupine'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'BeorningUrsa'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'CampaignUmbarianStandard'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DaleTavernFoundation'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarvenBofurBFME2'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarvenCampaignGloin'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarvenDainOld'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'Dwarves'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'Elves'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GondorFighterHorde_BG'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'IsengardWulfgarCrebain_Summoned'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'MINI_HORDE'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'MINI_HORDE_EVIL'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'Men'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'NumenorArPharazon'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'OathbreakerWisp'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'OathbreakerWisp1'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'OathbreakerWisp2'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'OathbreakerWisp3'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'OathbreakerWispHorde'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'OathbreakerWispHordeSmall'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RivendellHeroStatue'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RivendellWallGateSmall'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RivendellWallHubSmall'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RivendellWallTrebuchetSmall'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RohanTheodenA'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RohanTheodenB'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RohanWestfodlerHordeBlock'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'SAURON'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'ShipsBeaconEgg'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'TDGondorBarracks'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'TDSiegeTowerExpansion'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'Wild'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin '_Summoned'
+ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'r'
+ini/experiencelevels.ini: Cannot resolve ModifierList 'EvilMonsterBonusRank1'
+ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_ArgelebForGondorSpeech'
+ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_ArgelebHornOfGondor'
+ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_ArvelegBOOM'
+ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_ArvelegCaptainOfGondor'
+ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_ArvelegLeadership'
+ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_ArvelegWarSpeech'
+ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_GimliMonsterSlayer'
+ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_MiniHordeLvl1'
+ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_MiniHordeLvl6'
+ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_MiniHordeLvl8'
+ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_MiniHordeLvl9'
+ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_RingWraithSpeechCraft'
+ini/experiencelevels.ini: Expected ChildObject or Object or ObjectReskin, but 'Angmar' is FactionVictoryData
+ini/experiencelevels.ini: Expected ChildObject or Object or ObjectReskin, but 'Arnor' is FactionVictoryData
+ini/experiencelevels.ini: Expected ChildObject or Object or ObjectReskin, but 'Isengard' is FactionVictoryData
+ini/experiencelevels.ini: Expected ChildObject or Object or ObjectReskin, but 'Mordor' is FactionVictoryData
+ini/experiencelevels_createahero.inc: Cannot resolve Upgrade 'Upgrade_CreateAHeroGloriousCharge'
+ini/fxlist.ini: 'FX_ArwenFlood' is declared more than once, also in line 14299
+ini/fxlist.ini: 'FX_ArwenFlood' is declared more than once, also in line 28536
+ini/fxlist.ini: 'FX_ArwenInitialSpawn' is declared more than once, also in line 10366
+ini/fxlist.ini: 'FX_ArwenInitialSpawn' is declared more than once, also in line 10394
+ini/fxlist.ini: 'FX_FanofKnives' is declared more than once, also in line 44298
+ini/fxlist.ini: 'FX_FanofKnives' is declared more than once, also in line 44312
+ini/fxlist.ini: 'FX_GenericDebuff10' is declared more than once, also in line 1938
+ini/fxlist.ini: 'FX_GenericDebuff10' is declared more than once, also in line 2093
+ini/fxlist.ini: 'FX_PackWolfHit' is declared more than once, also in line 21151
+ini/fxlist.ini: 'FX_PackWolfHit' is declared more than once, also in line 21264
+ini/fxlist.ini: 'FX_TaurielDieToRespawn' is declared more than once, also in line 40760
+ini/fxlist.ini: 'FX_TaurielDieToRespawn' is declared more than once, also in line 7095
+ini/fxlist.ini: 'FX_TaurielInitialSpawn' is declared more than once, also in line 11650
+ini/fxlist.ini: 'FX_TaurielInitialSpawn' is declared more than once, also in line 40704
+ini/fxlist.ini: 'FX_TaurielRespawn' is declared more than once, also in line 11706
+ini/fxlist.ini: 'FX_TaurielRespawn' is declared more than once, also in line 40732
+ini/fxlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'LeadershipBuff'
+ini/fxlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'TDHNewEvilLeadershipCavalryLvl1'
+ini/fxlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'TDHNewEvilLeadershipOrcLvl1'
+ini/fxlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'TDHNewEvilLeadershipTrollLvl1'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'AODsummonLightShafts'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'AmorySparks'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'Anduril'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'BalrogSummonScatterFire02'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'BuildingContructDustCastlesNew'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'BuildingContructDustCulvert'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'DurinBarukKhazadFX'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'GSlamWave1'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'GSlamWave2'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'GSlamWave3'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'HewerofRanksGlow'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'HordeResGoodCenter'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'HordeResGoodLightShaft'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'HordeResGoodVortex'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'HordeResGoodWave'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'HordeWagonCenter'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'HordeWagonLightShaft'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'HordeWagonVortex'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'HordeWagonWave'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'IronDisciplineFlareFX'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'IsildurCurseCircles'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'IsildurCurseTriggerGlow'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'IsildurNoEscapeFX'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'MidgeDamageFX'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'SarumanSmallWaveBlastWave'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'SarumanWaveBlastProxySmall'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'ScorchedEarthBlastFX02'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'SignalEmbersTerrain'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'StormQueenWeaponSparks'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'WKLightningStrike1'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'WitchKingOpenMordorFinalLight'
+ini/fxlist.ini: Cannot resolve FXParticleSystem or ParticleSystem 'WitheringWinterShafts'
+ini/fxlist.ini: Expected FXParticleSystem or ParticleSystem, but 'AngborHorn' is AudioEvent
+ini/fxparticlesystem.ini: 'CineClouds_2' is declared more than once, also in cinematicobjects.ini:1683
+ini/fxparticlesystem.ini: 'CineClouds_2' is declared more than once, also in cinematicobjects.ini:1686
+ini/fxparticlesystem.ini: 'ElegostKingsfoilFX03' is declared more than once, also in line 119375
+ini/fxparticlesystem.ini: 'ElegostKingsfoilFX03' is declared more than once, also in line 137517
+ini/fxparticlesystem.ini: 'ElladanMightyBlowDebuffFX' is declared more than once, also in line 122891
+ini/fxparticlesystem.ini: 'ElladanMightyBlowDebuffFX' is declared more than once, also in line 122929
+ini/fxparticlesystem.ini: 'FXSplash02' is declared more than once, also in fxparticlesystemcustom.ini:1
+ini/fxparticlesystem.ini: 'FireFlies' is declared more than once, also in line 162003
+ini/fxparticlesystem.ini: 'Fireflies' is declared more than once, also in line 34836
+ini/fxparticlesystem.ini: 'FireworkSpark' is declared more than once, also in line 35945
+ini/fxparticlesystem.ini: 'FireworkSpark' is declared more than once, also in line 91495
+ini/fxparticlesystem.ini: 'FireworkTrail' is declared more than once, also in line 36017
+ini/fxparticlesystem.ini: 'FireworkTrail' is declared more than once, also in line 91568
+ini/fxparticlesystem.ini: 'FireworksTestParticle' is declared more than once, also in line 35981
+ini/fxparticlesystem.ini: 'FireworksTestParticle' is declared more than once, also in line 91531
+ini/fxparticlesystem.ini: 'HaradHornCircles' is declared more than once, also in line 150974
+ini/fxparticlesystem.ini: 'HaradHornCircles' is declared more than once, also in line 162101
+ini/fxparticlesystem.ini: 'HaradHornDesignFX' is declared more than once, also in line 150941
+ini/fxparticlesystem.ini: 'HaradHornDesignFX' is declared more than once, also in line 162068
+ini/fxparticlesystem.ini: 'LevelUpSparks' is declared more than once, also in fxparticlesystemcustom.ini:175
+ini/fxparticlesystem.ini: 'LevelUpSparks' is declared more than once, also in fxparticlesystemcustom.ini:201
+ini/fxparticlesystem.ini: 'MusterTheRangersPulseFX' is declared more than once, also in line 120624
+ini/fxparticlesystem.ini: 'MusterTheRangersPulseFX' is declared more than once, also in line 120694
+ini/fxparticlesystem.ini: 'NazgulLightPointPixie' is declared more than once, also in fxparticlesystemcustom.ini:49
+ini/fxparticlesystem.ini: 'NazgulLightPointPixie' is declared more than once, also in fxparticlesystemcustom.ini:59
+ini/fxparticlesystem.ini: 'NazgulLightPointPixieSmaller' is declared more than once, also in fxparticlesystemcustom.ini:112
+ini/fxparticlesystem.ini: 'NazgulLightPointPixieSmaller' is declared more than once, also in fxparticlesystemcustom.ini:130
+ini/fxparticlesystem.ini: 'SauronWave' is declared more than once, also in line 110202
+ini/fxparticlesystem.ini: 'SauronWave' is declared more than once, also in line 62354
+ini/fxparticlesystem.ini: 'SpeedDebuff' is declared more than once, also in line 90733
+ini/fxparticlesystem.ini: 'SpeedDebuff' is declared more than once, also in line 94860
+ini/fxparticlesystem.ini: 'UAProductionEnhancement' is declared more than once, also in line 90846
+ini/fxparticlesystem.ini: 'UAProductionEnhancement' is declared more than once, also in line 91176
+ini/fxparticlesystem.ini: 'firework1' is declared more than once, also in line 35776
+ini/fxparticlesystem.ini: 'firework1' is declared more than once, also in line 91324
+ini/fxparticlesystem.ini: 'firework2' is declared more than once, also in line 35817
+ini/fxparticlesystem.ini: 'firework2' is declared more than once, also in line 91365
+ini/fxparticlesystem.ini: 'firework3' is declared more than once, also in line 35861
+ini/fxparticlesystem.ini: 'firework3' is declared more than once, also in line 91410
+ini/fxparticlesystem.ini: 'fireworkCloud' is declared more than once, also in line 35902
+ini/fxparticlesystem.ini: 'fireworkCloud' is declared more than once, also in line 91451
+ini/fxparticlesystem.ini: Cannot resolve FXList 'FX_DragonStrikeGroundDro'
+ini/fxparticlesystem.ini: Cannot resolve FXParticleSystem or ParticleSystem 'AbhorredDeadSummonSmoke'
 ini/fxparticlesystem.ini: Expected a number but found '-.2.5'
+ini/fxparticlesystemcustom.ini: 'FXSplash02' is declared more than once, also in fxparticlesystem.ini:33091
+ini/fxparticlesystemcustom.ini: 'FXSplash02' is declared more than once, also in fxparticlesystem.ini:38427
+ini/fxparticlesystemcustom.ini: 'LevelUpSparks' is declared more than once, also in fxparticlesystem.ini:44132
+ini/fxparticlesystemcustom.ini: 'LevelUpSparks' is declared more than once, also in fxparticlesystem.ini:49479
+ini/fxparticlesystemcustom.ini: 'NazgulLightPointPixie' is declared more than once, also in fxparticlesystem.ini:49044
+ini/fxparticlesystemcustom.ini: 'NazgulLightPointPixie' is declared more than once, also in fxparticlesystem.ini:54621
+ini/fxparticlesystemcustom.ini: 'NazgulLightPointPixieSmaller' is declared more than once, also in fxparticlesystem.ini:49108
+ini/fxparticlesystemcustom.ini: 'NazgulLightPointPixieSmaller' is declared more than once, also in fxparticlesystem.ini:54685
+ini/gamedata.ini: Expected Multisound, but 'Shell2Music' is MusicTrack
+ini/includes/foundationconstructbuttons.inc: 'Command_FoundationConstructDwarvenAssembly' is declared more than once, also in line 231
+ini/includes/foundationconstructbuttons.inc: 'Command_FoundationConstructDwarvenAssembly' is declared more than once, also in line 303
+ini/includes/foundationconstructbuttons.inc: Cannot resolve ChildObject or Object or ObjectReskin 'ArnorHeroStatue'
+ini/includes/foundationconstructbuttons.inc: Cannot resolve ChildObject or Object or ObjectReskin 'ArnorHseHeal'
+ini/includes/foundationconstructbuttons.inc: Cannot resolve ChildObject or Object or ObjectReskin 'TDGondorBarracks'
+ini/includes/foundationconstructbuttons.inc: Cannot resolve ChildObject or Object or ObjectReskin 'TDSiegeTower'
+ini/includes/vengefulbuttons.inc: 'Command_SpawnOathbreakers' is declared more than once, also in commandbutton.ini:3264
+ini/includes/vengefulbuttons.inc: Cannot resolve ChildObject or Object or ObjectReskin 'GuardoftheSerpentHero'
+ini/includes/vengefulbuttons.inc: Cannot resolve ChildObject or Object or ObjectReskin 'HaradGateGuardWarriorsHorde'
+ini/includes/vengefulbuttons.inc: Cannot resolve ChildObject or Object or ObjectReskin 'HaradMarinesHorde'
+ini/includes/vengefulbuttons.inc: Cannot resolve ChildObject or Object or ObjectReskin 'HarondorHero'
+ini/includes/vengefulbuttons.inc: Cannot resolve ChildObject or Object or ObjectReskin 'OathbreakerHorde'
+ini/includes/vengefulbuttons.inc: Cannot resolve ChildObject or Object or ObjectReskin 'OathbreakerRisenDeadHorde'
+ini/includes/vengefulbuttons.inc: Cannot resolve MappedImage 'HIAzanulbizarBalin'
+ini/includes/vengefulbuttons.inc: Cannot resolve MappedImage 'HIAzanulbizarDwalin'
+ini/includes/vengefulbuttons.inc: Cannot resolve MappedImage 'HIAzanulbizarThorin'
+ini/includes/vengefulbuttons.inc: Cannot resolve MappedImage 'HIAzanulbizarThrain'
+ini/includes/vengefulbuttons.inc: Cannot resolve MappedImage 'HIAzanulbizarThror'
+ini/includes/vengefulbuttons.inc: Cannot resolve MappedImage 'HIDragonStrikeDragon'
+ini/includes/vengefulbuttons.inc: Cannot resolve SpecialPower 'SpecialAbilityGenericLeadership2'
+ini/linearcampaignexpansion1.ini: Cannot resolve Video 'AOTRCampaignIntroPH'
+ini/livingworldbuildingicons.ini: 'LWBIcon_GondorBarracks' is declared more than once, also in line 1853
+ini/livingworldbuildingicons.ini: 'LWBIcon_GondorBarracks' is declared more than once, also in line 66
+ini/livingworldbuildingicons.ini: 'LWBIcon_GondorBlackSmith' is declared more than once, also in line 130
+ini/livingworldbuildingicons.ini: 'LWBIcon_GondorBlackSmith' is declared more than once, also in line 1917
+ini/livingworldbuildingicons.ini: 'LWBIcon_GondorFarm' is declared more than once, also in line 192
+ini/livingworldbuildingicons.ini: 'LWBIcon_GondorFarm' is declared more than once, also in line 1979
+ini/livingworldicons/arnoricons.ini: 'HeroAragornIcon' is declared more than once, also in mowicons.ini:100
+ini/livingworldicons/arnoricons.ini: 'HeroAragornIcon' is declared more than once, also in mowicons.ini:350
+ini/livingworldicons/arnoricons.ini: 'HeroBoromirIcon' is declared more than once, also in mowicons.ini:324
+ini/livingworldicons/arnoricons.ini: 'HeroBoromirIcon' is declared more than once, also in mowicons.ini:574
+ini/livingworldicons/arnoricons.ini: 'HeroTheodenIcon' is declared more than once, also in mowicons.ini:212
+ini/livingworldicons/arnoricons.ini: 'HeroTheodenIcon' is declared more than once, also in mowicons.ini:462
+ini/livingworldicons/arnoricons.ini: 'MoWArmyIcon' is declared more than once, also in mowicons.ini:4
+ini/livingworldicons/mowicons.ini: 'HeroAragornIcon' is declared more than once, also in arnoricons.ini:100
+ini/livingworldicons/mowicons.ini: 'HeroBoromirIcon' is declared more than once, also in arnoricons.ini:324
+ini/livingworldicons/mowicons.ini: 'HeroTheodenIcon' is declared more than once, also in arnoricons.ini:212
+ini/livingworldicons/mowicons.ini: 'MoWArmyIcon' is declared more than once, also in arnoricons.ini:4
 ini/livingworldregioneffects.ini: Unknown block 'MouseoutEffectFlareup' in 'LivingWorldRegionEffects'
 ini/locomotor.ini: Expected Yes or No but found '1'
-ini/object/createahero/createahero.ini: Missing 'End' for block 'Object'
+ini/mappedimages/aptimages/aptimages.ini: 'UCFormation_Line' is declared more than once, also in unitcommands.ini:335
+ini/mappedimages/aptimages/buildingradialbuttons.ini: 'BPCastleWall' is declared more than once, also in line 1243
+ini/mappedimages/aptimages/buildingradialbuttons.ini: 'BPCastleWall' is declared more than once, also in line 3611
+ini/mappedimages/aptimages/buildingradialbuttons.ini: 'BPRHelmsDeep' is declared more than once, also in line 1011
+ini/mappedimages/aptimages/buildingradialbuttons.ini: 'BPRHelmsDeep' is declared more than once, also in line 1499
+ini/mappedimages/aptimages/cahportraits.ini: 'CPDwarfSage' is declared more than once, also in heroui.ini:335
+ini/mappedimages/aptimages/cahportraits.ini: 'CPDwarfSage' is declared more than once, also in heroui.ini:440
+ini/mappedimages/aptimages/cahportraits.ini: 'CPDwarfTaskmaster' is declared more than once, also in heroui.ini:327
+ini/mappedimages/aptimages/cahportraits.ini: 'CPDwarfTaskmaster' is declared more than once, also in heroui.ini:432
+ini/mappedimages/aptimages/cahportraits.ini: 'CPHermit' is declared more than once, also in heroui.ini:295
+ini/mappedimages/aptimages/cahportraits.ini: 'CPHermit' is declared more than once, also in heroui.ini:400
+ini/mappedimages/aptimages/cahportraits.ini: 'CPOrcRaider' is declared more than once, also in heroui.ini:279
+ini/mappedimages/aptimages/cahportraits.ini: 'CPOrcRaider' is declared more than once, also in heroui.ini:384
+ini/mappedimages/aptimages/cahportraits.ini: 'CPShieldMaiden' is declared more than once, also in heroui.ini:271
+ini/mappedimages/aptimages/cahportraits.ini: 'CPShieldMaiden' is declared more than once, also in heroui.ini:376
+ini/mappedimages/aptimages/heroselecticons.ini: 'HIAkhorahil' is declared more than once, also in weaponportraits.ini:600
+ini/mappedimages/aptimages/heroselecticons.ini: 'HIHalbarad' is declared more than once, also in weaponportraits.ini:704
+ini/mappedimages/aptimages/heroui.ini: 'CPDwarfSage' is declared more than once, also in cahportraits.ini:72
+ini/mappedimages/aptimages/heroui.ini: 'CPDwarfTaskmaster' is declared more than once, also in cahportraits.ini:80
+ini/mappedimages/aptimages/heroui.ini: 'CPHermit' is declared more than once, also in cahportraits.ini:128
+ini/mappedimages/aptimages/heroui.ini: 'CPOrcRaider' is declared more than once, also in cahportraits.ini:136
+ini/mappedimages/aptimages/heroui.ini: 'CPShieldMaiden' is declared more than once, also in cahportraits.ini:168
+ini/mappedimages/aptimages/heroui.ini: 'HPAkhorahil' is declared more than once, also in weaponportraits.ini:608
+ini/mappedimages/aptimages/modui.ini: 'uiwkopen' is declared more than once, also in line 1086
+ini/mappedimages/aptimages/modui.ini: 'uiwkopen' is declared more than once, also in line 1094
+ini/mappedimages/aptimages/optimizedsets/angmarunitsheet.ini: 'UPAngmarArmy' is declared more than once, also in unitportraits.ini:713
+ini/mappedimages/aptimages/optimizedsets/lorienbuildingsbuttons.ini: 'BILorienFortress' is declared more than once, also in lorienbuttonssheet.ini:57
+ini/mappedimages/aptimages/optimizedsets/lorienbuttonssheet.ini: 'BILorienFortress' is declared more than once, also in lorienbuildingsbuttons.ini:22
+ini/mappedimages/aptimages/optimizedsets/rivendellunitssheet.ini: 'UPRivendellArmy' is declared more than once, also in uprivendellportraitssheet.ini:14
+ini/mappedimages/aptimages/optimizedsets/rivendellunitssheet.ini: 'UPRivendellPorter' is declared more than once, also in uprivendellportraitssheet.ini:30
+ini/mappedimages/aptimages/optimizedsets/rivendellunitssheet.ini: 'UPRivendellRam' is declared more than once, also in uprivendellportraitssheet.ini:6
+ini/mappedimages/aptimages/optimizedsets/rivendellunitssheet.ini: 'uirivoutrider' is declared more than once, also in weaponportraits.ini:488
+ini/mappedimages/aptimages/optimizedsets/rivendellunitssheet.ini: 'uprivoutrider' is declared more than once, also in weaponportraits.ini:496
+ini/mappedimages/aptimages/optimizedsets/uprivendellportraitssheet.ini: 'UPRivendellArmy' is declared more than once, also in rivendellunitssheet.ini:6
+ini/mappedimages/aptimages/optimizedsets/uprivendellportraitssheet.ini: 'UPRivendellPorter' is declared more than once, also in rivendellunitssheet.ini:110
+ini/mappedimages/aptimages/optimizedsets/uprivendellportraitssheet.ini: 'UPRivendellRam' is declared more than once, also in rivendellunitssheet.ini:414
+ini/mappedimages/aptimages/unitcommands.ini: 'ucformation_line' is declared more than once, also in aptimages.ini:40
+ini/mappedimages/aptimages/unitportraits.ini: 'UPAngmarArmy' is declared more than once, also in angmarunitsheet.ini:209
+ini/mappedimages/aptimages/weaponportraits.ini: 'HIAkhorahil' is declared more than once, also in heroselecticons.ini:23
+ini/mappedimages/aptimages/weaponportraits.ini: 'HIHalbarad' is declared more than once, also in heroselecticons.ini:103
+ini/mappedimages/aptimages/weaponportraits.ini: 'HPAkhorahil' is declared more than once, also in heroui.ini:88
+ini/mappedimages/aptimages/weaponportraits.ini: 'UIRivOutRider' is declared more than once, also in rivendellunitssheet.ini:158
+ini/mappedimages/aptimages/weaponportraits.ini: 'UPRivOutRider' is declared more than once, also in rivendellunitssheet.ini:54
+ini/mappedimages/texturesize_512/scshelluserinterface512.ini: 'NuHelpbox-bottomleft' is declared more than once, also in scsmshelluserinterface512.ini:245
+ini/mappedimages/texturesize_512/scshelluserinterface512.ini: 'NuHelpbox-bottommid' is declared more than once, also in scsmshelluserinterface512.ini:213
+ini/mappedimages/texturesize_512/scshelluserinterface512.ini: 'NuHelpbox-bottomright' is declared more than once, also in scsmshelluserinterface512.ini:165
+ini/mappedimages/texturesize_512/scshelluserinterface512.ini: 'NuHelpbox-middle' is declared more than once, also in scsmshelluserinterface512.ini:237
+ini/mappedimages/texturesize_512/scshelluserinterface512.ini: 'NuHelpbox-midleft' is declared more than once, also in scsmshelluserinterface512.ini:149
+ini/mappedimages/texturesize_512/scshelluserinterface512.ini: 'NuHelpbox-midright' is declared more than once, also in scsmshelluserinterface512.ini:229
+ini/mappedimages/texturesize_512/scshelluserinterface512.ini: 'NuHelpbox-top' is declared more than once, also in scsmshelluserinterface512.ini:157
+ini/mappedimages/texturesize_512/scshelluserinterface512.ini: 'NuHelpbox-topleft' is declared more than once, also in scsmshelluserinterface512.ini:189
+ini/mappedimages/texturesize_512/scshelluserinterface512.ini: 'NuHelpbox-topright' is declared more than once, also in scsmshelluserinterface512.ini:181
+ini/mappedimages/texturesize_512/scshelluserinterface512.ini: 'Ruler' is declared more than once, also in scsmshelluserinterface512.ini:221
+ini/mappedimages/texturesize_512/scshelluserinterface512.ini: 'Ruler-Right' is declared more than once, also in scsmshelluserinterface512.ini:5
+ini/mappedimages/texturesize_512/scshelluserinterface512.ini: 'WindowGrid' is declared more than once, also in scsmshelluserinterface512.ini:581
+ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'NuHelpbox-bottomleft' is declared more than once, also in scshelluserinterface512.ini:77
+ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'NuHelpbox-bottommid' is declared more than once, also in scshelluserinterface512.ini:21
+ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'NuHelpbox-bottomright' is declared more than once, also in scshelluserinterface512.ini:29
+ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'NuHelpbox-middle' is declared more than once, also in scshelluserinterface512.ini:37
+ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'NuHelpbox-midleft' is declared more than once, also in scshelluserinterface512.ini:45
+ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'NuHelpbox-midright' is declared more than once, also in scshelluserinterface512.ini:13
+ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'NuHelpbox-top' is declared more than once, also in scshelluserinterface512.ini:53
+ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'NuHelpbox-topleft' is declared more than once, also in scshelluserinterface512.ini:61
+ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'NuHelpbox-topright' is declared more than once, also in scshelluserinterface512.ini:69
+ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'Ruler' is declared more than once, also in scshelluserinterface512.ini:85
+ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'Ruler-Right' is declared more than once, also in scshelluserinterface512.ini:5
+ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'WindowGrid' is declared more than once, also in scshelluserinterface512.ini:93
+ini/miscaudio.ini: Expected Multisound, but 'Shell2Music' is MusicTrack
+ini/music.ini: 'aotr_gondorbattle1' is declared more than once, also in line 1352
+ini/music.ini: 'aotr_gondorbattle1' is declared more than once, also in line 1475
+ini/music.ini: 'aotr_haldirjoins' is declared more than once, also in line 524
+ini/music.ini: 'aotr_haldirjoins' is declared more than once, also in line 528
+ini/object/cinematic/cinematicobjects.ini: 'CineClouds_2' is declared more than once, also in fxparticlesystem.ini:16248
+ini/object/cinematic/cinematicobjects.ini: Cannot resolve MappedImage 'UPMordor_Porter'
+ini/object/cinematic/lastallianceunits.ini: Cannot resolve MappedImage 'HPNumenorean'
+ini/object/cinematic/lastallianceunits.ini: Cannot resolve MappedImage 'UPGondor_Banner'
+ini/object/cinematic/lastallianceunits.ini: Cannot resolve MappedImage 'UPNumenorean_Archer'
+ini/object/civilian/AOTRCampaignProps.ini: Cannot resolve MappedImage 'BPGCamp_Plot'
+ini/object/civilian/AOTRMinasTirithStructures.ini: Cannot resolve ModifierList 'DefaultWallArmorBonus'
+ini/object/civilian/AotRDolGuldur.ini: 'AotRDolGuldurCliffB01' is declared more than once, also in aotrrocks.ini:2007
+ini/object/civilian/AotRDolGuldur.ini: 'AotRDolGuldurCliffB01a' is declared more than once, also in aotrrocks.ini:2027
+ini/object/civilian/AotRDolGuldur.ini: 'AotRDolGuldurCliffB02' is declared more than once, also in aotrrocks.ini:2047
+ini/object/civilian/AotRDolGuldur.ini: 'AotRDolGuldurCliffB03' is declared more than once, also in aotrrocks.ini:2067
+ini/object/civilian/AotRDolGuldur.ini: Cannot resolve Armor 'UnitProductionStructureArmor'
+ini/object/civilian/AotROsgiliath.ini: Cannot resolve MappedImage 'BPGOsgiliath'
+ini/object/civilian/Glorfindel23_Maps Elements.ini: Cannot resolve MappedImage 'BPGOsgiliath'
+ini/object/civilian/Glorfindel23_Maps Elements.ini: Cannot resolve MappedImage 'BRAngmarSchmelze'
+ini/object/civilian/Glorfindel23_Maps Elements.ini: Cannot resolve MappedImage 'BRKatakomben'
+ini/object/civilian/Glorfindel23_Maps Elements.ini: Cannot resolve ModifierList 'DefaultWallArmorBonus'
+ini/object/civilian/UniversalBuildingFoundation.ini: Cannot resolve MappedImage 'ZZSelectPortrait'
+ini/object/civilian/angfornostbuildings.ini: Cannot resolve MappedImage 'BPGKeep'
+ini/object/civilian/bluemountains.ini: Cannot resolve MappedImage 'BPCEreborTower'
+ini/object/civilian/breebuildings.ini: Expected FXParticleSystem or ParticleSystem, but 'FX_GondorCastleGateDestroy' is FXList
+ini/object/civilian/civilianbuildings.ini: Cannot resolve FXParticleSystem or ParticleSystem 'StructureTransitionSmallExplosion'
+ini/object/civilian/civilianbuildings.ini: Cannot resolve FXParticleSystem or ParticleSystem 'StructureTransitionSmallShockwave'
+ini/object/civilian/civilianbuildings.ini: Cannot resolve FXParticleSystem or ParticleSystem 'StructureTransitionSmallSmoke'
+ini/object/civilian/civilianbuildings.ini: Cannot resolve MappedImage 'BPGOsgiliath'
+ini/object/civilian/civilianbuildings.ini: Cannot resolve Weapon 'GoodStructureBow'
+ini/object/civilian/civilianbuildings.ini: ModuleTag 'ModuleTag_SoWeCanUseWeapon' is used more than once in 'Furnace'
+ini/object/civilian/civilianbuildingsmod.ini: Cannot resolve ModifierList 'DefaultWallArmorBonus'
+ini/object/civilian/ereborbuildingsmod.ini: Cannot resolve ModifierList 'DefaultWallArmorBonus'
+ini/object/civilian/harlindonbuildings.ini: Cannot resolve MappedImage 'BPGOsgiliath'
+ini/object/civilian/ithilienbuildings.ini: Cannot resolve FXParticleSystem or ParticleSystem 'Firen14eBuildingSmall'
+ini/object/civilian/ministirithbuildings.ini: Cannot resolve ModifierList 'DefaultWallArmorBonus'
+ini/object/civilian/osgiliathbuildings.ini: Cannot resolve MappedImage 'BPGOsgiliath'
+ini/object/civilian/rivendellbuildings.ini: Cannot resolve Weapon 'GoodStructureBow'
 ini/object/createahero/createahero.ini: Unknown block 'AutoResolveArmor' in 'W3DScriptedModelDraw'
 ini/object/createahero/createahero.ini: Unknown block 'AutoResolveWeapon' in 'W3DScriptedModelDraw'
 ini/object/createahero/createahero.ini: Unknown block 'Behavior' in 'W3DScriptedModelDraw'
@@ -27,17 +592,112 @@ ini/object/createahero/createahero.ini: Unknown property 'Shadow' in 'W3DScripte
 ini/object/createahero/createahero.ini: Unknown property 'ShadowSizeX' in 'W3DScriptedModelDraw'
 ini/object/createahero/createahero.ini: Unknown property 'ShadowSizeY' in 'W3DScriptedModelDraw'
 ini/object/createahero/createahero.ini: Unknown property 'ShadowTexture' in 'W3DScriptedModelDraw'
+ini/object/createahero/createaheroaipowers.inc: Cannot resolve CommandButton 'Command_CreateAHero_HotW_CrippleStrikeMelee_Level3'
+ini/object/createahero/createaheroaipowers.inc: Cannot resolve CommandButton 'Command_CreateAHero_HotW_CrippleStrikeMelee_Level4'
+ini/object/createahero/createaheroaipowers.inc: Cannot resolve CommandButton 'Command_CreateAHero_SoS_CrippleStrikeMelee_Level3'
+ini/object/createahero/createaheroaipowers.inc: Cannot resolve CommandButton 'Command_CreateAHero_SoS_CrippleStrikeMelee_Level4'
 ini/object/createahero/createaheroaipowers.inc: Unknown SpecialPowerAIType 'AI_SPECIAL_POWER_GOBLINKING_BATTLEFRENZY'
 ini/object/createahero/createaheroaipowers.inc: Unknown SpecialPowerAIType 'AI_SPECIAL_POWER_SELFAOE_HEALHEROS'
-ini/object/createahero/createaheroanims.inc: 'End' without an open block
+ini/object/createahero/createaheroobjects.inc: Cannot resolve Weapon 'FrigidHandsWeapon1'
+ini/object/createahero/createaheroobjects.inc: Cannot resolve Weapon 'FrigidHandsWeapon2'
+ini/object/createahero/createaheroobjects.inc: Cannot resolve Weapon 'FrigidHandsWeapon3'
+ini/object/createahero/createaheropowers.inc: Cannot resolve ChildObject or Object or ObjectReskin 'Racoon_Replacement'
 ini/object/createahero/createaheroweaponupgrades.inc: Unknown WeaponSetConditions 'WEAPONSET_CREATE_A_HERO_WS_43'
 ini/object/createahero/createaheroweaponupgrades.inc: Unknown WeaponSetConditions 'WEAPONSET_CREATE_A_HERO_WS_45'
 ini/object/createahero/createaheroweaponupgrades.inc: Unknown WeaponSetConditions 'WEAPONSET_CREATE_A_HERO_WS_46'
 ini/object/createahero/createaheroweaponupgrades.inc: Unknown WeaponSetConditions 'WEAPONSET_CREATE_A_HERO_WS_47'
 ini/object/createahero/createaheroweaponupgrades.inc: Unknown WeaponSetConditions 'WEAPONSET_CREATE_A_HERO_WS_48'
+ini/object/evilfaction/hordes/angmar/angmarhordes.ini: 'HaradBeruthielWarriorsHorde_Summoned' is declared more than once, also in blacknumenoreanwarriorshorde.ini:424
+ini/object/evilfaction/hordes/angmar/angmarhordes.ini: Cannot resolve ChildObject or Object or ObjectReskin 'AngmarRhudaurSpearmenPorcupine'
+ini/object/evilfaction/hordes/angmar/gundabadspearmanhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/campaign/ruffianhorde.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/hordes/dolguldur/orcpikemanhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/dolguldur/orcravagerhorde.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/hordes/dolguldur/tombguardhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/dolguldur/tombguardhorde.ini: Cannot resolve Weapon 'GuldurRavagerAppetiteDestructionHordeRangefinder'
+ini/object/evilfaction/hordes/dolguldur/woodsmenhorde.ini: Cannot resolve ChildObject or Object or ObjectReskin 'WoodsmenCaptain'
+ini/object/evilfaction/hordes/evilmen/evilmenhordes.ini: Cannot resolve ModifierList 'MordorEasterlingHordePorcupineBonus'
+ini/object/evilfaction/hordes/harad/blacknumenoreanpolemarchhorde.ini: Cannot resolve MappedImage 'uipolemarch'
+ini/object/evilfaction/hordes/harad/blacknumenoreanpolemarchhorde.ini: Cannot resolve MappedImage 'uppolemarch'
+ini/object/evilfaction/hordes/harad/blacknumenoreanspearmenhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/harad/blacknumenoreanwarriorshorde.ini: 'HaradBeruthielWarriorsHorde_Summoned' is declared more than once, also in angmarhordes.ini:411
+ini/object/evilfaction/hordes/harad/guardsoftheserpenthorde.ini: Cannot resolve AttackPriority 'AttackPriority_CALVARY'
+ini/object/evilfaction/hordes/harad/haradnomadhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/harad/harondorarcherhorde.ini: Cannot resolve MappedImage 'UIMordorHaradrimArchers'
+ini/object/evilfaction/hordes/harad/harondorarcherhorde.ini: Cannot resolve MappedImage 'UPMordorHaradrimArchers'
+ini/object/evilfaction/hordes/harad/harondorspearmenhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/harad/mahudwarriorshorde.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/hordes/harad/nafaratimaraudershorde.ini: Cannot resolve CommandButton 'Command_NafaratiMarauderBlackenedBlood'
+ini/object/evilfaction/hordes/harad/nomadslavehorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/harad/risencarrionhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/harad/watchersofkarnahorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/inn/dunlandspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/inn/mahudspears.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/inn/moriaspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/inn/ravagershields.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/hordes/inn/wightlords.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/hordes/isengard/isengardorcpikemanhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/isengard/isengardpikemanhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/isengard/isengardwildmanhorde.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/hordes/isengard/isengardwildmanspearhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/isengard/sharkusboyshorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/isengard/urukshieldbearerhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/mordor/mordoreasterlingpikemanhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/mordor/mordoreasterlingswordsmanhorde.ini: Cannot resolve macro 'MeleeAttackLeashDistance'
 ini/object/evilfaction/hordes/mordor/mordoreasterlingswordsmanhorde.ini: Expected a number but found '='
+ini/object/evilfaction/hordes/mordor/mordorpikemanhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/mordor/morgulpikehorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/morgul/ithilshadehorde.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/hordes/morgul/morgulpikemenhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/rhun/balchothwarriorshorde.ini: Cannot resolve MappedImage 'upbalchotwarriors'
+ini/object/evilfaction/hordes/rhun/dragonknighthorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/rhun/dragonknighthorde.ini: Cannot resolve CommandButton 'Command_SpecialAbilityFlamesofAncalagon'
+ini/object/evilfaction/hordes/wild/hobgoblinplunderers.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/wild/mountainorcbrutehordes.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/wild/mountainorcbrutehordes.ini: Cannot resolve ChildObject or Object or ObjectReskin 'WildMarauderSword'
+ini/object/evilfaction/hordes/wild/wildmarauderhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/hordes/wild/wildmarauderswordhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/structures/angmar/angmarcastlewalls.ini: Cannot resolve FXParticleSystem or ParticleSystem 'AngWallConstructDust'
+ini/object/evilfaction/structures/angmar/angmarcastlewalls.ini: Cannot resolve FXParticleSystem or ParticleSystem 'IceWallGateMist02'
+ini/object/evilfaction/structures/angmar/angmarsentrytower.ini: ModuleTag 'ModueTag_DurinCommandSetFoundation' is used more than once in 'AngmarSentryTower_IndependentFoundation'
+ini/object/evilfaction/structures/angmar/angmarsentrytower.ini: ModuleTag 'ModueTag_DurinCommandSetFoundation' is used more than once in 'AngmarSentryTower_IndependentFoundation_DE'
+ini/object/evilfaction/structures/dolguldur/ruinoustower.ini: ModuleTag 'ModueTag_DurinCommandSetFoundation' is used more than once in 'GuldurRuinousTowerFoundation'
+ini/object/evilfaction/structures/dolguldur/sharedtaint.ini: Cannot resolve FXParticleSystem or ParticleSystem 'GoblinKingTaint'
+ini/object/evilfaction/structures/dolguldur/sharedtaint.ini: Cannot resolve MappedImage 'BPGCamp_Plot'
+ini/object/evilfaction/structures/dolguldur/twistedtree.ini: Cannot resolve Armor 'UnitProductionStructureArmor'
+ini/object/evilfaction/structures/evilmen/campsandcastles.ini: Cannot resolve MappedImage 'BPMCamp_Plot'
+ini/object/evilfaction/structures/harad/hornofkarna.ini: Cannot resolve Weapon 'GoodStructureBow'
+ini/object/evilfaction/structures/harad/southronbarricade.ini: Cannot resolve MappedImage 'UIGondorBattleTower'
+ini/object/evilfaction/structures/isengard/campsandcastles.ini: Cannot resolve MappedImage 'BPICamp'
+ini/object/evilfaction/structures/isengard/campsandcastles.ini: Cannot resolve MappedImage 'BPICamp_Plot'
+ini/object/evilfaction/structures/isengard/isengardfortress.ini: Cannot resolve CommandSet 'IsengardFortressExpansionPadSideCommandSet'
+ini/object/evilfaction/structures/mordor/barricade.ini: Cannot resolve AttackPriority 'BATTLE_TOWER'
+ini/object/evilfaction/structures/mordor/barricade.ini: Cannot resolve FXParticleSystem or ParticleSystem 'BuildingContructDustExpMordor'
+ini/object/evilfaction/structures/mordor/campsandcastles.ini: Cannot resolve MappedImage 'BPMCamp'
+ini/object/evilfaction/structures/mordor/campsandcastles.ini: Cannot resolve MappedImage 'BPMCamp_Plot'
+ini/object/evilfaction/structures/morgul/barricade.ini: Cannot resolve AttackPriority 'BATTLE_TOWER'
+ini/object/evilfaction/structures/rhun/cannonexpansion.ini: Cannot resolve FXParticleSystem or ParticleSystem 'BuildingContructDustExpMordor'
+ini/object/evilfaction/structures/rhun/fortresstowerexpansion.ini: Cannot resolve AttackPriority 'BATTLE_TOWER'
+ini/object/evilfaction/structures/rhun/fortresstowerexpansion.ini: Cannot resolve FXParticleSystem or ParticleSystem 'BuildingContructDustExpMordor'
+ini/object/evilfaction/structures/wild/campsandcastles.ini: Cannot resolve MappedImage 'BPICamp'
+ini/object/evilfaction/structures/wild/campsandcastles.ini: Cannot resolve MappedImage 'BPMCamp_Plot'
 ini/object/evilfaction/structures/wild/fissure.ini: Expected a number but found '3w'
 ini/object/evilfaction/structures/wild/fissurefoundation.ini: Expected a number but found '3w'
+ini/object/evilfaction/units/angmar/angmarbannerhilltroll.ini: Cannot resolve MappedImage 'UPMordor_Banner'
+ini/object/evilfaction/units/angmar/angmardarkdunedain.ini: 'HaradBeruthielWarrior_Summoned' is declared more than once, also in blacknumenoreanwarrior.ini:796
+ini/object/evilfaction/units/angmar/angmarthrallmaster.ini: Cannot resolve CommandSet 'AngmarThrallMasterRhudaurHillmen'
+ini/object/evilfaction/units/angmar/angmarthrallmasterbanner.ini: Cannot resolve MappedImage 'UPGondor_Banner'
+ini/object/evilfaction/units/angmar/snowtrollstalker.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/campaign/campaigngorgthetroll.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/campaign/greatspider.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/campaign/greatspider.ini: Expected AudioEvent, but 'GuldurSpiderSisterVoiceMoveMS' is Multisound
+ini/object/evilfaction/units/campaign/ringwraith.ini: Expected AudioEvent, but 'BlackRiderVoiceMoveCampMountedMS' is Multisound
+ini/object/evilfaction/units/campaign/ringwraith.ini: Expected AudioEvent, but 'BlackRiderVoiceRetreatMountedMS' is Multisound
+ini/object/evilfaction/units/campaign/ruffian.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/dolguldur/cargast.ini: Cannot resolve MappedImage 'HEAngmarCargast'
+ini/object/evilfaction/units/dolguldur/cargast.ini: Cannot resolve MappedImage 'HIAngmarCargast'
+ini/object/evilfaction/units/dolguldur/cargast.ini: Cannot resolve MappedImage 'HIAngmarCargast_res'
+ini/object/evilfaction/units/dolguldur/fellbrood.ini: Expected AudioEvent, but 'GuldurSpiderVoiceMoveMS' is Multisound
 ini/object/evilfaction/units/dolguldur/fellbrood.ini: Missing 'End' for block 'Object'
 ini/object/evilfaction/units/dolguldur/fellbrood.ini: Unknown block 'AttackPriority' in 'AIUpdateInterface'
 ini/object/evilfaction/units/dolguldur/fellbrood.ini: Unknown block 'Behavior' in 'AIUpdateInterface'
@@ -55,28 +715,559 @@ ini/object/evilfaction/units/dolguldur/fellbrood.ini: Unknown property 'ShadowOf
 ini/object/evilfaction/units/dolguldur/fellbrood.ini: Unknown property 'ShadowSizeX' in 'AIUpdateInterface'
 ini/object/evilfaction/units/dolguldur/fellbrood.ini: Unknown property 'ShadowSizeY' in 'AIUpdateInterface'
 ini/object/evilfaction/units/dolguldur/fellbrood.ini: Unknown property 'ShadowTexture' in 'AIUpdateInterface'
+ini/object/evilfaction/units/dolguldur/greatspider.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/dolguldur/greatspider.ini: Expected AudioEvent, but 'GuldurSpiderSisterVoiceMoveMS' is Multisound
+ini/object/evilfaction/units/dolguldur/guldurspiderling.ini: Cannot resolve MappedImage 'UPMMSpiders'
+ini/object/evilfaction/units/dolguldur/gwanthaur.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/dolguldur/orcpikeman.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/units/dolguldur/orcravager.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/dolguldur/ringwraith.ini: Expected AudioEvent, but 'BlackRiderVoiceMoveCampMountedMS' is Multisound
+ini/object/evilfaction/units/dolguldur/ringwraith.ini: Expected AudioEvent, but 'BlackRiderVoiceRetreatMountedMS' is Multisound
+ini/object/evilfaction/units/dolguldur/saenathra.ini: Cannot resolve Armor 'UnitProductionStructureArmor'
 ini/object/evilfaction/units/dolguldur/spiderrider.ini: Expected a number but found '8.0CA'
+ini/object/evilfaction/units/dolguldur/tombguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/units/evilbeasts/risendead.ini: 'RisenDead_Patrol' is declared more than once, also in line 1576
+ini/object/evilfaction/units/evilbeasts/risendead.ini: 'RisenDead_Patrol' is declared more than once, also in line 883
+ini/object/evilfaction/units/evilbeasts/summoneddragon.ini: Cannot resolve FXParticleSystem or ParticleSystem 'SummonedDragonDeathDust'
+ini/object/evilfaction/units/evilbeasts/summoneddragon.ini: Cannot resolve FXParticleSystem or ParticleSystem 'SummonedDragonSmokeRoar'
+ini/object/evilfaction/units/evilbeasts/summoneddragon.ini: Expected FXParticleSystem or ParticleSystem, but 'FX_SummonedDragonFX' is FXList
+ini/object/evilfaction/units/evilbeasts/watcher.ini: Cannot resolve MappedImage 'HIWatchernew'
+ini/object/evilfaction/units/evilbeasts/wyrm.ini: Cannot resolve FXParticleSystem or ParticleSystem 'WyrmDustCloudDie02'
+ini/object/evilfaction/units/evilbeasts/wyrm.ini: Cannot resolve FXParticleSystem or ParticleSystem 'WyrmDustCloudDie03'
+ini/object/evilfaction/units/evilbeasts/wyrm.ini: Cannot resolve FXParticleSystem or ParticleSystem 'WyrmSplashCloudDie03'
+ini/object/evilfaction/units/evilbeasts/wyrm.ini: Cannot resolve StanceTemplate 'Monster'
+ini/object/evilfaction/units/harad/arbiterofzigur.ini: Expected FXParticleSystem or ParticleSystem, but 'FX_MouthAmbassador' is FXList
+ini/object/evilfaction/units/harad/beastmaster.ini: Cannot resolve AttackPriority 'AttackPriority_HERO'
+ini/object/evilfaction/units/harad/blacknumenoreanpolemarch.ini: Cannot resolve MappedImage 'uipolemarch'
+ini/object/evilfaction/units/harad/blacknumenoreanpolemarch.ini: Cannot resolve MappedImage 'uppolemarch'
+ini/object/evilfaction/units/harad/blacknumenoreanspearman.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/units/harad/blacknumenoreanwarrior.ini: 'HaradBeruthielWarrior_Summoned' is declared more than once, also in angmardarkdunedain.ini:950
+ini/object/evilfaction/units/harad/caranlambar.ini: Expected CommandButton, but 'SpecialAbilityCaranLambarPull' is SpecialPower
+ini/object/evilfaction/units/harad/deployedcaravan.ini: ModuleTag 'ModuleTag_SoWeCanUseWeapon' is used more than once in 'TradeCaravanDeployed'
+ini/object/evilfaction/units/harad/giantscorpion.ini: Cannot resolve Armor 'UnitProductionStructureArmor'
+ini/object/evilfaction/units/harad/giantscorpion.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/harad/giantscorpion.ini: Expected AudioEvent, but 'SocrpionMoveMS' is Multisound
+ini/object/evilfaction/units/harad/harondorinfantrybanner.ini: Expected MappedImage, but 'HaradHarondorSpearmen' is Object
+ini/object/evilfaction/units/harad/harondorspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/units/harad/karadd.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/harad/mahudbanner.ini: Cannot resolve Weapon 'MahudWarriorCudgel'
+ini/object/evilfaction/units/harad/mahudmangonel.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/harad/mahudwarrior.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/harad/siegemumak.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/inn/dunlendingspearman.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/units/inn/dunnishseerraven.ini: Cannot resolve FXList 'FX_GwaihirAirDeath'
+ini/object/evilfaction/units/inn/mahudspears.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/units/inn/moriaspearman.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/units/isengard/ballista.ini: Cannot resolve Armor 'FortressSiegeEngineArmorArmor'
+ini/object/evilfaction/units/isengard/ballista.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/isengard/berserkerkamikaze.ini: Cannot resolve Weapon 'GrabandDropInfantryImpactWarhead'
+ini/object/evilfaction/units/isengard/dunlendingaxemen.ini: Cannot resolve ChildObject or Object or ObjectReskin 'IsengardDunlandAxeman'
+ini/object/evilfaction/units/isengard/isengardbannerorc.ini: Cannot resolve MappedImage 'UPIsengard_banner'
+ini/object/evilfaction/units/isengard/isengardorcpikeman.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/units/isengard/isengardpikeman.ini: Cannot resolve AttackPriority 'AttackPriority_Pikeman'
+ini/object/evilfaction/units/isengard/isengardscoutnew.ini: Expected AudioEvent, but 'UrukScoutVoiceAttackMS' is Multisound
+ini/object/evilfaction/units/isengard/isengardurukarcher.ini: Expected AudioEvent, but 'UrukScoutVoiceAttackMS' is Multisound
+ini/object/evilfaction/units/isengard/isengardwargriderbanner.ini: Cannot resolve MappedImage 'UPIsengard_banner'
 ini/object/evilfaction/units/isengard/mog.ini: Unknown property 'VoiceExit' in 'UnitSpecificSounds'
+ini/object/evilfaction/units/isengard/sharku.ini: Cannot resolve CommandButton 'Command_SpecialAbilitySharkuBloodHunt_Lvl4'
+ini/object/evilfaction/units/isengard/sharku.ini: Expected CommandButton, but 'SpecialAbilitySharkuTameTheBeast' is SpecialPower
+ini/object/evilfaction/units/isengard/sharkusboys.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/units/isengard/ugluk.ini: Expected CommandButton, but 'SpecialAbilityHwaldarSummonRaiders' is SpecialPower
+ini/object/evilfaction/units/isengard/wildemanspearman.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/units/isengard/wildman.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/isengard/wulfgarcrebain.ini: Cannot resolve FXList 'FX_GwaihirAirDeath'
+ini/object/evilfaction/units/mordor/Akhorahil.ini: Expected AudioEvent, but 'BlackRiderVoiceMoveCampMountedMS' is Multisound
+ini/object/evilfaction/units/mordor/Akhorahil.ini: Expected AudioEvent, but 'BlackRiderVoiceRetreatMountedMS' is Multisound
+ini/object/evilfaction/units/mordor/Khamul.ini: Cannot resolve MappedImage 'HEKhamulNew'
+ini/object/evilfaction/units/mordor/Khamul.ini: Cannot resolve MappedImage 'HIKhamulNew'
+ini/object/evilfaction/units/mordor/Khamul.ini: Cannot resolve MappedImage 'HIKhamulResNew'
+ini/object/evilfaction/units/mordor/Uvatha.ini: Expected AudioEvent, but 'BlackRiderVoiceMoveCampMountedMS' is Multisound
+ini/object/evilfaction/units/mordor/Uvatha.ini: Expected AudioEvent, but 'BlackRiderVoiceRetreatMountedMS' is Multisound
+ini/object/evilfaction/units/mordor/catapult.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/mordor/fellbeast.ini: Cannot resolve MappedImage 'HIKhamul_res'
+ini/object/evilfaction/units/mordor/fellbeast.ini: Cannot resolve MappedImage 'HiFellbeastResNew'
+ini/object/evilfaction/units/mordor/haradrimarcher.ini: Cannot resolve MappedImage 'UIMordorHaradrimArchers'
+ini/object/evilfaction/units/mordor/haradrimarcher.ini: Cannot resolve MappedImage 'UPMordorHaradrimArchers'
+ini/object/evilfaction/units/mordor/mordorbannerorc.ini: Cannot resolve MappedImage 'UPMordor_Banner'
+ini/object/evilfaction/units/mordor/mordorcorsairbanner.ini: Cannot resolve MappedImage 'UPIsengard_banner'
+ini/object/evilfaction/units/mordor/mordoreasterling.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/units/mordor/mordorfighter.ini: Cannot resolve ChildObject or Object or ObjectReskin 'MordordorFighter'
+ini/object/evilfaction/units/mordor/mordorharadrim.ini: Cannot resolve Armor 'HaradrimSpearmanArmor'
+ini/object/evilfaction/units/mordor/mordorharadrim.ini: Cannot resolve Armor 'HaradrimSpearmanHeavyArmor'
+ini/object/evilfaction/units/mordor/mordorharadrim.ini: Cannot resolve CommandSet 'MordorHaradrimSpearmanCommandSet'
+ini/object/evilfaction/units/mordor/mordorharadrim.ini: Cannot resolve MappedImage 'UPInn_HaradSpearman'
+ini/object/evilfaction/units/mordor/mordorharadrimnew.ini: Cannot resolve Armor 'HaradrimSpearmanArmor'
+ini/object/evilfaction/units/mordor/mordorharadrimnew.ini: Cannot resolve Armor 'HaradrimSpearmanHeavyArmor'
+ini/object/evilfaction/units/mordor/mordorharadrimnew.ini: Cannot resolve CommandSet 'MordorHaradrimSpearmanCommandSet'
+ini/object/evilfaction/units/mordor/mordorharadrimnew.ini: Cannot resolve MappedImage 'UPInn_HaradSpearman'
+ini/object/evilfaction/units/mordor/mordorharadrimspearman.ini: Cannot resolve MappedImage 'UIMordorHaradSpearmen'
+ini/object/evilfaction/units/mordor/mordorharadrimspearman.ini: Cannot resolve MappedImage 'UPMordorHaradrimSpearmen'
+ini/object/evilfaction/units/mordor/mordormorgulorc.ini: Cannot resolve MappedImage 'UPMordor_Banner'
+ini/object/evilfaction/units/mordor/mordorpikeman.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/evilfaction/units/mordor/mouthofsauron.ini: Expected FXParticleSystem or ParticleSystem, but 'FX_MouthAmbassador' is FXList
+ini/object/evilfaction/units/mordor/shelob.ini: Expected FXList, but 'SpellGenericUnsummonFasterMS' is Multisound
+ini/object/evilfaction/units/mordor/siegetower.ini: Cannot resolve MappedImage 'UPMordor_CaveTroll'
+ini/object/evilfaction/units/mordor/tributecart.ini: Cannot resolve MappedImage 'UPMordor_TrollPorter'
+ini/object/evilfaction/units/morgul/bannercarrier.ini: Cannot resolve MappedImage 'UPMordor_Banner'
+ini/object/evilfaction/units/morgul/morgulhunter.ini: Cannot resolve AttackPriority 'AttackPriority_HERO'
+ini/object/evilfaction/units/morgul/nazgulA.ini: Expected AudioEvent, but 'BlackRiderVoiceMoveCampMountedMS' is Multisound
+ini/object/evilfaction/units/morgul/nazgulA.ini: Expected AudioEvent, but 'BlackRiderVoiceRetreatMountedMS' is Multisound
+ini/object/evilfaction/units/morgul/nazgulB.ini: Expected AudioEvent, but 'BlackRiderVoiceMoveCampMountedMS' is Multisound
+ini/object/evilfaction/units/morgul/nazgulB.ini: Expected AudioEvent, but 'BlackRiderVoiceRetreatMountedMS' is Multisound
+ini/object/evilfaction/units/rhun/balchothwarrior.ini: Cannot resolve MappedImage 'upbalchotwarriors'
 ini/object/evilfaction/units/rhun/belokhza.ini: Unknown property 'VoiceAttackAir' in 'SoundState'
+ini/object/evilfaction/units/rhun/cannon.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/rhun/razari.ini: Cannot resolve MappedImage 'BPGCamp_Plot'
+ini/object/evilfaction/units/rhun/rhunflamesprayer.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/wild/attacktroll.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/wild/azog.ini: ModuleTag 'ModuleTag_ElvenGiftBonus' is used more than once in 'WildAzogYoung'
+ini/object/evilfaction/units/wild/azog.ini: ModuleTag 'ModuleTag_ElvenGiftBonus' is used more than once in 'WildAzog_Magic'
+ini/object/evilfaction/units/wild/catapulttroll.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/wild/cavetroll.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/wild/durinsbane.ini: Cannot resolve FXParticleSystem or ParticleSystem 'BalrogSword'
+ini/object/evilfaction/units/wild/firedrake.ini: Cannot resolve FXParticleSystem or ParticleSystem 'SummonedDragonDeathDust'
+ini/object/evilfaction/units/wild/goblinking.ini: Cannot resolve FXParticleSystem or ParticleSystem 'GoblinKingTaint'
+ini/object/evilfaction/units/wild/goblinking.ini: Cannot resolve MappedImage 'BPGCamp_Plot'
+ini/object/evilfaction/units/wild/goblintownfighter.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
 ini/object/evilfaction/units/wild/goblintownfighter.ini: Expected a number but found '1.0*'
+ini/object/evilfaction/units/wild/greatgoblin.ini: Cannot resolve FXParticleSystem or ParticleSystem 'GoblinKingTaint'
+ini/object/evilfaction/units/wild/gundabadwargpack.ini: ModuleTag 'BodyModuleTag' is used more than once in 'WildWhiteWarg_Slave'
 ini/object/evilfaction/units/wild/lugthemauled.ini: Unknown property 'VoiceAttackUniWildLugtheMauled' in 'UnitSpecificSounds'
+ini/object/evilfaction/units/wild/mountaingiant.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/evilfaction/units/wild/mountaingiant.ini: Cannot resolve FXParticleSystem or ParticleSystem 'EntSplash'
+ini/object/evilfaction/units/wild/smaugfoot.ini: Cannot resolve FXParticleSystem or ParticleSystem 'SummonedDragonDeathDust'
+ini/object/evilfaction/units/wild/smaugfoot.ini: Cannot resolve FXParticleSystem or ParticleSystem 'SummonedDragonSmokeRoar'
 ini/object/evilfaction/units/wild/spiderrider.ini: Expected a number but found '8.0CA'
+ini/object/evilfaction/units/wild/wildbannergoblin.ini: Cannot resolve MappedImage 'UPMordor_Banner'
+ini/object/evilfaction/units/wild/wildbannermarauder.ini: Cannot resolve MappedImage 'UPMordor_Banner'
+ini/object/evilfaction/units/wild/wildbannerspiderrider.ini: Cannot resolve MappedImage 'UPMordor_Banner'
+ini/object/evilfaction/units/wild/wildmountainorcbrute.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/goodfactionsubobjects.ini: Cannot resolve CommandButton 'Command_ConstructRohanOathbreakerHorde'
+ini/object/goodfaction/goodfactionsubobjects.ini: Cannot resolve FXParticleSystem or ParticleSystem 'OathbreakerArrowTrail'
+ini/object/goodfaction/hordes/arnor/annuminaskingsguard.ini: Expected CommandButton, but 'SpecialAbilityAnnuminasVigilant' is SpecialPower
+ini/object/goodfaction/hordes/arnor/arnorhordes.ini: Cannot resolve ChildObject or Object or ObjectReskin 'LAElvenWarriorLineFormation'
+ini/object/goodfaction/hordes/arnor/arnorhordes.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RohanRoyalGuardFoot'
+ini/object/goodfaction/hordes/arnor/arnorhordes.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RohanRoyalGuardFootHorde'
+ini/object/goodfaction/hordes/arnor/arnorhordes.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RohanRoyalGuardFootHordePorcupine'
+ini/object/goodfaction/hordes/arnor/arnorhordes.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RohanRoyalGuardFoot_Summoned'
+ini/object/goodfaction/hordes/arnor/arnorhordes.ini: Cannot resolve ModifierList 'ArnorFighterBlock'
+ini/object/goodfaction/hordes/arnor/arnorhordes.ini: Expected ModifierList, but 'ArnorTowerShieldGuardHordePorcupine' is ChildObject
+ini/object/goodfaction/hordes/arnor/fornostwardens.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dale/bardingphalanxhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dale/dalemenguardhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dale/daleroyalguards.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dale/laketownbowmen.ini: 'DaleLaketownBowmenHorde_Summoned' is declared more than once, also in line 308, line 353
+ini/object/goodfaction/hordes/dale/laketownbowmen.ini: 'DaleLaketownBowmenHorde_Summoned' is declared more than once, also in line 308, line 398
+ini/object/goodfaction/hordes/dale/laketownbowmen.ini: 'DaleLaketownBowmenHorde_Summoned' is declared more than once, also in line 353, line 398
+ini/object/goodfaction/hordes/dale/laketownhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dolamroth/amrothianguardsmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dolamroth/dolamrothpikes.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dolamroth/dolamrothswordsmen.ini: Cannot resolve ChildObject or Object or ObjectReskin 'LinhirBanner_Summoned'
+ini/object/goodfaction/hordes/dorwinion/dorwinionlegionnaires.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dwarven/bardingphalanxhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dwarven/daleroyalguards.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dwarven/dorwinionhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dwarven/ironhillwarriorsword.ini: Cannot resolve ChildObject or Object or ObjectReskin 'IronHillsWarriorSowrdHordeBlock'
+ini/object/goodfaction/hordes/dwarven/khazaduzbadulhorde.ini: Cannot resolve CommandButton 'Command_SpecialAbilityRisingAnger'
+ini/object/goodfaction/hordes/dwarven/laketownhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dwarven/phalanxhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dwarven/ushmuruzbadulhorde.ini: Cannot resolve CommandButton 'Command_SpecialAbilityRisingAnger'
+ini/object/goodfaction/hordes/dwarven/vaultwardenhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/dwarven/wyrmslayershorde.ini: Cannot resolve CommandButton 'Command_ZealotAxeThrow'
+ini/object/goodfaction/hordes/dwarven/wyrmslayerveteranhorde.ini: Cannot resolve CommandButton 'Command_ZealotAxeThrow'
+ini/object/goodfaction/hordes/elven/cerinamrothhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/elven/elvenhordes.ini: Cannot resolve MappedImage 'UILorienWarrior'
+ini/object/goodfaction/hordes/elven/elvenhordes.ini: Cannot resolve MappedImage 'UILothlorienSummonedRangers'
+ini/object/goodfaction/hordes/elven/handmaidenhorde.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/hordes/elven/handmaidenhorde.ini: Cannot resolve CommandSet 'ElvenHandmaidenCommandSet_Lvl3'
+ini/object/goodfaction/hordes/elven/handmaidenhorde.ini: Cannot resolve CommandSet 'ElvenHandmaidenCommandSet_Lvl5'
+ini/object/goodfaction/hordes/elven/lorienarchersentryhorde.ini: Cannot resolve MappedImage 'UILorienArchers'
+ini/object/goodfaction/hordes/highpass/highpassglaivesmenhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/inn/beaconguards.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/inn/eredluinguards.ini: Cannot resolve CommandSet 'EredLuinGuardCommandSet_DurinsFolk'
+ini/object/goodfaction/hordes/inn/pelargirexpeditionaries.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/ithilien/hostofthewest.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/ithilien/ithiliensentinelhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/ithilien/whitecompanyguards.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/lastallianceadventure/wyrmslayershorde.ini: Cannot resolve CommandButton 'Command_ZealotAxeThrow'
+ini/object/goodfaction/hordes/men/anorienspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/men/fountainguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/men/gondorrangers.ini: Cannot resolve MappedImage 'UIGondorDunedainRanger'
+ini/object/goodfaction/hordes/men/gondorrangers.ini: Cannot resolve MappedImage 'UPDunedainRangernew'
+ini/object/goodfaction/hordes/men/gondorrangerspear.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/men/knightsofdolamroth.ini: Cannot resolve AttackPriority 'AttackPriority_CALVARY'
+ini/object/goodfaction/hordes/men/linhirspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/men/pinnathgelinhalberdierhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/men/pinnathgelinhalberdierhorde.ini: Cannot resolve CommandSet 'Command_PinnathGelinHalberdierPorcupineFormation_SwornAllegiance'
+ini/object/goodfaction/hordes/men/pinnathgelinhalberdierhorde.ini: Cannot resolve CommandSet 'GondorPinnathGelinHalberdierHordeCommandSet'
+ini/object/goodfaction/hordes/men/pinnathgelinhalberdierhorde.ini: Cannot resolve MappedImage 'uipinhalb'
+ini/object/goodfaction/hordes/men/pinnathgelinhalberdierhorde.ini: Cannot resolve MappedImage 'uppinhalb'
+ini/object/goodfaction/hordes/men/towershieldguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/mirkwood/eotheodhorde.ini: Cannot resolve ModifierList 'AOTRTheodenGloriousChargeChained'
+ini/object/goodfaction/hordes/mirkwood/greenwoodspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/mirkwood/mirkwoodcombohorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/mirkwood/mirkwoodpalaceguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/mirkwood/mirkwoodspear.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/mirkwood/prisonguards.ini: Cannot resolve MappedImage 'UILothlorienInnWarriors'
+ini/object/goodfaction/hordes/rivendell/breelandguardhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/rivendell/dunedainhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/rivendell/rivendellglaivesmenhorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/rivendell/rivendellrevelershorde.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/hordes/rohan/yeomenspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/hordes/shire/bucklandbravehorde.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/structures/arnor/arnorbattletower.ini: 'ArnorBattleTower' is declared more than once, also in rivendellbattletower.ini:319
+ini/object/goodfaction/structures/arnor/arnorcampsandcastles.ini: Cannot resolve CommandSet 'BattleTowerCommandSet'
+ini/object/goodfaction/structures/arnor/arnorcampsandcastles.ini: Cannot resolve MappedImage 'BPGCamp'
+ini/object/goodfaction/structures/arnor/arnorcampsandcastles.ini: Cannot resolve MappedImage 'BPGCampWall'
+ini/object/goodfaction/structures/arnor/arnorcampsandcastles.ini: Cannot resolve MappedImage 'BPGCamp_Plot'
+ini/object/goodfaction/structures/arnor/arnorcampsandcastles.ini: Cannot resolve MappedImage 'BPGKeep'
+ini/object/goodfaction/structures/arnor/arnorcampsandcastles.ini: Cannot resolve MappedImage 'BPGondorCastle'
+ini/object/goodfaction/structures/arnor/arnorcampsandcastles.ini: Cannot resolve MappedImage 'BPGondorCastleGate'
+ini/object/goodfaction/structures/arnor/arnorcampsandcastles.ini: Expected FXParticleSystem or ParticleSystem, but 'FX_GondorCastleGateDestroy' is FXList
+ini/object/goodfaction/structures/arnor/arnorforge.ini: Cannot resolve Upgrade 'Upgrade_RohanHeavyArmorForRohirrim'
+ini/object/goodfaction/structures/arnor/arnorstonemaker.ini: Cannot resolve MappedImage 'BPGStoneWorker'
+ini/object/goodfaction/structures/campaign/rohanroyalbanner.ini: Cannot resolve Locomotor 'FakeImmobileLocomotor'
+ini/object/goodfaction/structures/campaign/rohanroyalbanner.ini: Cannot resolve MappedImage 'BPRohan_GamlingBanner'
+ini/object/goodfaction/structures/dolamroth/belfalasbeach.ini: Cannot resolve ObjectCreationList 'OCL_BelfalasBeachFlowerGrass1'
+ini/object/goodfaction/structures/dolamroth/fortress.ini: Expected SpecialPower, but 'Upgrade_MenFortressIvoryTower' is Upgrade
+ini/object/goodfaction/structures/dolamroth/gondorbulwark.ini: Cannot resolve MappedImage 'UIGondorBattleTower'
+ini/object/goodfaction/structures/dolamroth/stable.ini: 'DolAmrothRoyalStable_WotR' is declared more than once, also in line 595
+ini/object/goodfaction/structures/dolamroth/stable.ini: 'DolAmrothRoyalStable_WotR' is declared more than once, also in line 601
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfcraftsman.ini: Cannot resolve Armor 'DwarfStructureArmor'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfcraftsman.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarfWorkerNoSelect'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfcraftsman.ini: Cannot resolve CommandSet 'DwarfCraftsmanCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfforge.ini: Cannot resolve Armor 'DwarfStructureArmor'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfforge.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarfWorkerNoSelect'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfforge.ini: Cannot resolve CommandSet 'DwarfForgeCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfforge.ini: Cannot resolve MappedImage 'BPDwarf_Forge'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfguardhouse.ini: Cannot resolve Armor 'DwarfStructureArmor'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfguardhouse.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarfWorkerNoSelect'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfguardhouse.ini: Cannot resolve CommandSet 'DwarfGuardhouseCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfguardhouse.ini: Cannot resolve MappedImage 'BPDwarf_GuardHouse'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfguardhouse.ini: Cannot resolve Weapon 'DwarfGarrisonedBuildingDeath'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfkeeps.ini: Cannot resolve Armor 'DwarfStructureArmor'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfkeeps.ini: Cannot resolve CommandSet 'DwarfCampKeepCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfkeeps.ini: Cannot resolve CommandSet 'DwarfCastleKeepCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfkeeps.ini: Cannot resolve CommandSet 'DwarfOutpostKeepCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfkeeps.ini: Cannot resolve MappedImage 'BPDwarf_CampCitadel'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfkeeps.ini: Cannot resolve MappedImage 'BPDwarf_CastleCitadel'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfkeeps.ini: Cannot resolve MappedImage 'BPDwarf_OutpostCitadel'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfrookery.ini: Cannot resolve Armor 'DwarfStructureArmor'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfrookery.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarfWorkerNoSelect'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfrookery.ini: Cannot resolve CommandSet 'DwarfRookeryCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfrookery.ini: Cannot resolve MappedImage 'BPDwarf_Rookery'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfstatue.ini: Cannot resolve Armor 'DwarfStructureArmor'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfstatue.ini: Cannot resolve MappedImage 'BPDwarf_Statue'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfwell.ini: Cannot resolve Armor 'DwarfStructureArmor'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfwell.ini: Cannot resolve CommandSet 'GondorWellCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHdwarfwell.ini: Cannot resolve MappedImage 'BPDwarf_Well'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/TDHthorinshallkeep.ini: Cannot resolve MappedImage 'BPDwarf_GuardHouse'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/camp/TDHdwarfcampgate.ini: Cannot resolve Armor 'DwarfCampGateArmor'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/camp/TDHdwarfcampgate.ini: Cannot resolve Armor 'DwarfCampWall'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/camp/TDHdwarfcampgate.ini: Cannot resolve MappedImage 'BPDwarf_CampGate'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/camp/TDHdwarfcampgate.ini: Cannot resolve MappedImage 'BPDwarf_CampGatehouse'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/camp/TDHdwarfcampgate.ini: Cannot resolve Weapon 'DwarfCampGatehouseBow'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/camp/TDHdwarfcampgate.ini: Expected FXParticleSystem or ParticleSystem, but 'FX_GondorCastleGateDestroy' is FXList
+ini/object/goodfaction/structures/dwarven/TDHBuildings/camp/TDHdwarfcampwalls.ini: Cannot resolve Armor 'DwarfCampWall'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/camp/TDHdwarfcampwalls.ini: Cannot resolve MappedImage 'BPDwarf_CampElevator'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/camp/TDHdwarfcampwalls.ini: Cannot resolve MappedImage 'BPDwarf_CampWall'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/camp/TDHdwarfcampwalls.ini: Cannot resolve Weapon 'DwarfCampWallDeath'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlegate.ini: Cannot resolve Armor 'DwarfCastleWall'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlegate.ini: Cannot resolve MappedImage 'BPDwarf_CastleGate'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlegate.ini: Cannot resolve MappedImage 'BPDwarf_CastleStairs'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlegate.ini: Cannot resolve MappedImage 'BPDwarf_CastleWall'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlegate.ini: Cannot resolve ModifierList 'DwarfWallBonus'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlegate.ini: Cannot resolve Weapon 'DwarfCastleGatehouseBow'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlegate.ini: Cannot resolve Weapon 'DwarfCastleWallDeath'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlegate.ini: Expected FXParticleSystem or ParticleSystem, but 'FX_GondorCastleGateDestroy' is FXList
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlewall.ini: Cannot resolve Armor 'DwarfCastleWall'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlewall.ini: Cannot resolve MappedImage 'BPDwarf_CastleHub'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlewall.ini: Cannot resolve MappedImage 'BPDwarf_CastleWall'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlewall.ini: Cannot resolve ModifierList 'DwarfWallBonus'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlewall.ini: Cannot resolve Weapon 'DwarfCastleHubDeath'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/castle/TDHdwarfcastlewall.ini: Cannot resolve Weapon 'DwarfCastleWallDeath'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/outpost/TDHdwarfoutpost.ini: Cannot resolve MappedImage 'BPDwarf_OutpostWall'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/outpost/TDHdwarfoutpostupgrades.ini: Cannot resolve Armor 'DwarfSentryTowerArmor'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/outpost/TDHdwarfoutpostupgrades.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarfWorkerNoSelect'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/outpost/TDHdwarfoutpostupgrades.ini: Cannot resolve CommandSet 'DwarfOutpostDefenceFoundationCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/outpost/TDHdwarfoutpostupgrades.ini: Cannot resolve CommandSet 'SentryTowerCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/outpost/TDHdwarfoutpostupgrades.ini: Cannot resolve MappedImage 'BIDwarf_CampWatchtower'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/outpost/TDHdwarfoutpostupgrades.ini: Cannot resolve MappedImage 'BPDwarf_CampWatchtower'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/outpost/TDHdwarfoutpostupgrades.ini: Cannot resolve MappedImage 'BPEDwarf_Foundation3'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/outpost/TDHdwarfoutpostupgrades.ini: Cannot resolve Weapon 'DwarfOutpostTowerBow'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhdalemapbuildings.ini: Cannot resolve Armor 'DwarfStructureArmor'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhdalemapbuildings.ini: Cannot resolve CommandSet 'DwarfGuardhouseCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhdalemapbuildings.ini: Cannot resolve MappedImage 'BPDwarf_GuardHouse'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhdalemapbuildings.ini: Cannot resolve Weapon 'DwarfGarrisonedBuildingDeath'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve Armor 'DwarfCastleWall'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve Armor 'DwarfCastleWallUpgrade'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve Armor 'DwarfCastleWallUpgradeHorn'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve Armor 'DwarfCastleWallUpgradeTower'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve Armor 'DwarfStructureArmor'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve CommandSet 'DwarfCastleGateUpgradeCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve CommandSet 'DwarfCastleKeepCommandSet'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve MappedImage 'BPDwarf_CastleGate'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve MappedImage 'BPDwarf_CastleHub'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve MappedImage 'BPDwarf_CastlePostern'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve MappedImage 'BPDwarf_CastleStairs'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve MappedImage 'BPDwarf_CastleWall'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve MappedImage 'BPDwarf_EreborThrone'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve MappedImage 'HPCarrockObject'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve ModifierList 'DwarfWallBonus'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve Weapon 'DwarfCastleHubDeath'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve Weapon 'DwarfCastleWallDeath'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Cannot resolve Weapon 'DwarfGarrisonedBuildingDeath'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhereborobjects.ini: Expected FXParticleSystem or ParticleSystem, but 'FX_GondorCastleGateDestroy' is FXList
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhmapobjects.ini: Cannot resolve Armor 'DwarfCastleWall'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhmapobjects.ini: Cannot resolve MappedImage 'BPDwarf_CastleHub'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhmapobjects.ini: Cannot resolve MappedImage 'BPDwarf_CastleWall'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhmapobjects.ini: Cannot resolve MappedImage 'HPCarrockObject'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhmapobjects.ini: Cannot resolve ModifierList 'DefaultWallArmorBonus'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhmapobjects.ini: Cannot resolve ModifierList 'DwarfWallBonus'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhmapobjects.ini: Cannot resolve Weapon 'DwarfCastleHubDeath'
+ini/object/goodfaction/structures/dwarven/TDHBuildings/tdhmapobjects.ini: Cannot resolve Weapon 'DwarfCastleWallDeath'
+ini/object/goodfaction/structures/dwarven/TDHEreborThroneKeep.ini: Cannot resolve MappedImage 'BPDwarf_EreborThrone'
+ini/object/goodfaction/structures/dwarven/dwarfbunker.ini: Cannot resolve CommandSet 'SentryTowerCommandSet'
+ini/object/goodfaction/structures/dwarven/dwarfcastlewalls.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarvenWallRamp'
+ini/object/goodfaction/structures/dwarven/dwarfcastlewalls.ini: Cannot resolve MappedImage 'BPDWall_Hub'
+ini/object/goodfaction/structures/elven/barracks.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/barracks.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
+ini/object/goodfaction/structures/elven/elvenaxeelfgarrisonexpansion.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/elvenaxeelfgarrisonexpansion.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
+ini/object/goodfaction/structures/elven/elvenbattletower.ini: 'ElvenBattleTowerFoundation' is declared more than once, also in eaglesbuilding.ini:434
+ini/object/goodfaction/structures/elven/elvenbattletower.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/elvenbattletower.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
+ini/object/goodfaction/structures/elven/elvencastlewallhubexpansion.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/elvencastlewallhubexpansion.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
+ini/object/goodfaction/structures/elven/elvenfloodgateexpansion.ini: Cannot resolve MappedImage 'SBGood_Flood'
+ini/object/goodfaction/structures/elven/elvenfloodgateexpansion.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/elvenfortress.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/elvenfortress.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
+ini/object/goodfaction/structures/elven/elvenfortress.ini: Expected SpecialPower, but 'Upgrade_ElvenFortressEaglesNest' is Upgrade
+ini/object/goodfaction/structures/elven/elvengreenpasture.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/elvengreenpasture.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
+ini/object/goodfaction/structures/elven/elvenhiddensanctum.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/elvenhiddensanctum.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
+ini/object/goodfaction/structures/elven/elvenmallorntree.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/elvenmallorntree.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
+ini/object/goodfaction/structures/elven/elvenniphredilmallorntree.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/elvenniphredilmallorntree.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
 ini/object/goodfaction/structures/elven/elvenniphredilmallorntree.ini: Unknown KindOf '+ElvenMallornTree_ForAI'
 ini/object/goodfaction/structures/elven/elvenniphredilmallorntree.ini: Unknown KindOf 'SAME_PLAYER'
+ini/object/goodfaction/structures/elven/elvensentrytower.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/elvensentrytower.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
+ini/object/goodfaction/structures/elven/elvenwatchtowerexpansion.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/elvenwatchtowerexpansion.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
+ini/object/goodfaction/structures/elven/eregionforge.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
+ini/object/goodfaction/structures/elven/eregionforge.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
+ini/object/goodfaction/structures/highpass/eaglesbuilding.ini: 'ElvenBattleTowerFoundation' is declared more than once, also in elvenbattletower.ini:1076
+ini/object/goodfaction/structures/highpass/eaglesbuilding.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
+ini/object/goodfaction/structures/ithilien/foundationplot.ini: Cannot resolve MappedImage 'ZZSelectPortrait'
+ini/object/goodfaction/structures/men/battletower.ini: Cannot resolve MappedImage 'UIGondorBattleTower'
+ini/object/goodfaction/structures/men/campsandcastles.ini: Cannot resolve CommandSet 'BattleTowerCommandSet'
+ini/object/goodfaction/structures/men/campsandcastles.ini: Cannot resolve MappedImage 'BPGCamp'
+ini/object/goodfaction/structures/men/campsandcastles.ini: Cannot resolve MappedImage 'BPGCampWall'
+ini/object/goodfaction/structures/men/campsandcastles.ini: Cannot resolve MappedImage 'BPGCamp_Plot'
+ini/object/goodfaction/structures/men/campsandcastles.ini: Cannot resolve MappedImage 'BPGKeep'
+ini/object/goodfaction/structures/men/campsandcastles.ini: Cannot resolve MappedImage 'BPGondorCastle'
+ini/object/goodfaction/structures/men/campsandcastles.ini: Cannot resolve MappedImage 'BPGondorCastleGate'
+ini/object/goodfaction/structures/men/campsandcastles.ini: Expected FXParticleSystem or ParticleSystem, but 'FX_GondorCastleGateDestroy' is FXList
+ini/object/goodfaction/structures/men/forge.ini: Cannot resolve Upgrade 'Upgrade_RohanHeavyArmorForRohirrim'
+ini/object/goodfaction/structures/men/fortress.ini: Expected SpecialPower, but 'Upgrade_MenFortressIvoryTower' is Upgrade
+ini/object/goodfaction/structures/men/marketplace.ini: Cannot resolve CommandSet 'DolAmrothMarketPlaceCommandSet'
+ini/object/goodfaction/structures/men/sentrytower.ini: Cannot resolve MappedImage 'UIGondorBattleTower'
+ini/object/goodfaction/structures/men/stonemaker.ini: Cannot resolve MappedImage 'BPGStoneWorker'
+ini/object/goodfaction/structures/mirkwood/mirkwoodcaveentranceexpansion.ini: Cannot resolve MappedImage 'UPGreenwoodCaveExpansion'
+ini/object/goodfaction/structures/mirkwood/mirkwoodfortress.ini: Cannot resolve ModifierList 'MirkwoodFortressOromeTribute'
+ini/object/goodfaction/structures/mirkwood/mirkwoodfortress.ini: Expected SpecialPower, but 'Upgrade_ElvenFortressEaglesNest' is Upgrade
+ini/object/goodfaction/structures/rivendell/arnorremnants.ini: Cannot resolve Locomotor 'FakeImmobileLocomotor'
+ini/object/goodfaction/structures/rivendell/arnorremnants.ini: Cannot resolve MappedImage 'BPGOsgiliath'
+ini/object/goodfaction/structures/rivendell/halloffire.ini: Cannot resolve Weapon 'GoodStructureBow'
+ini/object/goodfaction/structures/rivendell/halloffirewotr.ini: Cannot resolve Weapon 'GoodStructureBow'
+ini/object/goodfaction/structures/rivendell/rivendellbattletower.ini: 'ArnorBattleTower' is declared more than once, also in arnorbattletower.ini:340
+ini/object/goodfaction/structures/rivendell/rivendellfloodgateexpansion.ini: Cannot resolve MappedImage 'SBGood_Flood'
+ini/object/goodfaction/structures/rohan/drafttower.ini: Cannot resolve MappedImage 'UIGondorBattleTower'
+ini/object/goodfaction/structures/rohan/rohanfortress.ini: Expected SpecialPower, but 'Upgrade_RohanFortressRideoftheRohirrim' is Upgrade
+ini/object/goodfaction/structures/sigfire.ini: Cannot resolve MappedImage 'BPGSignalFire'
+ini/object/goodfaction/structures/towerdefense/tdlorienflet.ini: Cannot resolve CommandSet 'ElvenTDFletCommandSet'
+ini/object/goodfaction/units/arnor/aranarth.ini: Cannot resolve MappedImage 'BPGCamp_Plot'
+ini/object/goodfaction/units/arnor/arnorcavalrybanner.ini: Cannot resolve MappedImage 'UPGondor_Banner'
+ini/object/goodfaction/units/arnor/arnorinfantrybanner.ini: Cannot resolve MappedImage 'UPGondor_Banner'
+ini/object/goodfaction/units/arnor/arnorporter.ini: 'ArnorPorterNoSelect' is declared more than once, also in rivendellporter.ini:357
+ini/object/goodfaction/units/arnor/arnortowershieldguard.ini: 'ArnorTowerShieldGuard_Summoned' is declared more than once, also in arnorbreelandguard.ini:767
+ini/object/goodfaction/units/arnor/arnortrebuchet.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/arnor/elvenimladriswarrior.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
+ini/object/goodfaction/units/arnor/elvenimladriswarrior.ini: Cannot resolve Weapon 'RivendellArcherBowBombard'
+ini/object/goodfaction/units/arnor/elvenimladriswarrior.ini: Cannot resolve Weapon 'RivendellArcherBowWarrior'
+ini/object/goodfaction/units/arnor/elvenimladriswarrior.ini: Cannot resolve Weapon 'RivendellArcherSilverthornBow'
+ini/object/goodfaction/units/arnor/elvenimladriswarrior.ini: Cannot resolve Weapon 'RivendellArcherSilverthornBowBombard'
+ini/object/goodfaction/units/arnor/elvenimladriswarriorsword.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
+ini/object/goodfaction/units/arnor/elvenimladriswarriorsword.ini: Cannot resolve Weapon 'RivendellArcherBowBombard'
+ini/object/goodfaction/units/arnor/elvenimladriswarriorsword.ini: Cannot resolve Weapon 'RivendellArcherBowWarrior'
+ini/object/goodfaction/units/arnor/elvenimladriswarriorsword.ini: Cannot resolve Weapon 'RivendellArcherSilverthornBow'
+ini/object/goodfaction/units/arnor/elvenimladriswarriorsword.ini: Cannot resolve Weapon 'RivendellArcherSilverthornBowBombard'
+ini/object/goodfaction/units/arnor/fornostwarden.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/campaign/campaignbilboyoung.ini: Cannot resolve MappedImage 'HPCoEBilboMirkwood'
+ini/object/goodfaction/units/campaign/campaignelfhelm.ini: Cannot resolve ModifierList 'ElfhelmRescueCavalry'
+ini/object/goodfaction/units/campaign/campaignelfhelm.ini: Expected CommandButton, but 'SpecialAbilityElfhelmPromotion' is SpecialPower
+ini/object/goodfaction/units/campaign/campaigntheoden.ini: Cannot resolve CommandButton 'Command_SpecialAbilityTheodenStrengthRememberedLvl5'
+ini/object/goodfaction/units/campaign/campaigntheoden.ini: Cannot resolve ModifierList 'AOTRTheodenGloriousChargeLvl10'
+ini/object/goodfaction/units/campaign/dismountedrohirrim.ini: Cannot resolve MappedImage 'UPDismountedRohirrim'
+ini/object/goodfaction/units/campaign/eowyn.ini: Cannot resolve FXParticleSystem or ParticleSystem 'CavalrySnowTrails202'
+ini/object/goodfaction/units/campaign/eowyn.ini: Cannot resolve FXParticleSystem or ParticleSystem 'CavalryTrails202'
+ini/object/goodfaction/units/campaign/gandalfthewhite.ini: Cannot resolve Locomotor 'HeroWanderLocomotor'
+ini/object/goodfaction/units/campaign/kingofthedead.ini: Cannot resolve ObjectCreationList 'OCL_KotDSleeplessDead'
+ini/object/goodfaction/units/campaign/lindir.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
+ini/object/goodfaction/units/campaign/rangerdamrod.ini: Expected Multisound, but 'DamrodQuickDispatch' is AudioEvent or ModifierList
+ini/object/goodfaction/units/campaign/thrain.ini: Cannot resolve MappedImage 'HIAzanulbizarThrain'
+ini/object/goodfaction/units/campaign/thranduilarmor.ini: Cannot resolve ModifierList 'ThranduilBladeOfPurity'
+ini/object/goodfaction/units/campaign/thror.ini: Cannot resolve MappedImage 'HIAzanulbizarThror'
+ini/object/goodfaction/units/dale/agmund.ini: Cannot resolve MappedImage 'HIAgmund'
+ini/object/goodfaction/units/dale/agmund.ini: Cannot resolve MappedImage 'HPAgmund'
+ini/object/goodfaction/units/dale/agmund.ini: Cannot resolve MappedImage 'uibattleofdaleheroesagmundres'
+ini/object/goodfaction/units/dale/dalebanner.ini: Cannot resolve MappedImage 'UPGondor_Banner'
+ini/object/goodfaction/units/dale/dalemenguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dale/daleroyalguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dale/dalespearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dale/keeperofblackarrow.ini: Cannot resolve AttackPriority 'AttackPriority_HERO'
+ini/object/goodfaction/units/dale/laketownspears.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dale/princebard.ini: Cannot resolve MappedImage 'HIPrinceBardII'
+ini/object/goodfaction/units/dale/princebard.ini: Cannot resolve MappedImage 'HPPrinceBardII'
+ini/object/goodfaction/units/dale/princebard.ini: Cannot resolve MappedImage 'uibattleofdaleheroesprincebardiires'
+ini/object/goodfaction/units/dale/vidu.ini: Cannot resolve MappedImage 'HIVidu'
+ini/object/goodfaction/units/dale/vidu.ini: Cannot resolve MappedImage 'HPVidu'
+ini/object/goodfaction/units/dale/windlance.ini: Cannot resolve Armor 'FortressSiegeEngineArmorArmor'
+ini/object/goodfaction/units/dale/windlance.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/dale/windlancesummoned.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/dolamroth/amrothianguardsmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dolamroth/dismountedblackswan.ini: Cannot resolve Weapon 'RoyalSwanGuardSword'
+ini/object/goodfaction/units/dolamroth/dolamrothswordsmen.ini: Cannot resolve MappedImage 'UIDolManatArms'
+ini/object/goodfaction/units/dolamroth/faramir.ini: Cannot resolve CommandButton 'FaramirAmbushAbility'
+ini/object/goodfaction/units/dolamroth/imrahil.ini: Cannot resolve Armor 'ToughHeroArmorMounted'
+ini/object/goodfaction/units/dolamroth/imrahil.ini: Cannot resolve CommandButton 'Command_SpecialAbilityImrahilAmrothForGondory'
+ini/object/goodfaction/units/dolamroth/porter.ini: 'MenPorterNoSelect' is declared more than once, also in porter.ini:327
+ini/object/goodfaction/units/dolamroth/porter.ini: 'MenPorterWotR' is declared more than once, also in porter.ini:332
+ini/object/goodfaction/units/dolamroth/rohanbodyguard.ini: Cannot resolve Weapon 'RoyalSwanGuardSword'
+ini/object/goodfaction/units/dorwinion/dorwinionlegionnaire.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dorwinion/kinnlaiveteran.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
+ini/object/goodfaction/units/dwarven/Fireworks.ini: Cannot resolve Armor 'FireWorksArmor'
+ini/object/goodfaction/units/dwarven/Fireworks.ini: Cannot resolve FXParticleSystem or ParticleSystem 'MordorSpireFireFW'
+ini/object/goodfaction/units/dwarven/Fireworks.ini: Cannot resolve FXParticleSystem or ParticleSystem 'fireworknew1'
+ini/object/goodfaction/units/dwarven/Fireworks.ini: Cannot resolve FXParticleSystem or ParticleSystem 'fireworknew2'
+ini/object/goodfaction/units/dwarven/Fireworks.ini: Cannot resolve MappedImage 'BPGCamp_Plot'
+ini/object/goodfaction/units/dwarven/arcah.ini: Cannot resolve FXList 'FX_GwaihirAirDeath'
+ini/object/goodfaction/units/dwarven/captainofdale.ini: Cannot resolve MappedImage 'HIBrandCampaign'
+ini/object/goodfaction/units/dwarven/captainofdale.ini: Cannot resolve MappedImage 'HIBrandCampaign_RES'
+ini/object/goodfaction/units/dwarven/captainofdale.ini: Cannot resolve MappedImage 'hpbrandcampaign'
+ini/object/goodfaction/units/dwarven/dalebanner.ini: Cannot resolve MappedImage 'UPGondor_Banner'
+ini/object/goodfaction/units/dwarven/daleroyalguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dwarven/dalespearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dwarven/dorwinionunit.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dwarven/dorwinionunit.ini: Cannot resolve MappedImage 'UIDorwinion'
+ini/object/goodfaction/units/dwarven/dorwinionunit.ini: Cannot resolve MappedImage 'UPDorwinion'
+ini/object/goodfaction/units/dwarven/dwarvenbattlewagonphalanx.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dwarven/dwarvenmangonel.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/dwarven/dwarvenmangonel.ini: Expected FXParticleSystem or ParticleSystem, but 'FX_TraderSiegeActiveBuff' is FXList
+ini/object/goodfaction/units/dwarven/dwarvenphalanxbarracks.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dwarven/dwarvenram.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/dwarven/dwarvenvaultwarden.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dwarven/gandalfthegrey.ini: 'RivendellGandalfTheGrey_Summoned' is declared more than once, also in gandalfthegrey.ini:1335
+ini/object/goodfaction/units/dwarven/gloin.ini: Cannot resolve CommandButton 'Command_SpecialAbilityGloinHealLevel3'
+ini/object/goodfaction/units/dwarven/ironhillsballista.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/dwarven/ironhillsspears.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/goodfaction/units/dwarven/ironhillswarriors.ini: Missing 'EndScript' before 'BeginScript'
 ini/object/goodfaction/units/dwarven/ironhillswordbotfa.ini: Missing 'EndScript' before 'BeginScript'
+ini/object/goodfaction/units/dwarven/laketownspears.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/dwarven/roac.ini: Cannot resolve FXList 'FX_GwaihirAirDeath'
+ini/object/goodfaction/units/dwarven/rowdytubdwarf.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
 ini/object/goodfaction/units/dwarven/thorin.ini: Unknown property '1' in 'W3DScriptedModelDraw'
+ini/object/goodfaction/units/elven/TREE.ini: 'ElvenWoodTreeOpt' is declared more than once, also in naturetrees.ini:8204
+ini/object/goodfaction/units/elven/TREE.ini: Cannot resolve ChildObject or Object or ObjectReskin 'MAIN_Tree01Valheru'
 ini/object/goodfaction/units/elven/elvenlorienarcher.ini: Missing 'EndScript' before 'BeginScript'
+ini/object/goodfaction/units/elven/elvenloriencerinamrothspear.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/elven/elvenloriennandor.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
+ini/object/goodfaction/units/elven/elvenmirkwoodarcher.ini: Cannot resolve MappedImage 'UILothlorienSummonedRangers'
+ini/object/goodfaction/units/elven/elvenmirkwoodarchersummoned.ini: Cannot resolve MappedImage 'UILothlorienSummonedRangers'
+ini/object/goodfaction/units/elven/elvenmirkwoodwarriorinn.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
+ini/object/goodfaction/units/elven/elvenmithlondsentry.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/elven/galadhrimwarrior.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
+ini/object/goodfaction/units/elven/radagast.ini: Cannot resolve CommandButton 'Command_RadagastDismount'
+ini/object/goodfaction/units/elven/radagastsummoned.ini: Cannot resolve CommandButton 'Command_RadagastDismount'
+ini/object/goodfaction/units/elven/radagastsummoned.ini: Cannot resolve ObjectCreationList 'OCL_SpawnRadagastCampaign'
+ini/object/goodfaction/units/ents/entsinfantry.ini: Cannot resolve FXParticleSystem or ParticleSystem 'EntSplash'
+ini/object/goodfaction/units/ents/entsinfantry.ini: Cannot resolve Weapon 'RohanEntRockFromThinAir'
+ini/object/goodfaction/units/ents/entwives.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/ents/entwives.ini: Cannot resolve FXParticleSystem or ParticleSystem 'EntSplash'
+ini/object/goodfaction/units/ents/entwives.ini: Expected AudioEvent, but 'EntwifeVoiceSelectMS' is Multisound
+ini/object/goodfaction/units/ents/huorn.ini: Cannot resolve FXParticleSystem or ParticleSystem 'EntSplash'
+ini/object/goodfaction/units/ents/huorn.ini: Expected AudioEvent, but 'HuornVoiceSelectMS' is Multisound
+ini/object/goodfaction/units/ents/treeberd.ini: Cannot resolve FXParticleSystem or ParticleSystem 'EntSplash'
+ini/object/goodfaction/units/gondor/denethor.ini: Cannot resolve CommandButton 'Command_SpecialPowerDenethorLvl10'
+ini/object/goodfaction/units/highpass/highpassglaivemen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/goodfaction/units/highpass/highpassranger.ini: Missing 'EndScript' before 'BeginScript'
 ini/object/goodfaction/units/inn/lossotharcher.ini: Unknown property 'VoiceExit' in 'UnitSpecificSounds'
+ini/object/goodfaction/units/ithilien/damrod.ini: Expected Multisound, but 'DamrodQuickDispatch' is AudioEvent or ModifierList
+ini/object/goodfaction/units/ithilien/faramir.ini: Cannot resolve CommandButton 'FaramirAmbushAbility'
+ini/object/goodfaction/units/ithilien/greycompanyspears.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
+ini/object/goodfaction/units/ithilien/ithiliencaptain.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
+ini/object/goodfaction/units/ithilien/ithilienoutrider.ini: Cannot resolve Weapon 'IthilienOutriderRaid'
+ini/object/goodfaction/units/ithilien/ithilienpathfinder.ini: Cannot resolve AttackPriority 'AttackPriority_HERO'
+ini/object/goodfaction/units/ithilien/ithilienram.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/ithilien/ithiliensentinels.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/ithilien/ithilientrebuchet.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/ithilien/whitecompanyguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/ithilien/whitecompanysoldier.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/ithilien/whitecompanysoldier.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
+ini/object/goodfaction/units/lastalliance/lindonelfwarrior.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
+ini/object/goodfaction/units/lastalliance/secondagespearman.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/lastallianceadventuretest/anadunecaptain.ini: Cannot resolve Weapon 'KingsguardSwordWesternesseZealous'
 ini/object/goodfaction/units/lastallianceadventuretest/eryngalenarcher.ini: Missing 'EndScript' before 'BeginScript'
+ini/object/goodfaction/units/lastallianceadventuretest/feredir.ini: Cannot resolve AttackPriority 'AttackPriority_HERO'
 ini/object/goodfaction/units/lastallianceadventuretest/lindonelfarcher.ini: Missing 'EndScript' before 'BeginScript'
+ini/object/goodfaction/units/lastallianceadventuretest/lindonelfwarriorsword.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
+ini/object/goodfaction/units/lastallianceadventuretest/raven.ini: Cannot resolve FXList 'FX_GwaihirAirDeath'
+ini/object/goodfaction/units/lastallianceadventuretest/secondagespearman.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/lastallianceadventuretest/trebuchet.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/men/Berethor.ini: Expected CommandButton, but 'SpecialAbilityChallengeofGondor' is SpecialPower
+ini/object/goodfaction/units/men/aragornnew.ini: 'GondorAragornMP' is declared more than once, also in arnoraragorn.ini:2527
+ini/object/goodfaction/units/men/faramir.ini: Cannot resolve CommandButton 'FaramirAmbushAbility'
+ini/object/goodfaction/units/men/gondorcavalrybanner.ini: Cannot resolve MappedImage 'UPGondor_Banner'
+ini/object/goodfaction/units/men/gondordolamrothfighter.ini: Cannot resolve MappedImage 'UIDolManatArms'
+ini/object/goodfaction/units/men/gondorinfantrybanner.ini: Cannot resolve MappedImage 'UPGondor_Banner'
+ini/object/goodfaction/units/men/gondorpike.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/men/gondorranger.ini: Cannot resolve MappedImage 'UPDunedainRangernew'
+ini/object/goodfaction/units/men/gondorranger.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
+ini/object/goodfaction/units/men/gondorrangercaptain.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
+ini/object/goodfaction/units/men/gondorrangerspear.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
+ini/object/goodfaction/units/men/gondortowershieldguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/men/linhirspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/men/pinnathgelinhalberdier.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/men/pinnathgelinhalberdier.ini: Cannot resolve MappedImage 'uipinhalb'
+ini/object/goodfaction/units/men/pinnathgelinhalberdier.ini: Cannot resolve MappedImage 'uppinhalb'
+ini/object/goodfaction/units/men/porter.ini: 'MenPorterNoSelect' is declared more than once, also in porter.ini:350
+ini/object/goodfaction/units/men/porter.ini: 'MenPorterWotR' is declared more than once, also in porter.ini:355
+ini/object/goodfaction/units/men/trebuchet.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/mirkwood/dismountedgildedguard.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
+ini/object/goodfaction/units/mirkwood/galion.ini: Cannot resolve SpecialPower 'SpecialAbilityMirkwoodGalionDorwinionRedLevel3'
+ini/object/goodfaction/units/mirkwood/greenwoodarcher.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
 ini/object/goodfaction/units/mirkwood/greenwoodarcher.ini: Missing 'EndScript' before 'BeginScript'
+ini/object/goodfaction/units/mirkwood/greenwoodspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/mirkwood/mirkwoodballista.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/mirkwood/mirkwoodbatteringram.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/mirkwood/mirkwoodpalaceguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/goodfaction/units/mirkwood/mirkwoodrangerbanner.ini: Missing 'End' for block 'Object'
 ini/object/goodfaction/units/mirkwood/mirkwoodrangerbanner.ini: Unknown block 'ButtonImage' in 'Object'
 ini/object/goodfaction/units/mirkwood/mirkwoodrangerbanner.ini: Unknown block 'ChildObject' in 'Object'
+ini/object/goodfaction/units/mirkwood/mirkwoodspear.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/mirkwood/mirkwoodspear.ini: Cannot resolve MappedImage 'UILorienWarrior'
+ini/object/goodfaction/units/mirkwood/mirkwoodwarden.ini: Cannot resolve MappedImage 'UIMirkwoodWarden'
+ini/object/goodfaction/units/mirkwood/prisonguard.ini: Cannot resolve MappedImage 'UILothlorienInnWarriors'
+ini/object/goodfaction/units/mirkwood/prisonguard.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
+ini/object/goodfaction/units/mirkwood/silvanhunter.ini: Cannot resolve AttackPriority 'AttackPriority_HERO'
 ini/object/goodfaction/units/mirkwood/woodmenmarksmen.ini: Unknown property 'VoiceAttackAir' in 'SoundState'
+ini/object/goodfaction/units/rivendell/arnoraragorn.ini: 'GondorAragornMP' is declared more than once, also in aragornnew.ini:2150
 ini/object/goodfaction/units/rivendell/arnorbreelandfarmer.ini: 'End' without an open block
+ini/object/goodfaction/units/rivendell/arnorbreelandfarmer.ini: Cannot resolve MappedImage 'UPRohan_Peasant'
 ini/object/goodfaction/units/rivendell/arnorbreelandfarmer.ini: Unknown block 'Behavior'
 ini/object/goodfaction/units/rivendell/arnorbreelandfarmer.ini: Unknown block 'ClientBehavior'
 ini/object/goodfaction/units/rivendell/arnorbreelandfarmer.ini: Unknown block 'TransitionState' in 'Object'
@@ -85,7 +1276,9 @@ ini/object/goodfaction/units/rivendell/arnorbreelandfarmer.ini: Unknown property
 ini/object/goodfaction/units/rivendell/arnorbreelandfarmer.ini: Unknown property 'MaxHealth' in 'Body'
 ini/object/goodfaction/units/rivendell/arnorbreelandfarmer.ini: Unknown property 'MaxHealthDamaged' in 'Body'
 ini/object/goodfaction/units/rivendell/arnorbreelandfarmer.ini: Unknown property 'StateName' in 'W3DScriptedModelDraw'
-ini/object/goodfaction/units/rivendell/arnordunedain.ini: Missing 'End' for block 'Object'
+ini/object/goodfaction/units/rivendell/arnorbreelandguard.ini: 'ArnorTowerShieldGuard_Summoned' is declared more than once, also in arnortowershieldguard.ini:733
+ini/object/goodfaction/units/rivendell/arnorbreelandguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/rivendell/arnorbreelandram.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
 ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown block 'ArmorSet' in 'W3DHordeModelDraw'
 ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown block 'Behavior' in 'W3DHordeModelDraw'
 ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown block 'Body' in 'W3DHordeModelDraw'
@@ -152,8 +1345,344 @@ ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown property 'Voic
 ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown property 'VoiceRetreatToCastle' in 'W3DHordeModelDraw'
 ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown property 'VoiceSelect' in 'W3DHordeModelDraw'
 ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown property 'VoiceSelectBattle' in 'W3DHordeModelDraw'
-ini/object/goodfaction/units/rivendell/dunedainanims.inc: 'End' without an open block
+ini/object/goodfaction/units/rivendell/arnorhalbarad.ini: Cannot resolve MappedImage 'BPGCamp_Plot'
 ini/object/goodfaction/units/rivendell/elvenrivendellarcher.ini: Missing 'EndScript' before 'BeginScript'
+ini/object/goodfaction/units/rivendell/elvenrivendellglaivemen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/rivendell/gandalfthegrey.ini: 'RivendellGandalfTheGrey_Summoned' is declared more than once, also in gandalfthegrey.ini:1317
+ini/object/goodfaction/units/rivendell/noldorexile.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/rivendell/rivendellporter.ini: 'ArnorPorterNoSelect' is declared more than once, also in arnorporter.ini:294
+ini/object/goodfaction/units/rohan/elfhelm.ini: Expected CommandButton, but 'SpecialAbilityElfhelmPromotion' is SpecialPower
+ini/object/goodfaction/units/rohan/firienholtwardens.ini: Cannot resolve Weapon 'Halifirien'
+ini/object/goodfaction/units/rohan/rohanbatteringram.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/rohan/rohanmangonel.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/rohan/theoden.ini: Cannot resolve MappedImage 'UPGondorTheoden'
+ini/object/goodfaction/units/rohan/westfolders.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RohanWestolder'
+ini/object/goodfaction/units/rohan/westfolders.ini: Cannot resolve MappedImage 'UIWestolder'
+ini/object/goodfaction/units/rohan/westfolders.ini: Cannot resolve MappedImage 'UPWestolder'
+ini/object/goodfaction/units/rohan/yeomenspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/shire/bucklandbraves.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/shire/noldorexile.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
+ini/object/goodfaction/units/shire/rangerbow.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
+ini/object/goodfaction/units/shire/rangerspear.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
+ini/object/goodfaction/units/shire/rangersword.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
+ini/object/goodfaction/units/towerdefense/tdlorienarcher.ini: Cannot resolve MappedImage 'UILorienArchers'
+ini/object/modcinematic/cinematicobjects.ini: 'CineClouds_2' is declared more than once, also in fxparticlesystem.ini:20784
+ini/object/modcinematic/cinematicobjects.ini: Cannot resolve CommandSet 'BatteringRamCommandSet'
+ini/object/modcinematic/cinematicobjects.ini: Cannot resolve CommandSet 'PorterCommandSet'
+ini/object/modcinematic/cinematicobjects.ini: Cannot resolve MappedImage 'UPMordor_Porter'
+ini/object/modcinematic/lastallianceunits.ini: Cannot resolve ChildObject or Object or ObjectReskin 'LAElvenWarriorLineFormation'
+ini/object/modcinematic/lastallianceunits.ini: Cannot resolve CommandSet 'RohanElvenWarriorDoubleHordeCommandSet'
+ini/object/modcinematic/lastallianceunits.ini: Cannot resolve MappedImage 'HPNumenorean'
+ini/object/modcinematic/lastallianceunits.ini: Cannot resolve MappedImage 'UPGondor_Banner'
+ini/object/modcinematic/lastallianceunits.ini: Cannot resolve MappedImage 'UPNumenorean_Archer'
+ini/object/nature/aotrrocks.ini: 'AotRDolGuldurCliffb01' is declared more than once, also in AotRDolGuldur.ini:1286
+ini/object/nature/aotrrocks.ini: 'AotRDolGuldurCliffb01a' is declared more than once, also in AotRDolGuldur.ini:1307
+ini/object/nature/aotrrocks.ini: 'AotRDolGuldurCliffb02' is declared more than once, also in AotRDolGuldur.ini:1347
+ini/object/nature/aotrrocks.ini: 'AotRDolGuldurCliffb03' is declared more than once, also in AotRDolGuldur.ini:1367
+ini/object/nature/naturetrees.ini: 'ElvenWoodTreeOpt' is declared more than once, also in TREE.ini:441
+ini/object/neutral/aotrlossoth.ini: Cannot resolve ChildObject or Object or ObjectReskin 'LossothCaptain'
+ini/object/neutral/aotrmammoth.ini: Cannot resolve MappedImage 'UIMordorMumakil'
+ini/object/neutral/captureflag.ini: Cannot resolve MappedImage 'BPGCamp_Plot'
+ini/object/neutral/customstuff.ini: Cannot resolve Weapon 'CustomDwarfDefender'
+ini/object/neutral/everholtboar.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/neutral/firedrakelair.ini: Expected Armor, but 'FireDrakeLair' is Object
+ini/object/neutral/holes.ini: 'UAFireDrakeLairHole' is declared more than once, also in line 247
+ini/object/neutral/holes.ini: 'UAFireDrakeLairHole' is declared more than once, also in line 251
+ini/object/neutral/neutralkaradd.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/neutral/neutralunits.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/neutral/neutralunits.ini: Cannot resolve FXParticleSystem or ParticleSystem 'BalrogSword'
+ini/object/neutral/neutralunits.ini: Cannot resolve MappedImage 'HICaveBats'
+ini/object/neutral/neutralunits.ini: Cannot resolve MappedImage 'HICrebainnew'
+ini/object/neutral/neutralunits.ini: Cannot resolve MappedImage 'HPShelobNew'
+ini/object/neutral/playerfortress.ini: Cannot resolve CommandSet 'PlayerFortressCommandSet'
+ini/object/neutral/restoreman.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/neutral/rowdytubdwarflair.ini: Cannot resolve Armor 'DwarfStructureArmor'
+ini/object/neutral/rowdytubdwarflair.ini: Cannot resolve CommandSet 'GondorWellCommandSet'
+ini/object/neutral/rowdytubdwarflair.ini: Cannot resolve MappedImage 'BPDwarf_Well'
+ini/object/obsolete/dwarvenmagicdoor.ini: Cannot resolve Weapon 'GoodStructureBow'
+ini/object/obsolete/evilmenharadrim.ini: Cannot resolve MappedImage 'UIMordorHaradrimArchers'
+ini/object/obsolete/kingpalace.ini: Cannot resolve CommandSet 'MordorHaradrimPalaceCommandSet'
+ini/object/obsolete/kingpalace.ini: Cannot resolve macro 'MORDOR_HARADRIMPALACE_HEALTH'
+ini/object/obsolete/obsolete.ini: Cannot resolve MappedImage 'HPDamrod'
+ini/object/obsolete/obsolete.ini: Cannot resolve MappedImage 'UPMordor_Banner'
+ini/object/obsolete/obsolete.ini: Cannot resolve ModifierList 'DamrodPassiveLeadership'
+ini/object/obsolete/rohan/battletower.ini: Cannot resolve CommandSet 'BattleTowerCommandSet'
+ini/object/system/eggs.ini: Cannot resolve ObjectCreationList 'OCL_MonolithSleeplessDead'
+ini/object/system/system.ini: Cannot resolve CommandButton 'Command_SpellBookElvenkingDecree'
+ini/object/system/system.ini: Cannot resolve CommandButton 'Command_SpellBookMikkwoodArrowVolley'
+ini/object/system/system.ini: Cannot resolve FXParticleSystem or ParticleSystem 'MRainTrail2'
+ini/object/system/system.ini: Cannot resolve FXParticleSystem or ParticleSystem 'RainHit2'
+ini/object/system/system.ini: Cannot resolve ModifierList 'SwirlingMistsDebuff'
+ini/object/system/system.ini: Cannot resolve Upgrade 'Upgrade_ArmorofOld'
+ini/object/system/system.ini: Expected CommandButton, but 'SpellBookBloodRapture' is SpecialPower
+ini/object/system/system.ini: Expected CommandButton, but 'SpellBookGondorBulwark' is SpecialPower
+ini/object/system/system.ini: Expected FXParticleSystem or ParticleSystem, but 'FX_BarrowCorruption' is FXList
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'AOTRDesiccatedCorpse'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'AOTRDesiccatedCorpse1'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'ArrowVolley'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'BelfalasBeachSlow'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'BoatswainCrippleDebuffEgg'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'BuildingIBUrukPitBitDh'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'CampaignAbrakhanWarriorHorde_Summoned'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'CampaignAccursedGuardHorde_Summoned'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'CampaignShelobDarkDeterrentEgg'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'CampaignSpiderSwarmSpawner'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'CassimirJudgementCampaignEgg'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'CustomOreMain'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DunharrowScavenger'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'FireworksMortarTestBurstBit'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'FireworksMortarTestProjectile'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'FlamingArrowFireHit'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GBMinwallA_D2a'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GBMinwallA_D2b'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GBMinwallA_D2c'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GBMinwallA_D2d'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GandalfShieldBubble'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GondorCavalryDying'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GondorRockDead'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GoodArrowDead'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GoodFireArrowDead'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GuldurTwistedSummonedTree'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GuldurTwistedSummonedTree03W'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GuldurTwistedSummonedTree04W'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GuldurTwistedSummonedTree05W'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GuldurTwistedSummonedTree06'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GuldurTwistedTree'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GuldurTwistedTree03W'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GuldurTwistedTree04W'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GuldurTwistedTree05W'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GuldurTwistedTree06'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'IrolasBombardWeaponProjectile'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'IrolasBombardWeaponSeed'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'IrolasDefenderSelfBuffEgg'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'IsildurNoEscape'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'IthilrimTerrorEgg'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'IthilrimWeaponFX'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'KotDStunEgg'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'MarauderShadow'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'MordorCatapultHumanHeadProjectBit01'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'NecromancerNazgulSummonFX'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'PTree10_Large2'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RainOfFire'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'RemnantIsengardSummonEgg'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'SanctumSacrificeMarker'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'ScorchedEarth_Ping'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'SpellBookDunharrowTrap'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'SummonWargArchersEgg'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'WormRavenousHungerPing'
+ini/objectcreationlist.ini: Cannot resolve ChildObject or Object or ObjectReskin 'WormReviledFearEgg'
+ini/objectcreationlist.ini: Cannot resolve Weapon 'FireWorksExplosionWeapon2'
+ini/objectcreationlist.ini: Cannot resolve Weapon 'FireWorksExplosionWeapon3'
+ini/objectcreationlist.ini: Expected ChildObject or Object or ObjectReskin, but 'SpellBookSunflare' is SpecialPower
+ini/roads.ini: 'DwarfSidewalk2' is declared more than once, also in line 438
+ini/roads.ini: 'DwarfSidewalk2' is declared more than once, also in line 443
+ini/roads.ini: Cannot resolve ChildObject or Object or ObjectReskin 'EuropeanTowerBridge01'
+ini/science.ini: Cannot resolve Science 'or'
+ini/soundeffects.ini: 'GuldurFountSelect' is declared more than once, also in line 26268
+ini/soundeffects.ini: 'GuldurFountSelect' is declared more than once, also in line 5958
+ini/soundeffects.ini: 'GuldurGaolSelect' is declared more than once, also in line 26244
+ini/soundeffects.ini: 'GuldurGaolSelect' is declared more than once, also in line 5967
+ini/soundeffects.ini: 'LegolasKnifeModeMS' is declared more than once, also in voice.ini:20009
+ini/soundeffects.ini: 'LegolasKnifeModeMS' is declared more than once, also in voice.ini:51121
+ini/soundeffects.ini: 'SpellHaradRallyingCall' is declared more than once, also in line 10770
+ini/soundeffects.ini: 'SpellHaradRallyingCall' is declared more than once, also in line 28671
+ini/soundeffects.ini: 'ThorinDuBekarEffect' is declared more than once, also in line 23175
+ini/soundeffects.ini: 'ThorinDuBekarEffect' is declared more than once, also in line 27839
+ini/terrain.ini: 'GrassAotRForestLeaves08' is declared more than once, also in line 6638
+ini/terrain.ini: 'GrassAotRForestLeaves08' is declared more than once, also in line 6648
+ini/terrain.ini: 'GrassMediumType14_T' is declared more than once, also in line 1117
+ini/terrain.ini: 'GrassMediumType14_T' is declared more than once, also in line 1122
+ini/terrain.ini: 'GrassMediumType14_T' is declared more than once, also in line 972
+ini/terrain.ini: 'GrassMediumType14_T' is declared more than once, also in line 976
+ini/terrain.ini: 'RockGollumsCave02' is declared more than once, also in line 6438
+ini/terrain.ini: 'RockGollumsCave02' is declared more than once, also in line 6442
+ini/terrain.ini: 'SandMediumType2' is declared more than once, also in line 1432
+ini/terrain.ini: 'SandMediumType2' is declared more than once, also in line 1504
+ini/terrain.ini: 'SandMediumType2' is declared more than once, also in line 1666
+ini/terrain.ini: 'SandMediumType2' is declared more than once, also in line 1756
+ini/terrain.ini: 'SnowType6' is declared more than once, also in line 1760
+ini/terrain.ini: 'SnowType6' is declared more than once, also in line 1764
+ini/terrain.ini: 'SnowType6' is declared more than once, also in line 2076
+ini/terrain.ini: 'SnowType6' is declared more than once, also in line 2081
+ini/upgrade.ini: Cannot resolve FXList 'FX_PorterDeliverMithrilMail'
+ini/upgrade.ini: Cannot resolve FXList 'FX_PorterDeliverSiegeHammer'
+ini/voice.ini: 'ArnCaptVoiceSelectMS' is declared more than once, also in line 64298
+ini/voice.ini: 'ArnCaptVoiceSelectMS' is declared more than once, also in line 64322
+ini/voice.ini: 'AzogNewVoiceHunt' is declared more than once, also in line 111882
+ini/voice.ini: 'AzogNewVoiceHunt' is declared more than once, also in line 111898
+ini/voice.ini: 'CampElfWarConstructionCompleted' is declared more than once, also in line 116836
+ini/voice.ini: 'CampElfWarConstructionCompleted' is declared more than once, also in line 36254
+ini/voice.ini: 'CampLorienElfDieTreebeard' is declared more than once, also in line 116414
+ini/voice.ini: 'CampLorienElfDieTreebeard' is declared more than once, also in line 116793
+ini/voice.ini: 'CargastVoiceDisengage' is declared more than once, also in line 61174
+ini/voice.ini: 'CargastVoiceDisengage' is declared more than once, also in line 61223
+ini/voice.ini: 'ErchirionVoiceAttack' is declared more than once, also in line 155869
+ini/voice.ini: 'ErchirionVoiceAttack' is declared more than once, also in line 163414
+ini/voice.ini: 'ErchirionVoiceAttackBuilding' is declared more than once, also in line 155877
+ini/voice.ini: 'ErchirionVoiceAttackBuilding' is declared more than once, also in line 163433
+ini/voice.ini: 'ErchirionVoiceAttackCharge' is declared more than once, also in line 155885
+ini/voice.ini: 'ErchirionVoiceAttackCharge' is declared more than once, also in line 163452
+ini/voice.ini: 'ErchirionVoiceColdRage' is declared more than once, also in line 156009
+ini/voice.ini: 'ErchirionVoiceColdRage' is declared more than once, also in line 163630
+ini/voice.ini: 'ErchirionVoiceDesperateSacrifice' is declared more than once, also in line 156001
+ini/voice.ini: 'ErchirionVoiceDesperateSacrifice' is declared more than once, also in line 163654
+ini/voice.ini: 'ErchirionVoiceDie' is declared more than once, also in line 155991
+ini/voice.ini: 'ErchirionVoiceDie' is declared more than once, also in line 163612
+ini/voice.ini: 'ErchirionVoiceDisengage' is declared more than once, also in line 155919
+ini/voice.ini: 'ErchirionVoiceDisengage' is declared more than once, also in line 163518
+ini/voice.ini: 'ErchirionVoiceFear' is declared more than once, also in line 155975
+ini/voice.ini: 'ErchirionVoiceFear' is declared more than once, also in line 163596
+ini/voice.ini: 'ErchirionVoiceMount' is declared more than once, also in line 156033
+ini/voice.ini: 'ErchirionVoiceMount' is declared more than once, also in line 163622
+ini/voice.ini: 'ErchirionVoiceMove' is declared more than once, also in line 155893
+ini/voice.ini: 'ErchirionVoiceMove' is declared more than once, also in line 163471
+ini/voice.ini: 'ErchirionVoiceMoveCamp' is declared more than once, also in line 155911
+ini/voice.ini: 'ErchirionVoiceMoveCamp' is declared more than once, also in line 163499
+ini/voice.ini: 'ErchirionVoiceMoveGarrison' is declared more than once, also in line 155967
+ini/voice.ini: 'ErchirionVoiceMoveGarrison' is declared more than once, also in line 163580
+ini/voice.ini: 'ErchirionVoiceMoveMounted' is declared more than once, also in line 155902
+ini/voice.ini: 'ErchirionVoiceMoveMounted' is declared more than once, also in line 163491
+ini/voice.ini: 'ErchirionVoiceRespawn' is declared more than once, also in line 155983
+ini/voice.ini: 'ErchirionVoiceRespawn' is declared more than once, also in line 163604
+ini/voice.ini: 'ErchirionVoiceRetreat' is declared more than once, also in line 155927
+ini/voice.ini: 'ErchirionVoiceRetreat' is declared more than once, also in line 163537
+ini/voice.ini: 'ErchirionVoiceSalute' is declared more than once, also in line 155935
+ini/voice.ini: 'ErchirionVoiceSalute' is declared more than once, also in line 163556
+ini/voice.ini: 'ErchirionVoiceSelect' is declared more than once, also in line 155951
+ini/voice.ini: 'ErchirionVoiceSelect' is declared more than once, also in line 163564
+ini/voice.ini: 'ErchirionVoiceSelectBattle' is declared more than once, also in line 155959
+ini/voice.ini: 'ErchirionVoiceSelectBattle' is declared more than once, also in line 163572
+ini/voice.ini: 'ErchirionVoiceStarPupil' is declared more than once, also in line 156017
+ini/voice.ini: 'ErchirionVoiceStarPupil' is declared more than once, also in line 163646
+ini/voice.ini: 'ErchirionVoiceVeteran' is declared more than once, also in line 156025
+ini/voice.ini: 'ErchirionVoiceVeteran' is declared more than once, also in line 163638
+ini/voice.ini: 'FrumgarVoiceSelectBattle' is declared more than once, also in line 136837
+ini/voice.ini: 'FrumgarVoiceSelectBattle' is declared more than once, also in line 136845
+ini/voice.ini: 'GlorfindelNewVoiceMoveGarrison' is declared more than once, also in line 140368
+ini/voice.ini: 'GlorfindelNewVoiceMoveGarrison' is declared more than once, also in line 140376
+ini/voice.ini: 'LegolasKnifeModeMS' is declared more than once, also in soundeffects.ini:20719
+ini/voice.ini: 'LegolasKnifeModeMS' is declared more than once, also in soundeffects.ini:22125
+ini/voice.ini: 'MGAmonH_Aragorn030' is declared more than once, also in line 102213
+ini/voice.ini: 'MGAmonH_Aragorn030' is declared more than once, also in line 102223
+ini/voice.ini: 'MadrilVoiceAttack' is declared more than once, also in line 115060
+ini/voice.ini: 'MadrilVoiceAttack' is declared more than once, also in line 151220
+ini/voice.ini: 'MadrilVoiceMove' is declared more than once, also in line 115076
+ini/voice.ini: 'MadrilVoiceMove' is declared more than once, also in line 151317
+ini/voice.ini: 'MadrilVoiceMoveCamp' is declared more than once, also in line 115085
+ini/voice.ini: 'MadrilVoiceMoveCamp' is declared more than once, also in line 151357
+ini/voice.ini: 'MadrilVoiceRetreat' is declared more than once, also in line 115068
+ini/voice.ini: 'MadrilVoiceRetreat' is declared more than once, also in line 151395
+ini/voice.ini: 'MadrilVoiceSalute' is declared more than once, also in line 115102
+ini/voice.ini: 'MadrilVoiceSalute' is declared more than once, also in line 151293
+ini/voice.ini: 'MadrilVoiceSelect' is declared more than once, also in line 115094
+ini/voice.ini: 'MadrilVoiceSelect' is declared more than once, also in line 151301
+ini/voice.ini: 'MerryVoiceEnterStateMove' is declared more than once, also in line 21138
+ini/voice.ini: 'MerryVoiceEnterStateMove' is declared more than once, also in line 21149
+ini/voice.ini: 'MerryVoiceEnterStateRetreat' is declared more than once, also in line 21184
+ini/voice.ini: 'MerryVoiceEnterStateRetreat' is declared more than once, also in line 21195
+ini/voice.ini: 'PeasantFemaleVoiceFearDisperse' is declared more than once, also in line 22973
+ini/voice.ini: 'PeasantFemaleVoiceFearDisperse' is declared more than once, also in line 37017
+ini/voice.ini: 'PeasantMaleVoiceFearDisperse' is declared more than once, also in line 22819
+ini/voice.ini: 'PeasantMaleVoiceFearDisperse' is declared more than once, also in line 37004
+ini/voice.ini: 'SaenathraVoiceMoveCampMS' is declared more than once, also in line 129250
+ini/voice.ini: 'SaenathraVoiceMoveCampMS' is declared more than once, also in line 129253
+ini/voice.ini: 'ThrallMasterVoiceEnterStateAttackCharge' is declared more than once, also in line 31729
+ini/voice.ini: 'ThrallMasterVoiceEnterStateAttackCharge' is declared more than once, also in line 31760
+ini/voice.ini: 'YeomanArcherVoiceAmbushed' is declared more than once, also in line 123016
+ini/voice.ini: 'YeomanArcherVoiceAmbushed' is declared more than once, also in line 58734
+ini/voice.ini: 'YeomanArcherVoiceAttack' is declared more than once, also in line 122936
+ini/voice.ini: 'YeomanArcherVoiceAttack' is declared more than once, also in line 58663
+ini/voice.ini: 'YeomanArcherVoiceAttackBuilding' is declared more than once, also in line 122975
+ini/voice.ini: 'YeomanArcherVoiceAttackBuilding' is declared more than once, also in line 58698
+ini/voice.ini: 'YeomanArcherVoiceAttackCharge' is declared more than once, also in line 122955
+ini/voice.ini: 'YeomanArcherVoiceAttackCharge' is declared more than once, also in line 58680
+ini/voice.ini: 'YeomanArcherVoiceDie' is declared more than once, also in line 123108
+ini/voice.ini: 'YeomanArcherVoiceDie' is declared more than once, also in line 58814
+ini/voice.ini: 'YeomanArcherVoiceDisengage' is declared more than once, also in line 122997
+ini/voice.ini: 'YeomanArcherVoiceDisengage' is declared more than once, also in line 58717
+ini/voice.ini: 'YeomanArcherVoiceEnterStateAttack' is declared more than once, also in line 122944
+ini/voice.ini: 'YeomanArcherVoiceEnterStateAttack' is declared more than once, also in line 58670
+ini/voice.ini: 'YeomanArcherVoiceEnterStateAttackBuilding' is declared more than once, also in line 122986
+ini/voice.ini: 'YeomanArcherVoiceEnterStateAttackBuilding' is declared more than once, also in line 58707
+ini/voice.ini: 'YeomanArcherVoiceEnterStateAttackCharge' is declared more than once, also in line 122964
+ini/voice.ini: 'YeomanArcherVoiceEnterStateAttackCharge' is declared more than once, also in line 58688
+ini/voice.ini: 'YeomanArcherVoiceEnterStateDisengage' is declared more than once, also in line 123005
+ini/voice.ini: 'YeomanArcherVoiceEnterStateDisengage' is declared more than once, also in line 58724
+ini/voice.ini: 'YeomanArcherVoiceEnterStateMove' is declared more than once, also in line 122879
+ini/voice.ini: 'YeomanArcherVoiceEnterStateMove' is declared more than once, also in line 58613
+ini/voice.ini: 'YeomanArcherVoiceEnterStateMoveCamp' is declared more than once, also in line 122898
+ini/voice.ini: 'YeomanArcherVoiceEnterStateMoveCamp' is declared more than once, also in line 58630
+ini/voice.ini: 'YeomanArcherVoiceEnterStateRetreat' is declared more than once, also in line 122925
+ini/voice.ini: 'YeomanArcherVoiceEnterStateRetreat' is declared more than once, also in line 58654
+ini/voice.ini: 'YeomanArcherVoiceFearCower' is declared more than once, also in line 123094
+ini/voice.ini: 'YeomanArcherVoiceFearCower' is declared more than once, also in line 58802
+ini/voice.ini: 'YeomanArcherVoiceFearDisperse' is declared more than once, also in line 123080
+ini/voice.ini: 'YeomanArcherVoiceFearDisperse' is declared more than once, also in line 58790
+ini/voice.ini: 'YeomanArcherVoiceFearHit' is declared more than once, also in line 123101
+ini/voice.ini: 'YeomanArcherVoiceFearHit' is declared more than once, also in line 58808
+ini/voice.ini: 'YeomanArcherVoiceFearPoint' is declared more than once, also in line 123073
+ini/voice.ini: 'YeomanArcherVoiceFearPoint' is declared more than once, also in line 58784
+ini/voice.ini: 'YeomanArcherVoiceFearRegroup' is declared more than once, also in line 123087
+ini/voice.ini: 'YeomanArcherVoiceFearRegroup' is declared more than once, also in line 58796
+ini/voice.ini: 'YeomanArcherVoiceGarrison' is declared more than once, also in line 122909
+ini/voice.ini: 'YeomanArcherVoiceGarrison' is declared more than once, also in line 58640
+ini/voice.ini: 'YeomanArcherVoiceJoinAnybody' is declared more than once, also in line 123049
+ini/voice.ini: 'YeomanArcherVoiceJoinAnybody' is declared more than once, also in line 58763
+ini/voice.ini: 'YeomanArcherVoiceJoinPeasants' is declared more than once, also in line 123033
+ini/voice.ini: 'YeomanArcherVoiceJoinPeasants' is declared more than once, also in line 58749
+ini/voice.ini: 'YeomanArcherVoiceJoinRohirrim' is declared more than once, also in line 123041
+ini/voice.ini: 'YeomanArcherVoiceJoinRohirrim' is declared more than once, also in line 58756
+ini/voice.ini: 'YeomanArcherVoiceLineFormation' is declared more than once, also in line 123057
+ini/voice.ini: 'YeomanArcherVoiceLineFormation' is declared more than once, also in line 58770
+ini/voice.ini: 'YeomanArcherVoiceMove' is declared more than once, also in line 122870
+ini/voice.ini: 'YeomanArcherVoiceMove' is declared more than once, also in line 58605
+ini/voice.ini: 'YeomanArcherVoiceMoveCamp' is declared more than once, also in line 122890
+ini/voice.ini: 'YeomanArcherVoiceMoveCamp' is declared more than once, also in line 58623
+ini/voice.ini: 'YeomanArcherVoiceRetreat' is declared more than once, also in line 122917
+ini/voice.ini: 'YeomanArcherVoiceRetreat' is declared more than once, also in line 58647
+ini/voice.ini: 'YeomanArcherVoiceSalute' is declared more than once, also in line 123024
+ini/voice.ini: 'YeomanArcherVoiceSalute' is declared more than once, also in line 58741
+ini/voice.ini: 'YeomanArcherVoiceSelect' is declared more than once, also in line 122854
+ini/voice.ini: 'YeomanArcherVoiceSelect' is declared more than once, also in line 58588
+ini/voice.ini: 'YeomanArcherVoiceSelectBattle' is declared more than once, also in line 122862
+ini/voice.ini: 'YeomanArcherVoiceSelectBattle' is declared more than once, also in line 58598
+ini/voice.ini: 'YeomanArcherVoiceSkirmishFormation' is declared more than once, also in line 123065
+ini/voice.ini: 'YeomanArcherVoiceSkirmishFormation' is declared more than once, also in line 58777
+ini/voice.ini: 'mgfotr_elladan037' is declared more than once, also in line 25789
+ini/voice.ini: 'mgfotr_elladan037' is declared more than once, also in line 25807
+ini/voice.ini: 'mgfotr_elladan038' is declared more than once, also in line 25798
+ini/voice.ini: 'mgfotr_elladan038' is declared more than once, also in line 25816
+ini/voice.ini: 'mgfotr_galadriel020' is declared more than once, also in line 17972
+ini/voice.ini: 'mgfotr_galadriel020' is declared more than once, also in line 17981
+ini/voice.ini: 'mgfotr_idrial001' is declared more than once, also in line 31039
+ini/voice.ini: 'mgfotr_idrial001' is declared more than once, also in line 32618
+ini/voice.ini: 'mgfotr_sam121' is declared more than once, also in line 16143
+ini/voice.ini: 'mgfotr_sam121' is declared more than once, also in line 16152
+ini/voice.ini: 'mgfotr_sam131' is declared more than once, also in line 16242
+ini/voice.ini: 'mgfotr_sam131' is declared more than once, also in line 16251
+ini/voice.ini: 'mgfotr_sam141' is declared more than once, also in line 16341
+ini/voice.ini: 'mgfotr_sam141' is declared more than once, also in line 16350
+ini/voice.ini: 'mgfotr_witchking012' is declared more than once, also in line 29642
+ini/voice.ini: 'mgfotr_witchking012' is declared more than once, also in line 29651
+ini/weapon.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DunedainArrowArrowBombard'
+ini/weapon.ini: Cannot resolve ChildObject or Object or ObjectReskin 'OldRivendellArcherArrow'
+ini/weapon.ini: Cannot resolve ChildObject or Object or ObjectReskin 'OldRivendellArcherArrowBombard'
+ini/weapon.ini: Cannot resolve ChildObject or Object or ObjectReskin 'OldRivendellArcherSilverthornProjectile'
+ini/weapon.ini: Cannot resolve ChildObject or Object or ObjectReskin 'OldRivendellArcherSilverthornProjectileBombard'
+ini/weapon.ini: Cannot resolve ChildObject or Object or ObjectReskin 'ohanFactionArrowBombard'
+ini/weapon.ini: Cannot resolve ModifierList 'DenethorFavorNew'
+ini/weapon.ini: Cannot resolve ModifierList 'EowynCourageMerry'
+ini/weapon.ini: Cannot resolve ModifierList 'IsildurNoEscape'
+ini/weapon.ini: Cannot resolve ModifierList 'LAVeteranFallOfAngmar2'
+ini/weapon.ini: Cannot resolve ObjectCreationList 'OCL_BeorningUrsaEcho'
+ini/weapon.ini: Cannot resolve ObjectCreationList 'OCL_CorpseFliesDebuff'
+ini/weapon.ini: Cannot resolve ObjectCreationList 'OCL_FernyInsideJob'
+ini/weapon.ini: Cannot resolve ObjectCreationList 'OCL_SummonBossRetinueBodyguards'
+ini/weapon.ini: Cannot resolve ObjectCreationList 'OCL_VeteranGiveUpgrade2'
+ini/weapon.ini: Cannot resolve ObjectCreationList 'OCL_WanderingDeadSpawn'
+ini/weapon.ini: Cannot resolve Weapon 'MSpectersJauntLeapWarhead'
+ini/weapon.ini: Cannot resolve macro 'MORDOR_HARADRIM_BOW_DAMAGE'
+ini/weapon.ini: Expected ModifierList, but 'CorpseFliesDebuff' is Weapon
 ini/weapon.ini: Unexpected '='
 ini/weapon.ini: Unknown DamageFXType 'EARTH1'
 ini/weapon.ini: Unknown DamageFXType 'EARTH2'

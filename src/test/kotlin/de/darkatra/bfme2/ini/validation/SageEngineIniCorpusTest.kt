@@ -26,6 +26,12 @@ class SageEngineIniCorpusTest : LightPlatformCodeInsightFixture4TestCase() {
             SageEngineIniUnknownBlockInspection(),
             SageEngineIniUnknownPropertyInspection(),
             SageEngineIniInvalidValueInspection(),
+            SageEngineIniUnresolvedReferenceInspection(),
+            SageEngineIniDuplicateDeclarationInspection(),
+            SageEngineIniModuleTagInspection(),
+            SageEngineIniUnresolvedIncludeInspection(),
+            SageEngineIniIncludeCycleInspection(),
+            SageEngineIniUnresolvedMacroInspection(),
         )
 
         // files like the voice.ini of mods are larger than the IDE's default limit, above which they aren't parsed

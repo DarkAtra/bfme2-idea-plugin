@@ -12,6 +12,13 @@
 - Values the engine reads as unsigned integers, e.g. `ShadowOpacityPeak` or `MaxQueueEntries`, are reported if they are negative or fractional
 - The properties of a `BuildingNugget` or `MeleeBehavior` are checked against its type, e.g. `TreasureAmount` is reported in a `StrengthenArmy`
   nugget, and unknown types like `BuildingNugget GiveTreasure` are reported
+- Inspections for references to declarations that don't exist, e.g. a misspelled `Weapon`, and for references whose casing differs from
+  their declaration
+- Inspection for names that are declared more than once with the same kind, except for intended overrides like the files in `default`
+  directories or a map's `map.ini`
+- Inspection for module tags that are used more than once in an object, and for tags of a `RemoveModule` or `ReplaceModule` that a
+  `ChildObject` doesn't inherit, including the modules of included files
+- Inspections for `#include` files and macros that don't exist, and for `#include` statements that include the including file again
 
 ### Fixed
 
@@ -30,6 +37,8 @@
 - `MeleeBehavior` blocks know the properties of `WaitForLeader` and `Amoeba`, e.g. `FollowLeader` and `DelayUntilIdle`
 - Blocks named after a module or type, e.g. `AutoHealBehavior` in an `Object` or `Swarm` in a `HordeContain`, are reported as unknown instead of
   being accepted as that module
+- Blocks that an included file closes are no longer reported as missing their `End`, a warning on the `End` of the included file discourages
+  them instead
 - `#include` paths are resolved case-insensitively, like in the game, and files the project doesn't contain are looked up in the additional
   directories, e.g. the base game files a mod includes
 - `LevelUpFx` of an `ExperienceLevel` and the effects of a `TransitionDamageFX` or `BoneFXUpdate` are read like the engine reads them,

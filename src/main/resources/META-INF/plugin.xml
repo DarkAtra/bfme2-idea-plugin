@@ -40,7 +40,6 @@
         <completion.contributor language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniMacroCompletionContributor"/>
         <annotator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.highlighting.SageEngineIniContextualHighlightingAnnotator"/>
         <multiHostInjector implementation="de.darkatra.bfme2.ini.injection.SageEngineIniScriptLanguageInjector"/>
-        <!-- <annotator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniDeclarationAnnotator"/> -->
         <localInspection
             language="SageEngineIni"
             shortName="SageEngineIniUnknownBlock"
@@ -133,6 +132,79 @@
             level="WEAK WARNING"
             implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniSpecialCharacterNameInspection"
         />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniUnresolvedReference"
+            displayName="Unresolved reference"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniUnresolvedReferenceInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniReferenceCasing"
+            displayName="Reference with different casing than its declaration"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WEAK WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniReferenceCasingInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniDuplicateDeclaration"
+            displayName="Duplicate declaration"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniDuplicateDeclarationInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniModuleTag"
+            displayName="Repeated or unknown module tag"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniModuleTagInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniUnresolvedInclude"
+            displayName="Unresolved #include"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniUnresolvedIncludeInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniUnresolvedMacro"
+            displayName="Unresolved macro"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniUnresolvedMacroInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniIncludedBlockEnd"
+            displayName="Block closed in an included file"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniIncludedBlockEndInspection"
+        />
+        <localInspection
+            language="SageEngineIni"
+            shortName="SageEngineIniIncludeCycle"
+            displayName="#include cycle"
+            groupName="Sage Engine INI"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniIncludeCycleInspection"
+        />
+        <highlightErrorFilter implementation="de.darkatra.bfme2.ini.validation.SageEngineIniIncludedBlockEndErrorFilter"/>
         <targetElementEvaluator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationTargetElementEvaluator"/>
         <lang.findUsagesProvider language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationFindUsagesProvider"/>
         <highlightUsagesHandlerFactory implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationHighlightUsagesHandlerFactory"/>

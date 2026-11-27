@@ -2,6 +2,7 @@ package de.darkatra.bfme2.ini.declarations
 
 import com.intellij.openapi.application.ReadAction
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
@@ -21,6 +22,35 @@ object SageEngineIniDeclarationLookup {
 
     fun findDeclarationsByName(project: Project, name: String): List<SageEngineIniBlock> {
         return SageEngineIniDeclarationSchema.declarationKinds.flatMap { kind -> findDeclarations(project, kind, name) }
+    }
+
+    /**
+     * The names the declarations of one of the [kinds] that [name] resolves to are written with, e.g. `ElvenMallornTree` for
+     * `elvenmallorntree`. Empty if [name] doesn't resolve. Only the best ranked source is considered, like [findDeclarations], but
+     * only the index is read, so it is cheap enough to check every value of a file.
+     */
+    fun declaredNames(project: Project, name: String, kinds: Set<String>): List<String> {
+        return ReadAction.computeBlocking<List<String>, RuntimeException> {
+            val scope = SageEngineIniSources.scope(project)
+            val fileBasedIndex = FileBasedIndex.getInstance()
+            val declarations = mutableListOf<Pair<VirtualFile, String>>()
+            kinds.forEach { kind ->
+                fileBasedIndex.processValues(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, SageEngineIniDeclarationIndexKey.create(kind, name), null, { file, value ->
+                    if (value.mask and SageEngineIniDeclarationIndexKey.DECLARATION != 0) {
+                        declarations += file to value.displayName
+                    }
+                    true
+                }, scope)
+            }
+            SageEngineIniSources.keepBestRanked(project, declarations) { it.first }.map { it.second }.distinct()
+        }
+    }
+
+    /**
+     * The kinds of the declarations named [name], e.g. to tell that a reference names a declaration of another kind.
+     */
+    fun declaredKinds(project: Project, name: String): List<String> {
+        return SageEngineIniDeclarationSchema.declarationKinds.filter { declaredNames(project, name, setOf(it)).isNotEmpty() }.sorted()
     }
 
     fun allDeclarationNames(project: Project, expectedKinds: Set<String>): List<String> {
