@@ -13,6 +13,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.AttackPriority
 import de.darkatra.bfme2.ini.model.`object`.Turret
 import de.darkatra.bfme2.ini.model.value.AutoAcquireEnemiesType
+import de.darkatra.bfme2.ini.model.value.LocomotorSetType
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
@@ -39,6 +40,8 @@ open class AIUpdateBehavior(
     @SageIniName("BurningDeathTime") open val burningDeathTime: Int = 0,
     @SageIniName("Turret") open val turret: List<Turret> = emptyList(),
     @SageIniName("AltTurret") open val altTurret: List<Turret> = emptyList(),
+    @SageIniName("ComboLocoAttackDistance") open val comboLocoAttackDistance: Double = 80.0,
+    @SageIniName("ComboLocomotorSet") open val comboLocomotorSet: LocomotorSetType? = null,
 ) : SageBehavior {
 
     companion object : SageIniBlockDescriptor<AIUpdateBehavior>(
@@ -65,6 +68,8 @@ open class AIUpdateBehavior(
             property("BurningDeathTime", IntValue) { it.burningDeathTime }
             property("Turret", ListValue(BlockValue<Turret> { listOf(Turret) })) { it.turret }
             property("AltTurret", ListValue(BlockValue<Turret> { listOf(Turret) })) { it.altTurret }
+            property("ComboLocoAttackDistance", FloatValue) { it.comboLocoAttackDistance }
+            property("ComboLocomotorSet", LocomotorSetType.type) { it.comboLocomotorSet }
         },
     )
 }

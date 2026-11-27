@@ -3,6 +3,8 @@ package de.darkatra.bfme2.ini.model.draw
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
+import de.darkatra.bfme2.ini.model.value.Coords
+import de.darkatra.bfme2.ini.model.value.ModelFile
 
 data class W3DBoatWakeModelDraw(
     override val header: SageBlockHeader = SageBlockHeader(),
@@ -16,10 +18,16 @@ data class W3DBoatWakeModelDraw(
     @SageIniName("AnimationState") override val animationState: List<AnimationState> = emptyList(),
     @SageIniName("TransitionState") override val transitionState: List<TransitionState> = emptyList(),
     @SageIniName("LodOptions") override val lodOptions: List<LodOptions> = emptyList(),
+    @SageIniName("ModelName") val modelName: ModelFile? = null,
+    @SageIniName("Offset") val offset: Coords? = null,
 ) : Draw() {
 
     companion object : SageIniBlockDescriptor<W3DBoatWakeModelDraw>(
         name = "W3DBoatWakeModelDraw",
         parent = Draw,
+        properties = {
+            property("ModelName", ModelFile.type) { it.modelName }
+            property("Offset", Coords.type) { it.offset }
+        },
     )
 }

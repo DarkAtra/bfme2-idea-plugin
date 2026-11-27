@@ -16,6 +16,7 @@ import de.darkatra.bfme2.ini.model.`object`.UpgradeTrigger
 import de.darkatra.bfme2.ini.model.value.Coord2D
 import de.darkatra.bfme2.ini.model.value.DamageCreation
 import de.darkatra.bfme2.ini.model.value.SageReference
+import de.darkatra.bfme2.ini.model.value.Untyped
 
 data class DetachableRiderBody(
     override val header: SageBlockHeader = SageBlockHeader(),
@@ -44,6 +45,12 @@ data class DetachableRiderBody(
     @SageIniName("HealthPercentageWhenRiderDies") val healthPercentageWhenRiderDies: Double = 0.0,
     @SageIniName("StartsActive") val startsActive: Boolean = false,
     @SageIniName("TriggeredBy") val triggeredBy: List<SageReference<UpgradeTrigger>> = emptyList(),
+    @SageIniName("ConflictsWith") val conflictsWith: List<SageReference<Upgrade>> = emptyList(),
+    @SageIniName("CustomAnimAndDuration") val customAnimAndDuration: Untyped? = null,
+    @SageIniName("Permanent") val permanent: Boolean = false,
+    @SageIniName("RequiresAllConflictingTriggers") val requiresAllConflictingTriggers: Boolean = false,
+    @SageIniName("RequiresAllTriggers") val requiresAllTriggers: Boolean = false,
+    @SageIniName("RiderlessDeathChance") val riderlessDeathChance: Double = 0.0,
 ) : ActiveBody() {
 
     companion object : SageIniBlockDescriptor<DetachableRiderBody>(
@@ -53,6 +60,12 @@ data class DetachableRiderBody(
             property("HealthPercentageWhenRiderDies", FloatValue) { it.healthPercentageWhenRiderDies }
             property("StartsActive", BooleanValue) { it.startsActive }
             property("TriggeredBy", ListValue(ReferenceValue<UpgradeTrigger> { listOf(Upgrade, Science) })) { it.triggeredBy }
+            property("ConflictsWith", ListValue(ReferenceValue<Upgrade> { listOf(Upgrade) })) { it.conflictsWith }
+            property("CustomAnimAndDuration", Untyped.type) { it.customAnimAndDuration }
+            property("Permanent", BooleanValue) { it.permanent }
+            property("RequiresAllConflictingTriggers", BooleanValue) { it.requiresAllConflictingTriggers }
+            property("RequiresAllTriggers", BooleanValue) { it.requiresAllTriggers }
+            property("RiderlessDeathChance", FloatValue) { it.riderlessDeathChance }
         },
     )
 }

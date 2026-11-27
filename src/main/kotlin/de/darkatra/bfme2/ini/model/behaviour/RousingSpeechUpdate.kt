@@ -1,6 +1,5 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
-import de.darkatra.bfme2.ini.model.common.SageBehavior
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
@@ -17,12 +16,12 @@ import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.SpecialPowerUnpackConditions
 
 data class RousingSpeechUpdate(
-    val header: SageBlockHeader = SageBlockHeader(),
-    @SageIniName("SpecialPowerTemplate") val specialPowerTemplate: SageReference<SpecialPower>? = null,
-    @SageIniName("RequiredConditions") val requiredConditions: SpecialPowerUnpackConditions? = null,
-    @SageIniName("StartAbilityRange") val startAbilityRange: Double = 0.0,
+    override val header: SageBlockHeader = SageBlockHeader(),
+    @SageIniName("SpecialPowerTemplate") override val specialPowerTemplate: SageReference<SpecialPower>? = null,
+    @SageIniName("RequiredConditions") override val requiredConditions: SpecialPowerUnpackConditions? = null,
+    @SageIniName("StartAbilityRange") override val startAbilityRange: Double = 0.0,
     @SageIniName("UpdateInterval") val updateInterval: Int = 0,
-    @SageIniName("ApproachRequiresLOS") val approachRequiresLOS: Boolean = false,
+    @SageIniName("ApproachRequiresLOS") override val approachRequiresLOS: Boolean = false,
     @SageIniName("BonusRadius") val bonusRadius: Double = 0.0,
     @SageIniName("SpeechDuration") val speechDuration: Int = 0,
     @SageIniName("LeaderFX") val leaderFX: SageReference<FXList>? = null,
@@ -32,16 +31,13 @@ data class RousingSpeechUpdate(
     @SageIniName("ModifierName") val modifierName: List<SageReference<ModifierList>> = emptyList(),
     @SageIniName("ObjectFilter") val objectFilter: SageFilter? = null,
     @SageIniName("LevelUp") val levelUp: Boolean = false,
-) : SageBehavior {
+) : SpecialAbilityUpdate() {
 
     companion object : SageIniBlockDescriptor<RousingSpeechUpdate>(
         name = "RousingSpeechUpdate",
+        parent = SpecialAbilityUpdate,
         properties = {
-            property("SpecialPowerTemplate", ReferenceValue<SpecialPower> { listOf(SpecialPower) }) { it.specialPowerTemplate }
-            property("RequiredConditions", SpecialPowerUnpackConditions.type) { it.requiredConditions }
-            property("StartAbilityRange", FloatValue) { it.startAbilityRange }
             property("UpdateInterval", IntValue) { it.updateInterval }
-            property("ApproachRequiresLOS", BooleanValue) { it.approachRequiresLOS }
             property("BonusRadius", FloatValue) { it.bonusRadius }
             property("SpeechDuration", IntValue) { it.speechDuration }
             property("LeaderFX", ReferenceValue<FXList> { listOf(FXList) }) { it.leaderFX }

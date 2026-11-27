@@ -3,9 +3,12 @@ package de.darkatra.bfme2.ini.model.behaviour
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.`object`.AttackPriority
 import de.darkatra.bfme2.ini.model.`object`.Turret
 import de.darkatra.bfme2.ini.model.value.AutoAcquireEnemiesType
+import de.darkatra.bfme2.ini.model.value.ContainCondition
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
@@ -32,10 +35,20 @@ data class WanderAIUpdate(
     @SageIniName("BurningDeathTime") override val burningDeathTime: Int = 0,
     @SageIniName("Turret") override val turret: List<Turret> = emptyList(),
     @SageIniName("AltTurret") override val altTurret: List<Turret> = emptyList(),
+    @SageIniName("ConditionForEntry") val conditionForEntry: ContainCondition? = null,
+    @SageIniName("Selectable") val selectable: Boolean = true,
+    @SageIniName("WanderDistance") val wanderDistance: UInt = 30u,
+    @SageIniName("WildBeast") val wildBeast: Boolean = false,
 ) : AIUpdateBehavior() {
 
     companion object : SageIniBlockDescriptor<WanderAIUpdate>(
         name = "WanderAIUpdate",
         parent = AIUpdateBehavior,
+        properties = {
+            property("ConditionForEntry", ContainCondition.type) { it.conditionForEntry }
+            property("Selectable", BooleanValue) { it.selectable }
+            property("WanderDistance", UnsignedIntValue) { it.wanderDistance }
+            property("WildBeast", BooleanValue) { it.wildBeast }
+        },
     )
 }

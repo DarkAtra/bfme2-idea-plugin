@@ -564,6 +564,43 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should know properties that modules inherit from their engine base`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownPropertyInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            Object GondorSoldiers
+                Behavior = HordeContain ModuleTag_01
+                    ThrowOutPassengersDelay = 100
+                    LeaderRank = 1
+                End
+                Behavior = ToggleDeploySpecialAbilityUpdate ModuleTag_02
+                    PreparationTime = 100
+                End
+                Behavior = SlaughterHordeContain ModuleTag_03
+                    EntryOffset = X:0 Y:0 Z:0
+                End
+                Draw = W3DSupplyDraw ModuleTag_04
+                    StaticModelLODMode = No
+                End
+                Body = ActiveBody ModuleTag_05
+                    RemoveUpgradesOnDeath = Yes
+                End
+            End
+            ObjectCreationList OCL_GondorSoldiers
+                Attack
+                    NumberOfShots = 2
+                    <warning descr="Unknown property 'AnimationName' in 'Attack'">AnimationName</warning> = Attack
+                End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should recommend declaration names without special characters`() {
 
         myFixture.enableInspections(SageEngineIniSpecialCharacterNameInspection())

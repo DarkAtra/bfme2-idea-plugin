@@ -3,7 +3,6 @@ package de.darkatra.bfme2.ini.model.behaviour
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.value.KindOf
 import de.darkatra.bfme2.ini.model.value.ObjectCount
@@ -30,14 +29,11 @@ data class HealContain(
     @SageIniName("IsEnclosingContainer") override val isEnclosingContainer: Boolean = false,
     @SageIniName("ObjectStatusOfContained") override val objectStatusOfContained: List<ObjectStatus> = emptyList(),
     @SageIniName("PassengerFilter") override val passengerFilter: SageFilter? = null,
-    @SageIniName("TimeForFullHeal") val timeForFullHeal: Int = 0,
+    @SageIniName("TimeForFullHeal") override val timeForFullHeal: Int = 0,
 ) : GarrisonContain() {
 
     companion object : SageIniBlockDescriptor<HealContain>(
         name = "HealContain",
         parent = GarrisonContain,
-        properties = {
-            property("TimeForFullHeal", IntValue) { it.timeForFullHeal }
-        },
     )
 }

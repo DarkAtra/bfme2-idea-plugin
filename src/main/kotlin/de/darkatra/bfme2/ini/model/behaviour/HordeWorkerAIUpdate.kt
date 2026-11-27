@@ -3,7 +3,6 @@ package de.darkatra.bfme2.ini.model.behaviour
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.`object`.AttackPriority
 import de.darkatra.bfme2.ini.model.`object`.Turret
 import de.darkatra.bfme2.ini.model.value.AutoAcquireEnemiesType
@@ -32,8 +31,8 @@ data class HordeWorkerAIUpdate(
     @SageIniName("MoveForNoOne") override val moveForNoOne: Boolean = false,
     @SageIniName("StandGround") override val standGround: Boolean = false,
     @SageIniName("BurningDeathTime") override val burningDeathTime: Int = 0,
-    @SageIniName("ComboLocomotorSet") val comboLocomotorSet: LocomotorSetType? = null,
-    @SageIniName("ComboLocoAttackDistance") val comboLocoAttackDistance: Int = 0,
+    @SageIniName("ComboLocomotorSet") override val comboLocomotorSet: LocomotorSetType? = null,
+    @SageIniName("ComboLocoAttackDistance") override val comboLocoAttackDistance: Double = 80.0,
     @SageIniName("Turret") override val turret: List<Turret> = emptyList(),
     @SageIniName("AltTurret") override val altTurret: List<Turret> = emptyList(),
 ) : AIUpdateBehavior() {
@@ -41,9 +40,5 @@ data class HordeWorkerAIUpdate(
     companion object : SageIniBlockDescriptor<HordeWorkerAIUpdate>(
         name = "HordeWorkerAIUpdate",
         parent = AIUpdateBehavior,
-        properties = {
-            property("ComboLocomotorSet", LocomotorSetType.type) { it.comboLocomotorSet }
-            property("ComboLocoAttackDistance", IntValue) { it.comboLocoAttackDistance }
-        },
     )
 }

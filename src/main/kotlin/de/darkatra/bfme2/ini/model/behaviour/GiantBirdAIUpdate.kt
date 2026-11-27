@@ -10,6 +10,7 @@ import de.darkatra.bfme2.ini.model.`object`.AttackPriority
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.`object`.Turret
 import de.darkatra.bfme2.ini.model.value.AutoAcquireEnemiesType
+import de.darkatra.bfme2.ini.model.value.LocomotorSetType
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
@@ -42,6 +43,8 @@ data class GiantBirdAIUpdate(
     @SageIniName("TossFX") val tossFX: SageReference<FXList>? = null,
     @SageIniName("Turret") override val turret: List<Turret> = emptyList(),
     @SageIniName("AltTurret") override val altTurret: List<Turret> = emptyList(),
+    @SageIniName("AttackLocomotorType") val attackLocomotorType: LocomotorSetType? = null,
+    @SageIniName("ReturnForAmmoLocomotorType") val returnForAmmoLocomotorType: LocomotorSetType? = null,
 ) : AIUpdateBehavior() {
 
     companion object : SageIniBlockDescriptor<GiantBirdAIUpdate>(
@@ -54,6 +57,8 @@ data class GiantBirdAIUpdate(
             property("GrabTossTimeTrigger", FloatValue) { it.grabTossTimeTrigger }
             property("GrabTossHeightTrigger", FloatValue) { it.grabTossHeightTrigger }
             property("TossFX", ReferenceValue<FXList> { listOf(FXList) }) { it.tossFX }
+            property("AttackLocomotorType", LocomotorSetType.type) { it.attackLocomotorType }
+            property("ReturnForAmmoLocomotorType", LocomotorSetType.type) { it.returnForAmmoLocomotorType }
         },
     )
 }

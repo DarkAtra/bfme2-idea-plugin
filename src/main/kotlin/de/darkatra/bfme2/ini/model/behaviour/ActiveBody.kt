@@ -42,6 +42,8 @@ open class ActiveBody(
     @SageIniName("BurningDeathFX") open val burningDeathFX: SageReference<FXList>? = null,
     @SageIniName("DamagedAttributeModifier") open val damagedAttributeModifier: SageReference<ModifierList>? = null,
     @SageIniName("ReallyDamagedAttributeModifier") open val reallyDamagedAttributeModifier: SageReference<ModifierList>? = null,
+    @SageIniName("EnteringReallyDamagedTransitionTime") open val enteringReallyDamagedTransitionTime: Int = 0,
+    @SageIniName("RemoveUpgradesOnDeath") open val removeUpgradesOnDeath: Boolean = false,
 ) : SageBehavior {
 
     companion object : SageIniBlockDescriptor<ActiveBody>(
@@ -69,6 +71,8 @@ open class ActiveBody(
             property("BurningDeathFX", ReferenceValue<FXList> { listOf(FXList) }) { it.burningDeathFX }
             property("DamagedAttributeModifier", ReferenceValue<ModifierList> { listOf(ModifierList) }) { it.damagedAttributeModifier }
             property("ReallyDamagedAttributeModifier", ReferenceValue<ModifierList> { listOf(ModifierList) }) { it.reallyDamagedAttributeModifier }
+            property("EnteringReallyDamagedTransitionTime", IntValue) { it.enteringReallyDamagedTransitionTime }
+            property("RemoveUpgradesOnDeath", BooleanValue) { it.removeUpgradesOnDeath }
         },
     )
 }

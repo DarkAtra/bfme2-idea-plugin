@@ -43,6 +43,7 @@ data class DeployStyleAIUpdate(
     @SageIniName("DeployedAttributeModifier") val deployedAttributeModifier: SageReference<ModifierList>? = null,
     @SageIniName("Turret") override val turret: List<Turret> = emptyList(),
     @SageIniName("AltTurret") override val altTurret: List<Turret> = emptyList(),
+    @SageIniName("ResetTurretBeforePacking") val resetTurretBeforePacking: Boolean = false,
 ) : AIUpdateBehavior() {
 
     companion object : SageIniBlockDescriptor<DeployStyleAIUpdate>(
@@ -56,6 +57,7 @@ data class DeployStyleAIUpdate(
             property("ManualDeployAnimations", BooleanValue) { it.manualDeployAnimations }
             property("MustDeployToAttack", BooleanValue) { it.mustDeployToAttack }
             property("DeployedAttributeModifier", ReferenceValue<ModifierList> { listOf(ModifierList) }) { it.deployedAttributeModifier }
+            property("ResetTurretBeforePacking", BooleanValue) { it.resetTurretBeforePacking }
         },
     )
 }

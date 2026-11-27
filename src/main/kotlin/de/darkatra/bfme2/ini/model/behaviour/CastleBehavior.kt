@@ -46,7 +46,7 @@ data class CastleBehavior(
     @SageIniName("SidesAllowed") val sidesAllowed: List<Untyped> = emptyList(),
     @SageIniName("UseSecondaryBuildList") val useSecondaryBuildList: Boolean = false,
     @SageIniName("UseTheNewCastleSystemInsteadOfTheClunkyBuildList") val useTheNewCastleSystemInsteadOfTheClunkyBuildList: Boolean = false,
-    @SageIniName("RepairHealthPercentPerSecond") val repairHealthPercentPerSecond: Double = 0.0,
+    @SageIniName("RepairHealthPercentPerSecond") override val repairHealthPercentPerSecond: Double = 0.0,
     @SageIniName("FilterValidOwnedEntries") val filterValidOwnedEntries: SageFilter? = null,
     @SageIniName("FilterCrew") val filterCrew: SageFilter? = null,
     @SageIniName("FadeTime") val fadeTime: Double = 0.0,
@@ -81,7 +81,6 @@ data class CastleBehavior(
             property("SidesAllowed", ListValue(Untyped.type)) { it.sidesAllowed }
             property("UseSecondaryBuildList", BooleanValue) { it.useSecondaryBuildList }
             property("UseTheNewCastleSystemInsteadOfTheClunkyBuildList", BooleanValue) { it.useTheNewCastleSystemInsteadOfTheClunkyBuildList }
-            property("RepairHealthPercentPerSecond", FloatValue) { it.repairHealthPercentPerSecond }
             property("FilterValidOwnedEntries", SageFilter.type) { it.filterValidOwnedEntries }
             property("FilterCrew", SageFilter.type) { it.filterCrew }
             property("FadeTime", FloatValue) { it.fadeTime }

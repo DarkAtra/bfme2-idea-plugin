@@ -3,6 +3,9 @@ package de.darkatra.bfme2.ini.model.behaviour
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.`object`.AttackPriority
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.Turret
@@ -38,10 +41,20 @@ open class SupplyTruckAIUpdate(
     @SageIniName("SuppliesDepletedVoice") override val suppliesDepletedVoice: SageReference<AudioEvent>? = null,
     @SageIniName("Turret") override val turret: List<Turret> = emptyList(),
     @SageIniName("AltTurret") override val altTurret: List<Turret> = emptyList(),
+    @SageIniName("HarvestActionTime") open val harvestActionTime: Int = 200,
+    @SageIniName("HarvestActivationRange") open val harvestActivationRange: Double = 50.0,
+    @SageIniName("HarvestPreparationTime") open val harvestPreparationTime: Int = 200,
+    @SageIniName("HarvestTrees") open val harvestTrees: Boolean = false,
 ) : SupplyAIUpdate() {
 
     companion object : SageIniBlockDescriptor<SupplyTruckAIUpdate>(
         name = "SupplyTruckAIUpdate",
         parent = SupplyAIUpdate,
+        properties = {
+            property("HarvestActionTime", IntValue) { it.harvestActionTime }
+            property("HarvestActivationRange", FloatValue) { it.harvestActivationRange }
+            property("HarvestPreparationTime", IntValue) { it.harvestPreparationTime }
+            property("HarvestTrees", BooleanValue) { it.harvestTrees }
+        },
     )
 }

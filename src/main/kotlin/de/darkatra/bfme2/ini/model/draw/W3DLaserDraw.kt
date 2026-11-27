@@ -5,6 +5,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.value.Rgba
@@ -37,6 +38,8 @@ data class W3DLaserDraw(
     @SageIniName("AnimationState") override val animationState: List<AnimationState> = emptyList(),
     @SageIniName("TransitionState") override val transitionState: List<TransitionState> = emptyList(),
     @SageIniName("LodOptions") override val lodOptions: List<LodOptions> = emptyList(),
+    @SageIniName("FadeLifetime") val fadeLifetime: Int = 0,
+    @SageIniName("MaxIntensityLifetime") val maxIntensityLifetime: Int = 0,
 ) : Draw() {
 
     companion object : SageIniBlockDescriptor<W3DLaserDraw>(
@@ -57,6 +60,8 @@ data class W3DLaserDraw(
             property("InnerColor", Rgba.type) { it.innerColor }
             property("OuterColor", Rgba.type) { it.outerColor }
             property("Tile", BooleanValue) { it.tile }
+            property("FadeLifetime", IntValue) { it.fadeLifetime }
+            property("MaxIntensityLifetime", IntValue) { it.maxIntensityLifetime }
         },
     )
 }

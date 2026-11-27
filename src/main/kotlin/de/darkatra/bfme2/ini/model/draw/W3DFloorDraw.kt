@@ -13,7 +13,7 @@ import de.darkatra.bfme2.ini.model.value.Untyped
 data class W3DFloorDraw(
     override val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("FloorFadeRateOnObjectDeath") val floorFadeRateOnObjectDeath: Double = 0.0,
-    @SageIniName("ModelName") val modelName: ModelFile? = null,
+    @SageIniName("ModelName") override val modelName: ModelFile? = null,
     @SageIniName("HideIfModelConditions") val hideIfModelConditions: List<ModelCondition> = emptyList(),
     @SageIniName("WeatherTexture") val weatherTexture: List<Untyped> = emptyList(),
     @SageIniName("StaticModelLODMode") val staticModelLODMode: Boolean = false,
@@ -29,14 +29,13 @@ data class W3DFloorDraw(
     @SageIniName("AnimationState") override val animationState: List<AnimationState> = emptyList(),
     @SageIniName("TransitionState") override val transitionState: List<TransitionState> = emptyList(),
     @SageIniName("LodOptions") override val lodOptions: List<LodOptions> = emptyList(),
-) : Draw() {
+) : W3DPropDraw() {
 
     companion object : SageIniBlockDescriptor<W3DFloorDraw>(
         name = "W3DFloorDraw",
-        parent = Draw,
+        parent = W3DPropDraw,
         properties = {
             property("FloorFadeRateOnObjectDeath", FloatValue) { it.floorFadeRateOnObjectDeath }
-            property("ModelName", ModelFile.type) { it.modelName }
             property("HideIfModelConditions", ListValue(ModelCondition.type)) { it.hideIfModelConditions }
             property("WeatherTexture", ListValue(Untyped.type)) { it.weatherTexture }
             property("StaticModelLODMode", BooleanValue) { it.staticModelLODMode }

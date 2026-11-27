@@ -13,6 +13,7 @@ import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Upgrade
 import de.darkatra.bfme2.ini.model.`object`.UpgradeTrigger
 import de.darkatra.bfme2.ini.model.value.AModAuraCondition
+import de.darkatra.bfme2.ini.model.value.KindOf
 import de.darkatra.bfme2.ini.model.value.ModifierCategories
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
@@ -43,6 +44,7 @@ data class AttributeModifierAuraUpdate(
     @SageIniName("AffectContainedOnly") val affectContainedOnly: Boolean = false,
     @SageIniName("AffectGood") val affectGood: Boolean = false,
     @SageIniName("AffectEvil") val affectEvil: Boolean = false,
+    @SageIniName("AffectsKindOf") val affectsKindOf: List<KindOf> = emptyList(),
 ) : UpgradeBehavior() {
 
     companion object : SageIniBlockDescriptor<AttributeModifierAuraUpdate>(
@@ -64,6 +66,7 @@ data class AttributeModifierAuraUpdate(
             property("AffectContainedOnly", BooleanValue) { it.affectContainedOnly }
             property("AffectGood", BooleanValue) { it.affectGood }
             property("AffectEvil", BooleanValue) { it.affectEvil }
+            property("AffectsKindOf", ListValue(KindOf.type)) { it.affectsKindOf }
         },
     )
 }

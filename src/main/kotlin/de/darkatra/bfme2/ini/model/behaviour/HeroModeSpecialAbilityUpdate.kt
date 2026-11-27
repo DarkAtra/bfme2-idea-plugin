@@ -1,15 +1,14 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
-import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.CommandButton
-import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.SpecialPower
@@ -77,6 +76,7 @@ data class HeroModeSpecialAbilityUpdate(
     @SageIniName("StopUnitBeforeActivating") override val stopUnitBeforeActivating: Boolean = false,
     @SageIniName("HeroEffectDuration") val heroEffectDuration: Int = 0,
     @SageIniName("HeroAttributeModifier") val heroAttributeModifier: SageReference<ModifierList>? = null,
+    @SageIniName("UseUSERModelcondition") val useUSERModelcondition: Boolean = false,
 ) : SpecialAbilityUpdate() {
 
     companion object : SageIniBlockDescriptor<HeroModeSpecialAbilityUpdate>(
@@ -85,6 +85,7 @@ data class HeroModeSpecialAbilityUpdate(
         properties = {
             property("HeroEffectDuration", IntValue) { it.heroEffectDuration }
             property("HeroAttributeModifier", ReferenceValue<ModifierList> { listOf(ModifierList) }) { it.heroAttributeModifier }
+            property("UseUSERModelcondition", BooleanValue) { it.useUSERModelcondition }
         },
     )
 }

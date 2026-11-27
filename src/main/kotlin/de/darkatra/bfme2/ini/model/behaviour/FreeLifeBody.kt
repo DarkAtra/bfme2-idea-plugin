@@ -46,11 +46,11 @@ data class FreeLifeBody(
     @SageIniName("FreeLifeInvincible") val freeLifeInvincible: Boolean = false,
     @SageIniName("FreeLifePrerequisiteUpgrade") val freeLifePrerequisiteUpgrade: SageReference<Upgrade>? = null,
     @SageIniName("FreeLifeAnimAndDuration") val freeLifeAnimAndDuration: Map<String, String> = emptyMap(),
-) : ActiveBody() {
+) : RespawnBody() {
 
     companion object : SageIniBlockDescriptor<FreeLifeBody>(
         name = "FreeLifeBody",
-        parent = ActiveBody,
+        parent = RespawnBody,
         properties = {
             property("FreeLifeHealthPercent", FloatValue) { it.freeLifeHealthPercent }
             property("FreeLifeTime", IntValue) { it.freeLifeTime }

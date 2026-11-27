@@ -12,7 +12,7 @@ import de.darkatra.bfme2.ini.model.value.DamageCreation
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
 
-data class RespawnBody(
+open class RespawnBody(
     override val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("MaxHealth") override val maxHealth: Double = 0.0,
     @SageIniName("InitialHealth") override val initialHealth: Double = 0.0,
@@ -36,8 +36,8 @@ data class RespawnBody(
     @SageIniName("BurningDeathFX") override val burningDeathFX: SageReference<FXList>? = null,
     @SageIniName("DamagedAttributeModifier") override val damagedAttributeModifier: SageReference<ModifierList>? = null,
     @SageIniName("ReallyDamagedAttributeModifier") override val reallyDamagedAttributeModifier: SageReference<ModifierList>? = null,
-    @SageIniName("PermanentlyKilledByFilter") val permanentlyKilledByFilter: SageFilter? = null,
-    @SageIniName("CanRespawn") val canRespawn: Boolean = false,
+    @SageIniName("PermanentlyKilledByFilter") open val permanentlyKilledByFilter: SageFilter? = null,
+    @SageIniName("CanRespawn") open val canRespawn: Boolean = false,
 ) : ActiveBody() {
 
     companion object : SageIniBlockDescriptor<RespawnBody>(

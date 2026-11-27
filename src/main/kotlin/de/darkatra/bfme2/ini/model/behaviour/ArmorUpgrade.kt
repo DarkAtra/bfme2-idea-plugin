@@ -22,6 +22,7 @@ data class ArmorUpgrade(
     @SageIniName("Permanent") override val permanent: Boolean = false,
     @SageIniName("ArmorSetFlag") val armorSetFlag: ArmorSetFlags? = null,
     @SageIniName("IgnoreArmorUpgrade") val ignoreArmorUpgrade: Boolean = false,
+    @SageIniName("KillArmorUpgrade") val killArmorUpgrade: Boolean = false,
 ) : UpgradeBehavior() {
 
     companion object : SageIniBlockDescriptor<ArmorUpgrade>(
@@ -30,6 +31,7 @@ data class ArmorUpgrade(
         properties = {
             property("ArmorSetFlag", ArmorSetFlags.type) { it.armorSetFlag }
             property("IgnoreArmorUpgrade", BooleanValue) { it.ignoreArmorUpgrade }
+            property("KillArmorUpgrade", BooleanValue) { it.killArmorUpgrade }
         },
     )
 }

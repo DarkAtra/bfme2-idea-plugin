@@ -5,7 +5,6 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.Weapon
 import de.darkatra.bfme2.ini.model.value.ContainCondition
@@ -84,16 +83,17 @@ data class RiderChangeContain(
     @SageIniName("ScuttleDelay") val scuttleDelay: Int = 0,
     @SageIniName("ScuttleStatus") val scuttleStatus: ObjectStatus? = null,
     @SageIniName("KillRiderWhenVehicleDies") val killRiderWhenVehicleDies: Boolean = false,
-    @SageIniName("ObjectStatusOfCrew") val objectStatusOfCrew: List<ObjectStatus> = emptyList(),
-    @SageIniName("InitialCrew") val initialCrew: ObjectCount? = null,
-    @SageIniName("CrewFilter") val crewFilter: SageFilter? = null,
-    @SageIniName("CrewMax") val crewMax: Int = 0,
-    @SageIniName("TransferSelection") val transferSelection: Boolean = false,
-) : TransportContain() {
+    @SageIniName("ObjectStatusOfCrew") override val objectStatusOfCrew: List<ObjectStatus> = emptyList(),
+    @SageIniName("InitialCrew") override val initialCrew: ObjectCount? = null,
+    @SageIniName("CrewFilter") override val crewFilter: SageFilter? = null,
+    @SageIniName("CrewMax") override val crewMax: Int = 0,
+    @SageIniName("TransferSelection") override val transferSelection: Boolean = false,
+    @SageIniName("Rider8") val rider8: Untyped? = null,
+) : SiegeEngineContain() {
 
     companion object : SageIniBlockDescriptor<RiderChangeContain>(
         name = "RiderChangeContain",
-        parent = TransportContain,
+        parent = SiegeEngineContain,
         properties = {
             property("Rider1", Untyped.type) { it.rider1 }
             property("Rider2", Untyped.type) { it.rider2 }
@@ -105,11 +105,7 @@ data class RiderChangeContain(
             property("ScuttleDelay", IntValue) { it.scuttleDelay }
             property("ScuttleStatus", ObjectStatus.type) { it.scuttleStatus }
             property("KillRiderWhenVehicleDies", BooleanValue) { it.killRiderWhenVehicleDies }
-            property("ObjectStatusOfCrew", ListValue(ObjectStatus.type)) { it.objectStatusOfCrew }
-            property("InitialCrew", ObjectCount.type) { it.initialCrew }
-            property("CrewFilter", SageFilter.type) { it.crewFilter }
-            property("CrewMax", IntValue) { it.crewMax }
-            property("TransferSelection", BooleanValue) { it.transferSelection }
+            property("Rider8", Untyped.type) { it.rider8 }
         },
     )
 }

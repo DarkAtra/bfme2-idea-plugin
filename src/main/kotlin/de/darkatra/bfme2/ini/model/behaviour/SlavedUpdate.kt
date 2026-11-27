@@ -43,6 +43,7 @@ data class SlavedUpdate(
     @SageIniName("FadeOutRange") val fadeOutRange: Int = 0,
     @SageIniName("FadeTime") val fadeTime: Int = 0,
     @SageIniName("RepairWhenBelowHealth_") val repairWhenBelowHealth: Int = 0,
+    @SageIniName("RepairWhenBelowHealth%") val repairWhenBelowHealthPercent: Int = 0,
 ) : SageBehavior {
 
     companion object : SageIniBlockDescriptor<SlavedUpdate>(
@@ -74,6 +75,7 @@ data class SlavedUpdate(
             property("FadeOutRange", IntValue) { it.fadeOutRange }
             property("FadeTime", IntValue) { it.fadeTime }
             property("RepairWhenBelowHealth_", IntValue) { it.repairWhenBelowHealth }
+            property("RepairWhenBelowHealth%", IntValue) { it.repairWhenBelowHealthPercent }
         },
     )
 }

@@ -4,7 +4,6 @@ import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.value.Opaque
 import de.darkatra.bfme2.ini.model.value.TextureFile
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -26,7 +25,7 @@ data class W3DSailModelDraw(
     @SageIniName("InitialRecoilSpeed") override val initialRecoilSpeed: Double = 0.0,
     @SageIniName("MaxRecoilDistance") override val maxRecoilDistance: Double = 0.0,
     @SageIniName("RecoilSettleSpeed") override val recoilSettleSpeed: Double = 0.0,
-    @SageIniName("RandomTexture") val randomTexture: List<Opaque> = emptyList(),
+    @SageIniName("RandomTexture") override val randomTexture: List<Opaque> = emptyList(),
     @SageIniName("MaxRotationDegrees") val maxRotationDegrees: Double = 0.0,
     @SageIniName("BlowingThresholdDegrees") val blowingThresholdDegrees: Double = 0.0,
     @SageIniName("AboutDamping") val aboutDamping: Double = 0.0,
@@ -40,13 +39,12 @@ data class W3DSailModelDraw(
     @SageIniName("AnimationState") override val animationState: List<AnimationState> = emptyList(),
     @SageIniName("TransitionState") override val transitionState: List<TransitionState> = emptyList(),
     @SageIniName("LodOptions") override val lodOptions: List<LodOptions> = emptyList(),
-) : W3DModelDraw() {
+) : W3DScriptedModelDraw() {
 
     companion object : SageIniBlockDescriptor<W3DSailModelDraw>(
         name = "W3DSailModelDraw",
-        parent = W3DModelDraw,
+        parent = W3DScriptedModelDraw,
         properties = {
-            property("RandomTexture", ListValue(Opaque.type)) { it.randomTexture }
             property("MaxRotationDegrees", FloatValue) { it.maxRotationDegrees }
             property("BlowingThresholdDegrees", FloatValue) { it.blowingThresholdDegrees }
             property("AboutDamping", FloatValue) { it.aboutDamping }

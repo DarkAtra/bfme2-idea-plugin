@@ -5,6 +5,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.value.Opaque
+import de.darkatra.bfme2.ini.model.value.Rgb
 import de.darkatra.bfme2.ini.model.value.Rgba
 
 data class W3DLightDraw(
@@ -26,6 +27,9 @@ data class W3DLightDraw(
     @SageIniName("AnimationState") override val animationState: List<AnimationState> = emptyList(),
     @SageIniName("TransitionState") override val transitionState: List<TransitionState> = emptyList(),
     @SageIniName("LodOptions") override val lodOptions: List<LodOptions> = emptyList(),
+    @SageIniName("PulseAmplitude") val pulseAmplitude: Double = 0.0,
+    @SageIniName("PulseFrequency") val pulseFrequency: Double = 0.0,
+    @SageIniName("Specular") val specular: Rgb? = null,
 ) : Draw() {
 
     companion object : SageIniBlockDescriptor<W3DLightDraw>(
@@ -39,6 +43,9 @@ data class W3DLightDraw(
             property("AttachToBoneInAnotherModule", Opaque.type) { it.attachToBoneInAnotherModule }
             property("FlickerAmplitude", FloatValue) { it.flickerAmplitude }
             property("FlickerFrequency", FloatValue) { it.flickerFrequency }
+            property("PulseAmplitude", FloatValue) { it.pulseAmplitude }
+            property("PulseFrequency", FloatValue) { it.pulseFrequency }
+            property("Specular", Rgb.type) { it.specular }
         },
     )
 }

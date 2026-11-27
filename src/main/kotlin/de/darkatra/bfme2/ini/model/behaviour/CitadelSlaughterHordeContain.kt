@@ -3,7 +3,6 @@ package de.darkatra.bfme2.ini.model.behaviour
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
@@ -28,7 +27,7 @@ data class CitadelSlaughterHordeContain(
     @SageIniName("EntryOffset") override val entryOffset: Coords? = null,
     @SageIniName("ExitOffset") override val exitOffset: Coords? = null,
     @SageIniName("EntryPosition") override val entryPosition: Coords? = null,
-    @SageIniName("AllowOwnPlayerInsideOverride") val allowOwnPlayerInsideOverride: Boolean = false,
+    @SageIniName("AllowOwnPlayerInsideOverride") override val allowOwnPlayerInsideOverride: Boolean = false,
     @SageIniName("StatusForRingEntry") val statusForRingEntry: ObjectStatus? = null,
     @SageIniName("UpgradeForRingEntry") val upgradeForRingEntry: List<SageReference<Upgrade>> = emptyList(),
     @SageIniName("ObjectToDestroyForRingEntry") val objectToDestroyForRingEntry: SageFilter? = null,
@@ -39,7 +38,6 @@ data class CitadelSlaughterHordeContain(
         name = "CitadelSlaughterHordeContain",
         parent = SlaughterHordeContain,
         properties = {
-            property("AllowOwnPlayerInsideOverride", BooleanValue) { it.allowOwnPlayerInsideOverride }
             property("StatusForRingEntry", ObjectStatus.type) { it.statusForRingEntry }
             property("UpgradeForRingEntry", ListValue(ReferenceValue<Upgrade> { listOf(Upgrade) })) { it.upgradeForRingEntry }
             property("ObjectToDestroyForRingEntry", SageFilter.type) { it.objectToDestroyForRingEntry }

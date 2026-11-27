@@ -14,7 +14,7 @@ import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 
-data class HordeGarrisonContain(
+open class HordeGarrisonContain(
     override val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("AllowInsideKindOf") override val allowInsideKindOf: List<KindOf> = emptyList(),
     @SageIniName("ForbidInsideKindOf") override val forbidInsideKindOf: List<KindOf> = emptyList(),
@@ -53,10 +53,10 @@ data class HordeGarrisonContain(
     @SageIniName("InitialRoster") override val initialRoster: ObjectCount? = null,
     @SageIniName("ImmuneToClearBuildingAttacks") override val immuneToClearBuildingAttacks: Boolean = false,
     @SageIniName("IsEnclosingContainer") override val isEnclosingContainer: Boolean = false,
-    @SageIniName("EntryOffset") val entryOffset: Coords? = null,
-    @SageIniName("EntryPosition") val entryPosition: Coords? = null,
-    @SageIniName("ExitDelay") val exitDelay: Int = 0,
-    @SageIniName("ExitOffset") val exitOffset: Coords? = null,
+    @SageIniName("EntryOffset") open val entryOffset: Coords? = null,
+    @SageIniName("EntryPosition") open val entryPosition: Coords? = null,
+    @SageIniName("ExitDelay") open val exitDelay: Int = 0,
+    @SageIniName("ExitOffset") open val exitOffset: Coords? = null,
 ) : GarrisonContain() {
 
     companion object : SageIniBlockDescriptor<HordeGarrisonContain>(

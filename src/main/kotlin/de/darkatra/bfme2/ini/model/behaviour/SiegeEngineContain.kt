@@ -21,7 +21,7 @@ import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.Untyped
 import de.darkatra.bfme2.ini.model.value.UpgradeCreationTrigger
 
-data class SiegeEngineContain(
+open class SiegeEngineContain(
     override val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("AllowInsideKindOf") override val allowInsideKindOf: List<KindOf> = emptyList(),
     @SageIniName("ForbidInsideKindOf") override val forbidInsideKindOf: List<KindOf> = emptyList(),
@@ -95,13 +95,13 @@ data class SiegeEngineContain(
     @SageIniName("ThrowOutPassengersLandingWarhead") override val throwOutPassengersLandingWarhead: SageReference<Weapon>? = null,
     @SageIniName("ThrowOutPassengersVelocity") override val throwOutPassengersVelocity: Coords? = null,
     @SageIniName("TypeThreeForWeaponState") override val typeThreeForWeaponState: KindOf? = null,
-    @SageIniName("CrewAllowedToFire") val crewAllowedToFire: Boolean = false,
-    @SageIniName("CrewFilter") val crewFilter: SageFilter? = null,
-    @SageIniName("CrewMax") val crewMax: Int = 0,
-    @SageIniName("InitialCrew") val initialCrew: ObjectCount? = null,
-    @SageIniName("ObjectStatusOfCrew") val objectStatusOfCrew: List<ObjectStatus> = emptyList(),
-    @SageIniName("SpeedPercentPerCrew") val speedPercentPerCrew: Double = 0.0,
-    @SageIniName("TransferSelection") val transferSelection: Boolean = false,
+    @SageIniName("CrewAllowedToFire") open val crewAllowedToFire: Boolean = false,
+    @SageIniName("CrewFilter") open val crewFilter: SageFilter? = null,
+    @SageIniName("CrewMax") open val crewMax: Int = 0,
+    @SageIniName("InitialCrew") open val initialCrew: ObjectCount? = null,
+    @SageIniName("ObjectStatusOfCrew") open val objectStatusOfCrew: List<ObjectStatus> = emptyList(),
+    @SageIniName("SpeedPercentPerCrew") open val speedPercentPerCrew: Double = 0.0,
+    @SageIniName("TransferSelection") open val transferSelection: Boolean = false,
 ) : TransportContain() {
 
     companion object : SageIniBlockDescriptor<SiegeEngineContain>(

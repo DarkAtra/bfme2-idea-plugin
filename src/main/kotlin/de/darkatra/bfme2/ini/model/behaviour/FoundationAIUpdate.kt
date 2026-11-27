@@ -3,6 +3,7 @@ package de.darkatra.bfme2.ini.model.behaviour
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.`object`.AttackPriority
 import de.darkatra.bfme2.ini.model.`object`.Turret
@@ -34,6 +35,7 @@ open class FoundationAIUpdate(
     @SageIniName("BuildVariation") open val buildVariation: Int = 0,
     @SageIniName("Turret") override val turret: List<Turret> = emptyList(),
     @SageIniName("AltTurret") override val altTurret: List<Turret> = emptyList(),
+    @SageIniName("RepairHealthPercentPerSecond") open val repairHealthPercentPerSecond: Double = 0.0,
 ) : AIUpdateBehavior() {
 
     companion object : SageIniBlockDescriptor<FoundationAIUpdate>(
@@ -41,6 +43,7 @@ open class FoundationAIUpdate(
         parent = AIUpdateBehavior,
         properties = {
             property("BuildVariation", IntValue) { it.buildVariation }
+            property("RepairHealthPercentPerSecond", FloatValue) { it.repairHealthPercentPerSecond }
         },
     )
 }

@@ -1,16 +1,17 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
-import de.darkatra.bfme2.ini.model.`object`.ParticleSystemDefinition
 import de.darkatra.bfme2.ini.model.common.SageAudio
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.ChildObject
 import de.darkatra.bfme2.ini.model.`object`.CommandButton
-import de.darkatra.bfme2.ini.model.`object`.FXParticleSystem
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
@@ -18,6 +19,7 @@ import de.darkatra.bfme2.ini.model.`object`.SpecialPower
 import de.darkatra.bfme2.ini.model.common.SageParticleSystem
 import de.darkatra.bfme2.ini.model.value.ModelConditionFlag
 import de.darkatra.bfme2.ini.model.value.Opaque
+import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
 import de.darkatra.bfme2.ini.model.value.SpecialPowerUnpackConditions
 import de.darkatra.bfme2.ini.model.value.Untyped
@@ -79,6 +81,14 @@ data class SummonReplacementSpecialAbilityUpdate(
     @SageIniName("StopUnitBeforeActivating") override val stopUnitBeforeActivating: Boolean = false,
     @SageIniName("MountedTemplate") val mountedTemplate: SageReference<Object>? = null,
     @SageIniName("OpacityTarget") val opacityTarget: Double = 0.0,
+    @SageIniName("CancelDisguiseWhenDismounting") val cancelDisguiseWhenDismounting: Boolean = false,
+    @SageIniName("EmotionPulseRadius") val emotionPulseRadius: Double = 50.0,
+    @SageIniName("GenerateTerror") val generateTerror: Boolean = false,
+    @SageIniName("GenerateUncontrollableFear") val generateUncontrollableFear: Boolean = false,
+    @SageIniName("ObjectFilter") val objectFilter: SageFilter? = null,
+    @SageIniName("SynchronizeTimerOnSpecialPower") val synchronizeTimerOnSpecialPower: List<SageReference<SpecialPower>> = emptyList(),
+    @SageIniName("TriggerInstantlyOnCreate") val triggerInstantlyOnCreate: Boolean = false,
+    @SageIniName("WhichSpecialPower") val whichSpecialPower: Int = 1,
 ) : SpecialAbilityUpdate() {
 
     companion object : SageIniBlockDescriptor<SummonReplacementSpecialAbilityUpdate>(
@@ -87,6 +97,14 @@ data class SummonReplacementSpecialAbilityUpdate(
         properties = {
             property("MountedTemplate", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.mountedTemplate }
             property("OpacityTarget", FloatValue) { it.opacityTarget }
+            property("CancelDisguiseWhenDismounting", BooleanValue) { it.cancelDisguiseWhenDismounting }
+            property("EmotionPulseRadius", FloatValue) { it.emotionPulseRadius }
+            property("GenerateTerror", BooleanValue) { it.generateTerror }
+            property("GenerateUncontrollableFear", BooleanValue) { it.generateUncontrollableFear }
+            property("ObjectFilter", SageFilter.type) { it.objectFilter }
+            property("SynchronizeTimerOnSpecialPower", ListValue(ReferenceValue<SpecialPower> { listOf(SpecialPower) })) { it.synchronizeTimerOnSpecialPower }
+            property("TriggerInstantlyOnCreate", BooleanValue) { it.triggerInstantlyOnCreate }
+            property("WhichSpecialPower", IntValue) { it.whichSpecialPower }
         },
     )
 }

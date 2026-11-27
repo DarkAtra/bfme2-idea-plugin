@@ -1,6 +1,5 @@
 package de.darkatra.bfme2.ini.model.behaviour
 
-import de.darkatra.bfme2.ini.model.common.SageBehavior
 import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
@@ -14,13 +13,17 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.`object`.ChildObject
+import de.darkatra.bfme2.ini.model.`object`.EvaEventBase
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
+import de.darkatra.bfme2.ini.model.`object`.NewEvaEvent
 import de.darkatra.bfme2.ini.model.`object`.Object
 import de.darkatra.bfme2.ini.model.`object`.ObjectReskin
+import de.darkatra.bfme2.ini.model.`object`.PredefinedEvaEvent
 import de.darkatra.bfme2.ini.model.value.BannerCarrierPosition
 import de.darkatra.bfme2.ini.model.value.ComboHorde
 import de.darkatra.bfme2.ini.model.value.ContainCondition
 import de.darkatra.bfme2.ini.model.value.Coord2D
+import de.darkatra.bfme2.ini.model.value.Coords
 import de.darkatra.bfme2.ini.model.value.LocomotorSetType
 import de.darkatra.bfme2.ini.model.value.ObjectCount
 import de.darkatra.bfme2.ini.model.value.ObjectStatus
@@ -29,12 +32,12 @@ import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.SageReference
 
 open class HordeContain(
-    open val header: SageBlockHeader = SageBlockHeader(),
-    @SageIniName("ObjectStatusOfContained") open val objectStatusOfContained: List<ObjectStatus> = emptyList(),
-    @SageIniName("InitialPayload") open val initialPayload: List<ObjectCount> = emptyList(),
-    @SageIniName("Slots") open val slots: Int = 0,
-    @SageIniName("PassengerFilter") open val passengerFilter: SageFilter? = null,
-    @SageIniName("ShowPips") open val showPips: Boolean = false,
+    override val header: SageBlockHeader = SageBlockHeader(),
+    @SageIniName("ObjectStatusOfContained") override val objectStatusOfContained: List<ObjectStatus> = emptyList(),
+    @SageIniName("InitialPayload") override val initialPayload: List<ObjectCount> = emptyList(),
+    @SageIniName("Slots") override val slots: Int = 0,
+    @SageIniName("PassengerFilter") override val passengerFilter: SageFilter? = null,
+    @SageIniName("ShowPips") override val showPips: Boolean = false,
     @SageIniName("ThisFormationIsTheMainFormation") open val thisFormationIsTheMainFormation: Boolean = false,
     @SageIniName("BannerCarriersAllowed") open val bannerCarriersAllowed: List<SageReference<Object>> = emptyList(),
     @SageIniName("BannerCarrierPosition") open val bannerCarrierPosition: List<BannerCarrierPosition> = emptyList(),
@@ -73,19 +76,21 @@ open class HordeContain(
     @SageIniName("BannerCarrierDestroyHordeOnDeath") open val bannerCarrierDestroyHordeOnDeath: Boolean = false,
     @SageIniName("BannerCarrierHordeDeathType") open val bannerCarrierHordeDeathType: SageFilter? = null,
     @SageIniName("LivingWorldOverloadTemplate") open val livingWorldOverloadTemplate: SageReference<Object>? = null,
-    @SageIniName("ConditionForEntry") open val conditionForEntry: ContainCondition? = null,
+    @SageIniName("ConditionForEntry") override val conditionForEntry: ContainCondition? = null,
     @SageIniName("RandomOffset") open val randomOffset: Coord2D? = null,
     @SageIniName("MeleeBehavior") open val meleeBehavior: List<MeleeBehavior> = emptyList(),
-) : SageBehavior {
+    @SageIniName("CowerRadius") open val cowerRadius: Double = 0.0,
+    @SageIniName("EvaEventLastMemberDeath") open val evaEventLastMemberDeath: SageReference<EvaEventBase>? = null,
+    @SageIniName("FlankedDuration") open val flankedDuration: Int = 0,
+    @SageIniName("LeaderPosition") open val leaderPosition: Coords? = null,
+    @SageIniName("LeaderRank") open val leaderRank: Int = 0,
+    @SageIniName("LeadersAllowed") open val leadersAllowed: List<SageReference<Object>> = emptyList(),
+) : TransportContain() {
 
     companion object : SageIniBlockDescriptor<HordeContain>(
         name = "HordeContain",
+        parent = TransportContain,
         properties = {
-            property("ObjectStatusOfContained", ListValue(ObjectStatus.type)) { it.objectStatusOfContained }
-            property("InitialPayload", ListValue(ObjectCount.type)) { it.initialPayload }
-            property("Slots", IntValue) { it.slots }
-            property("PassengerFilter", SageFilter.type) { it.passengerFilter }
-            property("ShowPips", BooleanValue) { it.showPips }
             property("ThisFormationIsTheMainFormation", BooleanValue) { it.thisFormationIsTheMainFormation }
             property("BannerCarriersAllowed", ListValue(ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) })) { it.bannerCarriersAllowed }
             property("BannerCarrierPosition", ListValue(BannerCarrierPosition.type)) { it.bannerCarrierPosition }
@@ -124,9 +129,14 @@ open class HordeContain(
             property("BannerCarrierDestroyHordeOnDeath", BooleanValue) { it.bannerCarrierDestroyHordeOnDeath }
             property("BannerCarrierHordeDeathType", SageFilter.type) { it.bannerCarrierHordeDeathType }
             property("LivingWorldOverloadTemplate", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.livingWorldOverloadTemplate }
-            property("ConditionForEntry", ContainCondition.type) { it.conditionForEntry }
             property("RandomOffset", Coord2D.type) { it.randomOffset }
             property("MeleeBehavior", ListValue(BlockValue<MeleeBehavior> { listOf(MeleeBehavior) })) { it.meleeBehavior }
+            property("CowerRadius", FloatValue) { it.cowerRadius }
+            property("EvaEventLastMemberDeath", ReferenceValue<EvaEventBase> { listOf(NewEvaEvent, PredefinedEvaEvent) }) { it.evaEventLastMemberDeath }
+            property("FlankedDuration", IntValue) { it.flankedDuration }
+            property("LeaderPosition", Coords.type) { it.leaderPosition }
+            property("LeaderRank", IntValue) { it.leaderRank }
+            property("LeadersAllowed", ListValue(ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) })) { it.leadersAllowed }
         },
     )
 }

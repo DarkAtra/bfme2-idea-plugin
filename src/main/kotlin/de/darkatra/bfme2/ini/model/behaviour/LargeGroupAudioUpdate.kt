@@ -11,6 +11,8 @@ data class LargeGroupAudioUpdate(
     val header: SageBlockHeader = SageBlockHeader(),
     @SageIniName("UnitWeight") val unitWeight: Int = 0,
     @SageIniName("Key") val key: Untyped? = null,
+    @SageIniName("TimeBetweenUpdatesMin") val timeBetweenUpdatesMin: Int = 0,
+    @SageIniName("TimeBetweenUpdatesVariation") val timeBetweenUpdatesVariation: Int = 200,
 ) : SageBehavior {
 
     companion object : SageIniBlockDescriptor<LargeGroupAudioUpdate>(
@@ -18,6 +20,8 @@ data class LargeGroupAudioUpdate(
         properties = {
             property("UnitWeight", IntValue) { it.unitWeight }
             property("Key", Untyped.type) { it.key }
+            property("TimeBetweenUpdatesMin", IntValue) { it.timeBetweenUpdatesMin }
+            property("TimeBetweenUpdatesVariation", IntValue) { it.timeBetweenUpdatesVariation }
         },
     )
 }

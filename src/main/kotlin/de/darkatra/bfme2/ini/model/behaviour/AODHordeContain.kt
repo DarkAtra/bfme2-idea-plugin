@@ -5,12 +5,9 @@ import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
-import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.`object`.EvaEventBase
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
-import de.darkatra.bfme2.ini.model.`object`.NewEvaEvent
 import de.darkatra.bfme2.ini.model.`object`.Object
-import de.darkatra.bfme2.ini.model.`object`.PredefinedEvaEvent
 import de.darkatra.bfme2.ini.model.value.BannerCarrierPosition
 import de.darkatra.bfme2.ini.model.value.ComboHorde
 import de.darkatra.bfme2.ini.model.value.ContainCondition
@@ -87,7 +84,8 @@ data class AODHordeContain(
     @SageIniName("ScatterSpeedFactor") val scatterSpeedFactor: Double = 0.0,
     @SageIniName("ScatterRandomness") val scatterRandomness: Double = 0.0,
     @SageIniName("MeleeBehavior") override val meleeBehavior: List<MeleeBehavior> = emptyList(),
-    @SageIniName("EvaEventLastMemberDeath") val evaEventLastMemberDeath: SageReference<EvaEventBase>? = null,
+    @SageIniName("EvaEventLastMemberDeath") override val evaEventLastMemberDeath: SageReference<EvaEventBase>? = null,
+    @SageIniName("OathFulfilledZFactor") val oathFulfilledZFactor: Double = 1.0,
 ) : HordeContain() {
 
     companion object : SageIniBlockDescriptor<AODHordeContain>(
@@ -111,7 +109,7 @@ data class AODHordeContain(
             property("LargeUnitTailOff", FloatValue) { it.largeUnitTailOff }
             property("ScatterSpeedFactor", FloatValue) { it.scatterSpeedFactor }
             property("ScatterRandomness", FloatValue) { it.scatterRandomness }
-            property("EvaEventLastMemberDeath", ReferenceValue<EvaEventBase> { listOf(NewEvaEvent, PredefinedEvaEvent) }) { it.evaEventLastMemberDeath }
+            property("OathFulfilledZFactor", FloatValue) { it.oathFulfilledZFactor }
         },
     )
 }

@@ -31,7 +31,7 @@ data class TunnelContain(
     @SageIniName("IsEnclosingContainer") override val isEnclosingContainer: Boolean = false,
     @SageIniName("ObjectStatusOfContained") override val objectStatusOfContained: List<ObjectStatus> = emptyList(),
     @SageIniName("PassengerFilter") override val passengerFilter: SageFilter? = null,
-    @SageIniName("TimeForFullHeal") val timeForFullHeal: Int = 0,
+    @SageIniName("TimeForFullHeal") override val timeForFullHeal: Int = 0,
     @SageIniName("PassengerBonePrefix") override val passengerBonePrefix: List<Map<String, String>> = emptyList(),
     @SageIniName("EntryPosition") val entryPosition: Coords? = null,
     @SageIniName("EntryOffset") val entryOffset: Coords? = null,
@@ -48,7 +48,6 @@ data class TunnelContain(
         name = "TunnelContain",
         parent = GarrisonContain,
         properties = {
-            property("TimeForFullHeal", IntValue) { it.timeForFullHeal }
             property("EntryPosition", Coords.type) { it.entryPosition }
             property("EntryOffset", Coords.type) { it.entryOffset }
             property("ExitOffset", Coords.type) { it.exitOffset }

@@ -36,11 +36,11 @@ data class W3DSupplyDraw(
     @SageIniName("AnimationState") override val animationState: List<AnimationState> = emptyList(),
     @SageIniName("TransitionState") override val transitionState: List<TransitionState> = emptyList(),
     @SageIniName("LodOptions") override val lodOptions: List<LodOptions> = emptyList(),
-) : W3DModelDraw() {
+) : W3DScriptedModelDraw() {
 
     companion object : SageIniBlockDescriptor<W3DSupplyDraw>(
         name = "W3DSupplyDraw",
-        parent = W3DModelDraw,
+        parent = W3DScriptedModelDraw,
         properties = {
             property("SupplyBonePrefix", StringValue) { it.supplyBonePrefix }
         },

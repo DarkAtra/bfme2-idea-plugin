@@ -4,6 +4,7 @@ import de.darkatra.bfme2.ini.model.common.SageBlockHeader
 import de.darkatra.bfme2.ini.model.common.SageIniBlockDescriptor
 import de.darkatra.bfme2.ini.model.common.SageIniName
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.BooleanValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
 import de.darkatra.bfme2.ini.model.`object`.ModifierList
 import de.darkatra.bfme2.ini.model.value.KindOf
@@ -52,6 +53,8 @@ open class GarrisonContain(
     @SageIniName("InitialRoster") open val initialRoster: ObjectCount? = null,
     @SageIniName("ImmuneToClearBuildingAttacks") open val immuneToClearBuildingAttacks: Boolean = false,
     @SageIniName("IsEnclosingContainer") open val isEnclosingContainer: Boolean = false,
+    @SageIniName("HealObjects") open val healObjects: Boolean = false,
+    @SageIniName("TimeForFullHeal") open val timeForFullHeal: Int = 0,
 ) : OpenContain() {
 
     companion object : SageIniBlockDescriptor<GarrisonContain>(
@@ -62,6 +65,8 @@ open class GarrisonContain(
             property("InitialRoster", ObjectCount.type) { it.initialRoster }
             property("ImmuneToClearBuildingAttacks", BooleanValue) { it.immuneToClearBuildingAttacks }
             property("IsEnclosingContainer", BooleanValue) { it.isEnclosingContainer }
+            property("HealObjects", BooleanValue) { it.healObjects }
+            property("TimeForFullHeal", IntValue) { it.timeForFullHeal }
         },
     )
 }

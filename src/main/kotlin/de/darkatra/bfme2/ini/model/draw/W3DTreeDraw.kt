@@ -8,6 +8,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.FloatValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.IntValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.ReferenceValue
 import de.darkatra.bfme2.ini.model.common.SageIniValueType.StringValue
+import de.darkatra.bfme2.ini.model.common.SageIniValueType.UnsignedIntValue
 import de.darkatra.bfme2.ini.model.`object`.FXList
 import de.darkatra.bfme2.ini.model.value.ModelFile
 import de.darkatra.bfme2.ini.model.value.Rgba
@@ -45,6 +46,12 @@ data class W3DTreeDraw(
     @SageIniName("AnimationState") override val animationState: List<AnimationState> = emptyList(),
     @SageIniName("TransitionState") override val transitionState: List<TransitionState> = emptyList(),
     @SageIniName("LodOptions") override val lodOptions: List<LodOptions> = emptyList(),
+    @SageIniName("BounceVelocityPercent") val bounceVelocityPercent: Double = 0.0,
+    @SageIniName("FadeRate") val fadeRate: UInt = 5u,
+    @SageIniName("InitialAccelPercent") val initialAccelPercent: Double = 0.0,
+    @SageIniName("InitialVelocityPercent") val initialVelocityPercent: Double = 0.0,
+    @SageIniName("MinimumToppleSpeed") val minimumToppleSpeed: Double = 0.5,
+    @SageIniName("StumpName") val stumpName: String = "",
 ) : Draw() {
 
     companion object : SageIniBlockDescriptor<W3DTreeDraw>(
@@ -70,6 +77,12 @@ data class W3DTreeDraw(
             property("MoveOutwardTime", IntValue) { it.moveOutwardTime }
             property("MoveInwardTime", IntValue) { it.moveInwardTime }
             property("MorphTime", IntValue) { it.morphTime }
+            property("BounceVelocityPercent", FloatValue) { it.bounceVelocityPercent }
+            property("FadeRate", UnsignedIntValue) { it.fadeRate }
+            property("InitialAccelPercent", FloatValue) { it.initialAccelPercent }
+            property("InitialVelocityPercent", FloatValue) { it.initialVelocityPercent }
+            property("MinimumToppleSpeed", FloatValue) { it.minimumToppleSpeed }
+            property("StumpName", StringValue) { it.stumpName }
         },
     )
 }

@@ -34,6 +34,7 @@ data class AssaultTransportAIUpdate(
     @SageIniName("MembersGetHealedAtLifeRatio") val membersGetHealedAtLifeRatio: Double = 0.0,
     @SageIniName("Turret") override val turret: List<Turret> = emptyList(),
     @SageIniName("AltTurret") override val altTurret: List<Turret> = emptyList(),
+    @SageIniName("ClearRangeRequiredToContinueAttackMove") val clearRangeRequiredToContinueAttackMove: Double = 50.0,
 ) : AIUpdateBehavior() {
 
     companion object : SageIniBlockDescriptor<AssaultTransportAIUpdate>(
@@ -41,6 +42,7 @@ data class AssaultTransportAIUpdate(
         parent = AIUpdateBehavior,
         properties = {
             property("MembersGetHealedAtLifeRatio", FloatValue) { it.membersGetHealedAtLifeRatio }
+            property("ClearRangeRequiredToContinueAttackMove", FloatValue) { it.clearRangeRequiredToContinueAttackMove }
         },
     )
 }
