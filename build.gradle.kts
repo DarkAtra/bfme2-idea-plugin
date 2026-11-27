@@ -15,3 +15,10 @@ dependencies {
         testFramework(TestFrameworkType.Platform)
     }
 }
+
+tasks.test {
+    // opt-in corpus for SageEngineIniCorpusTest, declared as input so that changing it reruns the tests
+    val iniCorpus = providers.environmentVariable("BFME2_INI_CORPUS").orElse("")
+    inputs.property("iniCorpus", iniCorpus)
+    environment("BFME2_INI_CORPUS", iniCorpus.get())
+}
