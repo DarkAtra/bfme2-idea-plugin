@@ -49,7 +49,7 @@ data class LivingWorldBuilding(
             property("CreateUnitDuringAutoResolve", BooleanValue) { it.createUnitDuringAutoResolve }
             property("CanDefendTerritory", BooleanValue) { it.canDefendTerritory }
             property("StrategicResourceCost", IntValue) { it.strategicResourceCost }
-            property("BuildingNugget", ListValue(BlockValue<BuildingNugget> { listOf(BuildingNugget) })) { it.buildingNugget }
+            property("BuildingNugget", ListValue(BlockValue<BuildingNugget> { BuildingNugget.types })) { it.buildingNugget }
         },
     )
 }

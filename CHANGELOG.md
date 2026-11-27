@@ -10,6 +10,8 @@
   `DamageNugget`, `InheritsVeterancy` in a `CreateObject`, `RecoilDamping` in model draws, the pitch settings of a `Turret` and the
   `ImagePart` and `LinePart` blocks of a `ShellMenuScheme`
 - Values the engine reads as unsigned integers, e.g. `ShadowOpacityPeak` or `MaxQueueEntries`, are reported if they are negative or fractional
+- The properties of a `BuildingNugget` or `MeleeBehavior` are checked against its type, e.g. `TreasureAmount` is reported in a `StrengthenArmy`
+  nugget, and unknown types like `BuildingNugget GiveTreasure` are reported
 
 ### Fixed
 

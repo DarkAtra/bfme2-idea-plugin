@@ -20,7 +20,7 @@ data class Stance(
         name = "Stance",
         properties = {
             property("AttributeModifier", ReferenceValue<ModifierList> { listOf(ModifierList) }) { it.attributeModifier }
-            property("MeleeBehavior", ListValue(BlockValue<MeleeBehavior> { listOf(MeleeBehavior) })) { it.meleeBehavior }
+            property("MeleeBehavior", ListValue(BlockValue<MeleeBehavior> { MeleeBehavior.types })) { it.meleeBehavior }
         },
     )
 }

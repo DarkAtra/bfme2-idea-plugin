@@ -130,7 +130,7 @@ open class HordeContain(
             property("BannerCarrierHordeDeathType", SageFilter.type) { it.bannerCarrierHordeDeathType }
             property("LivingWorldOverloadTemplate", ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) }) { it.livingWorldOverloadTemplate }
             property("RandomOffset", Coord2D.type) { it.randomOffset }
-            property("MeleeBehavior", ListValue(BlockValue<MeleeBehavior> { listOf(MeleeBehavior) })) { it.meleeBehavior }
+            property("MeleeBehavior", ListValue(BlockValue<MeleeBehavior> { MeleeBehavior.types })) { it.meleeBehavior }
             property("CowerRadius", FloatValue) { it.cowerRadius }
             property("EvaEventLastMemberDeath", ReferenceValue<EvaEventBase> { listOf(NewEvaEvent, PredefinedEvaEvent) }) { it.evaEventLastMemberDeath }
             property("FlankedDuration", IntValue) { it.flankedDuration }

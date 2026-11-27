@@ -598,6 +598,38 @@ class SageEngineIniModelInspectionsTest : LightPlatformCodeInsightFixture4TestCa
     }
 
     @Test
+    fun `should only know the properties of the type of a building nugget or melee behavior`() {
+
+        myFixture.enableInspections(SageEngineIniUnknownPropertyInspection(), SageEngineIniUnknownBlockInspection())
+        myFixture.configureByText(
+            "object.ini",
+            """
+            LivingWorldBuilding MenFortress
+                BuildingNugget StrengthenArmy NuggetTag_Defender
+                    BonusKey = GoodCastle
+                    <warning descr="Unknown property 'TreasureAmount' in 'StrengthenArmy'">TreasureAmount</warning> = 100
+                End
+                BuildingNugget <warning descr="Unknown module 'GiveTreasure' for 'BuildingNugget'">GiveTreasure</warning> NuggetTag_Treasure
+                End
+            End
+            Object GondorSoldiers
+                Behavior = HordeContain ModuleTag_01
+                    MeleeBehavior = WaitForLeader
+                        FollowLeader = Yes
+                        <warning descr="Unknown property 'FacingBonus' in 'WaitForLeader'">FacingBonus</warning> = 30.0
+                    End
+                    MeleeBehavior = Amoeba
+                        FacingBonus = 30.0
+                    End
+                End
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should recommend declaration names without special characters`() {
 
         myFixture.enableInspections(SageEngineIniSpecialCharacterNameInspection())

@@ -13,6 +13,7 @@ import de.darkatra.bfme2.ini.model.behaviour.ActivateModuleSpecialPower
 import de.darkatra.bfme2.ini.model.behaviour.ActiveBody
 import de.darkatra.bfme2.ini.model.behaviour.AimWeaponBehavior
 import de.darkatra.bfme2.ini.model.behaviour.AllowBannerSpawnUpgrade
+import de.darkatra.bfme2.ini.model.behaviour.AmoebaMeleeBehavior
 import de.darkatra.bfme2.ini.model.behaviour.AnimalAIUpdate
 import de.darkatra.bfme2.ini.model.behaviour.AnimatedParticleSysBoneClientUpdate
 import de.darkatra.bfme2.ini.model.behaviour.AnimationSoundClientBehavior
@@ -156,6 +157,7 @@ import de.darkatra.bfme2.ini.model.behaviour.HighlanderBody
 import de.darkatra.bfme2.ini.model.behaviour.HijackerUpdate
 import de.darkatra.bfme2.ini.model.behaviour.HitReactionBehavior
 import de.darkatra.bfme2.ini.model.behaviour.HiveStructureBody
+import de.darkatra.bfme2.ini.model.behaviour.HoldGroundMeleeBehavior
 import de.darkatra.bfme2.ini.model.behaviour.HordeAIUpdate
 import de.darkatra.bfme2.ini.model.behaviour.HordeContain
 import de.darkatra.bfme2.ini.model.behaviour.HordeDispatchSpecialPower
@@ -188,7 +190,6 @@ import de.darkatra.bfme2.ini.model.behaviour.LockWeaponCreate
 import de.darkatra.bfme2.ini.model.behaviour.LocomotorSetUpgrade
 import de.darkatra.bfme2.ini.model.behaviour.ManTheWallsSpecialPower
 import de.darkatra.bfme2.ini.model.behaviour.MaxHealthUpgrade
-import de.darkatra.bfme2.ini.model.behaviour.MeleeBehavior
 import de.darkatra.bfme2.ini.model.behaviour.MineshaftPortalBehaviour
 import de.darkatra.bfme2.ini.model.behaviour.MissileAIUpdate
 import de.darkatra.bfme2.ini.model.behaviour.MissileUpdate
@@ -313,6 +314,7 @@ import de.darkatra.bfme2.ini.model.behaviour.SupplyTruckAIUpdate
 import de.darkatra.bfme2.ini.model.behaviour.SupplyWarehouseCreate
 import de.darkatra.bfme2.ini.model.behaviour.SupplyWarehouseCripplingBehavior
 import de.darkatra.bfme2.ini.model.behaviour.SupplyWarehouseDockUpdate
+import de.darkatra.bfme2.ini.model.behaviour.SwarmMeleeBehavior
 import de.darkatra.bfme2.ini.model.behaviour.SwayClientUpdate
 import de.darkatra.bfme2.ini.model.behaviour.SymbioticStructuresBody
 import de.darkatra.bfme2.ini.model.behaviour.TaintSpecialPower
@@ -340,6 +342,7 @@ import de.darkatra.bfme2.ini.model.behaviour.UpgradeBehavior
 import de.darkatra.bfme2.ini.model.behaviour.UpgradeDie
 import de.darkatra.bfme2.ini.model.behaviour.UpgradeSoundSelectorClientBehavior
 import de.darkatra.bfme2.ini.model.behaviour.VeterancyCrateCollide
+import de.darkatra.bfme2.ini.model.behaviour.WaitForLeaderMeleeBehavior
 import de.darkatra.bfme2.ini.model.behaviour.WallHubBehavior
 import de.darkatra.bfme2.ini.model.behaviour.WallUpgradeUpdate
 import de.darkatra.bfme2.ini.model.behaviour.WanderAIUpdate
@@ -428,7 +431,6 @@ import de.darkatra.bfme2.ini.model.livingworld.Bonus
 import de.darkatra.bfme2.ini.model.livingworld.BonusForLevel
 import de.darkatra.bfme2.ini.model.livingworld.BordersEffect
 import de.darkatra.bfme2.ini.model.livingworld.BrutalDifficultyCheats
-import de.darkatra.bfme2.ini.model.livingworld.BuildingNugget
 import de.darkatra.bfme2.ini.model.livingworld.ColorIntensityControlPoint
 import de.darkatra.bfme2.ini.model.livingworld.Connection
 import de.darkatra.bfme2.ini.model.livingworld.DefeatCondition
@@ -438,6 +440,8 @@ import de.darkatra.bfme2.ini.model.livingworld.EyeTower
 import de.darkatra.bfme2.ini.model.livingworld.EyeTowerPoints
 import de.darkatra.bfme2.ini.model.livingworld.FilledOwnershipEffect
 import de.darkatra.bfme2.ini.model.livingworld.HomeRegionHighlight
+import de.darkatra.bfme2.ini.model.livingworld.IncreaseCommandPointsNugget
+import de.darkatra.bfme2.ini.model.livingworld.IncreaseTreasuryNugget
 import de.darkatra.bfme2.ini.model.livingworld.LivingWorldIconObject
 import de.darkatra.bfme2.ini.model.livingworld.Mission
 import de.darkatra.bfme2.ini.model.livingworld.MouseoverEffectFlareup
@@ -455,11 +459,14 @@ import de.darkatra.bfme2.ini.model.livingworld.SetPlayerControlOfArmy
 import de.darkatra.bfme2.ini.model.livingworld.SideInfo
 import de.darkatra.bfme2.ini.model.livingworld.SkirmishBuildList
 import de.darkatra.bfme2.ini.model.livingworld.SpawnArmies
+import de.darkatra.bfme2.ini.model.livingworld.SpawnArmyNugget
 import de.darkatra.bfme2.ini.model.livingworld.SpawnBuildings
 import de.darkatra.bfme2.ini.model.livingworld.StartingRestriction
+import de.darkatra.bfme2.ini.model.livingworld.StrengthenArmyNugget
 import de.darkatra.bfme2.ini.model.livingworld.TeamDefeatCondition
 import de.darkatra.bfme2.ini.model.livingworld.TeamVictoryCondition
 import de.darkatra.bfme2.ini.model.livingworld.UnifiedEffect
+import de.darkatra.bfme2.ini.model.livingworld.UpgradeTroopsNugget
 import de.darkatra.bfme2.ini.model.livingworld.VictoryCondition
 import de.darkatra.bfme2.ini.model.livingworld.WorldText
 import de.darkatra.bfme2.ini.model.nugget.AttributeModifierNugget
@@ -714,6 +721,7 @@ object SageIniModel {
             ActiveBody,
             AimWeaponBehavior,
             AllowBannerSpawnUpgrade,
+            AmoebaMeleeBehavior,
             AnimalAIUpdate,
             AnimatedParticleSysBoneClientUpdate,
             AnimationSoundClientBehavior,
@@ -857,6 +865,7 @@ object SageIniModel {
             HijackerUpdate,
             HitReactionBehavior,
             HiveStructureBody,
+            HoldGroundMeleeBehavior,
             HordeAIUpdate,
             HordeContain,
             HordeDispatchSpecialPower,
@@ -889,7 +898,6 @@ object SageIniModel {
             LocomotorSetUpgrade,
             ManTheWallsSpecialPower,
             MaxHealthUpgrade,
-            MeleeBehavior,
             MineshaftPortalBehaviour,
             MissileAIUpdate,
             MissileUpdate,
@@ -1014,6 +1022,7 @@ object SageIniModel {
             SupplyWarehouseCreate,
             SupplyWarehouseCripplingBehavior,
             SupplyWarehouseDockUpdate,
+            SwarmMeleeBehavior,
             SwayClientUpdate,
             SymbioticStructuresBody,
             TaintSpecialPower,
@@ -1041,6 +1050,7 @@ object SageIniModel {
             UpgradeDie,
             UpgradeSoundSelectorClientBehavior,
             VeterancyCrateCollide,
+            WaitForLeaderMeleeBehavior,
             WallHubBehavior,
             WallUpgradeUpdate,
             WanderAIUpdate,
@@ -1126,7 +1136,6 @@ object SageIniModel {
             BonusForLevel,
             BordersEffect,
             BrutalDifficultyCheats,
-            BuildingNugget,
             ColorIntensityControlPoint,
             Connection,
             DefeatCondition,
@@ -1136,6 +1145,8 @@ object SageIniModel {
             EyeTowerPoints,
             FilledOwnershipEffect,
             HomeRegionHighlight,
+            IncreaseCommandPointsNugget,
+            IncreaseTreasuryNugget,
             LivingWorldIconObject,
             Mission,
             MouseoverEffectFlareup,
@@ -1153,11 +1164,14 @@ object SageIniModel {
             SideInfo,
             SkirmishBuildList,
             SpawnArmies,
+            SpawnArmyNugget,
             SpawnBuildings,
             StartingRestriction,
+            StrengthenArmyNugget,
             TeamDefeatCondition,
             TeamVictoryCondition,
             UnifiedEffect,
+            UpgradeTroopsNugget,
             VictoryCondition,
             WorldText,
             AttributeModifierNugget,
