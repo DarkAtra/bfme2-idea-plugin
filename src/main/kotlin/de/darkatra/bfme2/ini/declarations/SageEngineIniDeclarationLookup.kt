@@ -48,7 +48,11 @@ object SageEngineIniDeclarationLookup {
     private val declaredNamesCache = SageEngineIniIndexCache(SAGE_ENGINE_INI_DECLARATION_INDEX_ID)
 
     private fun readDeclaredNames(project: Project, name: String, kinds: Set<String>): List<String> {
-        return ReadAction.computeBlocking<List<String>, RuntimeException> {
+        return readDeclarations(project, name, kinds).map { it.second }.distinct()
+    }
+
+    private fun readDeclarations(project: Project, name: String, kinds: Set<String>): List<Pair<VirtualFile, String>> {
+        return ReadAction.computeBlocking<List<Pair<VirtualFile, String>>, RuntimeException> {
             val scope = SageEngineIniSources.scope(project)
             val fileBasedIndex = FileBasedIndex.getInstance()
             val declarations = mutableListOf<Pair<VirtualFile, String>>()
@@ -60,7 +64,7 @@ object SageEngineIniDeclarationLookup {
                     true
                 }, scope)
             }
-            SageEngineIniSources.keepBestRanked(project, declarations) { it.first }.map { it.second }.distinct()
+            SageEngineIniSources.keepBestRanked(project, declarations) { it.first }
         }
     }
 
@@ -71,21 +75,44 @@ object SageEngineIniDeclarationLookup {
         return SageEngineIniDeclarationSchema.declarationKinds.filter { declaredNames(project, name, setOf(it)).isNotEmpty() }.sorted()
     }
 
+    // reading the names of e.g. all objects takes long enough to delay completion noticeably, so they are cached until the index changes
     fun allDeclarationNames(project: Project, expectedKinds: Set<String>): List<String> {
-        return ReadAction.computeBlocking<List<String>, RuntimeException> {
-            val fileBasedIndex = FileBasedIndex.getInstance()
-            val scope = SageEngineIniSources.scope(project)
+        return declaredNamesCache.get(project, AllDeclarationNamesKey(expectedKinds)) {
+            ReadAction.computeBlocking<List<String>, RuntimeException> {
+                val fileBasedIndex = FileBasedIndex.getInstance()
+                val scope = SageEngineIniSources.scope(project)
 
-            fileBasedIndex.getAllKeys(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, project)
-                .asSequence()
-                .filter { SageEngineIniDeclarationIndexKey.kind(it) in expectedKinds }
-                .flatMap { key -> fileBasedIndex.getValues(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, key, scope) }
-                .filter { it.mask and SageEngineIniDeclarationIndexKey.DECLARATION != 0 }
-                .map { it.displayName }
-                .distinct()
-                .sortedWith(String.CASE_INSENSITIVE_ORDER)
-                .toList()
+                fileBasedIndex.getAllKeys(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, project)
+                    .asSequence()
+                    .filter { SageEngineIniDeclarationIndexKey.kind(it) in expectedKinds }
+                    .flatMap { key -> fileBasedIndex.getValues(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, key, scope) }
+                    .filter { it.mask and SageEngineIniDeclarationIndexKey.DECLARATION != 0 }
+                    .map { it.displayName }
+                    .distinct()
+                    .sortedWith(String.CASE_INSENSITIVE_ORDER)
+                    .toList()
+            }
         }
+    }
+
+    private data class AllDeclarationNamesKey(val kinds: Set<String>)
+
+    /**
+     * The files that declare [name] as a [kind], of the best ranked source only. Only the index is read, like [declaredNames].
+     */
+    fun declaringFiles(project: Project, name: String, kind: String): List<VirtualFile> {
+        return declaredNamesCache.get(project, DeclaringFilesKey(name.lowercase(), kind)) {
+            readDeclarations(project, name, setOf(kind)).map { it.first }.distinct()
+        }
+    }
+
+    private data class DeclaringFilesKey(val name: String, val kind: String)
+
+    /**
+     * The declarations of [file] named [name] with the [kind], also those nested in other blocks.
+     */
+    fun declarationsInFile(file: PsiFile, kind: String, name: String): Collection<SageEngineIniBlock> {
+        return file.findDeclarationBlocks(kind, name)
     }
 
     fun findUseSites(project: Project, kind: String, name: String): List<PsiElement> {

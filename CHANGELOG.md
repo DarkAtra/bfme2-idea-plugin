@@ -41,6 +41,7 @@
 - `MeleeBehavior` blocks know the properties of `WaitForLeader` and `Amoeba`, e.g. `FollowLeader` and `DelayUntilIdle`
 - Blocks named after a module, e.g. `AutoHealBehavior` in an `Object`, are reported as unknown instead of being accepted as that module
 - Pressing `Enter` or pasting in large files like `weapon.ini` no longer blocks the IDE for seconds
+- Completing a reference, e.g. to an object, no longer reads the names of all declarations again every time
 - `#include` paths are resolved case-insensitively, like in the game, and files the project doesn't contain are looked up at the same path
   below `data/ini` in the additional directories, e.g. the base game files a mod includes
 - `LevelUpFx` of an `ExperienceLevel` and the effects of a `TransitionDamageFX` or `BoneFXUpdate` are read like the engine reads them,

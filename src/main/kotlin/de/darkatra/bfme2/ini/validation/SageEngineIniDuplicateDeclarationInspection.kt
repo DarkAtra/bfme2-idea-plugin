@@ -31,6 +31,15 @@ class SageEngineIniDuplicateDeclarationInspection : LocalInspectionTool() {
                 }
 
                 val name = element.name ?: return
+                // most names are declared once, which the index tells without reading the declarations of other files
+                val ownFile = element.containingFile.virtualFile
+                if (ownFile != null &&
+                    SageEngineIniDeclarationLookup.declaringFiles(element.project, name, kind) == listOf(ownFile) &&
+                    SageEngineIniDeclarationLookup.declarationsInFile(element.containingFile, kind, name).size < 2
+                ) {
+                    return
+                }
+
                 val declarations = SageEngineIniDeclarationLookup.findDeclarations(element.project, name, setOf(kind))
                     .filter { it.parent is PsiFile && !isOverridable(it.containingFile) }
                 // declarations of a source with a lower priority are overridden

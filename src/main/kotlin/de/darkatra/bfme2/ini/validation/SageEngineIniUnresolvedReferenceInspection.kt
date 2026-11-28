@@ -36,10 +36,10 @@ class SageEngineIniUnresolvedReferenceInspection : LocalInspectionTool() {
                 if (SageEngineIniMacros.isDefined(element.project, name)) {
                     return
                 }
-                if (reference.factionSides && SageEngineIniFactionSides.isDefined(element.project, name)) {
+                if (SageEngineIniDeclarationLookup.declaredNames(element.project, name, reference.kinds).isNotEmpty()) {
                     return
                 }
-                if (SageEngineIniDeclarationLookup.declaredNames(element.project, name, reference.kinds).isNotEmpty()) {
+                if (reference.factionSides && SageEngineIniFactionSides.isDefined(element.project, name)) {
                     return
                 }
 
