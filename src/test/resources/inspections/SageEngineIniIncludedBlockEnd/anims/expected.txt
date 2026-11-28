@@ -1,2 +1,0 @@
-ranger.ini:7:8: ERROR '' Missing 'End' for block 'Object'
-rangeranims.inc:6:1: WARNING 'End' 'End' closes a block of the file that includes this one, close it in the file that opens it

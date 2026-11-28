@@ -561,6 +561,7 @@ ini/object/civilian/ithilienbuildings.ini: Cannot resolve FXParticleSystem or Pa
 ini/object/civilian/ministirithbuildings.ini: Cannot resolve ModifierList 'DefaultWallArmorBonus'
 ini/object/civilian/osgiliathbuildings.ini: Cannot resolve MappedImage 'BPGOsgiliath'
 ini/object/civilian/rivendellbuildings.ini: Cannot resolve Weapon 'GoodStructureBow'
+ini/object/createahero/createahero.ini: Missing 'End' for block 'Object'
 ini/object/createahero/createahero.ini: Unknown block 'AutoResolveArmor' in 'W3DScriptedModelDraw'
 ini/object/createahero/createahero.ini: Unknown block 'AutoResolveWeapon' in 'W3DScriptedModelDraw'
 ini/object/createahero/createahero.ini: Unknown block 'Behavior' in 'W3DScriptedModelDraw'
@@ -587,6 +588,7 @@ ini/object/createahero/createaheroaipowers.inc: Cannot resolve CommandButton 'Co
 ini/object/createahero/createaheroaipowers.inc: Cannot resolve CommandButton 'Command_CreateAHero_SoS_CrippleStrikeMelee_Level4'
 ini/object/createahero/createaheroaipowers.inc: Unknown SpecialPowerAIType 'AI_SPECIAL_POWER_GOBLINKING_BATTLEFRENZY'
 ini/object/createahero/createaheroaipowers.inc: Unknown SpecialPowerAIType 'AI_SPECIAL_POWER_SELFAOE_HEALHEROS'
+ini/object/createahero/createaheroanims.inc: 'End' without an open block
 ini/object/createahero/createaheroobjects.inc: Cannot resolve Weapon 'FrigidHandsWeapon1'
 ini/object/createahero/createaheroobjects.inc: Cannot resolve Weapon 'FrigidHandsWeapon2'
 ini/object/createahero/createaheroobjects.inc: Cannot resolve Weapon 'FrigidHandsWeapon3'
@@ -1215,6 +1217,7 @@ ini/object/goodfaction/units/rivendell/arnorbreelandfarmer.ini: Unknown property
 ini/object/goodfaction/units/rivendell/arnorbreelandguard.ini: 'ArnorTowerShieldGuard_Summoned' is declared more than once, also in arnortowershieldguard.ini:733
 ini/object/goodfaction/units/rivendell/arnorbreelandguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/goodfaction/units/rivendell/arnorbreelandram.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
+ini/object/goodfaction/units/rivendell/arnordunedain.ini: Missing 'End' for block 'Object'
 ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown block 'ArmorSet' in 'W3DHordeModelDraw'
 ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown block 'Behavior' in 'W3DHordeModelDraw'
 ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown block 'Body' in 'W3DHordeModelDraw'
@@ -1282,6 +1285,7 @@ ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown property 'Voic
 ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown property 'VoiceSelect' in 'W3DHordeModelDraw'
 ini/object/goodfaction/units/rivendell/arnordunedain.ini: Unknown property 'VoiceSelectBattle' in 'W3DHordeModelDraw'
 ini/object/goodfaction/units/rivendell/arnorhalbarad.ini: Cannot resolve MappedImage 'BPGCamp_Plot'
+ini/object/goodfaction/units/rivendell/dunedainanims.inc: 'End' without an open block
 ini/object/goodfaction/units/rivendell/elvenrivendellarcher.ini: Missing 'EndScript' before 'BeginScript'
 ini/object/goodfaction/units/rivendell/elvenrivendellglaivemen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/goodfaction/units/rivendell/gandalfthegrey.ini: 'RivendellGandalfTheGrey_Summoned' is declared more than once, also in gandalfthegrey.ini:1317

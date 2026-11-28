@@ -288,27 +288,23 @@ class SageEngineIniDeclarationInspectionsTest : LightPlatformCodeInsightFixture4
     }
 
     @Test
-    fun `should only warn about blocks that an included file closes`() {
+    fun `should report blocks that an included file closes`() {
 
-        myFixture.enableInspections(SageEngineIniIncludedBlockEndInspection())
         myFixture.addFileToProject(
             "rangeranims.inc",
             """
-            #include "rangeranimstates.inc"
-            <warning descr="'End' closes a block of the file that includes this one, close it in the file that opens it">End</warning>
+            AnimationState = IDLE
+            End<EOLError descr="'End' without an open block"></EOLError>
+            End
             """.trimIndent()
         )
-        myFixture.addFileToProject("rangeranimstates.inc", "#include \"rangeranims.inc\"\nAnimationState = IDLE\nEnd")
         myFixture.configureByText(
             "ranger.ini",
             """
             Object GondorRanger
                 Draw = W3DScriptedModelDraw ModuleTag_Draw
                     #include "rangeranims.inc"
-            End
-            Object GondorSoldier
-                Draw = W3DScriptedModelDraw ModuleTag_Draw
-                End<EOLError descr="Missing 'End' for block 'Object'"></EOLError>
+            End<EOLError descr="Missing 'End' for block 'Object'"></EOLError>
             """.trimIndent()
         )
 

@@ -41,8 +41,6 @@
 - `MeleeBehavior` blocks know the properties of `WaitForLeader` and `Amoeba`, e.g. `FollowLeader` and `DelayUntilIdle`
 - Blocks named after a module or type, e.g. `AutoHealBehavior` in an `Object` or `Swarm` in a `HordeContain`, are reported as unknown instead of
   being accepted as that module
-- Blocks that an included file closes are no longer reported as missing their `End`, a warning on the `End` of the included file discourages
-  them instead
 - Pressing `Enter` or pasting in large files like `weapon.ini` no longer blocks the IDE for seconds
 - `#include` paths are resolved case-insensitively, like in the game, and files the project doesn't contain are looked up at the same path
   below `data/ini` in the additional directories, e.g. the base game files a mod includes

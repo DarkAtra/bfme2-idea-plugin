@@ -189,15 +189,6 @@
         />
         <localInspection
             language="SageEngineIni"
-            shortName="SageEngineIniIncludedBlockEnd"
-            displayName="Block closed in an included file"
-            groupName="Sage Engine INI"
-            enabledByDefault="true"
-            level="WARNING"
-            implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniIncludedBlockEndInspection"
-        />
-        <localInspection
-            language="SageEngineIni"
             shortName="SageEngineIniIncludeCycle"
             displayName="#include cycle"
             groupName="Sage Engine INI"
@@ -205,7 +196,6 @@
             level="WARNING"
             implementationClass="de.darkatra.bfme2.ini.validation.SageEngineIniIncludeCycleInspection"
         />
-        <highlightErrorFilter implementation="de.darkatra.bfme2.ini.validation.SageEngineIniIncludedBlockEndErrorFilter"/>
         <targetElementEvaluator language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationTargetElementEvaluator"/>
         <lang.findUsagesProvider language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationFindUsagesProvider"/>
         <highlightUsagesHandlerFactory implementation="de.darkatra.bfme2.ini.navigation.SageEngineIniDeclarationHighlightUsagesHandlerFactory"/>
