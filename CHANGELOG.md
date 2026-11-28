@@ -16,8 +16,9 @@
   their declaration
 - Inspection for names that are declared more than once with the same kind, except for intended overrides like the files in `default`
   directories or a map's `map.ini`
-- Inspection for module tags that are used more than once in an object, and for tags of a `RemoveModule` or `ReplaceModule` that a
-  `ChildObject` doesn't inherit, including the modules of included files
+- Inspection for module tags that are used more than once in an object, for tags of a `RemoveModule` or `ReplaceModule` that a `ChildObject`
+  doesn't have at that point, including the modules of included files, and for modules of a `ReplaceModule` whose type differs from the
+  replaced module or that keep its tag. Like in the engine, module tags are case-sensitive
 - Inspections for `#include` files and macros that don't exist, and for `#include` statements that include the including file again
 - Completion for the types of modules and other blocks named in their header, e.g. `Behavior = AutoHealBehavior` or `MeleeBehavior = Swarm`
 - Quick fixes that change unresolved references, macros, module tags and `#include` files to similar names that exist, remove `RemoveModule`

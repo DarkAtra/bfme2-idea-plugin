@@ -240,11 +240,11 @@ class SageEngineIniDeclarationInspectionsTest : LightPlatformCodeInsightFixture4
                 RemoveModule ModuleTag_Death
                 RemoveModule <warning descr="Unknown ModuleTag 'ModuleTag_Missing', 'GondorSoldierVeteran' has no module with this tag">ModuleTag_Missing</warning>
                 ReplaceModule ModuleTag_Draw
-                    Draw = W3DScriptedModelDraw ModuleTag_Draw
+                    Draw = W3DScriptedModelDraw ModuleTag_Draw2
                     End
                 End
                 ReplaceModule <warning descr="Unknown ModuleTag 'ModuleTag_Body', 'GondorSoldierVeteran' has no module with this tag">ModuleTag_Body</warning>
-                    Body = ActiveBody ModuleTag_Body
+                    Body = ActiveBody ModuleTag_Body2
                     End
                 End
             End

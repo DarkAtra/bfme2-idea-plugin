@@ -2,3 +2,8 @@ gondor.ini:8:18: WARNING 'ModuleTag_Missing' Unknown ModuleTag 'ModuleTag_Missin
 gondor.ini:13:19: WARNING 'ModuleTag_Body' Unknown ModuleTag 'ModuleTag_Body', 'GondorSoldier' has no module with this tag
 gondor.ini:24:33: WARNING 'ModuleTag_Body' ModuleTag 'ModuleTag_Body' is used more than once in 'GondorArcher'
 gondor.ini:27:14: WARNING '"includes/death.inc"' ModuleTag 'ModuleTag_Death' is used more than once in 'GondorArcher'
+gondor.ini:30:18: WARNING 'moduletag_heal' Unknown ModuleTag 'moduletag_heal', 'GondorSoldier' has no module with this tag
+gondor.ini:33:18: WARNING 'ModuleTag_Death' Unknown ModuleTag 'ModuleTag_Death', 'GondorSoldierVeteran' has no module with this tag
+gondor.ini:38:18: WARNING 'ModuleTag_Death' Unknown ModuleTag 'ModuleTag_Death', 'GondorSoldier' has no module with this tag
+gondor.ini:42:37: WARNING 'ModuleTag_Heal' ModuleTag 'ModuleTag_Heal' is the tag of the replaced module, the module of a 'ReplaceModule' needs a new tag
+gondor.ini:46:20: WARNING 'AutoHealBehavior' 'AutoHealBehavior' can't replace the 'SlowDeathBehavior' with ModuleTag 'ModuleTag_Death', the module of a 'ReplaceModule' needs the same type

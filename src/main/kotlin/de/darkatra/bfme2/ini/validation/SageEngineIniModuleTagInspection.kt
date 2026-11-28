@@ -3,7 +3,6 @@ package de.darkatra.bfme2.ini.validation
 import com.intellij.codeInspection.LocalInspectionTool
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemsHolder
-import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiElementVisitor
 import de.darkatra.bfme2.ini.declarations.SageEngineIniModuleTags
@@ -12,8 +11,9 @@ import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
 
 /**
  * Reports module tags that are used more than once in an object, and tags of a `RemoveModule` or `ReplaceModule` that a `ChildObject`
- * or `ObjectReskin` doesn't inherit. The modules of included files are part of an object, and tags are only reported as unknown if all
- * parent objects and their included files can be resolved.
+ * or `ObjectReskin` doesn't have at that point, e.g. because a parent object removed them. The modules of included files are part of an
+ * object, and tags are only reported as unknown if all parent objects and their included files can be resolved. The module of a
+ * `ReplaceModule` needs the type of the module it replaces and a new tag, otherwise the engine doesn't load the object.
  */
 class SageEngineIniModuleTagInspection : LocalInspectionTool() {
 
@@ -26,7 +26,8 @@ class SageEngineIniModuleTagInspection : LocalInspectionTool() {
                 }
 
                 reportRepeatedTags(element, holder)
-                reportUnknownTags(element, holder)
+                reportReusedReplacedTags(element, holder)
+                reportTagRemovals(element, holder)
             }
         }
     }
@@ -42,23 +43,64 @@ class SageEngineIniModuleTagInspection : LocalInspectionTool() {
             }
     }
 
-    private fun reportUnknownTags(objectBlock: SageEngineIniBlock, holder: ProblemsHolder) {
+    private fun reportReusedReplacedTags(objectBlock: SageEngineIniBlock, holder: ProblemsHolder) {
+        generateSequence(objectBlock.firstChild) { it.nextSibling }
+            .filterIsInstance<SageEngineIniBlock>()
+            .filter { it.declarationKind == "ReplaceModule" }
+            .forEach { replaceModule ->
+                val replacedTag = SageEngineIniModuleTags.headerValues(replaceModule).firstOrNull()?.text ?: return@forEach
+                SageEngineIniModuleTags.modules(replaceModule)
+                    .mapNotNull { SageEngineIniModuleTags.headerValues(it).getOrNull(1) }
+                    .filter { it.text == replacedTag }
+                    .forEach { tag ->
+                        holder.registerProblem(tag, "ModuleTag '$replacedTag' is the tag of the replaced module, the module of a 'ReplaceModule' needs a new tag")
+                    }
+            }
+    }
+
+    private fun reportTagRemovals(objectBlock: SageEngineIniBlock, holder: ProblemsHolder) {
         val parentName = SageEngineIniModuleTags.parentName(objectBlock) ?: return
-        val references = tagReferences(objectBlock)
-        if (references.isEmpty()) {
+        val changes = SageEngineIniModuleTags.ownTagChanges(objectBlock) ?: return
+        if (changes.none { it is SageEngineIniModuleTags.TagRemoval }) {
             return
         }
 
-        val parentTags = SageEngineIniModuleTags.parentTags(objectBlock) ?: return
-        val ownTags = SageEngineIniModuleTags.ownTags(objectBlock).tags
-        references.forEach { (element, range, name) ->
-            // the engine applies them to the modules read so far, so the object's own earlier modules count as well
-            val offset = element.textRange.startOffset + range.startOffset
-            val knownTags = parentTags + ownTags.filter { it.anchor.textRange.startOffset < offset }.map { it.name }
-            if (knownTags.none { it.equals(name, ignoreCase = true) }) {
-                holder.registerProblem(element, range, "Unknown ModuleTag '$name', '$parentName' has no module with this tag", *fixes(element, name, knownTags))
+        // the engine applies them to the modules read so far, so the object's own earlier modules and removals count as well
+        var knownTags = SageEngineIniModuleTags.parentTags(objectBlock) ?: return
+        changes.forEach { change ->
+            when (change) {
+                is SageEngineIniModuleTags.Tag -> knownTags = knownTags + (change.name to change.type)
+                is SageEngineIniModuleTags.TagRemoval -> {
+                    // unlike most values, the engine compares module tags case-sensitively
+                    if (change.name !in knownTags) {
+                        holder.registerProblem(
+                            change.element,
+                            change.range,
+                            "Unknown ModuleTag '${change.name}', '$parentName' has no module with this tag",
+                            *fixes(change.element, change.name, knownTags.keys)
+                        )
+                    } else if (change.replaceModule != null) {
+                        reportOtherModuleTypes(change.replaceModule, change.name, knownTags[change.name], holder)
+                    }
+                    knownTags = knownTags - change.name
+                }
             }
         }
+    }
+
+    private fun reportOtherModuleTypes(replaceModule: SageEngineIniBlock, replacedTag: String, replacedType: String?, holder: ProblemsHolder) {
+        if (replacedType == null) {
+            return
+        }
+        SageEngineIniModuleTags.modules(replaceModule)
+            .mapNotNull { SageEngineIniModuleTags.headerValues(it).firstOrNull() }
+            .filter { it.text != replacedType }
+            .forEach { type ->
+                holder.registerProblem(
+                    type,
+                    "'${type.text}' can't replace the '$replacedType' with ModuleTag '$replacedTag', the module of a 'ReplaceModule' needs the same type"
+                )
+            }
     }
 
     private fun fixes(element: PsiElement, name: String, knownTags: Collection<String>): Array<LocalQuickFix> {
@@ -66,22 +108,5 @@ class SageEngineIniModuleTagInspection : LocalInspectionTool() {
         val removeFix = SageEngineIniRemoveAssignmentQuickFix("Remove 'RemoveModule'")
             .takeIf { element is SageEngineIniPropertyAssignment && element.valueWords().size == 1 }
         return replaceWithSimilarNameFixes(name, knownTags) + listOfNotNull(removeFix)
-    }
-
-    // e.g. `RemoveModule ModuleTag_Death` and `ReplaceModule ModuleTag_Draw`
-    private fun tagReferences(objectBlock: SageEngineIniBlock): List<Triple<PsiElement, TextRange, String>> {
-        return generateSequence(objectBlock.firstChild) { it.nextSibling }.flatMap { child ->
-            when {
-                child is SageEngineIniPropertyAssignment && child.propertyName == "RemoveModule" -> {
-                    child.valueWords().map { Triple(child, it.range, it.text) }
-                }
-
-                child is SageEngineIniBlock && child.declarationKind == "ReplaceModule" -> {
-                    SageEngineIniModuleTags.headerValues(child).take(1).map { Triple(it, TextRange(0, it.textLength), it.text) }
-                }
-
-                else -> emptyList()
-            }
-        }.toList()
     }
 }
