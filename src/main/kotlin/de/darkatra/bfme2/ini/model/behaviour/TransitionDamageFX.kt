@@ -8,7 +8,7 @@ import de.darkatra.bfme2.ini.model.common.SageIniValueType.ListValue
 import de.darkatra.bfme2.ini.model.value.FXListAtLocation
 import de.darkatra.bfme2.ini.model.value.OCLAtLocation
 import de.darkatra.bfme2.ini.model.value.Opaque
-import de.darkatra.bfme2.ini.model.value.ParticleSystemAtBone
+import de.darkatra.bfme2.ini.model.value.ParticleSystemAtLocation
 import de.darkatra.bfme2.ini.model.value.SageFilter
 import de.darkatra.bfme2.ini.model.value.Untyped
 
@@ -97,42 +97,42 @@ data class TransitionDamageFX(
     @SageIniName("RubbleFXList10") val rubbleFXList10: FXListAtLocation? = null,
     @SageIniName("RubbleFXList11") val rubbleFXList11: FXListAtLocation? = null,
     @SageIniName("RubbleFXList12") val rubbleFXList12: FXListAtLocation? = null,
-    @SageIniName("DamagedParticleSystem1") val damagedParticleSystem1: ParticleSystemAtBone? = null,
-    @SageIniName("DamagedParticleSystem2") val damagedParticleSystem2: ParticleSystemAtBone? = null,
-    @SageIniName("DamagedParticleSystem3") val damagedParticleSystem3: ParticleSystemAtBone? = null,
-    @SageIniName("DamagedParticleSystem4") val damagedParticleSystem4: ParticleSystemAtBone? = null,
-    @SageIniName("DamagedParticleSystem5") val damagedParticleSystem5: ParticleSystemAtBone? = null,
-    @SageIniName("DamagedParticleSystem6") val damagedParticleSystem6: ParticleSystemAtBone? = null,
-    @SageIniName("DamagedParticleSystem7") val damagedParticleSystem7: ParticleSystemAtBone? = null,
-    @SageIniName("DamagedParticleSystem8") val damagedParticleSystem8: ParticleSystemAtBone? = null,
-    @SageIniName("DamagedParticleSystem9") val damagedParticleSystem9: ParticleSystemAtBone? = null,
-    @SageIniName("DamagedParticleSystem10") val damagedParticleSystem10: ParticleSystemAtBone? = null,
-    @SageIniName("DamagedParticleSystem11") val damagedParticleSystem11: ParticleSystemAtBone? = null,
-    @SageIniName("DamagedParticleSystem12") val damagedParticleSystem12: ParticleSystemAtBone? = null,
-    @SageIniName("ReallyDamagedParticleSystem1") val reallyDamagedParticleSystem1: ParticleSystemAtBone? = null,
-    @SageIniName("ReallyDamagedParticleSystem2") val reallyDamagedParticleSystem2: ParticleSystemAtBone? = null,
-    @SageIniName("ReallyDamagedParticleSystem3") val reallyDamagedParticleSystem3: ParticleSystemAtBone? = null,
-    @SageIniName("ReallyDamagedParticleSystem4") val reallyDamagedParticleSystem4: ParticleSystemAtBone? = null,
-    @SageIniName("ReallyDamagedParticleSystem5") val reallyDamagedParticleSystem5: ParticleSystemAtBone? = null,
-    @SageIniName("ReallyDamagedParticleSystem6") val reallyDamagedParticleSystem6: ParticleSystemAtBone? = null,
-    @SageIniName("ReallyDamagedParticleSystem7") val reallyDamagedParticleSystem7: ParticleSystemAtBone? = null,
-    @SageIniName("ReallyDamagedParticleSystem8") val reallyDamagedParticleSystem8: ParticleSystemAtBone? = null,
-    @SageIniName("ReallyDamagedParticleSystem9") val reallyDamagedParticleSystem9: ParticleSystemAtBone? = null,
-    @SageIniName("ReallyDamagedParticleSystem10") val reallyDamagedParticleSystem10: ParticleSystemAtBone? = null,
-    @SageIniName("ReallyDamagedParticleSystem11") val reallyDamagedParticleSystem11: ParticleSystemAtBone? = null,
-    @SageIniName("ReallyDamagedParticleSystem12") val reallyDamagedParticleSystem12: ParticleSystemAtBone? = null,
-    @SageIniName("RubbleParticleSystem1") val rubbleParticleSystem1: ParticleSystemAtBone? = null,
-    @SageIniName("RubbleParticleSystem2") val rubbleParticleSystem2: ParticleSystemAtBone? = null,
-    @SageIniName("RubbleParticleSystem3") val rubbleParticleSystem3: ParticleSystemAtBone? = null,
-    @SageIniName("RubbleParticleSystem4") val rubbleParticleSystem4: ParticleSystemAtBone? = null,
-    @SageIniName("RubbleParticleSystem5") val rubbleParticleSystem5: ParticleSystemAtBone? = null,
-    @SageIniName("RubbleParticleSystem6") val rubbleParticleSystem6: ParticleSystemAtBone? = null,
-    @SageIniName("RubbleParticleSystem7") val rubbleParticleSystem7: ParticleSystemAtBone? = null,
-    @SageIniName("RubbleParticleSystem8") val rubbleParticleSystem8: ParticleSystemAtBone? = null,
-    @SageIniName("RubbleParticleSystem9") val rubbleParticleSystem9: ParticleSystemAtBone? = null,
-    @SageIniName("RubbleParticleSystem10") val rubbleParticleSystem10: ParticleSystemAtBone? = null,
-    @SageIniName("RubbleParticleSystem11") val rubbleParticleSystem11: ParticleSystemAtBone? = null,
-    @SageIniName("RubbleParticleSystem12") val rubbleParticleSystem12: ParticleSystemAtBone? = null,
+    @SageIniName("DamagedParticleSystem1") val damagedParticleSystem1: ParticleSystemAtLocation? = null,
+    @SageIniName("DamagedParticleSystem2") val damagedParticleSystem2: ParticleSystemAtLocation? = null,
+    @SageIniName("DamagedParticleSystem3") val damagedParticleSystem3: ParticleSystemAtLocation? = null,
+    @SageIniName("DamagedParticleSystem4") val damagedParticleSystem4: ParticleSystemAtLocation? = null,
+    @SageIniName("DamagedParticleSystem5") val damagedParticleSystem5: ParticleSystemAtLocation? = null,
+    @SageIniName("DamagedParticleSystem6") val damagedParticleSystem6: ParticleSystemAtLocation? = null,
+    @SageIniName("DamagedParticleSystem7") val damagedParticleSystem7: ParticleSystemAtLocation? = null,
+    @SageIniName("DamagedParticleSystem8") val damagedParticleSystem8: ParticleSystemAtLocation? = null,
+    @SageIniName("DamagedParticleSystem9") val damagedParticleSystem9: ParticleSystemAtLocation? = null,
+    @SageIniName("DamagedParticleSystem10") val damagedParticleSystem10: ParticleSystemAtLocation? = null,
+    @SageIniName("DamagedParticleSystem11") val damagedParticleSystem11: ParticleSystemAtLocation? = null,
+    @SageIniName("DamagedParticleSystem12") val damagedParticleSystem12: ParticleSystemAtLocation? = null,
+    @SageIniName("ReallyDamagedParticleSystem1") val reallyDamagedParticleSystem1: ParticleSystemAtLocation? = null,
+    @SageIniName("ReallyDamagedParticleSystem2") val reallyDamagedParticleSystem2: ParticleSystemAtLocation? = null,
+    @SageIniName("ReallyDamagedParticleSystem3") val reallyDamagedParticleSystem3: ParticleSystemAtLocation? = null,
+    @SageIniName("ReallyDamagedParticleSystem4") val reallyDamagedParticleSystem4: ParticleSystemAtLocation? = null,
+    @SageIniName("ReallyDamagedParticleSystem5") val reallyDamagedParticleSystem5: ParticleSystemAtLocation? = null,
+    @SageIniName("ReallyDamagedParticleSystem6") val reallyDamagedParticleSystem6: ParticleSystemAtLocation? = null,
+    @SageIniName("ReallyDamagedParticleSystem7") val reallyDamagedParticleSystem7: ParticleSystemAtLocation? = null,
+    @SageIniName("ReallyDamagedParticleSystem8") val reallyDamagedParticleSystem8: ParticleSystemAtLocation? = null,
+    @SageIniName("ReallyDamagedParticleSystem9") val reallyDamagedParticleSystem9: ParticleSystemAtLocation? = null,
+    @SageIniName("ReallyDamagedParticleSystem10") val reallyDamagedParticleSystem10: ParticleSystemAtLocation? = null,
+    @SageIniName("ReallyDamagedParticleSystem11") val reallyDamagedParticleSystem11: ParticleSystemAtLocation? = null,
+    @SageIniName("ReallyDamagedParticleSystem12") val reallyDamagedParticleSystem12: ParticleSystemAtLocation? = null,
+    @SageIniName("RubbleParticleSystem1") val rubbleParticleSystem1: ParticleSystemAtLocation? = null,
+    @SageIniName("RubbleParticleSystem2") val rubbleParticleSystem2: ParticleSystemAtLocation? = null,
+    @SageIniName("RubbleParticleSystem3") val rubbleParticleSystem3: ParticleSystemAtLocation? = null,
+    @SageIniName("RubbleParticleSystem4") val rubbleParticleSystem4: ParticleSystemAtLocation? = null,
+    @SageIniName("RubbleParticleSystem5") val rubbleParticleSystem5: ParticleSystemAtLocation? = null,
+    @SageIniName("RubbleParticleSystem6") val rubbleParticleSystem6: ParticleSystemAtLocation? = null,
+    @SageIniName("RubbleParticleSystem7") val rubbleParticleSystem7: ParticleSystemAtLocation? = null,
+    @SageIniName("RubbleParticleSystem8") val rubbleParticleSystem8: ParticleSystemAtLocation? = null,
+    @SageIniName("RubbleParticleSystem9") val rubbleParticleSystem9: ParticleSystemAtLocation? = null,
+    @SageIniName("RubbleParticleSystem10") val rubbleParticleSystem10: ParticleSystemAtLocation? = null,
+    @SageIniName("RubbleParticleSystem11") val rubbleParticleSystem11: ParticleSystemAtLocation? = null,
+    @SageIniName("RubbleParticleSystem12") val rubbleParticleSystem12: ParticleSystemAtLocation? = null,
     @SageIniName("RubbleNeighbor") val rubbleNeighbor: Untyped? = null,
 ) : SageBehavior {
 
@@ -222,42 +222,42 @@ data class TransitionDamageFX(
             property("RubbleFXList10", FXListAtLocation.type) { it.rubbleFXList10 }
             property("RubbleFXList11", FXListAtLocation.type) { it.rubbleFXList11 }
             property("RubbleFXList12", FXListAtLocation.type) { it.rubbleFXList12 }
-            property("DamagedParticleSystem1", ParticleSystemAtBone.type) { it.damagedParticleSystem1 }
-            property("DamagedParticleSystem2", ParticleSystemAtBone.type) { it.damagedParticleSystem2 }
-            property("DamagedParticleSystem3", ParticleSystemAtBone.type) { it.damagedParticleSystem3 }
-            property("DamagedParticleSystem4", ParticleSystemAtBone.type) { it.damagedParticleSystem4 }
-            property("DamagedParticleSystem5", ParticleSystemAtBone.type) { it.damagedParticleSystem5 }
-            property("DamagedParticleSystem6", ParticleSystemAtBone.type) { it.damagedParticleSystem6 }
-            property("DamagedParticleSystem7", ParticleSystemAtBone.type) { it.damagedParticleSystem7 }
-            property("DamagedParticleSystem8", ParticleSystemAtBone.type) { it.damagedParticleSystem8 }
-            property("DamagedParticleSystem9", ParticleSystemAtBone.type) { it.damagedParticleSystem9 }
-            property("DamagedParticleSystem10", ParticleSystemAtBone.type) { it.damagedParticleSystem10 }
-            property("DamagedParticleSystem11", ParticleSystemAtBone.type) { it.damagedParticleSystem11 }
-            property("DamagedParticleSystem12", ParticleSystemAtBone.type) { it.damagedParticleSystem12 }
-            property("ReallyDamagedParticleSystem1", ParticleSystemAtBone.type) { it.reallyDamagedParticleSystem1 }
-            property("ReallyDamagedParticleSystem2", ParticleSystemAtBone.type) { it.reallyDamagedParticleSystem2 }
-            property("ReallyDamagedParticleSystem3", ParticleSystemAtBone.type) { it.reallyDamagedParticleSystem3 }
-            property("ReallyDamagedParticleSystem4", ParticleSystemAtBone.type) { it.reallyDamagedParticleSystem4 }
-            property("ReallyDamagedParticleSystem5", ParticleSystemAtBone.type) { it.reallyDamagedParticleSystem5 }
-            property("ReallyDamagedParticleSystem6", ParticleSystemAtBone.type) { it.reallyDamagedParticleSystem6 }
-            property("ReallyDamagedParticleSystem7", ParticleSystemAtBone.type) { it.reallyDamagedParticleSystem7 }
-            property("ReallyDamagedParticleSystem8", ParticleSystemAtBone.type) { it.reallyDamagedParticleSystem8 }
-            property("ReallyDamagedParticleSystem9", ParticleSystemAtBone.type) { it.reallyDamagedParticleSystem9 }
-            property("ReallyDamagedParticleSystem10", ParticleSystemAtBone.type) { it.reallyDamagedParticleSystem10 }
-            property("ReallyDamagedParticleSystem11", ParticleSystemAtBone.type) { it.reallyDamagedParticleSystem11 }
-            property("ReallyDamagedParticleSystem12", ParticleSystemAtBone.type) { it.reallyDamagedParticleSystem12 }
-            property("RubbleParticleSystem1", ParticleSystemAtBone.type) { it.rubbleParticleSystem1 }
-            property("RubbleParticleSystem2", ParticleSystemAtBone.type) { it.rubbleParticleSystem2 }
-            property("RubbleParticleSystem3", ParticleSystemAtBone.type) { it.rubbleParticleSystem3 }
-            property("RubbleParticleSystem4", ParticleSystemAtBone.type) { it.rubbleParticleSystem4 }
-            property("RubbleParticleSystem5", ParticleSystemAtBone.type) { it.rubbleParticleSystem5 }
-            property("RubbleParticleSystem6", ParticleSystemAtBone.type) { it.rubbleParticleSystem6 }
-            property("RubbleParticleSystem7", ParticleSystemAtBone.type) { it.rubbleParticleSystem7 }
-            property("RubbleParticleSystem8", ParticleSystemAtBone.type) { it.rubbleParticleSystem8 }
-            property("RubbleParticleSystem9", ParticleSystemAtBone.type) { it.rubbleParticleSystem9 }
-            property("RubbleParticleSystem10", ParticleSystemAtBone.type) { it.rubbleParticleSystem10 }
-            property("RubbleParticleSystem11", ParticleSystemAtBone.type) { it.rubbleParticleSystem11 }
-            property("RubbleParticleSystem12", ParticleSystemAtBone.type) { it.rubbleParticleSystem12 }
+            property("DamagedParticleSystem1", ParticleSystemAtLocation.type) { it.damagedParticleSystem1 }
+            property("DamagedParticleSystem2", ParticleSystemAtLocation.type) { it.damagedParticleSystem2 }
+            property("DamagedParticleSystem3", ParticleSystemAtLocation.type) { it.damagedParticleSystem3 }
+            property("DamagedParticleSystem4", ParticleSystemAtLocation.type) { it.damagedParticleSystem4 }
+            property("DamagedParticleSystem5", ParticleSystemAtLocation.type) { it.damagedParticleSystem5 }
+            property("DamagedParticleSystem6", ParticleSystemAtLocation.type) { it.damagedParticleSystem6 }
+            property("DamagedParticleSystem7", ParticleSystemAtLocation.type) { it.damagedParticleSystem7 }
+            property("DamagedParticleSystem8", ParticleSystemAtLocation.type) { it.damagedParticleSystem8 }
+            property("DamagedParticleSystem9", ParticleSystemAtLocation.type) { it.damagedParticleSystem9 }
+            property("DamagedParticleSystem10", ParticleSystemAtLocation.type) { it.damagedParticleSystem10 }
+            property("DamagedParticleSystem11", ParticleSystemAtLocation.type) { it.damagedParticleSystem11 }
+            property("DamagedParticleSystem12", ParticleSystemAtLocation.type) { it.damagedParticleSystem12 }
+            property("ReallyDamagedParticleSystem1", ParticleSystemAtLocation.type) { it.reallyDamagedParticleSystem1 }
+            property("ReallyDamagedParticleSystem2", ParticleSystemAtLocation.type) { it.reallyDamagedParticleSystem2 }
+            property("ReallyDamagedParticleSystem3", ParticleSystemAtLocation.type) { it.reallyDamagedParticleSystem3 }
+            property("ReallyDamagedParticleSystem4", ParticleSystemAtLocation.type) { it.reallyDamagedParticleSystem4 }
+            property("ReallyDamagedParticleSystem5", ParticleSystemAtLocation.type) { it.reallyDamagedParticleSystem5 }
+            property("ReallyDamagedParticleSystem6", ParticleSystemAtLocation.type) { it.reallyDamagedParticleSystem6 }
+            property("ReallyDamagedParticleSystem7", ParticleSystemAtLocation.type) { it.reallyDamagedParticleSystem7 }
+            property("ReallyDamagedParticleSystem8", ParticleSystemAtLocation.type) { it.reallyDamagedParticleSystem8 }
+            property("ReallyDamagedParticleSystem9", ParticleSystemAtLocation.type) { it.reallyDamagedParticleSystem9 }
+            property("ReallyDamagedParticleSystem10", ParticleSystemAtLocation.type) { it.reallyDamagedParticleSystem10 }
+            property("ReallyDamagedParticleSystem11", ParticleSystemAtLocation.type) { it.reallyDamagedParticleSystem11 }
+            property("ReallyDamagedParticleSystem12", ParticleSystemAtLocation.type) { it.reallyDamagedParticleSystem12 }
+            property("RubbleParticleSystem1", ParticleSystemAtLocation.type) { it.rubbleParticleSystem1 }
+            property("RubbleParticleSystem2", ParticleSystemAtLocation.type) { it.rubbleParticleSystem2 }
+            property("RubbleParticleSystem3", ParticleSystemAtLocation.type) { it.rubbleParticleSystem3 }
+            property("RubbleParticleSystem4", ParticleSystemAtLocation.type) { it.rubbleParticleSystem4 }
+            property("RubbleParticleSystem5", ParticleSystemAtLocation.type) { it.rubbleParticleSystem5 }
+            property("RubbleParticleSystem6", ParticleSystemAtLocation.type) { it.rubbleParticleSystem6 }
+            property("RubbleParticleSystem7", ParticleSystemAtLocation.type) { it.rubbleParticleSystem7 }
+            property("RubbleParticleSystem8", ParticleSystemAtLocation.type) { it.rubbleParticleSystem8 }
+            property("RubbleParticleSystem9", ParticleSystemAtLocation.type) { it.rubbleParticleSystem9 }
+            property("RubbleParticleSystem10", ParticleSystemAtLocation.type) { it.rubbleParticleSystem10 }
+            property("RubbleParticleSystem11", ParticleSystemAtLocation.type) { it.rubbleParticleSystem11 }
+            property("RubbleParticleSystem12", ParticleSystemAtLocation.type) { it.rubbleParticleSystem12 }
             property("RubbleNeighbor", Untyped.type) { it.rubbleNeighbor }
         },
     )
