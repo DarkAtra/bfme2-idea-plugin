@@ -33,25 +33,23 @@
 - `SpawnObject` of a `CritterEmitterUpdate` references an object creation list instead of an object
 - Completion shows 2D positions such as `GrabOffset` or the `HotSpot` of a `MouseCursor` as `Coord2D` or `Coord2DInt` instead of `Coords`
 - The object of a `QuantityModifier` is recognized as a reference to an object
-- Modules know the properties of their engine base, e.g. a `HordeContain` those of a `TransportContain`, special ability modules like
-  `ToggleDeploySpecialAbilityUpdate` those of a `SpecialAbilityUpdate` and `W3DSupplyDraw` those of a `W3DScriptedModelDraw`, and every
-  body accepts `RemoveUpgradesOnDeath`
-- The `Attack` nugget of an `ObjectCreationList` accepts the properties the engine reads, e.g. `NumberOfShots` and `DeliveryDecal`
+- Modules know the properties of their engine base, e.g. special ability modules like `ToggleDeploySpecialAbilityUpdate` those of a
+  `SpecialAbilityUpdate` and `W3DSupplyDraw` those of a `W3DScriptedModelDraw`, and every body accepts `RemoveUpgradesOnDeath`
+- The `Attack` nugget of an `ObjectCreationList` accepts the properties the engine reads, e.g. `NumberOfShots` and `DeliveryDecal`, and
+  reports `AnimationName` and the other animation settings it doesn't read as unknown
 - `Banner` and the other properties of an `ArmyToSpawn` the engine reads, e.g. `SpawnAtActStart`, are known, and `Banner` references a `BannerType`
 - `MeleeBehavior` blocks know the properties of `WaitForLeader` and `Amoeba`, e.g. `FollowLeader` and `DelayUntilIdle`
-- Blocks named after a module or type, e.g. `AutoHealBehavior` in an `Object` or `Swarm` in a `HordeContain`, are reported as unknown instead of
-  being accepted as that module
+- Blocks named after a module, e.g. `AutoHealBehavior` in an `Object`, are reported as unknown instead of being accepted as that module
 - Pressing `Enter` or pasting in large files like `weapon.ini` no longer blocks the IDE for seconds
 - `#include` paths are resolved case-insensitively, like in the game, and files the project doesn't contain are looked up at the same path
   below `data/ini` in the additional directories, e.g. the base game files a mod includes
 - `LevelUpFx` of an `ExperienceLevel` and the effects of a `TransitionDamageFX` or `BoneFXUpdate` are read like the engine reads them,
   e.g. `FX:GoodLevelUpFX`, `Loc: X:0 Y:0 Z:0 FXList:FX_BasicSevereScreenShake` or `Bone:None RandomBone:No PSys:FireBuildingLarge`
-- Sounds accept every kind of audio declaration, e.g. a `Multisound` where an `AudioEvent` is usual, because the engine looks them up in the
-  same table
-- `TargetNames` of an `ExperienceLevel` accepts faction sides such as `Men`, the `Side` of a `PlayerTemplate`
-- Properties that the engine doesn't read are reported as unknown: `AllowInsideKindOf`, `ForbidInsideKindOf` and `ShouldDrawPips` of containers,
-  `IsEnclosingContainer` of garrisons, `TransferSelection` of a `HordeSiegeEngineContain`, `AnimationName` and the other animation settings of
-  an `Attack` nugget and transport settings like `PassengersAllowedToFire`
+- Sounds complete and navigate to every kind of audio declaration, e.g. a `Multisound` where an `AudioEvent` is usual, because the engine
+  looks them up in the same table
+- Container properties that the engine doesn't read are reported as unknown: `AllowInsideKindOf` (except in a `ParachuteContain`),
+  `ForbidInsideKindOf`, `ShouldDrawPips`, `IsEnclosingContainer`, `TransferSelection` of a `HordeSiegeEngineContain` and transport settings
+  like `PassengersAllowedToFire`
 
 ## `1.0.1`
 
