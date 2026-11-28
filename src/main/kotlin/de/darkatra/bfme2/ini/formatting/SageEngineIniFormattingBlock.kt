@@ -50,9 +50,10 @@ class SageEngineIniFormattingBlock(
 
     override fun getSpacing(child1: Block?, child2: Block): Spacing? {
 
-        val left = child1 as? SageEngineIniFormattingBlock
+        // a top level block is spaced like its first and last token
+        val left = (child1 as? SageEngineIniFormattingBlock)?.edge(first = false)
             ?: return null
-        val right = child2 as? SageEngineIniFormattingBlock
+        val right = (child2 as? SageEngineIniFormattingBlock)?.edge(first = true)
             ?: return null
 
         if (left.spacingAfter != null && !SageEngineDocumentUtil.hasLineBreakBetween(left.node.psi, right.node.psi)) {
@@ -154,12 +155,24 @@ class SageEngineIniFormattingBlock(
         var defineKeywordLength = 0
         var directives = SageEngineIniFormatterDirectives()
         val text = node.text
-        val children = flattenedFormattingChildren(node)
+        val children = formattingChildren(node)
         var previousSignificantChild: ASTNode? = null
         var blockDepth = 0
         var scriptBodyBaseIndent: Int? = null
 
         for (child in children) {
+            // top level blocks are blocks of their own, so that only the blocks a formatted range touches are built
+            if (child.elementType == SageEngineIniElementTypes.BLOCK || child.elementType == SageEngineIniElementTypes.SCRIPT_BLOCK) {
+                alignments.clear()
+                if (!directives.alignAllDefines) {
+                    defineAlignments.clear()
+                }
+                blocks += SageEngineIniFormattingBlock(child, codeStyleSettings, Indent.getSpaceIndent(blockDepth * codeStyleSettings.indentOptions.INDENT_SIZE), null)
+                previousSignificantChild = null
+                defineTokensOnLine = 0
+                continue
+            }
+
             // only adjacent properties of the same block have aligned values, so blank lines, nested blocks and block ends start a new group
             if ((child.elementType == TokenType.WHITE_SPACE && SageEngineDocumentUtil.containsBlankLine(child.text)) ||
                 ((child.elementType == SageEngineIniTokenTypes.BLOCK_START || child.elementType == SageEngineIniTokenTypes.BLOCK_END) &&
@@ -242,6 +255,39 @@ class SageEngineIniFormattingBlock(
         }
 
         return blocks
+    }
+
+    // the file keeps its top level blocks, the statements of a block are flattened so that indentation and alignment work across nesting
+    private fun formattingChildren(parent: ASTNode): List<ASTNode> {
+        if (parent.treeParent != null) {
+            return flattenedFormattingChildren(parent)
+        }
+        val children = mutableListOf<ASTNode>()
+        var child = parent.firstChildNode
+        while (child != null) {
+            when {
+                child.elementType == SageEngineIniElementTypes.BLOCK || child.elementType == SageEngineIniElementTypes.SCRIPT_BLOCK -> children += child
+                isStructuredElement(child) -> children += flattenedFormattingChildren(child)
+                child.textLength > 0 -> children += child
+            }
+            child = child.treeNext
+        }
+        return children
+    }
+
+    // the first or last token of a top level block, the node itself for tokens
+    private fun edge(first: Boolean): SageEngineIniFormattingBlock {
+        if (isLeaf) {
+            return this
+        }
+        var edge = if (first) node.firstChildNode else node.lastChildNode
+        while (edge != null && (edge.firstChildNode != null || edge.elementType == TokenType.WHITE_SPACE || edge.textLength == 0)) {
+            edge = when {
+                edge.firstChildNode != null -> if (first) edge.firstChildNode else edge.lastChildNode
+                else -> if (first) edge.treeNext else edge.treePrev
+            }
+        }
+        return edge?.let { SageEngineIniFormattingBlock(it, codeStyleSettings, indent, null, spacingAfter) } ?: this
     }
 
     private fun flattenedFormattingChildren(parent: ASTNode): List<ASTNode> {

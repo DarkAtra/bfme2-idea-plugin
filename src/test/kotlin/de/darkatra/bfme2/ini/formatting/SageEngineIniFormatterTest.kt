@@ -101,6 +101,28 @@ class SageEngineIniFormatterTest : LightPlatformCodeInsightFixture4TestCase() {
     }
 
     @Test
+    fun `should indent new lines like the line before them and deeper after a block start`() {
+
+        val inputToExpectedPosition = mapOf(
+            "Object ElvenMallornTree<caret>\nEnd" to LogicalPosition(1, 4),
+            "Object ElvenMallornTree\n    Behavior = AutoHealBehavior ModuleTag_Heal<caret>\n    End\nEnd" to LogicalPosition(2, 8),
+            "Object ElvenMallornTree\n    BuildCost = 1200\n\n<caret>\nEnd" to LogicalPosition(4, 4),
+            "FXParticleSystem FireFlies\n    Alpha<caret>\n    End\nEnd" to LogicalPosition(2, 8),
+            "Object ElvenMallornTree\n    CommandSet ElvenMallornTreeCommandSet<caret>\nEnd" to LogicalPosition(2, 4),
+            "<caret>" to LogicalPosition(1, 0),
+        )
+
+        inputToExpectedPosition.forEach { (input, expected) ->
+
+            myFixture.configureByText("test.ini", input)
+
+            myFixture.performEditorAction("EditorEnter")
+
+            assertThat(myFixture.editor.caretModel.logicalPosition).describedAs(input).isEqualTo(expected)
+        }
+    }
+
+    @Test
     fun `should align properties and indent blocks`() {
 
         myFixture.configureByText(

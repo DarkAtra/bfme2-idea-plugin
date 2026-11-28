@@ -23,6 +23,7 @@
         <lang.foldingBuilder language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.folding.SageEngineIniFoldingBuilder"/>
         <lang.formatter language="SageEngineIni" implementationClass="de.darkatra.bfme2.ini.formatting.SageEngineIniFormattingModelBuilder"/>
         <preFormatProcessor implementation="de.darkatra.bfme2.ini.formatting.SageEngineIniPreFormatProcessor"/>
+        <lineIndentProvider implementation="de.darkatra.bfme2.ini.formatting.SageEngineIniLineIndentProvider"/>
         <fileBasedIndex implementation="de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationIndex"/>
         <fileBasedIndex implementation="de.darkatra.bfme2.ini.declarations.SageEngineIniMacroIndex"/>
         <additionalLibraryRootsProvider implementation="de.darkatra.bfme2.ini.declarations.SageEngineIniAdditionalLibraryRootsProvider"/>

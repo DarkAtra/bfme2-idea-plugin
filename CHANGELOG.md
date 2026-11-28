@@ -42,6 +42,7 @@
   being accepted as that module
 - Blocks that an included file closes are no longer reported as missing their `End`, a warning on the `End` of the included file discourages
   them instead
+- Pressing `Enter` or pasting in large files like `weapon.ini` no longer blocks the IDE for seconds
 - `#include` paths are resolved case-insensitively, like in the game, and files the project doesn't contain are looked up in the additional
   directories, e.g. the base game files a mod includes
 - `LevelUpFx` of an `ExperienceLevel` and the effects of a `TransitionDamageFX` or `BoneFXUpdate` are read like the engine reads them,
