@@ -1,0 +1,3 @@
+data/object.ini:10:26: WARNING 'ElvenMallornTreeArrowz' Cannot resolve Weapon 'ElvenMallornTreeArrowz'
+data/object.ini:14:17: WARNING 'ElvenMallornTreeCommandSet' Expected Armor, but 'ElvenMallornTreeCommandSet' is CommandSet
+data/object.ini:18:42: WARNING 'ElvenMallornTre' Cannot resolve ChildObject or Object or ObjectReskin 'ElvenMallornTre'

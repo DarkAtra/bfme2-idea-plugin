@@ -1,0 +1,2 @@
+object.ini:2:5: WEAK WARNING 'KindOf =' 'KindOf' has an empty value list, which has no effect
+object.ini:5:9: WEAK WARNING 'ObjectStatusOfContained =' 'ObjectStatusOfContained' has an empty value list, which has no effect

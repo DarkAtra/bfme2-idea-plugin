@@ -1,0 +1,2 @@
+object.ini:4:17: WARNING 'MALLORN_TIME' Cannot resolve macro 'MALLORN_TIME'
+object.ini:5:43: WARNING 'VISION_FACTOR' Cannot resolve macro 'VISION_FACTOR'

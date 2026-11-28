@@ -1,0 +1,2 @@
+object.ini:2:5: WARNING 'CommandSet' 'CommandSet' requires '=' in 'Object'
+object.ini:5:18: WARNING '=' 'RemoveModule' must be written without '='

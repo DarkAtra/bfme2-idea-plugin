@@ -1,0 +1,1 @@
+objectcreationlist.ini:1: ObjectCreationList OCL_RohirrimSpawnDeadRider

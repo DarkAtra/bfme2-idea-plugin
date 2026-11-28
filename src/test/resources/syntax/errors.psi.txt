@@ -1,0 +1,26 @@
+Sage Engine Ini File
+  PsiErrorElement:'End' without an open block
+    <empty list>
+  PsiElement(SageEngineIniTokenType.BLOCK_END)('End')
+  SageEngineIniBlock(SageEngineIniElementType.BLOCK)
+    PsiElement(SageEngineIniTokenType.BLOCK_START)('Object')
+    PsiElement(SageEngineIniTokenType.VALUE)('ElvenMallornTree')
+    PsiErrorElement:Unexpected '='
+      PsiElement(SageEngineIniTokenType.EQUALS)('=')
+      PsiElement(SageEngineIniTokenType.VALUE)('Yes')
+    SageEngineIniPropertyAssignment(SageEngineIniElementType.PROPERTY_ASSIGNMENT)
+      PsiElement(SageEngineIniTokenType.PROPERTY)('DisplayName')
+      PsiElement(SageEngineIniTokenType.EQUALS)('=')
+      PsiElement(SageEngineIniTokenType.VALUE)('OBJECT:ElvenMallornTree')
+    SageEngineIniBlock(SageEngineIniElementType.BLOCK)
+      PsiElement(SageEngineIniTokenType.BLOCK_START)('Body')
+      PsiElement(SageEngineIniTokenType.EQUALS)('=')
+      PsiElement(SageEngineIniTokenType.VALUE)('ActiveBody')
+      PsiElement(SageEngineIniTokenType.VALUE)('ModuleTag_Body')
+      SageEngineIniPropertyAssignment(SageEngineIniElementType.PROPERTY_ASSIGNMENT)
+        PsiElement(SageEngineIniTokenType.PROPERTY)('MaxHealth')
+        PsiElement(SageEngineIniTokenType.EQUALS)('=')
+        PsiElement(SageEngineIniTokenType.NUMBER)('2500')
+      PsiElement(SageEngineIniTokenType.BLOCK_END)('End')
+    PsiErrorElement:Missing 'End' for block 'Object'
+      <empty list>

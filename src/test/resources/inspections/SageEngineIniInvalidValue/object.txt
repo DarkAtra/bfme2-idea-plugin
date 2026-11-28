@@ -1,0 +1,2 @@
+object.ini:2:32: WARNING 'STRUCTUR' Unknown KindOf 'STRUCTUR'
+object.ini:11:25: WARNING '-1' Expected an unsigned integer but found '-1'

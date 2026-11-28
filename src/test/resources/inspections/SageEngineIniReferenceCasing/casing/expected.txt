@@ -1,0 +1,1 @@
+commandbutton.ini:2:20: WEAK WARNING 'specialabilityaragornathelas' 'specialabilityaragornathelas' is declared as 'SpecialAbilityAragornAthelas'

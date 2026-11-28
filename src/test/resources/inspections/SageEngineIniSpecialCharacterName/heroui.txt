@@ -1,0 +1,2 @@
+heroui.ini:1:13: WEAK WARNING 'HPTheodenKing'sFavor' 'HPTheodenKing'sFavor' contains the special character ''', names with only letters, digits, '_' and '-' are easier to work with
+heroui.ini:4:8: WEAK WARNING 'FX_Furnace&Longhouse+' 'FX_Furnace&Longhouse+' contains the special characters '&' and '+', names with only letters, digits, '_' and '-' are easier to work with

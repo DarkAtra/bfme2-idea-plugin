@@ -1,0 +1,4 @@
+gondor.ini:8:18: WARNING 'ModuleTag_Missing' Unknown ModuleTag 'ModuleTag_Missing', 'GondorSoldier' has no module with this tag
+gondor.ini:13:19: WARNING 'ModuleTag_Body' Unknown ModuleTag 'ModuleTag_Body', 'GondorSoldier' has no module with this tag
+gondor.ini:24:33: WARNING 'ModuleTag_Body' ModuleTag 'ModuleTag_Body' is used more than once in 'GondorArcher'
+gondor.ini:27:14: WARNING '"includes/death.inc"' ModuleTag 'ModuleTag_Death' is used more than once in 'GondorArcher'

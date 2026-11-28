@@ -1,0 +1,2 @@
+weapon.ini:3:5: WARNING 'AtackRange' Unknown property 'AtackRange' in 'Weapon'
+weapon.ini:8:9: WARNING 'Damgae' Unknown property 'Damgae' in 'DamageNugget'

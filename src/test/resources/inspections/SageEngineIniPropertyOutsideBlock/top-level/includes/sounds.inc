@@ -1,0 +1,2 @@
+VoiceSelect = ElvenMallornTreeSelect
+SoundOnDamaged = ElvenMallornTreeDamaged

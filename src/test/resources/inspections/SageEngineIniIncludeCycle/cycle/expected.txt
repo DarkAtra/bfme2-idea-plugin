@@ -1,0 +1,3 @@
+a.inc:1:10: WARNING '"includes/b.inc"' 'includes/b.inc' includes this file again, so the includes never end
+a.inc:2:10: WARNING '"a.inc"' 'a.inc' includes this file again, so the includes never end
+includes/b.inc:1:10: WARNING '"../a.inc"' '../a.inc' includes this file again, so the includes never end

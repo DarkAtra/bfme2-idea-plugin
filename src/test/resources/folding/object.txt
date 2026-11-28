@@ -1,0 +1,6 @@
+1-14 '...' Object ElvenMallornTree
+2-6 '...' Draw = W3DScriptedModelDraw ModuleTag_Draw
+3-5 '...' DefaultModelConditionState
+7-9 '...' ArmorSet
+10-13 'BeginScript ... EndScript' BeginScript
+16-18 '...' Weapon ElvenBow

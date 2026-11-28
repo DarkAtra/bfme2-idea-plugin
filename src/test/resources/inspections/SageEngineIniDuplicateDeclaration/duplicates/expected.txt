@@ -1,0 +1,4 @@
+object.ini:1:8: WARNING 'ElvenMallornTree' 'ElvenMallornTree' is declared more than once, also in line 3
+object.ini:3:8: WARNING 'ElvenMallornTree' 'ElvenMallornTree' is declared more than once, also in line 1
+object.ini:5:8: WARNING 'ElvenBow' 'ElvenBow' is declared more than once, also in weapon.ini:1
+weapon.ini:1:8: WARNING 'ElvenBow' 'ElvenBow' is declared more than once, also in object.ini:5
