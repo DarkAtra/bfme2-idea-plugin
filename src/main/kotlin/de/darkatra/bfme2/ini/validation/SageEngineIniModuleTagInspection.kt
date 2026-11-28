@@ -1,6 +1,7 @@
 package de.darkatra.bfme2.ini.validation
 
 import com.intellij.codeInspection.LocalInspectionTool
+import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
@@ -53,11 +54,18 @@ class SageEngineIniModuleTagInspection : LocalInspectionTool() {
         references.forEach { (element, range, name) ->
             // the engine applies them to the modules read so far, so the object's own earlier modules count as well
             val offset = element.textRange.startOffset + range.startOffset
-            val known = name.lowercase() in parentTags || ownTags.any { it.anchor.textRange.startOffset < offset && it.name.equals(name, ignoreCase = true) }
-            if (!known) {
-                holder.registerProblem(element, range, "Unknown ModuleTag '$name', '$parentName' has no module with this tag")
+            val knownTags = parentTags + ownTags.filter { it.anchor.textRange.startOffset < offset }.map { it.name }
+            if (knownTags.none { it.equals(name, ignoreCase = true) }) {
+                holder.registerProblem(element, range, "Unknown ModuleTag '$name', '$parentName' has no module with this tag", *fixes(element, name, knownTags))
             }
         }
+    }
+
+    private fun fixes(element: PsiElement, name: String, knownTags: Collection<String>): Array<LocalQuickFix> {
+        // removing a module that doesn't exist has no effect, unless the line removes other modules as well
+        val removeFix = SageEngineIniRemoveAssignmentQuickFix("Remove 'RemoveModule'")
+            .takeIf { element is SageEngineIniPropertyAssignment && element.valueWords().size == 1 }
+        return replaceWithSimilarNameFixes(name, knownTags) + listOfNotNull(removeFix)
     }
 
     // e.g. `RemoveModule ModuleTag_Death` and `ReplaceModule ModuleTag_Draw`

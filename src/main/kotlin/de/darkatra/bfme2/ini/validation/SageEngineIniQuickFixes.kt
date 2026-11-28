@@ -10,6 +10,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiWhiteSpace
 import com.intellij.util.text.EditDistance
 import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
+import kotlin.math.abs
 
 /**
  * Finds known names that are likely meant by a misspelled [name], closest first. The similarity ignores case, so a name that only differs in
@@ -19,6 +20,8 @@ fun similarNames(name: String, candidates: Iterable<String>, limit: Int = 3): Li
     return candidates.asSequence()
         .distinct()
         .filterNot { it == name }
+        // the edit distance is at least the difference in length, which is cheaper to compare first
+        .filter { abs(it.length - name.length) <= (1 - MIN_SIMILARITY) * maxOf(it.length, name.length) }
         .map { it to similarity(name, it) }
         .filter { (_, similarity) -> similarity >= MIN_SIMILARITY }
         .sortedByDescending { (_, similarity) -> similarity }
@@ -58,7 +61,8 @@ class SageEngineIniReplaceTextQuickFix(private val replacement: String) : LocalQ
 }
 
 /**
- * Removes the line of a property assignment, e.g. one that is overridden by a later assignment of the same property.
+ * Removes the line of a property assignment, e.g. one that is overridden by a later assignment of the same property, or of the statement a
+ * problem element is part of, e.g. an `#include`.
  */
 class SageEngineIniRemoveAssignmentQuickFix(
     private val familyName: String = "Remove overridden assignment"

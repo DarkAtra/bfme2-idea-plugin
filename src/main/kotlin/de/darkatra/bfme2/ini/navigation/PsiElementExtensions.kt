@@ -2,7 +2,6 @@ package de.darkatra.bfme2.ini.navigation
 
 import com.intellij.openapi.roots.ProjectFileIndex
 import com.intellij.openapi.util.io.FileUtil
-import com.intellij.openapi.vfs.VfsUtilCore
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
@@ -63,7 +62,7 @@ internal fun PsiElement.resolveIncludeDirectory(): VirtualFile? {
         return parent
     }
 
-    return VfsUtilCore.findRelativeFile(includeDirectoryPath, parent)
+    return parent.findRelativeFileIgnoringCase(includeDirectoryPath)
         ?.takeIf { it.isDirectory }
         ?.takeIf { it.isInProjectDirectory(this) }
 }

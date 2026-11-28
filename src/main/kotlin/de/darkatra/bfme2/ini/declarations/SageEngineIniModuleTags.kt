@@ -54,7 +54,7 @@ object SageEngineIniModuleTags {
     }
 
     /**
-     * The lowercased tags that a `ChildObject` or `ObjectReskin` inherits from its parent objects, `null` if they can't be determined
+     * The tags that a `ChildObject` or `ObjectReskin` inherits from its parent objects, `null` if they can't be determined
      * completely, e.g. because a parent object or an included file can't be resolved.
      */
     fun parentTags(objectBlock: SageEngineIniBlock): Set<String>? {
@@ -92,7 +92,7 @@ object SageEngineIniModuleTags {
             if (!visited.add(parent)) {
                 return null
             }
-            names += ownTags(parent).takeIf { it.complete }?.tags?.map { it.name.lowercase() } ?: return null
+            names += ownTags(parent).takeIf { it.complete }?.tags?.map { it.name } ?: return null
             if (parent.declarationKind in inheritingKinds) {
                 names += parentTags(parent, visited) ?: return null
             }

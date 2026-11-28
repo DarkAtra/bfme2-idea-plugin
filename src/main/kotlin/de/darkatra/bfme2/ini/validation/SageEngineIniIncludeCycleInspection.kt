@@ -28,7 +28,11 @@ class SageEngineIniIncludeCycleInspection : LocalInspectionTool() {
                 val path = element.includePath() ?: return
                 val includedFile = path.resolveIncludeFile() ?: return
                 if (includes(includedFile, element.containingFile.originalFile, mutableSetOf())) {
-                    holder.registerProblem(path, "'${path.normalizedIncludePath()}' includes this file again, so the includes never end")
+                    holder.registerProblem(
+                        path,
+                        "'${path.normalizedIncludePath()}' includes this file again, so the includes never end",
+                        SageEngineIniRemoveAssignmentQuickFix("Remove '#include'")
+                    )
                 }
             }
         }

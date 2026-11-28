@@ -22,6 +22,7 @@ class SageEngineIniUnresolvedMacroInspection : LocalInspectionTool() {
     private val macroName = Regex("[A-Za-z_][A-Za-z0-9_]*")
 
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean): PsiElementVisitor {
+        val macroNames by lazy { SageEngineIniMacros.allNames(holder.project) }
         return object : PsiElementVisitor() {
 
             override fun visitElement(element: PsiElement) {
@@ -31,7 +32,7 @@ class SageEngineIniUnresolvedMacroInspection : LocalInspectionTool() {
                     else -> return
                 }
                 names.filterNot { (_, name) -> SageEngineIniMacros.isDefined(element.project, name) }.forEach { (range, name) ->
-                    holder.registerProblem(element, range, "Cannot resolve macro '$name'")
+                    holder.registerProblem(element, range, "Cannot resolve macro '$name'", *replaceWithSimilarNameFixes(name, macroNames))
                 }
             }
         }

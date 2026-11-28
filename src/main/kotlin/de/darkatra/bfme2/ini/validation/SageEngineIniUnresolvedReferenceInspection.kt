@@ -2,14 +2,22 @@ package de.darkatra.bfme2.ini.validation
 
 import com.intellij.codeInspection.LocalInspectionTool
 import com.intellij.codeInspection.ProblemsHolder
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.util.ModificationTracker
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiElementVisitor
+import com.intellij.psi.util.CachedValueProvider
+import com.intellij.psi.util.CachedValuesManager
 import com.intellij.psi.util.elementType
+import com.intellij.util.indexing.FileBasedIndex
+import de.darkatra.bfme2.ini.declarations.SAGE_ENGINE_INI_DECLARATION_INDEX_ID
+import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationIndexKey
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationLookup
 import de.darkatra.bfme2.ini.declarations.SageEngineIniFactionSides
 import de.darkatra.bfme2.ini.declarations.SageEngineIniMacros
 import de.darkatra.bfme2.ini.declarations.SageEngineIniModelResolver
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Reports values that reference a declaration that doesn't exist, e.g. a misspelled `Weapon`, or a declaration of another kind.
@@ -47,8 +55,36 @@ class SageEngineIniUnresolvedReferenceInspection : LocalInspectionTool() {
                 } else {
                     "Expected $expectedKinds, but '$name' is ${actualKinds.joinToString(" or ")}"
                 }
-                holder.registerProblem(element, reference.range, message)
+                val fixes = similarDeclarationNames(element.project, name, reference.kinds).map { SageEngineIniReplaceTextQuickFix(it) }
+                holder.registerProblem(element, reference.range, message, *fixes.toTypedArray())
             }
         }
+    }
+
+    // the keys hold the lowercased names, so the names as they are declared only have to be read for the few suggested ones
+    private fun similarDeclarationNames(project: Project, name: String, kinds: Set<String>): List<String> {
+        return similarNames(name.lowercase(), lowercasedNames(project, kinds), limit = Int.MAX_VALUE)
+            .asSequence()
+            .mapNotNull { SageEngineIniDeclarationLookup.declaredNames(project, it, kinds).firstOrNull() }
+            .take(MAX_SUGGESTIONS)
+            .toList()
+    }
+
+    // reading all keys is expensive, so they are only read again after the index changed, not on every change of a file
+    private fun lowercasedNames(project: Project, kinds: Set<String>): List<String> {
+        val fileBasedIndex = FileBasedIndex.getInstance()
+        val namesByKinds = CachedValuesManager.getManager(project).getCachedValue(project) {
+            val indexChanges = ModificationTracker { fileBasedIndex.getIndexModificationStamp(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, project) }
+            CachedValueProvider.Result.create(ConcurrentHashMap<Set<String>, List<String>>(), indexChanges)
+        }
+        return namesByKinds.getOrPut(kinds) {
+            fileBasedIndex.getAllKeys(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, project)
+                .filter { SageEngineIniDeclarationIndexKey.kind(it) in kinds }
+                .map { it.substringAfter(' ') }
+        }
+    }
+
+    private companion object {
+        const val MAX_SUGGESTIONS = 3
     }
 }

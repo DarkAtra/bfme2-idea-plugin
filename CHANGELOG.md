@@ -19,6 +19,8 @@
 - Inspection for module tags that are used more than once in an object, and for tags of a `RemoveModule` or `ReplaceModule` that a
   `ChildObject` doesn't inherit, including the modules of included files
 - Inspections for `#include` files and macros that don't exist, and for `#include` statements that include the including file again
+- Quick fixes that change unresolved references, macros, module tags and `#include` files to similar names that exist, remove `RemoveModule`
+  lines of module tags that don't exist and remove `#include` statements that include the including file again
 
 ### Fixed
 

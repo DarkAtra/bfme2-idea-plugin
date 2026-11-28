@@ -314,6 +314,81 @@ class SageEngineIniDeclarationInspectionsTest : LightPlatformCodeInsightFixture4
     }
 
     @Test
+    fun `should suggest similar declarations for unresolved references`() {
+
+        myFixture.enableInspections(SageEngineIniUnresolvedReferenceInspection())
+        myFixture.addFileToProject("data/specialpower.ini", "SpecialPower SpecialAbilityAragornAthelas\nEnd")
+        myFixture.configureByText("commandbutton.ini", "CommandButton Command_Athelas\n    SpecialPower = SpecialAbilityAragorn<caret>Athelaz\nEnd")
+
+        myFixture.launchAction(myFixture.findSingleIntention("Change to 'SpecialAbilityAragornAthelas'"))
+
+        myFixture.checkResult("CommandButton Command_Athelas\n    SpecialPower = SpecialAbilityAragornAthelas\nEnd")
+    }
+
+    @Test
+    fun `should suggest similar macros for unresolved macros`() {
+
+        myFixture.enableInspections(SageEngineIniUnresolvedMacroInspection())
+        myFixture.addFileToProject("data/macros.ini", "#define MALLORN_COST 200")
+        myFixture.configureByText("object.ini", "Object ElvenMallornTree\n    BuildCost = MALORN<caret>_COST\nEnd")
+
+        myFixture.launchAction(myFixture.findSingleIntention("Change to 'MALLORN_COST'"))
+
+        myFixture.checkResult("Object ElvenMallornTree\n    BuildCost = MALLORN_COST\nEnd")
+    }
+
+    @Test
+    fun `should suggest similar module tags or remove unknown module tags`() {
+
+        myFixture.enableInspections(SageEngineIniModuleTagInspection())
+        myFixture.addFileToProject("data/gondor.ini", "Object GondorSoldier\n    Behavior = SlowDeathBehavior ModuleTag_Death\n    End\nEnd")
+        myFixture.configureByText(
+            "object.ini",
+            """
+            ChildObject GondorSoldierVeteran GondorSoldier
+                RemoveModule ModuleTag_<caret>Deth
+                RemoveModule ModuleTag_Missing
+            End
+            """.trimIndent()
+        )
+
+        myFixture.launchAction(myFixture.findSingleIntention("Change to 'ModuleTag_Death'"))
+        myFixture.editor.caretModel.moveToOffset(myFixture.file.text.indexOf("ModuleTag_Missing"))
+        myFixture.launchAction(myFixture.findSingleIntention("Remove 'RemoveModule'"))
+
+        myFixture.checkResult(
+            """
+            ChildObject GondorSoldierVeteran GondorSoldier
+                RemoveModule ModuleTag_Death
+            End
+            """.trimIndent()
+        )
+    }
+
+    @Test
+    fun `should suggest similar files for unresolved includes`() {
+
+        myFixture.enableInspections(SageEngineIniUnresolvedIncludeInspection())
+        myFixture.addFileToProject("includes/capturebuilding.inc", "")
+        myFixture.configureByText("object.ini", "#include \"includes\\CaptureBuilding<caret>.ini\"")
+
+        myFixture.launchAction(myFixture.findSingleIntention("Change to 'includes\\capturebuilding.inc'"))
+
+        myFixture.checkResult("#include \"includes\\capturebuilding.inc\"")
+    }
+
+    @Test
+    fun `should remove includes that include the including file again`() {
+
+        myFixture.enableInspections(SageEngineIniIncludeCycleInspection())
+        myFixture.configureByText("a.inc", "#include \"a<caret>.inc\"\nBehavior = AutoHealBehavior ModuleTag_Heal\nEnd")
+
+        myFixture.launchAction(myFixture.findSingleIntention("Remove '#include'"))
+
+        myFixture.checkResult("Behavior = AutoHealBehavior ModuleTag_Heal\nEnd")
+    }
+
+    @Test
     fun `should report includes of files that don't exist`() {
 
         myFixture.enableInspections(SageEngineIniUnresolvedIncludeInspection())
@@ -322,7 +397,7 @@ class SageEngineIniDeclarationInspectionsTest : LightPlatformCodeInsightFixture4
             "object.ini",
             """
             #include "Includes/CaptureBuilding.inc"
-            #include <warning descr="Cannot resolve file 'includes/missing.inc'">"includes/missing.inc"</warning>
+            #include "<warning descr="Cannot resolve file 'includes/missing.inc'">includes/missing.inc</warning>"
             """.trimIndent()
         )
 
