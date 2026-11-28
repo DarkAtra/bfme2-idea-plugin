@@ -30,15 +30,21 @@ internal fun PsiElement.resolveIncludeFile(): PsiFile? {
     return PsiManager.getInstance(project).findFile(targetFile)
 }
 
-// the game reads mods and the base game as one file system, so mods can include base game files that aren't part of the mod, e.g. the base
-// game's `data/ini/includes/x.inc` for an include in the mod's `data/ini/object/a.ini`, the longest matching path wins
+// the game reads mods and the base game as one file system rooted at `data/ini`, so mods can include base game files that aren't part of the
+// mod, e.g. the base game's `data/ini/object/includes/x.inc` for `#include "../includes/x.inc"` in the mod's `data/ini/object/units/a.ini`
 private fun PsiElement.findInAdditionalDirectories(parent: VirtualFile, includePath: String): VirtualFile? {
     val segments = FileUtil.toCanonicalPath("${parent.path}/$includePath").split('/').filter { it.isNotEmpty() }
+    val iniRootEnd = (segments.size - 2 downTo 1).firstOrNull { segments[it - 1].equals("data", ignoreCase = true) && segments[it].equals("ini", ignoreCase = true) }
+        ?: return null
+    val pathInIniRoot = segments.drop(iniRootEnd + 1).joinToString("/")
     return SageEngineIniSources.additionalDirectories(project).firstNotNullOfOrNull { directory ->
-        segments.indices.firstNotNullOfOrNull { start ->
-            directory.findRelativeFileIgnoringCase(segments.drop(start).joinToString("/"))?.takeIf { !it.isDirectory }
-        }
+        directory.iniRoot().findRelativeFileIgnoringCase(pathInIniRoot)?.takeIf { !it.isDirectory }
     }
+}
+
+// an additional directory is either the game's directory or its `data/ini` directory
+private fun VirtualFile.iniRoot(): VirtualFile {
+    return findRelativeFileIgnoringCase("data/ini")?.takeIf { it.isDirectory } ?: this
 }
 
 // the game resolves paths case-insensitively on every file system, e.g. `Includes/CaptureBuilding.inc` for `includes/capturebuilding.inc`

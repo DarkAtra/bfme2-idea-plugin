@@ -44,8 +44,8 @@
 - Blocks that an included file closes are no longer reported as missing their `End`, a warning on the `End` of the included file discourages
   them instead
 - Pressing `Enter` or pasting in large files like `weapon.ini` no longer blocks the IDE for seconds
-- `#include` paths are resolved case-insensitively, like in the game, and files the project doesn't contain are looked up in the additional
-  directories, e.g. the base game files a mod includes
+- `#include` paths are resolved case-insensitively, like in the game, and files the project doesn't contain are looked up at the same path
+  below `data/ini` in the additional directories, e.g. the base game files a mod includes
 - `LevelUpFx` of an `ExperienceLevel` and the effects of a `TransitionDamageFX` or `BoneFXUpdate` are read like the engine reads them,
   e.g. `FX:GoodLevelUpFX`, `Loc: X:0 Y:0 Z:0 FXList:FX_BasicSevereScreenShake` or `Bone:None RandomBone:No PSys:FireBuildingLarge`
 - Sounds accept every kind of audio declaration, e.g. a `Multisound` where an `AudioEvent` is usual, because the engine looks them up in the
