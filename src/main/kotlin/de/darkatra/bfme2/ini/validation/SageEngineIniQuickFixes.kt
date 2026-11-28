@@ -20,10 +20,7 @@ fun similarNames(name: String, candidates: Iterable<String>, limit: Int = 3): Li
     return candidates.asSequence()
         .distinct()
         .filterNot { it == name }
-        // the edit distance is at least the difference in length, which is cheaper to compare first
-        .filter { abs(it.length - name.length) <= (1 - MIN_SIMILARITY) * maxOf(it.length, name.length) }
-        .map { it to similarity(name, it) }
-        .filter { (_, similarity) -> similarity >= MIN_SIMILARITY }
+        .mapNotNull { candidate -> similarity(name, candidate)?.let { candidate to it } }
         .sortedByDescending { (_, similarity) -> similarity }
         .take(limit)
         .map { (candidate, _) -> candidate }
@@ -33,9 +30,48 @@ fun similarNames(name: String, candidates: Iterable<String>, limit: Int = 3): Li
 // high on purpose: a misleading suggestion is worse than none
 private const val MIN_SIMILARITY = 0.8
 
-private fun similarity(a: String, b: String): Double {
-    val distance = EditDistance.optimalAlignment(a, b, false)
-    return 1.0 - distance.toDouble() / maxOf(a.length, b.length)
+// `null` if the names are less similar than MIN_SIMILARITY
+private fun similarity(a: String, b: String): Double? {
+    val length = maxOf(a.length, b.length)
+    val distance = boundedDistance(a, b, ((1 - MIN_SIMILARITY) * length + 1e-9).toInt()) ?: return null
+    return 1.0 - distance.toDouble() / length
+}
+
+/**
+ * The edit distance of [a] and [b] ignoring case, counting swapped neighbours as one edit like [EditDistance.optimalAlignment], or `null` if
+ * it exceeds [max]. Only a band of width [max] around the diagonal can stay within [max], so comparing a name with thousands of
+ * candidates stays cheap.
+ */
+internal fun boundedDistance(a: String, b: String, max: Int): Int? {
+    if (abs(a.length - b.length) > max) {
+        return null
+    }
+    val outOfBounds = max + 1
+    var previousPrevious = IntArray(b.length + 1) { outOfBounds }
+    var previous = IntArray(b.length + 1) { if (it <= max) it else outOfBounds }
+    var current = IntArray(b.length + 1)
+    for (i in 1..a.length) {
+        current.fill(outOfBounds)
+        current[0] = if (i <= max) i else outOfBounds
+        var rowMinimum = current[0]
+        for (j in maxOf(1, i - max)..minOf(b.length, i + max)) {
+            val cost = if (a[i - 1].equals(b[j - 1], ignoreCase = true)) 0 else 1
+            var distance = minOf(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + cost)
+            if (i > 1 && j > 1 && a[i - 1].equals(b[j - 2], ignoreCase = true) && a[i - 2].equals(b[j - 1], ignoreCase = true)) {
+                distance = minOf(distance, previousPrevious[j - 2] + 1)
+            }
+            current[j] = minOf(distance, outOfBounds)
+            rowMinimum = minOf(rowMinimum, current[j])
+        }
+        if (rowMinimum > max) {
+            return null
+        }
+        val recycled = previousPrevious
+        previousPrevious = previous
+        previous = current
+        current = recycled
+    }
+    return previous[b.length].takeIf { it <= max }
 }
 
 fun replaceWithSimilarNameFixes(name: String, candidates: Iterable<String>, prefix: String = ""): Array<LocalQuickFix> {

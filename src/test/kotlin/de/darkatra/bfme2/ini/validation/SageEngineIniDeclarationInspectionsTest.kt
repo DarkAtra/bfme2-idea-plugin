@@ -1,6 +1,10 @@
 package de.darkatra.bfme2.ini.validation
 
+import com.intellij.lang.annotation.HighlightSeverity
+import com.intellij.openapi.command.WriteCommandAction
+import com.intellij.psi.PsiDocumentManager
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixture4TestCase
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 class SageEngineIniDeclarationInspectionsTest : LightPlatformCodeInsightFixture4TestCase() {
@@ -30,6 +34,26 @@ class SageEngineIniDeclarationInspectionsTest : LightPlatformCodeInsightFixture4
         )
 
         myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
+    fun `should resolve references again after declarations were added`() {
+
+        myFixture.enableInspections(SageEngineIniUnresolvedReferenceInspection(), SageEngineIniUnresolvedMacroInspection())
+        myFixture.configureByText(
+            "object.ini",
+            "CommandButton Command_Athelas\n    SpecialPower = SpecialAbilityAragornAthelas\nEnd\nObject ElvenMallornTree\n    BuildCost = MALLORN_COST\nEnd\n"
+        )
+        assertThat(myFixture.doHighlighting(HighlightSeverity.WARNING)).extracting<String> { it.description }
+            .containsExactlyInAnyOrder("Cannot resolve SpecialPower 'SpecialAbilityAragornAthelas'", "Cannot resolve macro 'MALLORN_COST'")
+
+        myFixture.addFileToProject("data/specialpower.ini", "SpecialPower SpecialAbilityAragornAthelas\nEnd")
+        assertThat(myFixture.doHighlighting(HighlightSeverity.WARNING)).extracting<String> { it.description }
+            .containsExactly("Cannot resolve macro 'MALLORN_COST'")
+
+        WriteCommandAction.runWriteCommandAction(project) { myFixture.editor.document.insertString(0, "#define MALLORN_COST 1200\n") }
+        PsiDocumentManager.getInstance(project).commitDocument(myFixture.editor.document)
+        assertThat(myFixture.doHighlighting(HighlightSeverity.WARNING)).isEmpty()
     }
 
     @Test

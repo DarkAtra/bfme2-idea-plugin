@@ -57,10 +57,14 @@ class SageEngineIniMacroIndex : FileBasedIndexExtension<String, String>() {
 
 object SageEngineIniMacros {
 
+    private val definedCache = SageEngineIniIndexCache(SAGE_ENGINE_INI_MACRO_INDEX_ID)
+
     fun isDefined(project: Project, name: String): Boolean {
-        return FileBasedIndex.getInstance()
-            .getContainingFiles(SAGE_ENGINE_INI_MACRO_INDEX_ID, name.lowercase(), SageEngineIniSources.scope(project))
-            .isNotEmpty()
+        return definedCache.get(project, name.lowercase()) {
+            FileBasedIndex.getInstance()
+                .getContainingFiles(SAGE_ENGINE_INI_MACRO_INDEX_ID, name.lowercase(), SageEngineIniSources.scope(project))
+                .isNotEmpty()
+        }
     }
 
     /**

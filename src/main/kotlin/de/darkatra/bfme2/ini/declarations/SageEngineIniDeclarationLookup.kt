@@ -30,6 +30,24 @@ object SageEngineIniDeclarationLookup {
      * only the index is read, so it is cheap enough to check every value of a file.
      */
     fun declaredNames(project: Project, name: String, kinds: Set<String>): List<String> {
+        return declaredNamesCache.get(project, name.lowercase() to kinds) { readDeclaredNames(project, name, kinds) }
+    }
+
+    /**
+     * The names of all declarations of the [kinds] as the index keys hold them, i.e. lowercased. Cheaper than [allDeclarationNames], e.g. to
+     * find similar names, of which only the few suggested ones need their declared casing.
+     */
+    fun lowercasedDeclarationNames(project: Project, kinds: Set<String>): List<String> {
+        return declaredNamesCache.get(project, kinds) {
+            FileBasedIndex.getInstance().getAllKeys(SAGE_ENGINE_INI_DECLARATION_INDEX_ID, project)
+                .filter { SageEngineIniDeclarationIndexKey.kind(it) in kinds }
+                .map { it.substringAfter(' ') }
+        }
+    }
+
+    private val declaredNamesCache = SageEngineIniIndexCache(SAGE_ENGINE_INI_DECLARATION_INDEX_ID)
+
+    private fun readDeclaredNames(project: Project, name: String, kinds: Set<String>): List<String> {
         return ReadAction.computeBlocking<List<String>, RuntimeException> {
             val scope = SageEngineIniSources.scope(project)
             val fileBasedIndex = FileBasedIndex.getInstance()
