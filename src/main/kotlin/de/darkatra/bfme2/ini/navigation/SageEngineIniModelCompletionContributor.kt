@@ -8,6 +8,7 @@ import com.intellij.codeInsight.completion.CompletionType
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.patterns.PlatformPatterns.psiElement
 import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiFile
 import com.intellij.psi.util.elementType
 import com.intellij.util.ProcessingContext
 import de.darkatra.bfme2.ini.declarations.SageEngineIniDeclarationLookup
@@ -20,7 +21,8 @@ import de.darkatra.bfme2.ini.psi.SageEngineIniPropertyAssignment
 import de.darkatra.bfme2.ini.psi.SageEngineIniTokenTypes
 
 /**
- * Completes block and property names as well as enum and boolean values based on the descriptors of the INI model.
+ * Completes block and property names, the types of modules and other blocks typed by their header, as well as enum and boolean values based
+ * on the descriptors of the INI model.
  */
 class SageEngineIniModelCompletionContributor : CompletionContributor() {
 
@@ -75,11 +77,39 @@ class SageEngineIniModelCompletionContributor : CompletionContributor() {
 
     private fun addValueCompletions(position: PsiElement, result: CompletionResultSet) {
 
+        val block = position.parent as? SageEngineIniBlock
+        if (block != null) {
+            addHeaderCompletions(position, block, result)
+            return
+        }
+
         val assignment = position.parent as? SageEngineIniPropertyAssignment ?: return
         val property = SageEngineIniModelResolver.property(assignment) ?: return
 
         valueTokens(property.type).forEach { token ->
             result.addElement(LookupElementBuilder.create(token).withTypeText(describe(property.type), true))
+        }
+    }
+
+    // the type token of e.g. `Behavior = AutoHealBehavior ModuleTag_Heal` or `MeleeBehavior = Swarm`
+    private fun addHeaderCompletions(position: PsiElement, block: SageEngineIniBlock, result: CompletionResultSet) {
+
+        val kind = block.declarationKind ?: return
+        if (block.nameIdentifier != position) {
+            return
+        }
+
+        val parentDescriptor = (block.parent as? SageEngineIniBlock)?.let { SageEngineIniModelResolver.descriptor(it) }
+            // `.inc` files are included into objects, so their top level blocks are modules
+            ?: SageIniModel.block("Object").takeIf { block.parent is PsiFile && block.containingFile.name.endsWith(".inc", ignoreCase = true) }
+            ?: return
+        val candidates = SageEngineIniModelResolver.childBlockCandidates(parentDescriptor, kind).filterNot { it.isAbstract }
+        // a single candidate isn't typed by the header, and headers like `ModelConditionState = DAMAGED` are labels
+        if (candidates.size < 2 || candidates.any { it.keyedByLabel }) {
+            return
+        }
+        candidates.forEach { candidate ->
+            result.addElement(LookupElementBuilder.create(candidate.name).withTypeText(kind, true))
         }
     }
 
