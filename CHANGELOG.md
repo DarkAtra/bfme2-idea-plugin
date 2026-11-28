@@ -46,7 +46,7 @@
 - `#include` paths are resolved case-insensitively, like in the game, and files the project doesn't contain are looked up in the additional
   directories, e.g. the base game files a mod includes
 - `LevelUpFx` of an `ExperienceLevel` and the effects of a `TransitionDamageFX` or `BoneFXUpdate` are read like the engine reads them,
-  e.g. `FX:GoodLevelUpFX` or `Loc: X:0 Y:0 Z:0 FXList:FX_BasicSevereScreenShake`
+  e.g. `FX:GoodLevelUpFX`, `Loc: X:0 Y:0 Z:0 FXList:FX_BasicSevereScreenShake` or `Bone:None RandomBone:No PSys:FireBuildingLarge`
 - Sounds accept every kind of audio declaration, e.g. a `Multisound` where an `AudioEvent` is usual, because the engine looks them up in the
   same table
 - `TargetNames` of an `ExperienceLevel` accepts faction sides such as `Men`, the `Side` of a `PlayerTemplate`
