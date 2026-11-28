@@ -41,8 +41,13 @@ sealed interface SageIniValueType<out V> {
 
     /**
      * A reference to a declaration of one of the [targets].
+     *
+     * @param factionSides `true` if the value can name a faction side instead, i.e. the `Side` of a `PlayerTemplate` such as `Men`
      */
-    class ReferenceValue<T : Any>(targets: () -> List<SageIniBlockDescriptor<out T>>) : SageIniValueType<SageReference<T>> {
+    class ReferenceValue<T : Any>(
+        val factionSides: Boolean = false,
+        targets: () -> List<SageIniBlockDescriptor<out T>>
+    ) : SageIniValueType<SageReference<T>> {
 
         // lazy because declarations reference each other cyclically
         val targets: List<SageIniBlockDescriptor<out T>> by lazy(targets)

@@ -18,10 +18,10 @@ import de.darkatra.bfme2.ini.validation.SageEngineIniValueWord
 import de.darkatra.bfme2.ini.validation.valueWords
 
 /**
- * A value token that references a declaration of one of the [kinds]. The name is the [range] of the token, e.g. without the `RiderOCL:` of
- * `RiderOCL:OCL_RohirrimSpawnDeadRider`.
+ * A value token that references a declaration of one of the [kinds], or a faction side if [factionSides] is `true`. The name is the [range] of
+ * the token, e.g. without the `RiderOCL:` of `RiderOCL:OCL_RohirrimSpawnDeadRider`.
  */
-data class SageEngineIniValueReference(val kinds: Set<String>, val range: TextRange) {
+data class SageEngineIniValueReference(val kinds: Set<String>, val range: TextRange, val factionSides: Boolean = false) {
 
     fun name(value: PsiElement): String = range.substring(value.text)
 }
@@ -114,7 +114,7 @@ object SageEngineIniModelResolver {
         if (nameStart !in 0 until value.textLength) {
             return null
         }
-        return SageEngineIniValueReference(reference.kinds, TextRange(nameStart, value.textLength))
+        return SageEngineIniValueReference(reference.kinds, TextRange(nameStart, value.textLength), reference.factionSides)
     }
 
     private fun wordReferences(

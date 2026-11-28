@@ -33,6 +33,29 @@ class SageEngineIniDeclarationInspectionsTest : LightPlatformCodeInsightFixture4
     }
 
     @Test
+    fun `should accept faction sides and every kind of sound where the engine does`() {
+
+        myFixture.enableInspections(SageEngineIniUnresolvedReferenceInspection())
+        myFixture.addFileToProject("data/playertemplate.ini", "PlayerTemplate FactionMen\n    Side = Men\nEnd")
+        myFixture.addFileToProject("data/object.ini", "Object GondorSoldier\nEnd")
+        myFixture.addFileToProject("data/voice.ini", "Multisound GondorSoldierVoiceSelectMS\nEnd\nMusicTrack GondorTheme\nEnd")
+        myFixture.configureByText(
+            "experiencelevels.ini",
+            """
+            ExperienceLevel MenLevel2
+                TargetNames = Men GondorSoldier <warning descr="Cannot resolve ChildObject or Object or ObjectReskin 'Mne'">Mne</warning>
+            End
+            Object GondorArcher
+                VoiceSelect = GondorSoldierVoiceSelectMS
+                VoiceMove = GondorTheme
+            End
+            """.trimIndent()
+        )
+
+        myFixture.checkHighlighting(true, false, false)
+    }
+
+    @Test
     fun `should only report the words of values that reference declarations`() {
 
         myFixture.enableInspections(SageEngineIniUnresolvedReferenceInspection())

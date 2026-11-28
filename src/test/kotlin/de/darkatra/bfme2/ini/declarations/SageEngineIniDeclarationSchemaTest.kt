@@ -67,13 +67,13 @@ class SageEngineIniDeclarationSchemaTest {
             "Mission.LoadScreenImage" to setOf("MappedImage"),
             "InGameUI.TerrainResourceClaimDecal" to setOf("MappedImage"),
             "InGameUI.PlaceTerrainResourceClaimantDecal" to setOf("MappedImage"),
-            "Upgrade.UnitSpecificSound" to setOf("AudioEvent"),
-            "LivingWorldPlayerTemplate.AutoResolveLoop" to setOf("AudioEvent"),
-            "PlayerTemplate.LoadScreenMusic" to setOf("Multisound"),
-            "GameData.BasicTutorialLoadScreenMusicTrack" to setOf("Multisound"),
-            "GameData.AdvancedTutorialLoadScreenMusicTrack" to setOf("Multisound"),
-            "LivingWorldPlayerTemplate.Music" to setOf("Multisound"),
-            "Mission.LoadScreenMusicTrack" to setOf("MusicTrack"),
+            "Upgrade.UnitSpecificSound" to setOf("AmbientStream", "AudioEvent", "DialogEvent", "Multisound", "MusicTrack", "StreamedSound"),
+            "LivingWorldPlayerTemplate.AutoResolveLoop" to setOf("AmbientStream", "AudioEvent", "DialogEvent", "Multisound", "MusicTrack", "StreamedSound"),
+            "PlayerTemplate.LoadScreenMusic" to setOf("AmbientStream", "AudioEvent", "DialogEvent", "Multisound", "MusicTrack", "StreamedSound"),
+            "GameData.BasicTutorialLoadScreenMusicTrack" to setOf("AmbientStream", "AudioEvent", "DialogEvent", "Multisound", "MusicTrack", "StreamedSound"),
+            "GameData.AdvancedTutorialLoadScreenMusicTrack" to setOf("AmbientStream", "AudioEvent", "DialogEvent", "Multisound", "MusicTrack", "StreamedSound"),
+            "LivingWorldPlayerTemplate.Music" to setOf("AmbientStream", "AudioEvent", "DialogEvent", "Multisound", "MusicTrack", "StreamedSound"),
+            "Mission.LoadScreenMusicTrack" to setOf("AmbientStream", "AudioEvent", "DialogEvent", "Multisound", "MusicTrack", "StreamedSound"),
             "LinearCampaign.OverallCampaignIntroMovie" to setOf("Video"),
             "Mission.IntroMovie" to setOf("Video"),
             "ArmyToSpawn.PalantirMovie" to setOf("Video"),
@@ -123,72 +123,72 @@ class SageEngineIniDeclarationSchemaTest {
     }
 
     @Test
-    fun `should only reference the audio kinds that the game files use`() {
+    fun `should reference every kind of sound from every sound property`() {
 
-        mapOf(
-            "CommandButton.UnitSpecificSound" to setOf("AudioEvent", "Multisound"),
-            "LivingWorldArmyIcon.KickOutReinforcementsSound" to setOf("AudioEvent", "Multisound"),
-            "LivingWorldArmyIcon.WelcomeReinforcementsSound" to setOf("AudioEvent", "Multisound"),
-            "MiscAudio.CreditsMusic" to setOf("Multisound"),
-            "MiscAudio.FullScreenSubMenuMusic" to setOf("Multisound"),
-            "MiscAudio.HighLODShellMusic" to setOf("Multisound"),
-            "MiscAudio.LowLODShellMusic" to setOf("Multisound"),
-            "MiscAudio.SaveFileLoadMusic" to setOf("Multisound"),
-            "MiscAudio.ScoreScreenMusic" to setOf("MusicTrack"),
-            "MiscAudio.VolumeSampleMovie" to setOf("DialogEvent"),
-            "MiscAudio.VolumeSampleMusic" to setOf("MusicTrack"),
-            "ModelConditionSpecialAbilityUpdate.TriggerSound" to setOf("AudioEvent", "Multisound"),
-            "Multisound.Subsounds" to setOf("AudioEvent", "Multisound", "MusicTrack", "StreamedSound"),
-            "Object.SoundAmbient" to setOf("AudioEvent", "Multisound", "AmbientStream"),
-            "Object.SoundAmbientReallyDamaged" to setOf("AudioEvent", "Multisound"),
-            "Object.SoundMoveLoop" to setOf("AudioEvent", "Multisound"),
-            "Object.SoundOnDamaged" to setOf("AudioEvent", "Multisound"),
-            "Object.SoundOnReallyDamaged" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceAttack" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceAttackAir" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceAttackCharge" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceAttackMachine" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceAttackStructure" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceCombineWithHorde" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceCreated" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceFear" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceGuard" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceMove" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceMoveToCamp" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceMoveWhileAttacking" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceRetreatToCastle" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceSelect" to setOf("AudioEvent", "Multisound"),
-            "Object.VoiceSelectBattle" to setOf("AudioEvent", "Multisound"),
-            "SideSound.Sound" to setOf("AudioEvent", "Multisound"),
-            "SlowDeathBehavior.Sound" to setOf("AudioEvent", "Multisound"),
-            "Sound.Name" to setOf("AudioEvent", "Multisound"),
-            "SpecialAbilityUpdate.TriggerSound" to setOf("AudioEvent", "Multisound"),
-            "SpecialPower.InitiateAtLocationSound" to setOf("AudioEvent", "Multisound"),
-            "SpecialPower.InitiateSound" to setOf("AudioEvent", "Multisound"),
-            "SpecialPowerModuleBehavior.InitiateSound" to setOf("AudioEvent", "Multisound"),
-            "ToggleDeploySpecialAbilityUpdate.SoundDeploy" to setOf("Multisound"),
-            "ToggleDeploySpecialAbilityUpdate.SoundUndeploy" to setOf("Multisound"),
-            "UnitSpecificSounds.VoiceEnter" to setOf("AudioEvent", "Multisound"),
-            "UnitSpecificSounds.VoiceEnterUnitEvilMenTransportShip" to setOf("AudioEvent", "Multisound"),
-            "UnitSpecificSounds.VoiceEnterUnitMordorMumakil" to setOf("AudioEvent", "Multisound"),
-            "UnitSpecificSounds.VoiceEnterUnitSlaughterHouse" to setOf("AudioEvent", "Multisound"),
-            "UnitSpecificSounds.VoiceEnterUnitTransportShip" to setOf("AudioEvent", "Multisound"),
-            "UnitSpecificSounds.VoiceGarrison" to setOf("AudioEvent", "Multisound"),
-            "UnitSpecificSounds.VoiceInitiateCaptureBuilding" to setOf("AudioEvent", "Multisound"),
-            "UnitSpecificSounds.VoiceSelectIdleWorker" to setOf("AudioEvent", "Multisound"),
-            "Upgrade.ResearchSound" to setOf("AudioEvent", "Multisound"),
-            "WeaponModeSpecialPowerUpdate.InitiateSound" to setOf("Multisound"),
-            "WeatherData.WeatherSound" to setOf("Multisound", "StreamedSound"),
-            "_SoundSet.VoiceAttack" to setOf("AudioEvent", "Multisound"),
-            "_SoundSet.VoiceAttackCharge" to setOf("AudioEvent", "Multisound"),
-            "_SoundSet.VoiceMove" to setOf("AudioEvent", "Multisound"),
-            "_SoundSet.VoiceSelect" to setOf("AudioEvent", "Multisound"),
-            "_SoundSet.VoiceSelectBattle" to setOf("AudioEvent", "Multisound"),
-        ).forEach { (blockAndProperty, expectedKinds) ->
+        listOf(
+            "CommandButton.UnitSpecificSound",
+            "LivingWorldArmyIcon.KickOutReinforcementsSound",
+            "LivingWorldArmyIcon.WelcomeReinforcementsSound",
+            "MiscAudio.CreditsMusic",
+            "MiscAudio.FullScreenSubMenuMusic",
+            "MiscAudio.HighLODShellMusic",
+            "MiscAudio.LowLODShellMusic",
+            "MiscAudio.SaveFileLoadMusic",
+            "MiscAudio.ScoreScreenMusic",
+            "MiscAudio.VolumeSampleMovie",
+            "MiscAudio.VolumeSampleMusic",
+            "ModelConditionSpecialAbilityUpdate.TriggerSound",
+            "Multisound.Subsounds",
+            "Object.SoundAmbient",
+            "Object.SoundAmbientReallyDamaged",
+            "Object.SoundMoveLoop",
+            "Object.SoundOnDamaged",
+            "Object.SoundOnReallyDamaged",
+            "Object.VoiceAttack",
+            "Object.VoiceAttackAir",
+            "Object.VoiceAttackCharge",
+            "Object.VoiceAttackMachine",
+            "Object.VoiceAttackStructure",
+            "Object.VoiceCombineWithHorde",
+            "Object.VoiceCreated",
+            "Object.VoiceFear",
+            "Object.VoiceGuard",
+            "Object.VoiceMove",
+            "Object.VoiceMoveToCamp",
+            "Object.VoiceMoveWhileAttacking",
+            "Object.VoiceRetreatToCastle",
+            "Object.VoiceSelect",
+            "Object.VoiceSelectBattle",
+            "SideSound.Sound",
+            "SlowDeathBehavior.Sound",
+            "Sound.Name",
+            "SpecialAbilityUpdate.TriggerSound",
+            "SpecialPower.InitiateAtLocationSound",
+            "SpecialPower.InitiateSound",
+            "SpecialPowerModuleBehavior.InitiateSound",
+            "ToggleDeploySpecialAbilityUpdate.SoundDeploy",
+            "ToggleDeploySpecialAbilityUpdate.SoundUndeploy",
+            "UnitSpecificSounds.VoiceEnter",
+            "UnitSpecificSounds.VoiceEnterUnitEvilMenTransportShip",
+            "UnitSpecificSounds.VoiceEnterUnitMordorMumakil",
+            "UnitSpecificSounds.VoiceEnterUnitSlaughterHouse",
+            "UnitSpecificSounds.VoiceEnterUnitTransportShip",
+            "UnitSpecificSounds.VoiceGarrison",
+            "UnitSpecificSounds.VoiceInitiateCaptureBuilding",
+            "UnitSpecificSounds.VoiceSelectIdleWorker",
+            "Upgrade.ResearchSound",
+            "WeaponModeSpecialPowerUpdate.InitiateSound",
+            "WeatherData.WeatherSound",
+            "_SoundSet.VoiceAttack",
+            "_SoundSet.VoiceAttackCharge",
+            "_SoundSet.VoiceMove",
+            "_SoundSet.VoiceSelect",
+            "_SoundSet.VoiceSelectBattle",
+        ).forEach { blockAndProperty ->
             val (blockName, propertyName) = blockAndProperty.split('.')
             val property = SageIniModel.blocks.firstNotNullOf { block -> block.property(propertyName)?.takeIf { block.name == blockName } }
 
-            assertThat(SageEngineIniDeclarationSchema.referencedKinds(property)).describedAs(blockAndProperty).isEqualTo(expectedKinds)
+            assertThat(SageEngineIniDeclarationSchema.referencedKinds(property)).describedAs(blockAndProperty).isEqualTo(setOf("AmbientStream", "AudioEvent", "DialogEvent", "Multisound", "MusicTrack", "StreamedSound"))
         }
     }
 
@@ -234,16 +234,15 @@ class SageEngineIniDeclarationSchemaTest {
     }
 
     @Test
-    fun `should reference the audio kinds the game files use`() {
+    fun `should reference every kind of sound because the engine looks them up in the same table`() {
 
-        assertThat(wordReferences("Object", "SoundAmbient", "AmbientShireStream"))
-            .containsExactly(WordReference(setOf("AudioEvent", "Multisound", "AmbientStream")))
+        val sound = WordReference(setOf("AmbientStream", "AudioEvent", "DialogEvent", "Multisound", "MusicTrack", "StreamedSound"))
+
+        assertThat(wordReferences("Object", "SoundAmbient", "AmbientShireStream")).containsExactly(sound)
         assertThat(wordReferences("ModelConditionAudioLoopClientBehavior", "ModelCondition", "Required:FIRING_OR_PREATTACK_A Sound:DragonAllyFirebreathMS"))
-            .containsExactly(null, WordReference(setOf("AudioEvent", "Multisound"), nameOffset = 6))
-        assertThat(wordReferences("Multisound", "Subsounds", "DarknessStereoLoop"))
-            .containsExactly(WordReference(setOf("AudioEvent", "Multisound", "MusicTrack", "StreamedSound")))
-        assertThat(wordReferences("WeatherData", "WeatherSound", "RainStereoLoop"))
-            .containsExactly(WordReference(setOf("Multisound", "StreamedSound")))
+            .containsExactly(null, sound.copy(nameOffset = 6))
+        assertThat(wordReferences("Multisound", "Subsounds", "DarknessStereoLoop")).containsExactly(sound)
+        assertThat(wordReferences("WeatherData", "WeatherSound", "RainStereoLoop")).containsExactly(sound)
     }
 
     @Test

@@ -38,7 +38,7 @@ data class ExperienceLevel(
         name = "ExperienceLevel",
         tableKey = "levels",
         properties = {
-            property("TargetNames", ListValue(ReferenceValue<Object> { listOf(Object, ChildObject, ObjectReskin) })) { it.targetNames }
+            property("TargetNames", ListValue(ReferenceValue<Object>(factionSides = true) { listOf(Object, ChildObject, ObjectReskin) })) { it.targetNames }
             property("RequiredExperience", FloatValue) { it.requiredExperience }
             property("ExperienceAward", FloatValue) { it.experienceAward }
             property("Rank", FloatValue) { it.rank }

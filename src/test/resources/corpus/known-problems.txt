@@ -260,7 +260,6 @@ ini/experiencelevels.ini: 'TomBombadilLevel10' is declared more than once, also 
 ini/experiencelevels.ini: 'TomBombadilLevel10' is declared more than once, also in line 1598
 ini/experiencelevels.ini: 'WitchKingLevel1' is declared more than once, also in line 15118
 ini/experiencelevels.ini: 'WitchKingLevel1' is declared more than once, also in line 23606
-ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'Angmar'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'AngmarSentryTower'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'ArPharazon'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'BGGondorArcherHorde'
@@ -274,13 +273,10 @@ ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin '
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarvenBofurBFME2'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarvenCampaignGloin'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarvenDainOld'
-ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'Dwarves'
-ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'Elves'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'GondorFighterHorde_BG'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'IsengardWulfgarCrebain_Summoned'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'MINI_HORDE'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'MINI_HORDE_EVIL'
-ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'Men'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'NumenorArPharazon'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'OathbreakerWisp'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'OathbreakerWisp1'
@@ -299,7 +295,6 @@ ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin '
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'ShipsBeaconEgg'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'TDGondorBarracks'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'TDSiegeTowerExpansion'
-ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'Wild'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin '_Summoned'
 ini/experiencelevels.ini: Cannot resolve ChildObject or Object or ObjectReskin 'r'
 ini/experiencelevels.ini: Cannot resolve ModifierList 'EvilMonsterBonusRank1'
@@ -315,10 +310,6 @@ ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_MiniHordeLvl6'
 ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_MiniHordeLvl8'
 ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_MiniHordeLvl9'
 ini/experiencelevels.ini: Cannot resolve Upgrade 'Upgrade_RingWraithSpeechCraft'
-ini/experiencelevels.ini: Expected ChildObject or Object or ObjectReskin, but 'Angmar' is FactionVictoryData
-ini/experiencelevels.ini: Expected ChildObject or Object or ObjectReskin, but 'Arnor' is FactionVictoryData
-ini/experiencelevels.ini: Expected ChildObject or Object or ObjectReskin, but 'Isengard' is FactionVictoryData
-ini/experiencelevels.ini: Expected ChildObject or Object or ObjectReskin, but 'Mordor' is FactionVictoryData
 ini/experiencelevels_createahero.inc: Cannot resolve Upgrade 'Upgrade_CreateAHeroGloriousCharge'
 ini/fxlist.ini: 'FX_ArwenFlood' is declared more than once, also in line 14299
 ini/fxlist.ini: 'FX_ArwenFlood' is declared more than once, also in line 28536
@@ -425,7 +416,6 @@ ini/fxparticlesystemcustom.ini: 'NazgulLightPointPixie' is declared more than on
 ini/fxparticlesystemcustom.ini: 'NazgulLightPointPixie' is declared more than once, also in fxparticlesystem.ini:54621
 ini/fxparticlesystemcustom.ini: 'NazgulLightPointPixieSmaller' is declared more than once, also in fxparticlesystem.ini:49108
 ini/fxparticlesystemcustom.ini: 'NazgulLightPointPixieSmaller' is declared more than once, also in fxparticlesystem.ini:54685
-ini/gamedata.ini: Expected Multisound, but 'Shell2Music' is MusicTrack
 ini/includes/foundationconstructbuttons.inc: 'Command_FoundationConstructDwarvenAssembly' is declared more than once, also in line 231
 ini/includes/foundationconstructbuttons.inc: 'Command_FoundationConstructDwarvenAssembly' is declared more than once, also in line 303
 ini/includes/foundationconstructbuttons.inc: Cannot resolve ChildObject or Object or ObjectReskin 'ArnorHeroStatue'
@@ -533,7 +523,6 @@ ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'NuHelpbox-topri
 ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'Ruler' is declared more than once, also in scshelluserinterface512.ini:85
 ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'Ruler-Right' is declared more than once, also in scshelluserinterface512.ini:5
 ini/mappedimages/texturesize_512/scsmshelluserinterface512.ini: 'WindowGrid' is declared more than once, also in scshelluserinterface512.ini:93
-ini/miscaudio.ini: Expected Multisound, but 'Shell2Music' is MusicTrack
 ini/music.ini: 'aotr_gondorbattle1' is declared more than once, also in line 1352
 ini/music.ini: 'aotr_gondorbattle1' is declared more than once, also in line 1475
 ini/music.ini: 'aotr_haldirjoins' is declared more than once, also in line 524
@@ -690,14 +679,10 @@ ini/object/evilfaction/units/angmar/angmarthrallmasterbanner.ini: Cannot resolve
 ini/object/evilfaction/units/angmar/snowtrollstalker.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
 ini/object/evilfaction/units/campaign/campaigngorgthetroll.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
 ini/object/evilfaction/units/campaign/greatspider.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
-ini/object/evilfaction/units/campaign/greatspider.ini: Expected AudioEvent, but 'GuldurSpiderSisterVoiceMoveMS' is Multisound
-ini/object/evilfaction/units/campaign/ringwraith.ini: Expected AudioEvent, but 'BlackRiderVoiceMoveCampMountedMS' is Multisound
-ini/object/evilfaction/units/campaign/ringwraith.ini: Expected AudioEvent, but 'BlackRiderVoiceRetreatMountedMS' is Multisound
 ini/object/evilfaction/units/campaign/ruffian.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
 ini/object/evilfaction/units/dolguldur/cargast.ini: Cannot resolve MappedImage 'HEAngmarCargast'
 ini/object/evilfaction/units/dolguldur/cargast.ini: Cannot resolve MappedImage 'HIAngmarCargast'
 ini/object/evilfaction/units/dolguldur/cargast.ini: Cannot resolve MappedImage 'HIAngmarCargast_res'
-ini/object/evilfaction/units/dolguldur/fellbrood.ini: Expected AudioEvent, but 'GuldurSpiderVoiceMoveMS' is Multisound
 ini/object/evilfaction/units/dolguldur/fellbrood.ini: Missing 'End' for block 'Object'
 ini/object/evilfaction/units/dolguldur/fellbrood.ini: Unknown block 'AttackPriority' in 'AIUpdateInterface'
 ini/object/evilfaction/units/dolguldur/fellbrood.ini: Unknown block 'Behavior' in 'AIUpdateInterface'
@@ -716,13 +701,10 @@ ini/object/evilfaction/units/dolguldur/fellbrood.ini: Unknown property 'ShadowSi
 ini/object/evilfaction/units/dolguldur/fellbrood.ini: Unknown property 'ShadowSizeY' in 'AIUpdateInterface'
 ini/object/evilfaction/units/dolguldur/fellbrood.ini: Unknown property 'ShadowTexture' in 'AIUpdateInterface'
 ini/object/evilfaction/units/dolguldur/greatspider.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
-ini/object/evilfaction/units/dolguldur/greatspider.ini: Expected AudioEvent, but 'GuldurSpiderSisterVoiceMoveMS' is Multisound
 ini/object/evilfaction/units/dolguldur/guldurspiderling.ini: Cannot resolve MappedImage 'UPMMSpiders'
 ini/object/evilfaction/units/dolguldur/gwanthaur.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
 ini/object/evilfaction/units/dolguldur/orcpikeman.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/evilfaction/units/dolguldur/orcravager.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
-ini/object/evilfaction/units/dolguldur/ringwraith.ini: Expected AudioEvent, but 'BlackRiderVoiceMoveCampMountedMS' is Multisound
-ini/object/evilfaction/units/dolguldur/ringwraith.ini: Expected AudioEvent, but 'BlackRiderVoiceRetreatMountedMS' is Multisound
 ini/object/evilfaction/units/dolguldur/saenathra.ini: Cannot resolve Armor 'UnitProductionStructureArmor'
 ini/object/evilfaction/units/dolguldur/spiderrider.ini: Expected a number but found '8.0CA'
 ini/object/evilfaction/units/dolguldur/tombguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
@@ -746,7 +728,6 @@ ini/object/evilfaction/units/harad/caranlambar.ini: Expected CommandButton, but 
 ini/object/evilfaction/units/harad/deployedcaravan.ini: ModuleTag 'ModuleTag_SoWeCanUseWeapon' is used more than once in 'TradeCaravanDeployed'
 ini/object/evilfaction/units/harad/giantscorpion.ini: Cannot resolve Armor 'UnitProductionStructureArmor'
 ini/object/evilfaction/units/harad/giantscorpion.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
-ini/object/evilfaction/units/harad/giantscorpion.ini: Expected AudioEvent, but 'SocrpionMoveMS' is Multisound
 ini/object/evilfaction/units/harad/harondorinfantrybanner.ini: Expected MappedImage, but 'HaradHarondorSpearmen' is Object
 ini/object/evilfaction/units/harad/harondorspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/evilfaction/units/harad/karadd.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
@@ -765,8 +746,6 @@ ini/object/evilfaction/units/isengard/dunlendingaxemen.ini: Cannot resolve Child
 ini/object/evilfaction/units/isengard/isengardbannerorc.ini: Cannot resolve MappedImage 'UPIsengard_banner'
 ini/object/evilfaction/units/isengard/isengardorcpikeman.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/evilfaction/units/isengard/isengardpikeman.ini: Cannot resolve AttackPriority 'AttackPriority_Pikeman'
-ini/object/evilfaction/units/isengard/isengardscoutnew.ini: Expected AudioEvent, but 'UrukScoutVoiceAttackMS' is Multisound
-ini/object/evilfaction/units/isengard/isengardurukarcher.ini: Expected AudioEvent, but 'UrukScoutVoiceAttackMS' is Multisound
 ini/object/evilfaction/units/isengard/isengardwargriderbanner.ini: Cannot resolve MappedImage 'UPIsengard_banner'
 ini/object/evilfaction/units/isengard/mog.ini: Unknown property 'VoiceExit' in 'UnitSpecificSounds'
 ini/object/evilfaction/units/isengard/sharku.ini: Cannot resolve CommandButton 'Command_SpecialAbilitySharkuBloodHunt_Lvl4'
@@ -776,13 +755,9 @@ ini/object/evilfaction/units/isengard/ugluk.ini: Expected CommandButton, but 'Sp
 ini/object/evilfaction/units/isengard/wildemanspearman.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/evilfaction/units/isengard/wildman.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
 ini/object/evilfaction/units/isengard/wulfgarcrebain.ini: Cannot resolve FXList 'FX_GwaihirAirDeath'
-ini/object/evilfaction/units/mordor/Akhorahil.ini: Expected AudioEvent, but 'BlackRiderVoiceMoveCampMountedMS' is Multisound
-ini/object/evilfaction/units/mordor/Akhorahil.ini: Expected AudioEvent, but 'BlackRiderVoiceRetreatMountedMS' is Multisound
 ini/object/evilfaction/units/mordor/Khamul.ini: Cannot resolve MappedImage 'HEKhamulNew'
 ini/object/evilfaction/units/mordor/Khamul.ini: Cannot resolve MappedImage 'HIKhamulNew'
 ini/object/evilfaction/units/mordor/Khamul.ini: Cannot resolve MappedImage 'HIKhamulResNew'
-ini/object/evilfaction/units/mordor/Uvatha.ini: Expected AudioEvent, but 'BlackRiderVoiceMoveCampMountedMS' is Multisound
-ini/object/evilfaction/units/mordor/Uvatha.ini: Expected AudioEvent, but 'BlackRiderVoiceRetreatMountedMS' is Multisound
 ini/object/evilfaction/units/mordor/catapult.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
 ini/object/evilfaction/units/mordor/fellbeast.ini: Cannot resolve MappedImage 'HIKhamul_res'
 ini/object/evilfaction/units/mordor/fellbeast.ini: Cannot resolve MappedImage 'HiFellbeastResNew'
@@ -810,10 +785,6 @@ ini/object/evilfaction/units/mordor/siegetower.ini: Cannot resolve MappedImage '
 ini/object/evilfaction/units/mordor/tributecart.ini: Cannot resolve MappedImage 'UPMordor_TrollPorter'
 ini/object/evilfaction/units/morgul/bannercarrier.ini: Cannot resolve MappedImage 'UPMordor_Banner'
 ini/object/evilfaction/units/morgul/morgulhunter.ini: Cannot resolve AttackPriority 'AttackPriority_HERO'
-ini/object/evilfaction/units/morgul/nazgulA.ini: Expected AudioEvent, but 'BlackRiderVoiceMoveCampMountedMS' is Multisound
-ini/object/evilfaction/units/morgul/nazgulA.ini: Expected AudioEvent, but 'BlackRiderVoiceRetreatMountedMS' is Multisound
-ini/object/evilfaction/units/morgul/nazgulB.ini: Expected AudioEvent, but 'BlackRiderVoiceMoveCampMountedMS' is Multisound
-ini/object/evilfaction/units/morgul/nazgulB.ini: Expected AudioEvent, but 'BlackRiderVoiceRetreatMountedMS' is Multisound
 ini/object/evilfaction/units/rhun/balchothwarrior.ini: Cannot resolve MappedImage 'upbalchotwarriors'
 ini/object/evilfaction/units/rhun/belokhza.ini: Unknown property 'VoiceAttackAir' in 'SoundState'
 ini/object/evilfaction/units/rhun/cannon.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
@@ -1030,38 +1001,12 @@ ini/object/goodfaction/structures/dwarven/TDHEreborThroneKeep.ini: Cannot resolv
 ini/object/goodfaction/structures/dwarven/dwarfbunker.ini: Cannot resolve CommandSet 'SentryTowerCommandSet'
 ini/object/goodfaction/structures/dwarven/dwarfcastlewalls.ini: Cannot resolve ChildObject or Object or ObjectReskin 'DwarvenWallRamp'
 ini/object/goodfaction/structures/dwarven/dwarfcastlewalls.ini: Cannot resolve MappedImage 'BPDWall_Hub'
-ini/object/goodfaction/structures/elven/barracks.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/barracks.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
-ini/object/goodfaction/structures/elven/elvenaxeelfgarrisonexpansion.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/elvenaxeelfgarrisonexpansion.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
 ini/object/goodfaction/structures/elven/elvenbattletower.ini: 'ElvenBattleTowerFoundation' is declared more than once, also in eaglesbuilding.ini:434
-ini/object/goodfaction/structures/elven/elvenbattletower.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/elvenbattletower.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
-ini/object/goodfaction/structures/elven/elvencastlewallhubexpansion.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/elvencastlewallhubexpansion.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
 ini/object/goodfaction/structures/elven/elvenfloodgateexpansion.ini: Cannot resolve MappedImage 'SBGood_Flood'
-ini/object/goodfaction/structures/elven/elvenfloodgateexpansion.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/elvenfortress.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/elvenfortress.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
 ini/object/goodfaction/structures/elven/elvenfortress.ini: Expected SpecialPower, but 'Upgrade_ElvenFortressEaglesNest' is Upgrade
-ini/object/goodfaction/structures/elven/elvengreenpasture.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/elvengreenpasture.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
-ini/object/goodfaction/structures/elven/elvenhiddensanctum.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/elvenhiddensanctum.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
-ini/object/goodfaction/structures/elven/elvenmallorntree.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/elvenmallorntree.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
-ini/object/goodfaction/structures/elven/elvenniphredilmallorntree.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/elvenniphredilmallorntree.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
 ini/object/goodfaction/structures/elven/elvenniphredilmallorntree.ini: Unknown KindOf '+ElvenMallornTree_ForAI'
 ini/object/goodfaction/structures/elven/elvenniphredilmallorntree.ini: Unknown KindOf 'SAME_PLAYER'
-ini/object/goodfaction/structures/elven/elvensentrytower.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/elvensentrytower.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
-ini/object/goodfaction/structures/elven/elvenwatchtowerexpansion.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/elvenwatchtowerexpansion.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
-ini/object/goodfaction/structures/elven/eregionforge.ini: Expected AudioEvent, but 'LothlorienBuildingSelectUnderConstruction' is Multisound
-ini/object/goodfaction/structures/elven/eregionforge.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
 ini/object/goodfaction/structures/highpass/eaglesbuilding.ini: 'ElvenBattleTowerFoundation' is declared more than once, also in elvenbattletower.ini:1076
-ini/object/goodfaction/structures/highpass/eaglesbuilding.ini: Expected AudioEvent, but 'LothlorienConstructionLoop' is Multisound
 ini/object/goodfaction/structures/ithilien/foundationplot.ini: Cannot resolve MappedImage 'ZZSelectPortrait'
 ini/object/goodfaction/structures/men/battletower.ini: Cannot resolve MappedImage 'UIGondorBattleTower'
 ini/object/goodfaction/structures/men/campsandcastles.ini: Cannot resolve CommandSet 'BattleTowerCommandSet'
@@ -1118,7 +1063,6 @@ ini/object/goodfaction/units/campaign/eowyn.ini: Cannot resolve FXParticleSystem
 ini/object/goodfaction/units/campaign/gandalfthewhite.ini: Cannot resolve Locomotor 'HeroWanderLocomotor'
 ini/object/goodfaction/units/campaign/kingofthedead.ini: Cannot resolve ObjectCreationList 'OCL_KotDSleeplessDead'
 ini/object/goodfaction/units/campaign/lindir.ini: Cannot resolve Weapon 'InfantryCrushRevenge'
-ini/object/goodfaction/units/campaign/rangerdamrod.ini: Expected Multisound, but 'DamrodQuickDispatch' is AudioEvent or ModifierList
 ini/object/goodfaction/units/campaign/thrain.ini: Cannot resolve MappedImage 'HIAzanulbizarThrain'
 ini/object/goodfaction/units/campaign/thranduilarmor.ini: Cannot resolve ModifierList 'ThranduilBladeOfPurity'
 ini/object/goodfaction/units/campaign/thror.ini: Cannot resolve MappedImage 'HIAzanulbizarThror'
@@ -1198,18 +1142,13 @@ ini/object/goodfaction/units/ents/entsinfantry.ini: Cannot resolve FXParticleSys
 ini/object/goodfaction/units/ents/entsinfantry.ini: Cannot resolve Weapon 'RohanEntRockFromThinAir'
 ini/object/goodfaction/units/ents/entwives.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
 ini/object/goodfaction/units/ents/entwives.ini: Cannot resolve FXParticleSystem or ParticleSystem 'EntSplash'
-ini/object/goodfaction/units/ents/entwives.ini: Expected AudioEvent, but 'EntwifeVoiceSelectMS' is Multisound
 ini/object/goodfaction/units/ents/huorn.ini: Cannot resolve FXParticleSystem or ParticleSystem 'EntSplash'
-ini/object/goodfaction/units/ents/huorn.ini: Expected AudioEvent, but 'HuornVoiceSelectMS' is Multisound
 ini/object/goodfaction/units/ents/treeberd.ini: Cannot resolve FXParticleSystem or ParticleSystem 'EntSplash'
 ini/object/goodfaction/units/gondor/denethor.ini: Cannot resolve CommandButton 'Command_SpecialPowerDenethorLvl10'
 ini/object/goodfaction/units/highpass/highpassglaivemen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/goodfaction/units/highpass/highpassranger.ini: Missing 'EndScript' before 'BeginScript'
 ini/object/goodfaction/units/inn/lossotharcher.ini: Unknown property 'VoiceExit' in 'UnitSpecificSounds'
-ini/object/goodfaction/units/ithilien/damrod.ini: Expected Multisound, but 'DamrodQuickDispatch' is AudioEvent or ModifierList
 ini/object/goodfaction/units/ithilien/faramir.ini: Cannot resolve CommandButton 'FaramirAmbushAbility'
-ini/object/goodfaction/units/ithilien/greycompanyspears.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
-ini/object/goodfaction/units/ithilien/ithiliencaptain.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
 ini/object/goodfaction/units/ithilien/ithilienoutrider.ini: Cannot resolve Weapon 'IthilienOutriderRaid'
 ini/object/goodfaction/units/ithilien/ithilienpathfinder.ini: Cannot resolve AttackPriority 'AttackPriority_HERO'
 ini/object/goodfaction/units/ithilien/ithilienram.ini: Cannot resolve AttackPriority 'AttackPriority_SIEGEWEAPON'
@@ -1236,9 +1175,6 @@ ini/object/goodfaction/units/men/gondordolamrothfighter.ini: Cannot resolve Mapp
 ini/object/goodfaction/units/men/gondorinfantrybanner.ini: Cannot resolve MappedImage 'UPGondor_Banner'
 ini/object/goodfaction/units/men/gondorpike.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/goodfaction/units/men/gondorranger.ini: Cannot resolve MappedImage 'UPDunedainRangernew'
-ini/object/goodfaction/units/men/gondorranger.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
-ini/object/goodfaction/units/men/gondorrangercaptain.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
-ini/object/goodfaction/units/men/gondorrangerspear.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
 ini/object/goodfaction/units/men/gondortowershieldguard.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/goodfaction/units/men/linhirspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/goodfaction/units/men/pinnathgelinhalberdier.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
@@ -1362,9 +1298,6 @@ ini/object/goodfaction/units/rohan/westfolders.ini: Cannot resolve MappedImage '
 ini/object/goodfaction/units/rohan/yeomenspearmen.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/goodfaction/units/shire/bucklandbraves.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
 ini/object/goodfaction/units/shire/noldorexile.ini: Cannot resolve AttackPriority 'AttackPriority_PIKEMAN'
-ini/object/goodfaction/units/shire/rangerbow.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
-ini/object/goodfaction/units/shire/rangerspear.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
-ini/object/goodfaction/units/shire/rangersword.ini: Expected Multisound, but 'RangerVoiceAttackSword' is AudioEvent
 ini/object/goodfaction/units/towerdefense/tdlorienarcher.ini: Cannot resolve MappedImage 'UILorienArchers'
 ini/object/modcinematic/cinematicobjects.ini: 'CineClouds_2' is declared more than once, also in fxparticlesystem.ini:20784
 ini/object/modcinematic/cinematicobjects.ini: Cannot resolve CommandSet 'BatteringRamCommandSet'

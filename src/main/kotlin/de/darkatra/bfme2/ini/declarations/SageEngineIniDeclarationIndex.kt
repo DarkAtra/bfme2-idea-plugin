@@ -143,7 +143,7 @@ class SageEngineIniDeclarationIndex : FileBasedIndexExtension<String, Declaratio
 
     override fun getValueExternalizer(): DataExternalizer<DeclarationOccurrence> = OccurrenceExternalizer
 
-    override fun getVersion(): Int = 36
+    override fun getVersion(): Int = 37
 
     override fun getInputFilter(): FileBasedIndex.InputFilter = object : DefaultFileTypeSpecificInputFilter(SageEngineIniFileType) {
 

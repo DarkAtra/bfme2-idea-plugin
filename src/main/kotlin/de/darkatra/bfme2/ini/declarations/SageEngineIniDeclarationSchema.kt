@@ -1,7 +1,12 @@
 package de.darkatra.bfme2.ini.declarations
 
 import de.darkatra.bfme2.ini.model.SageIniModel
+import de.darkatra.bfme2.ini.model.`object`.AmbientStream
 import de.darkatra.bfme2.ini.model.`object`.AudioEvent
+import de.darkatra.bfme2.ini.model.`object`.DialogEvent
+import de.darkatra.bfme2.ini.model.`object`.Multisound
+import de.darkatra.bfme2.ini.model.`object`.MusicTrack
+import de.darkatra.bfme2.ini.model.`object`.StreamedSound
 import de.darkatra.bfme2.ini.model.common.SageIniComponent
 import de.darkatra.bfme2.ini.model.common.SageIniPrefixedProperties
 import de.darkatra.bfme2.ini.model.common.SageIniProperty
@@ -16,6 +21,9 @@ object SageEngineIniDeclarationSchema {
 
     private const val EVA_EVENT_PREFIX = "EVA:"
 
+    // the engine looks every sound up in the same table, so a sound can name any of them, e.g. a `Multisound` where an `AudioEvent` is usual
+    private val audioKinds: Set<String> = setOf(AmbientStream.name, AudioEvent.name, DialogEvent.name, Multisound.name, MusicTrack.name, StreamedSound.name)
+
     private val declaredProperties: List<SageIniProperty<*, *>> = SageIniModel.blocks.flatMap { it.declaredProperties }
 
     // e.g. `1 = Command_ConstructElvenWarrior` in a `CommandSet`
@@ -29,6 +37,7 @@ object SageEngineIniDeclarationSchema {
     private val prefixedProperties: List<SageIniPrefixedProperties<*, *>> = SageIniModel.blocks.flatMap { it.prefixedProperties }.distinct()
 
     private val evaEventKinds: Set<String> = setOf(NewEvaEvent.name, PredefinedEvaEvent.name)
+
 
     // declared by labeled blocks inside other blocks, e.g. `RadiusCursorTemplate = RainOfFireRadiusCursor` inside the `InGameUI`
     private val labeledDeclarationKinds: Set<String> = SageIniModel.declarations.filter { it.keyedByLabel }.map { it.name }.toSet()
@@ -103,7 +112,7 @@ object SageEngineIniDeclarationSchema {
      * A word of a property value that references a declaration of one of the [kinds]. The name starts at [nameOffset] of the word, e.g.
      * after `RiderOCL:` in `RiderOCL:OCL_RohirrimSpawnDeadRider`.
      */
-    data class WordReference(val kinds: Set<String>, val nameOffset: Int = 0)
+    data class WordReference(val kinds: Set<String>, val nameOffset: Int = 0, val factionSides: Boolean = false)
 
     /**
      * The references of the [words] of a value of [type], by position. Struct components are matched by the `Key:` prefix of a word or
@@ -199,7 +208,8 @@ object SageEngineIniDeclarationSchema {
             return null
         }
         val kinds = referencedKinds(type)
-        return evaEventReference(kinds, word) ?: kinds.takeIf { it.isNotEmpty() }?.let { WordReference(it) }
+        val factionSides = (type as? SageIniValueType.ReferenceValue<*>)?.factionSides == true
+        return evaEventReference(kinds, word) ?: kinds.takeIf { it.isNotEmpty() }?.let { WordReference(it, factionSides = factionSides) }
     }
 
     // stand for no declaration at all
@@ -226,7 +236,9 @@ object SageEngineIniDeclarationSchema {
 
     fun referencedKinds(type: SageIniValueType<*>): Set<String> {
         return when (type) {
-            is SageIniValueType.ReferenceValue<*> -> type.targets.map { it.name }.toSet()
+            is SageIniValueType.ReferenceValue<*> -> type.targets.map { it.name }.toSet().let { kinds ->
+                if (kinds.any { it in audioKinds }) kinds + audioKinds else kinds
+            }
             is SageIniValueType.ListValue<*> -> referencedKinds(type.element)
             is SageIniValueType.MapValue<*, *> -> referencedKinds(type.key) + referencedKinds(type.value)
             is SageIniValueType.StructValue<*> -> type.components.flatMap { referencedKinds(it.type) }.toSet()
